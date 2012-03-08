@@ -1,0 +1,49 @@
+&lt;s:extensions
+									xmlns:s="http://org.embl.ebi.escience/xscufl/0.1alpha"&gt;&lt;s:complextype
+									optional="false" unbounded="false"
+									typename="ExecuteProcess_v.voronoi" name="DataInputs"
+									qname="{http://www.opengis.net/wps/1.0.0}ExecuteProcess_v.voronoi"&gt;&lt;s:elements&gt;&lt;s:basetype
+									optional="false" unbounded="false" typename="anyType"
+									name="input"
+									qname="&amp;gt;ExecuteProcess_v.voronoi&amp;gt;input"
+									/&gt;&lt;s:basetype optional="true" unbounded="false"
+									typename="boolean" name="t"
+									qname="&amp;gt;ExecuteProcess_v.voronoi&amp;gt;t"
+									/&gt;&lt;s:basetype optional="true" unbounded="false"
+									typename="boolean" name="l"
+									qname="&amp;gt;ExecuteProcess_v.voronoi&amp;gt;l"
+									/&gt;&lt;/s:elements&gt;&lt;/s:complextype&gt;&lt;/s:extensions&gt;
+									
+									&lt;s:extensions
+									xmlns:s="http://org.embl.ebi.escience/xscufl/0.1alpha"&gt;&lt;s:complextype
+									optional="false" unbounded="false"
+									typename="ExecuteProcess_v.voronoiResponse"
+									name="ProcessOutputs"
+									qname="{http://www.opengis.net/wps/1.0.0}ExecuteProcess_v.voronoiResponse"&gt;&lt;s:elements&gt;&lt;s:basetype
+									optional="false" unbounded="false" typename="anyType"
+									name="outputResult"
+									qname="&amp;gt;ExecuteProcess_v.voronoiResponse&amp;gt;outputResult"
+									/&gt;&lt;/s:elements&gt;&lt;/s:complextype&gt;&lt;/s:extensions&gt;
+									
+									&lt;s:extensions
+									xmlns:s="http://org.embl.ebi.escience/xscufl/0.1alpha"&gt;&lt;s:complextype
+									optional="false" unbounded="false"
+									typename="ExecuteProcess_gml2svg" name="DataInputs"
+									qname="{http://www.opengis.net/wps/1.0.0}ExecuteProcess_gml2svg"&gt;&lt;s:elements&gt;&lt;s:basetype
+									optional="false" unbounded="false" typename="anyType"
+									name="input"
+									qname="&amp;gt;ExecuteProcess_gml2svg&amp;gt;input"
+									/&gt;&lt;s:basetype optional="true" unbounded="false"
+									typename="string" name="type"
+									qname="&amp;gt;ExecuteProcess_gml2svg&amp;gt;type"
+									/&gt;&lt;/s:elements&gt;&lt;/s:complextype&gt;&lt;/s:extensions&gt;
+									
+									&lt;s:extensions
+									xmlns:s="http://org.embl.ebi.escience/xscufl/0.1alpha"&gt;&lt;s:complextype
+									optional="false" unbounded="false"
+									typename="ExecuteProcess_gml2svgResponse" name="ProcessOutputs"
+									qname="{http://www.opengis.net/wps/1.0.0}ExecuteProcess_gml2svgResponse"&gt;&lt;s:elements&gt;&lt;s:basetype
+									optional="false" unbounded="false" typename="anyType"
+									name="outputResult"
+									qname="&amp;gt;ExecuteProcess_gml2svgResponse&amp;gt;outputResult"
+									/&gt;&lt;/s:elements&gt;&lt;/s:complextype&gt;&lt;/s:extensions&gt;

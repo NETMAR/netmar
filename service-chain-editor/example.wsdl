@@ -1,0 +1,286 @@
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:ows="http://www.opengis.net/ows/1.1" xmlns:wps="http://www.opengis.net/wps/1.0.0"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://localhost/wps.cgi_wsdl"
+	targetNamespace="http://localhost/wps.cgi_wsdl">
+	<types>
+		<schema xmlns="http://www.w3.org/2001/XMLSchema"
+			targetNamespace="http://www.opengis.net/ows/1.1">
+			<include
+				schemaLocation="http://schemas.opengis.net/ows/1.1.0/owsExceptionReport.xsd" />
+		</schema>
+		<schema xmlns="http://www.w3.org/2001/XMLSchema"
+			targetNamespace="http://www.opengis.net/wps/1.0.0">
+			<include
+				schemaLocation="http://schemas.opengis.net/wps/1.0.0/wpsGetCapabilities_request.xsd" />
+		</schema>
+		<schema xmlns="http://www.w3.org/2001/XMLSchema"
+			targetNamespace="http://www.opengis.net/wps/1.0.0">
+			<include
+				schemaLocation="http://schemas.opengis.net/wps/1.0.0/wpsGetCapabilities_response.xsd" />
+		</schema>
+		<schema xmlns="http://www.w3.org/2001/XMLSchema"
+			targetNamespace="http://www.opengis.net/wps/1.0.0">
+			<include
+				schemaLocation="http://schemas.opengis.net/wps/1.0.0/wpsDescribeProcess_request.xsd" />
+		</schema>
+		<schema xmlns="http://www.w3.org/2001/XMLSchema"
+			targetNamespace="http://www.opengis.net/wps/1.0.0">
+			<include
+				schemaLocation="http://schemas.opengis.net/wps/1.0.0/wpsDescribeProcess_response.xsd" />
+		</schema>
+		<schema xmlns="http://www.w3.org/2001/XMLSchema"
+			targetNamespace="http://www.opengis.net/wps/1.0.0">
+			<include
+				schemaLocation="http://schemas.opengis.net/wps/1.0.0/wpsExecute_request.xsd" />
+		</schema>
+		<schema xmlns="http://www.w3.org/2001/XMLSchema"
+			targetNamespace="http://www.opengis.net/wps/1.0.0">
+			<include
+				schemaLocation="http://schemas.opengis.net/wps/1.0.0/wpsExecute_response.xsd" />
+		</schema>
+		<schema xmlns="http://www.w3.org/2001/XMLSchema"
+			targetNamespace="http://www.opengis.net/ows/1.1">
+			<include
+				schemaLocation="http://schemas.opengis.net/ows/1.1.0/owsExceptionReport.xsd" />
+		</schema>
+		<schema xmlns="http://www.w3.org/2001/XMLSchema"
+			targetNamespace="http://www.opengis.net/wps/1.0.0">
+			<element name="ExecuteProcess_gml2svg">
+				<complexType>
+					<sequence>
+						<element minOccurs="1" maxOccurs="1" name="input" />
+						<element minOccurs="0" maxOccurs="1" name="type" type="xsd:string" />
+					</sequence>
+				</complexType>
+			</element>
+		</schema>
+		<schema xmlns="http://www.w3.org/2001/XMLSchema"
+			targetNamespace="http://www.opengis.net/wps/1.0.0">
+			<element name="ExecuteProcess_gml2svgResponse">
+				<complexType>
+					<sequence>
+						<element name="outputResult" minOccurs="1" maxOccurs="1" />
+					</sequence>
+				</complexType>
+			</element>
+		</schema>
+		<schema xmlns="http://www.w3.org/2001/XMLSchema"
+			targetNamespace="http://www.opengis.net/wps/1.0.0">
+			<element name="ExecuteProcess_v.voronoi">
+				<complexType>
+					<sequence>
+						<element minOccurs="1" maxOccurs="1" name="input" />
+						<element minOccurs="0" maxOccurs="1" name="t" type="xsd:boolean" />
+						<element minOccurs="0" maxOccurs="1" name="l" type="xsd:boolean" />
+					</sequence>
+				</complexType>
+			</element>
+		</schema>
+		<schema xmlns="http://www.w3.org/2001/XMLSchema"
+			targetNamespace="http://www.opengis.net/wps/1.0.0">
+			<element name="ExecuteProcess_v.voronoiResponse">
+				<complexType>
+					<sequence>
+						<element name="outputResult" minOccurs="1" maxOccurs="1" />
+					</sequence>
+				</complexType>
+			</element>
+		</schema>
+		<schema xmlns="http://www.w3.org/2001/XMLSchema"
+			targetNamespace="http://www.opengis.net/wps/1.0.0">
+			<element name="ExecuteProcess_v.univar">
+				<complexType>
+					<sequence>
+						<element minOccurs="0" maxOccurs="1" name="e" type="xsd:boolean" />
+						<element minOccurs="1" maxOccurs="1" name="map" />
+						<element minOccurs="0" maxOccurs="1" name="layer" type="xsd:string" />
+						<element minOccurs="1" maxOccurs="1" name="column" type="xsd:string" />
+						<element minOccurs="0" maxOccurs="1" name="where" type="xsd:string" />
+						<element minOccurs="0" maxOccurs="1" name="g" type="xsd:boolean" />
+						<element minOccurs="0" maxOccurs="1" name="percentile"
+							type="xsd:integer" />
+						<element minOccurs="0" maxOccurs="1024" name="type" type="xsd:string" />
+					</sequence>
+				</complexType>
+			</element>
+		</schema>
+		<schema xmlns="http://www.w3.org/2001/XMLSchema"
+			targetNamespace="http://www.opengis.net/wps/1.0.0">
+			<element name="ExecuteProcess_v.univarResponse">
+				<complexType>
+					<sequence>
+						<element name="stdoutResult" minOccurs="1" maxOccurs="1" />
+					</sequence>
+				</complexType>
+			</element>
+		</schema>
+	</types>
+	<message name="GetCapabilitiesRequest">
+		<part name="msg" element="wps:GetCapabilities" />
+	</message>
+	<message name="GetCapabilitiesResponse">
+		<part name="msg" element="wps:Capabilities" />
+	</message>
+	<message name="DescribeProcessRequest">
+		<part name="msg" element="wps:DescribeProcess" />
+	</message>
+	<message name="DescribeProcessResponse">
+		<part name="msg" element="wps:ProcessDescriptions" />
+	</message>
+	<message name="ExecuteRequest">
+		<part name="msg" element="wps:Execute" />
+	</message>
+	<message name="ExecuteResponse">
+		<part name="msg" element="wps:ExecuteResponse" />
+	</message>
+	<message name="ExceptionResponse">
+		<part name="msg" element="ows:Exception" />
+	</message>
+	<message name="ExecuteProcess_gml2svgRequest">
+		<part name="DataInputs" element="wps:ExecuteProcess_gml2svg" />
+	</message>
+	<message name="ExecuteProcess_gml2svgResponse">
+		<part name="ProcessOutputs" element="wps:ExecuteProcess_gml2svgResponse" />
+	</message>
+	<message name="ExecuteProcess_v.voronoiRequest">
+		<part name="DataInputs" element="wps:ExecuteProcess_v.voronoi" />
+	</message>
+	<message name="ExecuteProcess_v.voronoiResponse">
+		<part name="ProcessOutputs" element="wps:ExecuteProcess_v.voronoiResponse" />
+	</message>
+	<message name="ExecuteProcess_v.univarRequest">
+		<part name="DataInputs" element="wps:ExecuteProcess_v.univar" />
+	</message>
+	<message name="ExecuteProcess_v.univarResponse">
+		<part name="ProcessOutputs" element="wps:ExecuteProcess_v.univarResponse" />
+	</message>
+	<portType name="PywpsServer_PortType">
+		<operation name="GetCapabilities">
+			<input message="tns:GetCapabilitiesRequest" />
+			<output message="tns:GetCapabilitiesResponse" />
+			<fault name="ExceptionResponse" message="tns:ExceptionResponse" />
+		</operation>
+		<operation name="DescribeProcess">
+			<input message="tns:DescribeProcessRequest" />
+			<output message="tns:DescribeProcessResponse" />
+			<fault name="ExceptionResponse" message="tns:ExceptionResponse" />
+		</operation>
+		<operation name="Execute">
+			<input message="tns:ExecuteRequest" />
+			<output message="tns:ExceptionResponse" />
+			<fault name="ExceptionResponse" message="tns:ExceptionResponse" />
+		</operation>
+		<operation name="ExecuteProcess_gml2svg">
+			<input message="tns:ExecuteProcess_gml2svgRequest" />
+			<output message="tns:ExecuteProcess_gml2svgResponse" />
+			<fault name="ExceptionResponse" message="tns:ExceptionResponse" />
+		</operation>
+		<operation name="ExecuteProcess_v.voronoi">
+			<input message="tns:ExecuteProcess_v.voronoiRequest" />
+			<output message="tns:ExecuteProcess_v.voronoiResponse" />
+			<fault name="ExceptionResponse" message="tns:ExceptionResponse" />
+		</operation>
+		<operation name="ExecuteProcess_v.univar">
+			<input message="tns:ExecuteProcess_v.univarRequest" />
+			<output message="tns:ExecuteProcess_v.univarResponse" />
+			<fault name="ExceptionResponse" message="tns:ExceptionResponse" />
+		</operation>
+	</portType>
+	<binding name="PywpsServer_Binding" type="tns:PywpsServer_PortType">
+		<binding xmlns="http://schemas.xmlsoap.org/wsdl/soap/" style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<operation name="GetCapabilities">
+			<operation xmlns="http://schemas.xmlsoap.org/wsdl/soap/"
+				soapAction="http://localhost/wps.cgi/GetCapabilities" style="document" />
+			<input name="GetCapabilitiesRequest">
+				<body xmlns="http://schemas.xmlsoap.org/wsdl/soap/" use="literal" />
+			</input>
+			<output name="GetCapabilitiesResponse">
+				<body xmlns="http://schemas.xmlsoap.org/wsdl/soap/" use="literal" />
+			</output>
+			<fault name="ExceptionResponse">
+				<fault xmlns="http://schemas.xmlsoap.org/wsdl/soap/" name="ExceptionResponse"
+					use="literal" />
+			</fault>
+		</operation>
+		<operation name="DescribeProcess">
+			<operation xmlns="http://schemas.xmlsoap.org/wsdl/soap/"
+				soapAction="http://localhost/wps.cgi/DescribeProcess" style="document" />
+			<input name="DescribeProcessRequest">
+				<body xmlns="http://schemas.xmlsoap.org/wsdl/soap/" use="literal" />
+			</input>
+			<output name="DescribeProcessResponse">
+				<body xmlns="http://schemas.xmlsoap.org/wsdl/soap/" use="literal" />
+			</output>
+			<fault name="ExceptionResponse">
+				<fault xmlns="http://schemas.xmlsoap.org/wsdl/soap/" name="ExceptionResponse"
+					use="literal" />
+			</fault>
+		</operation>
+		<operation name="Execute">
+			<operation xmlns="http://schemas.xmlsoap.org/wsdl/soap/"
+				soapAction="http://localhost/wps.cgi/Execute" style="document" />
+			<input name="ExecuteRequest">
+				<body xmlns="http://schemas.xmlsoap.org/wsdl/soap/" use="literal" />
+			</input>
+			<output name="ExecuteResponse">
+				<body xmlns="http://schemas.xmlsoap.org/wsdl/soap/" use="literal" />
+			</output>
+			<fault name="ExceptionResponse">
+				<fault xmlns="http://schemas.xmlsoap.org/wsdl/soap/" name="ExceptionResponse"
+					use="literal" />
+			</fault>
+		</operation>
+		<operation name="ExecuteProcess_gml2svg">
+			<operation xmlns="http://schemas.xmlsoap.org/wsdl/soap/"
+				soapAction="http://localhost/wps.cgi/ExecuteProcess_gml2svg" style="document" />
+			<input name="ExecuteProcess_gml2svgRequest">
+				<body xmlns="http://schemas.xmlsoap.org/wsdl/soap/" use="literal" />
+			</input>
+			<output name="ExecuteProcess_gml2svgResponse">
+				<body xmlns="http://schemas.xmlsoap.org/wsdl/soap/" use="literal" />
+			</output>
+			<fault name="ExceptionResponse">
+				<fault xmlns="http://schemas.xmlsoap.org/wsdl/soap/" name="ExceptionResponse"
+					use="literal" />
+			</fault>
+		</operation>
+		<operation name="ExecuteProcess_v.voronoi">
+			<operation xmlns="http://schemas.xmlsoap.org/wsdl/soap/"
+				soapAction="http://localhost/wps.cgi/ExecuteProcess_v.voronoi"
+				style="document" />
+			<input name="ExecuteProcess_v.voronoiRequest">
+				<body xmlns="http://schemas.xmlsoap.org/wsdl/soap/" use="literal" />
+			</input>
+			<output name="ExecuteProcess_v.voronoiResponse">
+				<body xmlns="http://schemas.xmlsoap.org/wsdl/soap/" use="literal" />
+			</output>
+			<fault name="ExceptionResponse">
+				<fault xmlns="http://schemas.xmlsoap.org/wsdl/soap/" name="ExceptionResponse"
+					use="literal" />
+			</fault>
+		</operation>
+		<operation name="ExecuteProcess_v.univar">
+			<operation xmlns="http://schemas.xmlsoap.org/wsdl/soap/"
+				soapAction="http://localhost/wps.cgi/ExecuteProcess_v.univar" style="document" />
+			<input name="ExecuteProcess_v.univarRequest">
+				<body xmlns="http://schemas.xmlsoap.org/wsdl/soap/" use="literal" />
+			</input>
+			<output name="ExecuteProcess_v.univarResponse">
+				<body xmlns="http://schemas.xmlsoap.org/wsdl/soap/" use="literal" />
+			</output>
+			<fault name="ExceptionResponse">
+				<fault xmlns="http://schemas.xmlsoap.org/wsdl/soap/" name="ExceptionResponse"
+					use="literal" />
+			</fault>
+		</operation>
+	</binding>
+	<service name="PywpsServer">
+		<documentation />
+		<port name="PywpsServer_Port" binding="tns:PywpsServer_Binding">
+			<address xmlns="http://schemas.xmlsoap.org/wsdl/soap/"
+				location="http://localhost/wps.cgi" />
+		</port>
+	</service>
+</definitions>

@@ -1,0 +1,6 @@
+1) copy all content of folder v1
+Note: For testing the javascript will pick the example.wsdl in the folder
+Note2: All the files are relative to eachother
+
+2) point to url:
+http://<some hostname>/v1/index.html

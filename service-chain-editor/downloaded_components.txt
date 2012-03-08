@@ -1,0 +1,20 @@
+Jquery components downloaded and used
+
+Core
+Widget
+Mouse
+Position
+
+Draggable 
+Droppable 
+Resizable 
+Selectable
+
+Button
+Dialog
+
+Effects Core
+Effect "Fade"
+Effect "Pulsate"
+
+

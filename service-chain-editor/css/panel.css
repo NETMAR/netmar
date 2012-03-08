@@ -1,0 +1,443 @@
+@charset "UTF-8";
+/* Colors:
+http://www.somacon.com/p142.php
+*/
+
+/* Table CSS example
+http://www.datatables.net/release-datatables/media/css/demo_table.css
+*/
+
+/*   GENERAL */
+serviceEditor, input[type=text] {
+font-family: verdana, helvetica, arial, sans-serif;
+font-size:16px;
+font-weight:400px;
+font-style:normal;
+color: #000000;
+}
+
+h1.serviceEditor {
+font-size: 26px;
+font-family: verdana, helvetica, arial, sans-serif;
+letter-spacing: 1px;
+/*color:#20B2AA;*/
+color: black;
+font-weight:700;
+}
+/*
+h2.serviceEditor {
+font-size: 20px;
+font-family: verdana, helvetica, arial, sans-serif;
+color:#444444;
+font-weight: 400;
+padding: 0 0 10px;
+}
+
+h3.serviceEditor {
+font-size:10px;
+font-family:verdana, helvetica, arial, sans-serif;
+letter-spacing:-1px;
+color:#fff;
+font-weight: 700;
+text-transform:uppercase;
+margin:0;
+padding:8px 0 8px 0;
+}
+
+
+img {
+float: right;
+margin: 3px 3px 6px 8px;
+padding: 5px;
+background: #222222;
+border: 1px solid #333333;
+}
+*/
+
+.panel li {
+margin-top: 2px; /* space beetween boxes*/
+border:1px solid #111111;
+/*background: #EDEDED;*/
+background:white;
+-moz-border-radius-topright: 20px;
+-moz-border-radius-topleft: 20px;
+-webkit-border-top-right-radius: 20px;
+-webkit-border-top-left-radius: 20px;
+-moz-border-radius-bottomright: 20px;
+-moz-border-radius-bottomleft: 20px;
+-webkit-border-bottom-right-radius: 20px;
+-webkit-border-bottom-left-radius: 20px;
+width: 200px;
+height: auto;
+padding-top:1px;
+padding-right:1px;
+padding-bottom:1px;
+padding-left:10px;
+}
+/*
+p.serviceEditor {
+color:#18B00A8;
+line-height:22px;
+padding: 0 0 10px;
+margin: 20px 0 20px 0;
+}
+
+img {
+border:none;
+}
+*/
+/* GENERIC PANEL */
+.panel {
+position: relative;
+/* maybe some javascript that dinamycally get top of the button and appends the panel below*/
+/*
+top: 100px;
+left: 0px;
+width: 400px;
+height: auto;
+*/
+display: none;
+
+background: #EDEDED;
+border: 2px solid #111111;
+
+/*padding: 30px 30px 30px 130px;*/
+filter: alpha(opacity=75);
+opacity: .75;
+/* above service boxes */
+z-index:20;
+
+}
+
+.panel p{
+margin: 0 0 15px 0;
+padding: 0px;
+color:#20B2AA;
+}
+
+
+.panel a, .panel a:visited{
+margin: 0;
+padding: 0;
+
+/*color: #9FC54E;*/
+color:black;
+text-decoration: none;
+/*border-bottom: 2px solid #9FC54E;*/
+}
+
+
+.panel, .panel  a:visited:hover{
+margin: 0;
+padding: 0;
+color:black;
+
+text-decoration: none;
+border-bottom: 2px solid #ffffff;
+}
+
+
+/* SPECIFIC PANEL */
+
+
+.panel#workspacePanel {
+top: 0px;
+left: 0px;
+width: 400px;
+height: auto;
+padding-top:10px;
+padding-right:20px;
+padding-bottom:30px;
+padding-left:100px;
+-moz-border-radius-topright: 20px;
+-webkit-border-top-right-radius: 20px;
+-moz-border-radius-bottomright: 20px;
+-webkit-border-bottom-right-radius: 20px;
+}
+
+.panel#servicePanel{
+/*top: 200px; */
+/*left: 100px;*/
+width: 300px;
+/*height: 200px;*/
+overflow:auto;
+padding-top:10px;
+padding-right:30px;
+padding-bottom:30px;
+padding-left:30px;
+border:1px solid #444444;
+-moz-border-radius-topleft: 20px;
+-moz-border-radius-topright: 20px;
+-webkit-border-top-left-radius: 20px;
+-webkit-border-top-right-radius: 20px;
+-moz-border-radius-bottomleft: 20px;
+-moz-border-radius-bottomright: 20px;
+-webkit-border-bottom-left-radius: 20px;
+-webkit-border-bottom-right-radius: 20px;
+}
+
+.panel#ioPanel{
+/*top: 200px; */
+/*left: 100px;*/
+width: 250px;
+/*height: 200px;*/
+overflow:auto;
+padding-top:10px;
+padding-right:30px;
+padding-bottom:30px;
+padding-left:30px;
+border:1px solid #444444;
+-moz-border-radius-topleft: 20px;
+-moz-border-radius-topright: 20px;
+-webkit-border-top-left-radius: 20px;
+-webkit-border-top-right-radius: 20px;
+-moz-border-radius-bottomleft: 20px;
+-moz-border-radius-bottomright: 20px;
+-webkit-border-bottom-left-radius: 20px;
+-webkit-border-bottom-right-radius: 20px;
+}
+
+/* 
+* ICONS on ioPanel
+*/
+div.dummyIOContainer {
+position:relative;
+border:1px solid #444444;
+height:50px;
+width: 50px;
+cursor: pointer;
+/* it should be in javascript */
+left: 100px;
+}
+
+div.dummyIOContainer div.WireIt-Container-editbutton {
+position:relative;
+top: -15px;
+left: 0px;
+}
+
+div.dummyIOContainer div.WireIt-Container-closebutton {
+position:relative;
+top: 0px;
+left: 0px;
+}
+
+
+div.dummyIOContainer div.WireIt-Terminal-Input-Taverna, 
+div.dummyIOContainer div.WireIt-Terminal-Output-Taverna,
+div.dummyIOContainer div.WireIt-Terminal-Input-Taverna-GIS, 
+div.dummyIOContainer div.WireIt-Terminal-Output-Taverna-GIS {
+position:relative;
+left:20px;
+top:-7px;
+}
+
+
+
+/* GENERIC TRIGGER LINK */
+.serviceEditor a.trigger{
+position: relative;
+text-decoration: none;
+width: 90px;
+/*top: 90px; left: 0;*/
+/* If right --> right:0; */
+font-size: 16px;
+letter-spacing:-0px;
+font-family: verdana, helvetica, arial, sans-serif;
+padding-left:15px;
+/*padding: 10px 40px 10px 15px;*/
+font-weight: 700;
+border:1px solid #444444;
+/* in case of left position 
+left -moz-border-radius-topleft: 20px;
+-webkit-border-top-left-radius: 20px;
+*/
+-moz-border-radius-topright: 20px;
+-webkit-border-top-right-radius: 20px;
+-moz-border-radius-bottomright: 20px;
+-webkit-border-bottom-right-radius: 20px;
+-moz-border-radius-bottomleft: 0px;
+-webkit-border-bottom-left-radius: 0px;
+display: block;
+}
+
+.serviceEditor a.trigger:hover{
+
+text-decoration: none;
+/*top: 90px; left: 0;*/
+font-size: 16px;
+letter-spacing:0px;
+font-family: verdana, helvetica, arial, sans-serif;
+color:#fff;
+padding-left:35px;
+/*padding: 10px 40px 10px 35px;*/
+font-weight: 700;
+/*background:#222222 url(images/plus.png) 85% 55% no-repeat;*/
+border:1px solid #444444;
+-moz-border-radius-topright: 20px;
+-webkit-border-top-right-radius: 20px;
+-moz-border-radius-bottomright: 20px;
+-webkit-border-bottom-right-radius: 20px;
+-moz-border-radius-bottomleft: 0px;
+-webkit-border-bottom-left-radius: 0px;
+display: block;
+}
+
+.serviceEditor a.trigger, .serviceEditor a.trigger:hover{
+background:#EDEDED url(../images/plus.png) 85% 48% no-repeat;
+padding-top:10px;
+padding-right:40px;
+padding-bottom:10px;
+color:black;
+/*color:#20B2AA;*/}
+
+.serviceEditor a.active.trigger {
+background:#FF8C00 url(../images/minus.png) 85% 48% no-repeat;
+}
+
+
+/* MENU POSITIONS */
+.serviceEditor a.trigger#wsdlMenu {
+top: 0px; left: 0px;
+}
+
+.serviceEditor a.trigger#workspaceMenu {
+top: 1px; left: 0px;
+}
+
+/* BULLETS IN WSDL MENU */
+.panel li.active {
+background: #FF8C00;
+}
+
+.panel li.addHTTP {
+width: 300px;
+height: 25px;
+}
+
+/* SERVICE ME*/
+.panel li.serviceLi{
+	/*width: 230px; */
+	/*width: auto;*/
+	/* width set in jquert.servicePlugin.setServiceLiWidth()*/
+	padding-right:-150px;
+}
+
+.panel li.serviceInputs,.panel li.serviceOutputs {
+ width:150px;
+ font-weight: 700;
+ right: 40px;
+ position:relative;
+ list-style-position:inside;
+}
+
+.panel li.input, .panel li.output {
+ width:150px;
+ position:relative;
+ right: 20px;
+ list-style-position:inside;
+};
+
+.panel input[type=text] {
+width: 250px;
+background-color: white;
+border:1px solid #444444;
+text-align:center;
+-moz-border-radius-topright: 20px;
+-webkit-border-top-right-radius: 20px;
+-moz-border-radius-bottomright: 20px;
+-webkit-border-bottom-right-radius: 20px;
+-moz-border-radius-bottomleft: 0px;
+-webkit-border-bottom-left-radius: 0px;
+/* this shouldnt be needed */
+}
+
+#loadPanel {
+width: 400px;
+height: 320px;
+/*maybe it is not */
+overflow: auto;
+padding: 5px
+}
+
+.panel td, .panel th, .panel tr {
+	font-size:12px;
+
+	}
+	
+#tableSaved_info {
+	font-size:12px;
+}
+
+
+
+.row_selected {background-color: #FF8C00;}
+/*
+	
+table.display tr.even.row_selected td {
+	background-color: #B0BED9;
+}
+
+table.display tr.odd.row_selected td {
+	background-color: #9FAFD1;
+}
+*/
+.serviceEditor button {
+	outline: 0; 
+   margin:0 4px 0 0; 
+   padding: .4em 1em; 
+   text-decoration:none !important; 
+   cursor:pointer; 
+   position: relative; 
+   text-align: center; 
+   zoom: 1;
+	}
+
+.serviceEditor button .ui-button-text {
+    font-size:10px;
+    text-align:center;
+    
+    
+}
+
+.serviceEditor .ui-dialog .ui-dialog-buttonpane { 
+    text-align: center;
+}
+
+.panel li.filename {
+ width:300px;
+ height: 25px;
+}
+
+.panel input#inputName {
+ width:240px;
+}
+
+.panel ul#serviceList{
+	width:300px;
+	left:0%;
+	position:absolute;
+	overflow: visible;
+	margin: 0 auto;
+}
+
+.panel ul#serviceList .ui-selecting { background: #FECA40; }
+
+. panel ul#serviceList .ui-selected { background: #F39814; color: white; }
+
+/*
+* ui-file-wrapper and ui-file are necessary for the <input type=file />
+*/
+
+.ui-file-wrapper { position: relative; }
+
+.ui-file {
+  position: absolute;
+  left: 0; top: 0;
+  opacity: 0;
+  width: 300px;
+  text-align: right;
+}
+
+
+

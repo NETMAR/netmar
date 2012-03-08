@@ -1,0 +1,421 @@
+@charset "UTF-8";
+/* CSS: Related to the wireIt structure*/
+
+.layer {
+	position:absolute;
+	background-color: #F0FFFF; 
+	border: 0; 
+    overflow: hidden;
+    margin: auto;
+	
+	
+}
+
+/**
+ * Layers
+ */
+div.WireIt-Layer {
+   border: 0; /* Changing this value causes positioning issues */
+   overflow: auto;
+   margin: auto;
+   position: relative;
+	height: 100%; 
+	width: 100%;
+	background-color: white;
+}
+
+canvas.WireIt-LayerMap {
+   position: absolute;
+   border: 2px solid #3366CC;
+   top: 0;
+   right: 0;
+}
+
+
+/**
+ * Wires :
+ */
+
+canvas.WireIt-Wire {
+   position: absolute;
+   border: 0;
+   z-index: 4;
+   color
+   
+}
+
+canvas.WireIt-Wire-editing {
+   z-index: 20;
+}
+
+div.WireIt-Wire-scissors {
+   border: 0;
+   position: absolute;
+   z-index: 500;
+   width: 16px;
+   height: 16px;
+   background-color: transparent;
+   background-image: url(../images/cut.png);
+   cursor: pointer;
+}
+
+div.WireIt-Wire-Label {
+	position: absolute;
+	height: auto;
+	width: auto;
+}
+
+/**
+ * Terminals Generic:
+ */
+
+div.WireIt-Terminal {
+   width: 30px;
+   height: 30px;
+   cursor: pointer;   
+   position: absolute;
+   background: transparent url(../images/terminals.png) no-repeat scroll 0 0;
+   z-index: 6;
+}
+
+div.WireIt-Terminal-connected {
+   background-position: 0 -30px;
+}
+
+div.WireIt-Terminal-dropinvite {
+   background-position: 0 -60px;
+}
+
+/**
+ * Terminals Taverna:
+ */
+
+
+div.WireIt-Terminal-Input-Taverna {
+ width: 30px;
+   height: 30px;
+   cursor: pointer;   
+   position: absolute;
+   background: transparent url(../images/terminalInputTaverna.png) no-repeat scroll 0 0;
+   z-index: 6;
+}
+
+div.WireIt-Terminal-Input-Taverna-connected {
+	background-position: 0 -30px;
+}
+
+div.WireIt-Terminal-Input-Taverna-dropinvite {
+	background-position: 0 -60px;
+}
+
+span.WireIt-Terminal-Input-Taverna-label{
+	width:100px;
+	font-size:16px;
+	font-weight:700;
+	font-family: verdana, helvetica, arial, sans-serif;
+	padding-left: 30px;
+	top: 5px;
+	position: relative;
+}
+
+div.WireIt-Terminal-Output-Taverna {
+   width: 30px;
+   height: 30px;
+   cursor: pointer;   
+   position: absolute;
+   background: transparent url(../images/terminalOutputTaverna.png) no-repeat scroll 0 0;
+   z-index: 6;
+}
+
+div.WireIt-Terminal-Output-Taverna-connected {
+	background-position: 0 -30px;
+}
+
+div.WireIt-Terminal-Output-Taverna-dropinvite {
+	background-position: 0 -60px;
+}
+
+
+span.WireIt-Terminal-Output-Taverna-label{
+	width:100px;
+	font-size:16px;
+	font-weight:700;
+	font-family: verdana, helvetica, arial, sans-serif;
+	padding-left: 30px;
+	top: 5px;
+	position: relative;
+}
+
+
+/**
+*  Terminals GIS
+*/
+div.WireIt-Terminal-Input-Taverna-GIS {
+ width: 30px;
+   height: 30px;
+   cursor: pointer;   
+   position: absolute;
+   background: transparent url(../images/terminalGISInputTaverna.png) no-repeat scroll 0 0;
+   z-index: 6;
+}
+
+div.WireIt-Terminal-Input-Taverna-GIS-connected {
+	background-position: 0 -30px;
+}
+
+div.WireIt-Terminal-Input-Taverna-GIS-dropinvite {
+	background-position: 0 -60px;
+}
+span.WireIt-Terminal-Input-Taverna-GIS-label {
+	width:100px;
+	font-size:16px;
+	font-weight:700;
+	font-family: verdana, helvetica, arial, sans-serif;
+	padding-left: 30px;
+	top: 5px;
+	position: relative;
+}
+
+
+div.WireIt-Terminal-Output-Taverna-GIS {
+ width: 30px;
+   height: 30px;
+   cursor: pointer;   
+   position: absolute;
+   background: transparent url(../images/terminalGISOutputTaverna.png) no-repeat scroll 0 0;
+   z-index: 6;
+  }
+
+div.WireIt-Terminal-Output-Taverna-GIS-connected {
+	background-position: 0 -30px;
+}
+
+div.WireIt-Terminal-Output-Taverna-GIS-dropinvite {
+	background-position: 0 -60px;
+}
+
+
+span.WireIt-Terminal-Output-Taverna-GIS-label{
+	width:100px;
+	font-size:16px;
+	font-weight:700;
+	font-family: verdana, helvetica, arial, sans-serif;
+	padding-left: 30px;
+	top: 5px;
+	position: relative;
+}
+
+
+	
+/**
+ * Containers
+ */
+div.WireIt-Container {
+   position: absolute;
+ 	z-index: 3;
+ 	background-color: white;
+ 	opacity: 0.8;
+ 	filter: alpha(opacity = 80);
+   border: 2px; /* Changing this value causes positioning issues */
+   font-size: 8pt;
+   border-radius: 20px;
+   -moz-border-radius: 20px;
+   -webkit-border-radius: 20px; 
+   
+}
+
+div.WireIt-Container div.body {
+   padding: 5px;
+   height: 100px;
+   /*overflow:auto;*/
+ 	border: 2px solid #000000;
+ 	background-color: #FFFFFF;
+ 	-moz-border-radius-bottomleft: 20px;
+ 	-moz-border-radius-bottomright: 20px;
+	-webkit-border-top-bottom-radius: 20px;
+	-webkit-border-top-bottom-radius: 20px;
+	border-top-bottom-radius: 20px;
+	border-top-bottom-radius: 20px;
+	-moz-box-shadow: 10px 10px 10px #ccc;
+	-webkit-box-shadow: 10px 10px 10px #ccc;
+	box-shadow: 10px 10px 10px #ccc;
+}
+/* Header of box, with Drag & Drop capabilities*/
+div.WireIt-Container-ddhandle {
+   width: 100%;
+   height: 22px;
+   /*header color */
+   background-color: #000000;
+   border: 0px solid #000000;
+ 	cursor: move;
+ 	-moz-border-radius-topleft: 20px;
+ 	-moz-border-radius-topright: 20px;
+	-webkit-border-top-left-radius: 20px;
+	-webkit-border-top-right-radius: 20px;
+	padding-top: 3px;
+	line-height:150%;
+	color:white;
+	font-weight:bold;
+	text-align:center;
+	font-size: 10pt;
+   float : none;
+} 
+
+div.WireIt-Container-ddhandle span {
+	text-align:center;
+	margin-left:4px;
+	margin-right:25px;
+}
+
+img.WireIt-Container-icon {
+   background: white;
+	float: left;
+	margin: 0 0 0 4px;
+   padding: 1px;
+   border: 1px solid #ccc;
+}
+
+div.WireIt-Container-resizehandle {
+   position: absolute;
+   bottom: 0;
+   right: 0;
+   width: 10px;
+   height: 10px;
+   cursor: se-resize;
+}
+
+div.WireIt-Container-closebutton {
+   background-image: url(../images/cancel.png);
+   width: 16px;
+   height: 16px;
+   position: relative;
+   top: 4px;
+   left: 200px;
+   cursor: pointer;
+}
+
+div.WireIt-Container-toolbar {
+
+}
+
+.floatleft {
+    float : left;
+}
+
+div.WireIt-Container-focused {
+   z-index: 6;
+   opacity: 1;
+   filter: alpha(opacity = 100);
+}
+
+/**
+ * ImageContainer
+ */
+
+div.WireIt-ImageContainer div.body {	
+	width: 128px;
+	height: 60px;
+	background-color: transparent;
+	background-repeat: no-repeat;
+	border: 0;
+	cursor: move;
+}
+
+div.WireIt-ImageContainer div.WireIt-Container-closebutton {
+	display: none;
+}
+div.WireIt-ImageContainer:hover div.WireIt-Container-closebutton {
+	display: block;
+}
+
+/**
+ * InOutContainer
+ */
+
+div.WireIt-InOutContainer {	
+	width: 150px;
+}
+
+div.WireIt-InOutContainer div.body {	
+	padding: 5px 10px;
+	font-size: 10pt;
+}
+
+/**	
+* TavernaContainerIO
+* extends/removes div.WireIt-Container div.body 
+*/
+div.WireIt-TavernaContainerIO div.body{
+height: 5px;
+width: 5px;
+border: 0px solid #000000;
+-moz-box-shadow: 0px 0px 0px #ccc;
+-webkit-box-shadow: 0px 0px 0px #ccc;
+box-shadow: 0px 0px 0px #ccc;
+-moz-border-radius: 0px;
+border-radius: 0px;
+-webkit-border: 0px;
+}
+
+div.WireIt-TavernaContainerIO div.WireIt-Container-closebutton{
+position: relative;
+left: 15px;
+top: -25px;
+}
+
+div.WireIt-Container-editbutton{
+ background-image: url(../images/edit_icon_small.gif);
+   width: 16px;
+   height: 16px;
+   position: relative;
+   top: -10px;
+   right: -15px;
+   cursor: pointer;
+}
+
+div.WireIt-TavernaContainerIO div.labelTavernaContainer{
+position:relative;
+left:15px;
+top: -15px;
+}
+
+div.WireIt-TavernaContainerIO div.containerInputForm,div.WireIt-TavernaContainerIO div.containerOutputForm {
+font-family: verdana, helvetica, arial, sans-serif;
+font-size:16px;
+font-weight:400px;
+font-style:normal;
+color: #000000;
+top:10px;
+position:relative;
+width:200px;
+border-style:solid;
+border-width:1px;
+align:center;
+filter: alpha(opacity=75);
+opacity: .75;
+background: #EDEDED;
+-moz-border-radius: 20px;
+-webkit-border-radius: 20px;
+border-radius: 20px;
+}
+
+div.WireIt-TavernaContainerIO p  {
+text-align: center;
+}
+div.WireIt-TavernaContainerIO div  {
+text-align: center;
+}
+
+
+div.WireIt-TavernaContainerIO canvas{
+	position:relative;
+	height: 20px;
+	
+}
+
+
+ 
+
+
+
+
