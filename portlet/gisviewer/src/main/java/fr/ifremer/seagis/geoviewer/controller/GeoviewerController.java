@@ -63,7 +63,7 @@ public class GeoviewerController implements Serializable {
     private String currentCommunity;
     
     // Geoviewer configuration
-    private Object ctxService = "/data/netmar.xml";
+    private Object ctxService = "/data/Netmar.xml";
     private Boolean WPSTool;
     private Boolean graticuleTool;
     private Boolean distanceTool;
