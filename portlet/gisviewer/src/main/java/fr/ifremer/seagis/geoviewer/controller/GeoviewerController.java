@@ -31,6 +31,7 @@ import com.liferay.util.bridges.jsf.common.JSFPortletUtil;
 import fr.ifremer.seagis.geoviewer.service.DefaultGeoviewerService;
 import fr.ifremer.seagis.geoviewer.service.GeoviewerService;
 import fr.ifremer.seagis.model.SextantConfig;
+import fr.ifremer.seagis.model.SextantUser;
 
 /**
  * Controller for the Geoviewer portlet.
@@ -42,7 +43,6 @@ public class GeoviewerController implements Serializable {
     private static String KEY = "mainCtx";
     private Object ctxService = "/data/Netmar.xml";
     private String currentCommunity;
-    private SextantConfig sextantConfig;
     
     // Url of the application used to format metadata
     private String mdViewerUrl;
@@ -173,37 +173,42 @@ public class GeoviewerController implements Serializable {
      * This method build the initial configuration for the current community.
      */
     private void makeConfig() {
-        final FacesContext context = FacesContext.getCurrentInstance();
-        final String newCommunity = GEOVIEWERSERVICE.getCurrentCommunity(context);
+        final FacesContext fc = FacesContext.getCurrentInstance();
+        final String newCommunity = GEOVIEWERSERVICE.getCurrentCommunity(fc);
         
-        if ((newCommunity != null) && !newCommunity.equals(currentCommunity)) {
-            sextantConfig = GEOVIEWERSERVICE.getConfiguration(context);  
-            currentCommunity = newCommunity; 
-            WMSList = GEOVIEWERSERVICE.addUrlsToList(sextantConfig.getGeoviewerWMSList());
-            WPSList = GEOVIEWERSERVICE.addUrlsToList(sextantConfig.getGeoviewerWPSList());
-            if ("yes".equals(sextantConfig.getGeoviewerWPSActive())) {
-                WPSActive = true;
-            } else {
-                WPSActive = false;
-            }
-            GEOVIEWERSERVICE.addZoomsToList(sextantConfig.getGeoviewerZoomList(), selectItems);
-            final String contextUrl = sextantConfig.getGeoviewerOWCUrl();               
-            maxExtentLocalisation = GEOVIEWERSERVICE.getMaxExtentFromString(
-                    sextantConfig.getGeoviewerLocalWest(), sextantConfig.getGeoviewerLocalSouth(),
-                    sextantConfig.getGeoviewerLocalEast(), sextantConfig.getGeoviewerLocalNorth());
-            maxExtent = GEOVIEWERSERVICE.getMaxExtentFromString(
-                    sextantConfig.getGeoviewerWest(), sextantConfig.getGeoviewerSouth(),
-                    sextantConfig.getGeoviewerEast(), sextantConfig.getGeoviewerNorth());
+        // If community found and has changed or is null, tries to get the configuration 
+        // file from session (if not found tries to get it from WEB-INF folder)
+        if ((newCommunity != null && !newCommunity.equals(currentCommunity)) || newCommunity == null) {
+            makeSextantConfig(fc, GEOVIEWERSERVICE.getConfiguration(fc));
             
-            mdViewerUrl = sextantConfig.getMdViewerUrl();
-            activateGraticuleTool = "yes".equals(sextantConfig.getGeoviewerToolGraticule());
-            
-            //System.out.println("\n*************************************  contextUrl = " + contextUrl  + " *********************************\n");
-            if (contextUrl != null) {
-                setCtxService(contextUrl);
-            }
+            currentCommunity = newCommunity;
         }
-        context.getViewRoot().setLocale(GEOVIEWERSERVICE.getLocale(context));
+        
+        // Refresh some properties on page load
+        fc.getViewRoot().setLocale(GEOVIEWERSERVICE.getLocale(fc));
+    }
+    
+    /**
+     * Initialize Geoviewer configuration variables.
+     * 
+     * @param fc the current FacesContext instance
+     * @param cfg the SextantConfig model to use
+     */
+    private void makeSextantConfig(final FacesContext fc, final SextantConfig sxtCfg) {
+        
+        // Initialize Geoviewer config from SextantConfig model
+        ctxService = sxtCfg.getGeoviewerOWCUrl() != null ? sxtCfg.getGeoviewerOWCUrl() : ctxService;
+        GEOVIEWERSERVICE.addZoomsToList(sxtCfg.getGeoviewerZoomList(), selectItems);
+        WMSList = GEOVIEWERSERVICE.addUrlsToList(sxtCfg.getGeoviewerWMSList());
+        WPSActive = "yes".equals(sxtCfg.getGeoviewerWPSActive());
+        WPSList = GEOVIEWERSERVICE.addUrlsToList(sxtCfg.getGeoviewerWPSList());
+        maxExtent = GEOVIEWERSERVICE.getMaxExtentFromString(
+                sxtCfg.getGeoviewerWest(), sxtCfg.getGeoviewerSouth(),
+                sxtCfg.getGeoviewerEast(), sxtCfg.getGeoviewerNorth());
+        maxExtentLocalisation = GEOVIEWERSERVICE.getMaxExtentFromString(
+                sxtCfg.getGeoviewerLocalWest(), sxtCfg.getGeoviewerLocalSouth(),
+                sxtCfg.getGeoviewerLocalEast(), sxtCfg.getGeoviewerLocalNorth());
+        mdViewerUrl = sxtCfg.getMdViewerUrl();
     }
 
     public String getMdViewerUrl() {
