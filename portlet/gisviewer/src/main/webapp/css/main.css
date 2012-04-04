@@ -156,7 +156,7 @@ html {
     visibility: hidden;
 }
 
-/* le bouton plac√© dans une barre verticale, entre les panels plac√©s √† l'ouest et √† l'est */
+/* le bouton placé dans une barre verticale, entre les panels placés à l'ouest et à l'est */
 .geoviewerForm .ui-layout-resizer-west,
 .geoviewerForm .ui-layout-resizer-east {
     background-image : url(../img/icons/vertical_handle.gif);
@@ -164,7 +164,7 @@ html {
     background-position: center center;
 }
 
-/* le bouton plac√© dans une barre horizontale, entre les panels plac√©s au nord et au sud */
+/* le bouton placé dans une barre horizontale, entre les panels placés au nord et au sud */
 .geoviewerForm .ui-layout-resizer-north,
 .geoviewerForm .ui-layout-resizer-south {
     background-image : url(../img/icons/horizontal_handle.gif);
@@ -177,7 +177,7 @@ html {
 }
 
 
-/* mettre des bordures ssi la barre de redimensionnement est d√©j√† dans un
+/* mettre des bordures ssi la barre de redimensionnement est déjà dans un
  * ui-layout-content cad dans un panel
 */
 .geoviewerForm .ui-layout-content .ui-layout-resizer {
@@ -783,7 +783,7 @@ html {
     font-size: 1em;
 }
 
-/*** LayerContrrols ***/
+/*** LayerControls ***/
 .geoviewerForm div.mfLayerControl {
     width: 100%;
     height: auto;
@@ -792,6 +792,29 @@ html {
     padding: 0px;
     margin: 0px;
     font-size:1em;
+}
+
+.geoviewerForm div.mfLayerControl .mf-metadata-link {
+    text-decoration: underline;
+    color: blue;
+    cursor: pointer;
+}
+
+.geoviewerForm div.mfLayerControl .arrows {
+    width: 23px;
+    position: relative;
+}
+
+.geoviewerForm div.mfLayerControl .arrows .arrow.up {
+    position: absolute;
+    top: 13px;
+    left: 3px;
+}
+
+.geoviewerForm div.mfLayerControl .arrows .arrow.down {
+    position: absolute;
+    top: 34px;
+    left: 3px;
 }
 
 .geoviewerForm div.mfLayerControl.tree {
@@ -1025,6 +1048,10 @@ html {
     background-position: -24px 0px;
 }
 
+.geoviewerForm .mfButtonBar div.button.ui-state-hover.olControlMeasureItemInactive {
+    background-position: -33px 0px;
+}
+
 
 .geoviewerForm .mfButtonBar div.button.olControlGraticuleItemActive,
 .geoviewerForm .mfButtonBar div.button.olControlGraticuleItemInactive {
@@ -1042,14 +1069,16 @@ html {
     background-image: url("../img/grid.png");
 }
 
-/* Ajout de bord pour faire comme si le bouton etait enfonc√© */
+/* Ajout de bord pour faire comme si le bouton etait enfoncé */
 .geoviewerForm .mfButtonBar .olControlZoomBoxItemActive,
 .geoviewerForm .mfButtonBar .olControlZoomOutItemActive,
 .geoviewerForm .mfButtonBar .olControlNavigationItemActive,
 .geoviewerForm .mfButtonBar .olControlGetFeatureInfoItemActive,
 .geoviewerForm .mfButtonBar .olControlNcWMSGetTransectItemActive,
 .geoviewerForm .mfButtonBar .olControlGraticuleItemActive,
-.geoviewerForm .mfButtonBar .olControlNcWMSGetVerticalProfileItemActive  {
+.geoviewerForm .mfButtonBar .olControlNcWMSGetVerticalProfileItemActive,
+.geoviewerForm .mfButtonBar .olControlMeasureAreaItemActive,
+.geoviewerForm .mfButtonBar .olControlMeasureItemActive {
     border-color: orange black black orange;
     border-style: inset;
     border-width: 1px;
@@ -1138,8 +1167,8 @@ html {
 .geoviewerForm .buttonolControlSelectionZoomBoxItemInactive,
 .geoviewerForm .buttonolControlNavigationHistoryNextItemActive,
 .geoviewerForm .buttonolControlNavigationHistoryPreviousItemActive,
-.geoviewerForm .buttonolControlMeasureAreaItemInactive
-.geoviewerForm .button-wps-xml {
+.geoviewerForm .buttonolControlMeasureAreaItemInactive,
+.geoviewerForm .buttonolControlMeasureItemInactive {
     cursor:pointer;
 }
 
@@ -1185,7 +1214,7 @@ html {
     height: 18px;
 }
 
-/*Ic√¥ne du SLDEditor */
+/*Icône du SLDEditor */
 .ui-icon {cursor:pointer;}
 .ui-icon-triangle-1-n { background-position: 0 -16px; }
 .ui-icon-triangle-1-s { background-position: -65px -16px; }
@@ -1228,13 +1257,10 @@ html {
     padding: 5px;
     width: 490px;
 }
+
 .geoviewerForm .mfWmsAddingTool ul {
     list-style: none;
 }
-
-/*.geoviewerForm .wmslayerslist {
-    height: 200px;
-}*/
 
 .geoviewerForm .wmsadd-loader {   
     background-color: #E2F3FF;  
@@ -1264,9 +1290,9 @@ html {
 }
 
 
-/* WPS tool */
+/******************************** WPS TOOL ************************************/
 
-.geoviewerForm .wps-container {
+.wpsForm .wps-container {
     overflow: auto;
     height: 586px;
     width: 392px;
@@ -1274,41 +1300,7 @@ html {
     float: left;
 }
 
-.geoviewerForm .wps-tool fieldset {
-    margin-bottom: 10px;
-    border: 1px solid #888;
-    padding: 8px;
-}
-
-.geoviewerForm .wps-tool fieldset legend {
-    color: #555;
-    font-size: 11px;
-    padding: 0px 3px 0px 3px;
-}
-
-.wps-tool fieldset.optional {
-    border-color: #AAA;
-}
-
-.wps-tool fieldset.optional legend {
-    color: #777;
-}
-
-.geoviewerForm .wps-tool table,
-.geoviewerForm .wps-tool td {
-    border: none;
-}
-
-.geoviewerForm .wps-tool table {
-    margin-top: 8px;
-}
-
-.geoviewerForm .wps-tool td {
-    padding: 2px 0px 2px 0px;
-    height: 24px;
-}
-
-.geoviewerForm .button-wps-xml {
+.wpsForm .button-wps-xml {
     margin-top: 6px;
     margin-bottom: 6px;
     height: 586px;
@@ -1318,17 +1310,7 @@ html {
     cursor: pointer;
 }
 
-.geoviewerForm .button-wps-xml.enabled {
-    background: #FFF url("../img/ui-arrow-left.png") no-repeat center center;
-    border-radius: 3px 0px 0px 3px;
-}
-
-.geoviewerForm .button-wps-xml.disabled {
-    background: #FFF url("../img/ui-arrow-right.png") no-repeat center center;
-    border-radius: 3px;
-}
-
-.geoviewerForm .xml-container {
+.wpsForm .xml-container {
     overflow: auto;
     width: 777px;
     height: 588px;
@@ -1336,93 +1318,12 @@ html {
     float: left;
 }
 
-
-/* CodeMirror theme */
-
-.CodeMirror {
-    line-height: 1em;
-    font-family: monospace;
+.wpsForm .button-wps-xml.enabled {
+    background: #FFF url("../img/ui-arrow-left.png") no-repeat center center;
+    border-radius: 3px 0px 0px 3px;
 }
 
-.CodeMirror-scroll {
-    overflow: auto;
-    background-color: #fff;
-    height: 586px;
-    border:1px solid #AAAAAA;
-    border-radius: 0px 3px 3px 0px;
-    /* This is needed to prevent an IE[67] bug where the scrolled content
-       is visible outside of the scrolling box. */
-    position: relative;
+.wpsForm .button-wps-xml.disabled {
+    background: #FFF url("../img/ui-arrow-right.png") no-repeat center center;
+    border-radius: 3px;
 }
-
-.CodeMirror-gutter {
-    position: absolute; left: 0; top: 0;
-    z-index: 10;
-    background-color: #eee;
-    border-right: 1px solid #eee;
-    min-width: 2em;
-    height: 100%;
-}
-.CodeMirror-gutter-text {
-    color: blue;
-    text-align: right;
-    padding: .4em .2em .4em .4em;
-    white-space: pre !important;
-}
-.CodeMirror-lines {
-    padding: .4em;
-}
-
-.CodeMirror pre {
-    -moz-border-radius: 0;
-    -webkit-border-radius: 0;
-    -o-border-radius: 0;
-    border-radius: 0;
-    border-width: 0; margin: 0; padding: 0; background: transparent;
-    font-family: inherit;
-    font-size: inherit;
-    padding: 0; margin: 0;
-    white-space: pre;
-    word-wrap: normal;
-}
-
-.CodeMirror-line-numbers {	
-    width: 2.2em;	
-    color: blue;	
-    background-color: #eee;	
-    text-align: right;	
-    padding-right: .3em;	
-    font-size: 10pt;	
-    font-family: monospace;	
-    padding-top: .4em;
-}
-
-.CodeMirror-wrap pre {
-    word-wrap: break-word;
-    white-space: pre-wrap;
-}
-.CodeMirror-wrap .CodeMirror-scroll {
-    overflow-x: hidden;
-}
-
-.CodeMirror textarea {
-    outline: none !important;
-}
-
-.CodeMirror pre.CodeMirror-cursor {
-    z-index: 10;
-    position: absolute;
-    visibility: hidden;
-    border-left: 1px solid black;
-}
-.CodeMirror-focused pre.CodeMirror-cursor {
-    visibility: visible;
-}
-
-span.CodeMirror-selected { background: #d9d9d9; }
-.CodeMirror-focused span.CodeMirror-selected { background: #d2dcf8; }
-
-.CodeMirror-searching {background: #ffa;}
-
-
-

@@ -509,7 +509,7 @@
         <url-pattern>*.jsp</url-pattern>
     </filter-mapping>
     <listener>
-        <listener-class>com.liferay.portal.kernel.servlet.PortletContextListener</listener-class>
+        <listener-class>fr.ifremer.seagis.geoviewer.listener.Initializer</listener-class>
     </listener>
     <!--jsp-config>
        <taglib>

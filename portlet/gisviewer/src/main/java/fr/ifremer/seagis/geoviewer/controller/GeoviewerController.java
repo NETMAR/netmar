@@ -1,5 +1,11 @@
 package fr.ifremer.seagis.geoviewer.controller;
 
+import com.liferay.util.bridges.jsf.common.JSFPortletUtil;
+
+import fr.ifremer.seagis.geoviewer.service.DefaultGeoviewerService;
+import fr.ifremer.seagis.geoviewer.service.GeoviewerService;
+import fr.ifremer.seagis.model.SextantConfig;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -12,6 +18,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.faces.event.ActionEvent;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 import javax.portlet.ActionRequest;
@@ -19,56 +26,118 @@ import javax.xml.bind.JAXBException;
 import javax.xml.stream.XMLStreamException;
 
 import org.apache.commons.fileupload.FileItem;
+
+import org.geotoolkit.map.MapBuilder;
+import org.geotoolkit.map.MapContext;
+import org.geotoolkit.referencing.CRS;
+
+import org.mapfaces.component.context.UIContext;
 import org.mapfaces.model.Context;
 import org.mapfaces.model.DefaultDownloadedFile;
 import org.mapfaces.model.DownloadedFile;
 import org.mapfaces.model.FeaturesStore;
+import org.mapfaces.model.wpstool.ExecuteResponse;
 import org.mapfaces.utils.XMLContextUtilities;
+import org.mapfaces.event.wps.ReceiveResponseEvent;
+import org.mapfaces.utils.FacesUtils;
+
+import org.mapfaces.utils.WPSUtils;
 import org.opengis.feature.type.PropertyDescriptor;
-
-import com.liferay.util.bridges.jsf.common.JSFPortletUtil;
-
-import fr.ifremer.seagis.geoviewer.service.DefaultGeoviewerService;
-import fr.ifremer.seagis.geoviewer.service.GeoviewerService;
-import fr.ifremer.seagis.model.SextantConfig;
-import fr.ifremer.seagis.model.SextantUser;
+import org.opengis.referencing.crs.CoordinateReferenceSystem;
+import org.opengis.util.FactoryException;
 
 /**
  * Controller for the Geoviewer portlet.
+ * 
  * @author leopratlong
+ * @author Fabien BERNARD (Geomatys)
  */
 public class GeoviewerController implements Serializable {
 
-    private static Logger LOGGER = Logger.getLogger(GeoviewerController.class.getName());
-    private static String KEY = "mainCtx";
-    private Object ctxService = "/data/Netmar.xml";
+    private final static Logger LOGGER = Logger.getLogger(GeoviewerController.class.getName());
+    
+    // Geoviewer service
+    private final static GeoviewerService GEOVIEWERSERVICE = new DefaultGeoviewerService();
+    
+    // User community
     private String currentCommunity;
     
-    // Url of the application used to format metadata
+    // Geoviewer configuration
+    private Object ctxService = "/data/netmar.xml";
+    private Boolean WPSTool;
+    private Boolean graticuleTool;
+    private Boolean distanceTool;
+    private Boolean surfaceTool;
+    private String maxExtent;
+    private String maxExtentLocalisation;
     private String mdViewerUrl;
-    private boolean activateGraticuleTool;
+    private List<SelectItem> zoomList = new ArrayList<SelectItem>();
+    private List<SelectItem> WMSList = null;
+    private List<SelectItem> WPSList = null;
     
-    private static GeoviewerService GEOVIEWERSERVICE = new DefaultGeoviewerService();
-    
-    ////////////////////////////////////////////GET FEATURE INFO ////////////////////////////////////////////////
-    /* GetFeatureInfo output format */
+    // GetFeatureInfo variables
     private String getFeatureInfoOutputFormat = "application/vnd.ogc.gml";
-    /*Results of GetFeatureInfo as stirng format */
     private List<String> getFeatureInfoResults = new ArrayList<String>();
     private List<FeaturesStore> featuresStores = new ArrayList<FeaturesStore>();
     
-    //////////////////////////////////////////// ZoomList ////////////////////////////////////////////////
-    private final List<SelectItem> selectItems = new ArrayList<SelectItem>();
+    // MapContext used to add dynamically layers to the mappane
+    private MapContext mapContext;
     
-    //////////////////////////////////////////// WMSList ////////////////////////////////////////////////
-    private List<SelectItem> WMSList = null;
+    // Render or not the WPS popup
+    private boolean renderWPS = false;
     
-    //////////////////////////////////////////// WPSList ////////////////////////////////////////////////
-    private List<SelectItem> WPSList = null;
-    private Boolean WPSActive;
+    // SessionMap key to get the MapContext file to download
+    private final static String CONTEXT_KEY = "mainCtx";
     
-    private String maxExtent;
-    private String maxExtentLocalisation;
+    
+    /**
+     * This method build the initial configuration for the current community.
+     */
+    private void makeConfig() {
+        final FacesContext fc = FacesContext.getCurrentInstance();
+        final String newCommunity = GEOVIEWERSERVICE.getCurrentCommunity(fc);
+        
+        // If community found and has changed or is null, tries to get the configuration 
+        // file from session (if not found tries to get it from WEB-INF folder)
+        if ((newCommunity != null && !newCommunity.equals(currentCommunity)) || newCommunity == null) {
+            makeSextantConfig(GEOVIEWERSERVICE.getConfiguration(fc));
+            
+            currentCommunity = newCommunity;
+            
+            // Empty MapContext
+            mapContext = MapBuilder.createContext();
+        }
+        
+        // Refresh some properties on page load
+        renderWPS = false;
+        fc.getViewRoot().setLocale(GEOVIEWERSERVICE.getLocale(fc));
+    }
+    
+    /**
+     * Initialize Geoviewer configuration variables.
+     * 
+     * @param fc the current FacesContext instance
+     * @param cfg the SextantConfig model to use
+     */
+    private void makeSextantConfig(final SextantConfig sxtCfg) {
+        
+        // Initialize Geoviewer config from SextantConfig model
+        ctxService = sxtCfg.getGeoviewerOWCUrl() != null ? sxtCfg.getGeoviewerOWCUrl() : ctxService;
+        graticuleTool = "yes".equals(sxtCfg.getGeoviewerToolGraticule());
+        distanceTool = "yes".equals(sxtCfg.getGeoviewerToolDistance());
+        surfaceTool = "yes".equals(sxtCfg.getGeoviewerToolSurface());
+        GEOVIEWERSERVICE.addZoomsToList(sxtCfg.getGeoviewerZoomList(), zoomList);
+        WMSList = GEOVIEWERSERVICE.addUrlsToList(sxtCfg.getGeoviewerWMSList());
+        WPSTool = "yes".equals(sxtCfg.getGeoviewerWPSActive());
+        WPSList = GEOVIEWERSERVICE.addUrlsToList(sxtCfg.getGeoviewerWPSList());
+        maxExtent = GEOVIEWERSERVICE.getMaxExtentFromString(
+                sxtCfg.getGeoviewerWest(), sxtCfg.getGeoviewerSouth(),
+                sxtCfg.getGeoviewerEast(), sxtCfg.getGeoviewerNorth());
+        maxExtentLocalisation = GEOVIEWERSERVICE.getMaxExtentFromString(
+                sxtCfg.getGeoviewerLocalWest(), sxtCfg.getGeoviewerLocalSouth(),
+                sxtCfg.getGeoviewerLocalEast(), sxtCfg.getGeoviewerLocalNorth());
+        mdViewerUrl = sxtCfg.getMdViewerUrl();
+    }
 
     /**
      * Action called when user want to download the OWC file.
@@ -76,11 +145,11 @@ public class GeoviewerController implements Serializable {
      * @return DownloadedFile : MapFaces model for the downloaded File (name, type, resource...).
      */
     public DownloadedFile getOWCFile() {
-        final FacesContext context = FacesContext.getCurrentInstance();
+        final FacesContext fc = FacesContext.getCurrentInstance();
         final DownloadedFile downloadedFile = new DefaultDownloadedFile();
 
         try {
-            final File f = GEOVIEWERSERVICE.getOWSContextFile(context, KEY);
+            final File f = GEOVIEWERSERVICE.getOWSContextFile(fc, CONTEXT_KEY);
             if (f != null) {
                 FileInputStream fis;
                 try {
@@ -102,32 +171,23 @@ public class GeoviewerController implements Serializable {
         }
         return downloadedFile;
     }
-    
-    /**
-     * Called by geoviewer_ipc portlet.
-     * 
-     * @return
-     */
-    public String getShareSession() {
-        final FacesContext context = FacesContext.getCurrentInstance();
-        GEOVIEWERSERVICE.shareSession(context);
-        GEOVIEWERSERVICE.removeLayersFromCatalogue(context);
-        return null;
-    }
 
     /**
      * Action called when user validate his OWC file upload.
      */
     public void uploadOWCFile() {
-        final FacesContext context = FacesContext.getCurrentInstance();
-        final ActionRequest request = (ActionRequest) JSFPortletUtil.getPortletRequest(context);
+        final FacesContext fc = FacesContext.getCurrentInstance();
+        final ActionRequest request = (ActionRequest) JSFPortletUtil.getPortletRequest(fc);
         final FileItem item = (FileItem) request.getAttribute("resumeFile");
-        
+
         try {
             final Context model = XMLContextUtilities.readContext(item.getInputStream());
             if (model != null) {
                 model.setReloading(true);
                 setCtxService(model);
+                
+                // Empty MapContext
+                mapContext = MapBuilder.createContext();
             }
         } catch (UnsupportedEncodingException e) {
             LOGGER.log(Level.WARNING, "Error while trying to read the OWS file.");
@@ -138,13 +198,6 @@ public class GeoviewerController implements Serializable {
         } catch (IOException e) {
             LOGGER.log(Level.WARNING, "Error while trying to read the OWS file.");
         }
-    }
-
-    /**
-     * Add a layer to the user basket. Technically, we use IPC to send information to the "Panier" portlet.
-     */
-    public void addToBasket() {
-        GEOVIEWERSERVICE.findLayerAndAddToBasket(FacesContext.getCurrentInstance(), KEY);
     }
 
     /**
@@ -170,51 +223,127 @@ public class GeoviewerController implements Serializable {
     }
 
     /**
-     * This method build the initial configuration for the current community.
+     * Proceed the WPS execute response to display results in the mappane
+     * @param event 
      */
-    private void makeConfig() {
-        final FacesContext fc = FacesContext.getCurrentInstance();
-        final String newCommunity = GEOVIEWERSERVICE.getCurrentCommunity(fc);
+    public void proceedWPSExecuteResponse(final ActionEvent event) {
+
+        if (event instanceof ReceiveResponseEvent) {
+            final Object responseObject = ((ReceiveResponseEvent) event).getResponseObject();
+
+            if (responseObject instanceof ExecuteResponse) {
+                final ExecuteResponse execResp = (ExecuteResponse) responseObject;
+                
+                // Init the dynamic mapcontext CRS
+                final CoordinateReferenceSystem crs = getMapfacesCRS();
+                if (crs != null) {
+                    mapContext.setCoordinateReferenceSystem(crs);
+                }
         
-        // If community found and has changed or is null, tries to get the configuration 
-        // file from session (if not found tries to get it from WEB-INF folder)
-        if ((newCommunity != null && !newCommunity.equals(currentCommunity)) || newCommunity == null) {
-            makeSextantConfig(fc, GEOVIEWERSERVICE.getConfiguration(fc));
-            
-            currentCommunity = newCommunity;
+                // Try to display results
+                mapContext.layers().addAll(WPSUtils.createWPSResultsMapLayers(execResp));
+            }
         }
-        
-        // Refresh some properties on page load
-        fc.getViewRoot().setLocale(GEOVIEWERSERVICE.getLocale(fc));
+    }
+
+    /**
+     * Add a layer to the user basket. Technically, we use IPC to send 
+     * information to the "Panier" portlet.
+     */
+    public void addToBasket() {
+        GEOVIEWERSERVICE.findLayerAndAddToBasket(FacesContext.getCurrentInstance(), CONTEXT_KEY);
     }
     
     /**
-     * Initialize Geoviewer configuration variables.
-     * 
-     * @param fc the current FacesContext instance
-     * @param cfg the SextantConfig model to use
+     * Changes the renderWPS attribute.
      */
-    private void makeSextantConfig(final FacesContext fc, final SextantConfig sxtCfg) {
+    public void renderOrNotWPS() {
+        renderWPS = !renderWPS;
+    }
+    
+    /**
+     * Return the current CRS use by the mappane
+     * 
+     * @return the CoordinateReferenceSystem istance
+     */
+    private CoordinateReferenceSystem getMapfacesCRS() {
+        final FacesContext fc = FacesContext.getCurrentInstance();
         
-        // Initialize Geoviewer config from SextantConfig model
-        ctxService = sxtCfg.getGeoviewerOWCUrl() != null ? sxtCfg.getGeoviewerOWCUrl() : ctxService;
-        GEOVIEWERSERVICE.addZoomsToList(sxtCfg.getGeoviewerZoomList(), selectItems);
-        WMSList = GEOVIEWERSERVICE.addUrlsToList(sxtCfg.getGeoviewerWMSList());
-        WPSActive = "yes".equals(sxtCfg.getGeoviewerWPSActive());
-        WPSList = GEOVIEWERSERVICE.addUrlsToList(sxtCfg.getGeoviewerWPSList());
-        maxExtent = GEOVIEWERSERVICE.getMaxExtentFromString(
-                sxtCfg.getGeoviewerWest(), sxtCfg.getGeoviewerSouth(),
-                sxtCfg.getGeoviewerEast(), sxtCfg.getGeoviewerNorth());
-        maxExtentLocalisation = GEOVIEWERSERVICE.getMaxExtentFromString(
-                sxtCfg.getGeoviewerLocalWest(), sxtCfg.getGeoviewerLocalSouth(),
-                sxtCfg.getGeoviewerLocalEast(), sxtCfg.getGeoviewerLocalNorth());
-        mdViewerUrl = sxtCfg.getMdViewerUrl();
+        if (fc != null) {
+            final UIContext uiContext = (UIContext) FacesUtils.findComponentById(fc.getViewRoot(), CONTEXT_KEY);
+            
+            if (uiContext != null) {
+                
+                if (uiContext.getModel() != null) {
+                    final Context model = uiContext.getModel();
+                    final String srs = model.getSrs();
+                    
+                    if (srs != null) {
+                        try {
+                            return CRS.decode(srs);
+                        } catch (FactoryException ex) {
+                            LOGGER.log(Level.WARNING, "Invalid SRS definition : " + srs, ex);
+                        }
+                    }
+                }
+            }
+        }
+        
+        return null;
     }
 
+    /**
+     * Initializes the Geoviewer portlet state : it has been called by the geoviewer.xhtml through
+     * an outputText. It will not render a text since we return a null value, but will initialize
+     * all needed values for the Geoviewer.
+     * 
+     * @return null
+     */
+    public String getInit() {
+        try {
+            makeConfig();
+        } catch (Exception ex) {
+            LOGGER.log(Level.SEVERE, ex.getMessage());
+        } catch (Error er) {
+            LOGGER.log(Level.SEVERE, er.getMessage());
+        }
+        return null;
+    }
+
+    /**
+     * Called by geoviewer_ipc portlet.
+     * 
+     * @return
+     */
+    public String getShareSession() {
+        final FacesContext context = FacesContext.getCurrentInstance();
+        GEOVIEWERSERVICE.shareSession(context);
+        GEOVIEWERSERVICE.removeLayersFromCatalogue(context);
+        return null;
+    }
+
+    /**
+     * @return the MapContext Geotoolkit object used to add dynamically layers 
+     * to the mappane
+     */
+    public MapContext getMapContext() {
+        return mapContext;
+    }
+
+    /**
+     * @param mapContext the MapContext to set
+     */
+    public void setMapContext(MapContext mapContext) {
+        this.mapContext = mapContext;
+    }
+
+    /**
+     * @return the URL used to format metadata
+     */
     public String getMdViewerUrl() {
         return mdViewerUrl;
     }
-    
+
     /**
      * @return the featuresStores
      */
@@ -222,14 +351,20 @@ public class GeoviewerController implements Serializable {
         return featuresStores;
     }
 
+    /**
+     * @param ctxService the ctxService to set
+     */
     public void setCtxService(Object ctxService) {
         this.ctxService = ctxService;
     }
 
+    /**
+     * @return the ctxService
+     */
     public Object getCtxService() {
         return ctxService;
     }
-    
+
     /**
      * @return the GetFeatureInfoOutputFormat
      */
@@ -250,7 +385,7 @@ public class GeoviewerController implements Serializable {
     public void setGetFeatureInfoResults(List<String> getFeatureInfoResults) {
         this.getFeatureInfoResults = getFeatureInfoResults;
     }
-    
+
     /**
      * @param featuresStores the featuresStores to set
      */
@@ -258,44 +393,37 @@ public class GeoviewerController implements Serializable {
         this.featuresStores = featuresStores;
     }
 
-    public List<SelectItem> getSelectItems() {
-        return selectItems;
-    }
-    
     /**
-     * Initializes the Geoviewer portlet state : it has been called by the geoviewer.xhtml through
-     * an outputText. It will not render a text since we return a null value, but will initialize
-     * all needed values for the Geoviewer.
-     * 
-     * @return
+     * @return the zoomList
      */
-    public String getInit() {
-        //("\n*************************************  getInti() *********************************\n");
-        try {
-            makeConfig();
-        } catch (Exception ex) {
-            LOGGER.log(Level.SEVERE, ex.getMessage());
-        } catch (Error er) {
-            LOGGER.log(Level.SEVERE, er.getMessage());
-        }
-        return null;
+    public List<SelectItem> getZoomList() {
+        return zoomList;
     }
 
+    /**
+     * @return the maxExtent
+     */
     public String getMaxExtent() {
         return maxExtent;
     }
 
+    /**
+     * @return the maxExtentLocalisation
+     */
     public String getMaxExtentLocalisation() {
         if (maxExtentLocalisation == null) {
             maxExtentLocalisation = "-180,-90,180,90";
         }
         return maxExtentLocalisation;
     }
-    
+
+    /**
+     * @return the current community
+     */
     public String getCurrentCommunity() {
         return GEOVIEWERSERVICE.getCurrentCommunity(FacesContext.getCurrentInstance());
     }
-    
+
     /**
      * @return the nbLayers
      */
@@ -304,24 +432,51 @@ public class GeoviewerController implements Serializable {
     }
 
     /**
-     * @return the WMSList
+     * @return the WMS url list available for WMS tool
      */
     public List<SelectItem> getWMSList() {
         return WMSList;
     }
-    
+
     /**
-     * @return the WPSList
+     * @return the WPS url list available for WPS tool
      */
     public List<SelectItem> getWPSList() {
         return WPSList;
     }
 
-    public Boolean getWPSActive() {
-        return WPSActive;
+    /**
+     * @return true if the WPS tool is activated
+     */
+    public Boolean getWPSTool() {
+        return WPSTool;
     }
 
-    public boolean isActivateGraticuleTool() {
-        return activateGraticuleTool;
+    /**
+     * @return true if the Graticule tool is activated
+     */
+    public Boolean getGraticuleTool() {
+        return graticuleTool;
+    }
+    
+    /**
+     * @return true if the Graticule tool is activated
+     */
+    public Boolean getDistanceTool() {
+        return distanceTool;
+    }
+    
+    /**
+     * @return true if the Graticule tool is activated
+     */
+    public Boolean getSurfaceTool() {
+        return surfaceTool;
+    }
+
+    /**
+     * @return render or not the WPS tool
+     */
+    public boolean isRenderWPS() {
+        return renderWPS;
     }
 }
