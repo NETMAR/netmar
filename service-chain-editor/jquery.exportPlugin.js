@@ -6,16 +6,13 @@
 (function( $ ){
   //need to pass it to namespace !!!!	
   this.transformURL="./transform2Taverna.php";
-  console.log(this)
   var methods = {
     init : function( options ) { 
 	    $(this).exportPlugin("enableTrigger");
 	    //generate panel structure wuth HTML and Icons
 	    exportMenuPropertiesGeneric($(this));
 	    //enable click trigger in icon and HTML title
-	    exportMenuPropertiesClick($(this));
-	    
-	    
+	    exportMenuPropertiesClick($(this));    
     },
     show : function( ) {
       
@@ -54,12 +51,9 @@
       return methods.init.apply( this, arguments );
     } else {
       $.error( 'Method ' +  method + ' does not exist on jQuery.tooltip' );
-    }    
-  
+    };    
   };
-
 })( jQuery );
-
 function exportMenuPropertiesClick($thisPanel){
 	//$thisPanel-->div#exportPanel.panel
 	//enable click on the icons
@@ -74,12 +68,7 @@ function exportMenuPropertiesClick($thisPanel){
 		if (event.target.id=="iconNetmar" || event.target.id == "netmarH3" ){
 			//Export Netmar XML
 			makeNetmarXML();
-			
-			
-		}
-		
-		
-		
+		};
 	});
 };
 
@@ -94,39 +83,34 @@ function makeNetmarXML(){
 		s64=Base64.encode(event.data);
 		if (typeof fileName === 'undefined') {
 		    fileName="tmp";
-		}
-
+		};
 		var $linkSave=$("div.trash").append("<a id='file' href='data:application/json;charset=utf-8;base64,"+s64+"' filename='"+fileName+"'></a>").hide();
 		location.href=$("a#file").attr('href');
 		$linkSave.children().remove()
 		}
-	
 	worker.postMessage(netmarJSON);
-
 }
 
 function makeTavernaXML(){
 	//this works
 	//json2xml(JSON.parse(getJSONWorkflow()))
-
 	var netmarJSON=getJSONWorkflow(false);
-	var worker=new Worker('json2xml.js')
+	var worker=new Worker('json2xml.js');
 	worker.onmessage=function(event){
 		//send it to transformation service, in the future this should be done by the browser 
 		s64=Base64.encode(event.data);
 		//better to send everything s64
 		$.download(transformURL,s64,'post');
-		
-		}
-	
+		};
 	worker.postMessage(netmarJSON);
-}
-
-
+};
 
 function exportMenuPropertiesGeneric($thisPanel){
 	//$thisPanel-->div#exportPanel.panel
-
+	//Position and CSS
+	var panelWidth=250;
+	
+	
 	//Content HTML'
 	var $header=$('<h1 class="serviceEditor" align="center">Export</h2>');
 	$thisPanel.append($header);
@@ -141,8 +125,7 @@ function exportMenuPropertiesGeneric($thisPanel){
 			+'<div style="text-align:center;"><img src="./images/netmarIcon.png" height=110px width=110px id="iconNetmar" /></div>'
 			+'<h3 style="text-align:center;" id="netmarH3">Netmar XML</h3>');
 	$thisPanel.append($netmar);
-	//Position and CSS
-	var panelWidth=250;
+
 	//better to push it -100 to the left
 	leftPos=$("div.serviceEditor").width()-panelWidth-100;
 	topPos=-($("div#titleGroup").height()+$("div#linkGroup").height());
@@ -159,10 +142,14 @@ function exportMenuPropertiesGeneric($thisPanel){
 		'padding-bottom':'30px',
 		'padding-left':'30px',
 		'border':'1px solid #444444',
+		'border-top-left-radius':'20px',
+		'border-top-right-radius':'20px',	
 		'-moz-border-radius-topleft': '20px',
 	    '-moz-border-radius-topright': '20px',
 	    '-webkit-border-top-left-radius': '20px',
 	    '-webkit-border-top-right-radius': '20px',
+		'border-bottom-left-radius':'20px',
+		'border-bottom-right-radius':'20px',
 	    '-moz-border-radius-bottomleft': '20px',
 	    '-moz-border-radius-bottomright': '20px',
 	    '-webkit-border-bottom-left-radius': '20px',

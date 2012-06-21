@@ -111,15 +111,16 @@ http://stackoverflow.com/questions/3139608/class-name-change-event-in-jquery
 var oTable=null;
 var giRedraw = false; //Variable comes comes from datatable
 //var domainProxy=null;
-//in server: var domainProxy="./proxy.php?url"
-var domainProxy="http://localhost/v1/proxy.php?url="; //if  domainProxy=null then we dont use the proxy (WSDL and URL in the same domain)
+//in server: 
+var domainProxy="./proxy.php?url"
+//var domainProxy="http://localhost/v1/proxy.php?url="; //if  domainProxy=null then we dont use the proxy (WSDL and URL in the same domain)
 //wsdl
 var arrContainers=new Array();
 var data;
 //debug
 var tmp=null;
-//var wsdlURL="./example.wsdl";
-var wsdlURL="localhost/v1/example.wsdl";
+var wsdlURL="./example.wsdl";
+//var wsdlURL="localhost/v1/example.wsdl";
 
 //workflow editor variables
 var layerEditor=null;
@@ -433,8 +434,6 @@ function savedWorkTable(){
 			}
 		
 	 oTable=$('#tableSaved').dataTable(initObj);
-	
-	
 
 		//setting the buttons to work
 	 $("button#deleteButton").button({ disabled: true });

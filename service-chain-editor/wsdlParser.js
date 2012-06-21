@@ -11,6 +11,7 @@ function isValidURL(textval) {
     }
 
 
+
 function addContainer(labelText,inputs,outputs){
 	//creates and adds container to arrContainer based on the last container position
 	arrContainers.push({'label':labelText,containerInputs:inputs,containerOutputs:outputs})
@@ -106,17 +107,22 @@ function getIOFromSchema(schemaEl){
 		}; //end function
 		
 function parseWSDL(wsdlURL){
-	wsdlURL="http://"+wsdlURL;
-	
-	
+	/*check is wsdlURL has http, me may have: http://foo/bacon.wsdl or 
+	 just ./bacon.wsdl
+	*/
+/*	console.log(wsdlURL.indexOf("http://"));
+	if (wsdlURL.indexOf("http://")==-1){
+		wsdlURL="http://"+wsdlURL;
+	} else {
+		wsdlURL=wsdlURL;
+	};
+	*/
 	if (domainProxy){
 		// proxy
-		wsdlURL=domainProxy+wsdlURL;
-		
+		wsdlURL=domainProxy+"="+ wsdlURL;	
 	} else {
 		//no proxy
 		wsdlURL=wsdlURL;
-		
 	};
 	
 	//check if URL existis and is ok

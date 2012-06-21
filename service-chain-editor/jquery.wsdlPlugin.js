@@ -159,7 +159,7 @@ $.fn.wsdlPlugin.wsdlMenuPropertiesGeneric=function ($thisPanel){
 	var $addWSDL=$('<ul><li value="" class="nestedList wsdlLi">'+
 			'Or click here to add</li><div class="addHTTP">'+
 			'<form NAME="addWSDL" ACTION="" METHOD="GET" onsubmit="return false;">'+
-			'http://&nbsp;<input id="inputWSDL" TYPE="text" NAME="inputbox" VALUE="'+options.defaultWSDL+'">'+
+			'<input id="inputWSDL" TYPE="text" NAME="inputbox" VALUE="'+options.defaultWSDL+'">'+
 			'</input></form></div></ul>');
 	$thisPanel.append($addWSDL);
 	$addWSDL.children("div.addHTTP").hide();
