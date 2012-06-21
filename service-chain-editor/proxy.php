@@ -1,5 +1,5 @@
 <?php
-// example:  http://localhost/v1/proxy.php?url=http://wps.nersc.no/cgi-bin/iceclass.cgi?WSDL
+ example:  http://localhost/v1/proxy.php?url=http://wps.nersc.no/cgi-bin/iceclass.cgi?WSDL
 
 if ($_SERVER['REQUEST_METHOD']=='HEAD'){
 	//echo($_SERVER['REQUEST_URI']);
@@ -10,10 +10,10 @@ if ($_SERVER['REQUEST_METHOD']=='HEAD'){
 		if (!(isset($url))){
 			throw new Exception('NO URL REQUEST');
 		} else {
-			//NOTE: The following curl code only makes an HEAD request 
-			//but it takes the same amount of time as fopen since the server has always
-			//to generate the file if since it is ?WSDL
-			/*
+			/*NOTE: The following curl code only makes an HEAD request 
+			but it takes the same amount of time as fopen since the server has always
+			to generate the file if since it is ?WSDL
+		
 			$ch = curl_init();
 			curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);
 			curl_setopt ($ch, CURLOPT_URL, $url);
@@ -45,24 +45,29 @@ if ($_SERVER['REQUEST_METHOD']=='HEAD'){
 			header("HTTP/1.0 404 Not Found");
 			exit(0);
 		};
-	};//end of if $_SERVER
-//No file 404 Not found
-// 200 OK
-
-//IF THE REQUEST IS GET OR POST
+	};/* end of if $_SERVER */
+/*No file 404 Not found
+ 200 OK
+*/
+/*IF THE REQUEST IS GET OR POST */
 if ($_SERVER['REQUEST_METHOD']!='HEAD'){	
 $parser=xml_parser_create();
 
 
 $q = filter_var($_GET['url'],FILTER_SANITIZE_STRING,FILTER_SANITIZE_URL); // or $REQUEST would suffice?
 
+/* IF no url variable means the user doesnt know how to use it*/
+if (empty($q)) 
+{		echo("It is necessary to set url variable to a valid url eg: http://foo/proxy.php?url=http://potato.xml");
+		exit(0);
+};
 
 $fp=fopen($q,"r");
 if (!($fp)){
 	header("HTTP/1.0 404 Not Found");
 	exit(0);
 };
-//really checks that we have an XML content !!! Otherwise crash everything
+/* really checks that we have an XML content !!! Otherwise crash everything */
 while ($data=fread($fp,4096))
   {
   xml_parse($parser,$data,feof($fp)) or
