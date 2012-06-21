@@ -43,7 +43,6 @@ http://stackoverflow.com/questions/3139608/class-name-change-event-in-jquery
   width: 300px;
   text-align: right;
 }
-
 </style>
 
 	 <script type="text/javascript" src="./jquery/jquery-1.6.js"></script>
@@ -57,11 +56,13 @@ http://stackoverflow.com/questions/3139608/class-name-change-event-in-jquery
 <!-- 	<script type="text/javascript" src="./base64.js"></script>	  -->
 	 <!-- generic components to have thing more OO -->
 	 <script type="text/javascript" src="./jquery.wsdlPlugin.js"></script>
+	 <script type="text/javascript" src="./jquery.workspacePlugin.js"></script>
 	  <script type="text/javascript" src="./jquery.servicePlugin.js"></script>
 	  <script type="text/javascript" src="./jquery.ioPlugin.js"></script>
 	  <script type="text/javascript" src="./jquery.exportPlugin.js"></script>
 	 <script type="text/javascript" src="./jkl-parsexml.js"></script>
 	 <!-- http://goessner.net/download/prj/jsonxml/ -->
+	 <script type="text/javascript" src="./json2.js"></script>
 	  <script type="text/javascript" src="./json2xml.js"></script> 
 	 <script type="text/javascript" src="./wsdlParser.js"></script><!-- web service functions -->
 	 <script type="text/javascript" src="./extraFunctions.js"></script> <!-- support functions e.g. getContainer etc --> 
@@ -69,8 +70,6 @@ http://stackoverflow.com/questions/3139608/class-name-change-event-in-jquery
 	 <!--  Yet another plugin, for stying the input button -->
 	 <!-- http://jstnjns.com/jquery/file/ modified to work with jquery-ui -->
 	  <script src="jquery.fileinput.js"></script>
-	 
-	 
 	 <!-- WIRE IT STRUCTURE -->
 	 <!-- YUI -->
 	<link rel="stylesheet" href="./css/services.css" type="text/css" media="screen" />
@@ -94,7 +93,6 @@ http://stackoverflow.com/questions/3139608/class-name-change-event-in-jquery
  	<script type="text/javascript" src="./wireit/js/BezierWire.js"></script>
  	<script type="text/javascript" src="./wireit/js/BezierArrowWire.js"></script>
 
-
  	<script type="text/javascript" src="./wireit_extended/js/TerminalInputTaverna.js"></script>
  	<script type="text/javascript" src="./wireit_extended/js/TerminalOutputTaverna.js"></script>
  	<script type="text/javascript" src="./wireit_extended/js/TerminalInputGISTaverna.js"></script>
@@ -113,6 +111,7 @@ http://stackoverflow.com/questions/3139608/class-name-change-event-in-jquery
 var oTable=null;
 var giRedraw = false; //Variable comes comes from datatable
 //var domainProxy=null;
+//in server: var domainProxy="./proxy.php?url"
 var domainProxy="http://localhost/v1/proxy.php?url="; //if  domainProxy=null then we dont use the proxy (WSDL and URL in the same domain)
 //wsdl
 var arrContainers=new Array();
@@ -121,6 +120,7 @@ var data;
 var tmp=null;
 //var wsdlURL="./example.wsdl";
 var wsdlURL="localhost/v1/example.wsdl";
+
 //workflow editor variables
 var layerEditor=null;
 
@@ -134,8 +134,7 @@ $.fn.textWidth = function(){
 	 return width;
 
 	};
-$.test=function(){console.log("miau")};
-	
+
 $.fn.justtext = function() {		 
 return $(this).clone().children().remove().end().text();
 };
@@ -273,55 +272,8 @@ function loaded(event){
 	};
 function errored(event){if (event.target.error && event.target.error.name=="NOT_READABLE_ERR"){console.log("couldnt read file")}} 
 
+
 /*
-function wsdlMenuProperties(){
-	//wsdLMenu properties 
-	$("li.wsdlLi").click(function(e){
-		//only work if the input box is not clicked
-		if (e.target.name!="inputbox"){
-		
-		//remove any active class
-		$("li.wsdlLi").toggleClass("active",false);
-		$("li.wsdlLi.addHTTP").slideUp("slow");
-		
-		$(this).toggleClass("active");
-		
-		//toogle addHTTP if necessary
-		if ($("li.wsdlLi.nestedList.active").length>0){
-			$("li.wsdlLi.addHTTP").toggleClass("active",true);	
-		}
-
-		//if addHTTP is toggled so its parent
-		if ($("li.wsdlLi.addHTTP.active").length>0){
-			$("li.wsdlLi.nestedList").toggleClass("active",true);	
-		} 
-
-	}//end of event check
-		
-		return false;
-	}//end function
-	);
-
-	$("li.wsdlLi.nestedList").click(function(e){
-		
-		if($("li.wsdlLi.addHTTP").is(':visible')){
-		//roll up
-			$("li.wsdlLi.addHTTP").slideUp("slow");
-			$("li.wsdlLi.nestedList").toggleClass("active",false);	
-		
-			
-		} else {
-			$("li.wsdlLi.addHTTP").slideDown("slow");
-			
-		}
-
-		return false;
-		});
-
-} //end of wsdlMenudProperties
-*/
-
-
 function workMenuProperties(){
  //workSpace menu structure
 	
@@ -403,8 +355,8 @@ function workMenuProperties(){
 	else { } //end of e.target.name!="inputbox"
 		
 		}/*end of li.saved $("li.savedLi").click(function(e)*/
-	/*end of not inputbox click*/); //end of click
-
+//	); //end of click
+/*
 	$("form[name=saveFile]").click(function(e){
 	if (e.target.name!="inputbox"){
 	$("div#saver").toggle("slow");
@@ -436,13 +388,14 @@ function workMenuProperties(){
 	});
 	
 }; //end of workMenuProperties	
-
+*/
 
 function savedWorkTable(){
 // loads the saved cookies and appends them workspace panel as table
 // to add CSS class {"sTitle":"Date2","sClass":"center"}
 	
 	/* Add a click handler to the rows - this could be used as a callback */
+	
 		$("#tableSaved tbody").click(function(event) {
 			
 			$(oTable.fnSettings().aoData).each(function (){
@@ -604,6 +557,7 @@ function generateLayerContent(workflow){
 
 	
 function storeWorkflow(){
+		
 		//List of all saved object key: savedWorkflow
 		jsonToSave=getJSONWorkflow();
 		saveName=$("input[id=inputNameSave]").val();
@@ -630,41 +584,19 @@ function storeWorkflow(){
 
 
 </script>	 
-	
 	<script type="text/javascript">
-	 
 	$(document).ready(function(){
 		//starting conditions:
 		//$("li.nestedList").toggleClass("active",false);	
 		//necessay or the li.addHTTP is displaid when the WSDLbutton is clicked
-		$("li.addHTTP").css("display","none");
+		
+		
+		//$("li.addHTTP").css("display","none");
+
+
 		//hide the savetable
 		
-		//The table meeds to be redrawn affter each toggle
-		$("#tableSavedPanel").css("display","none");
-
-		//saving structure
-		$("#saver").css("display","none");
-
-		//upload strubure
-		$("#uploader").css("display","none");
-
-		
-		
-		//WSDL pannel
 		/*
-		$(".trigger#wsdlMenu").click(function(){
-		$(".panel#wsdlPanel").trigger("isOpen");
-		$(".panel#wsdlPanel").toggle("fast");
-		$(this).toggleClass("active");
-		return false;
-		});
-		*/
-
-		//Setting initial WSDL url
-		/*
-		wsdlURL=$("input[id='inputWSDL']").val()
-		*/
 		//workspace pannel
 		$(".trigger#workspaceMenu").click(function(){
 		$(".panel#workspacePanel").trigger("isOpen");	
@@ -672,6 +604,7 @@ function storeWorkflow(){
 		$(this).toggleClass("active");
 		return false;
 		});
+		*/
 
 
 		//wsdLMenu properties 
@@ -702,7 +635,7 @@ function storeWorkflow(){
 		*/		
 		
 		//setting the workspace panel;
-		workMenuProperties();
+		//workMenuProperties();
 
 		//setting the service panel
 		//serviceMenuProperties();
@@ -710,9 +643,11 @@ function storeWorkflow(){
 	/* TRIGGERS */
 	//if panel is open then close all other panels
 	$("#wsdlPanel").bind("isOpen",panelOpen);
+	//the workspacePanel requires the jQuery table plugin
 	$("#workspacePanel").bind("isOpen",panelOpen);
 	$("#servicePanel").bind("isOpen",panelOpen);
 	$("#ioPanel").bind("isOpen",panelOpen);
+	$("#exportPanel").bind("isOpen",panelOpen);
 	
 	/* ACTIVATE SELECTABLE */
 	//$( "#serviceList" ).selectable();
@@ -755,10 +690,12 @@ function storeWorkflow(){
 		parentEl:$(".layer")[0]});
 
 	//panels with plugin
+	$("#wsdlPanel").wsdlPlugin(options={'defaultWSDL': wsdlURL});
+	$("#workspacePanel").workspacePlugin(options={});
 	$("#servicePanel").servicePlugin(options={'containers':arrContainers,'droppableEl':layerEditor,acceptableEl:".serviceLi"});
 	$("#ioPanel").ioPlugin(options={'droppableEl':layerEditor,acceptableEl:".ioContainer"});
 	$("#exportPanel").exportPlugin(options={});
-	$("#wsdlPanel").wsdlPlugin(options={'defaultWSDL': wsdlURL});
+	
 	
 
 	
@@ -773,8 +710,6 @@ function storeWorkflow(){
 		} else {
 			//nothing everything is clean
 			savedWorkFlows=null;
-			
-			
 			}
 
 	//Dealing with click on transparent canvas
@@ -810,71 +745,12 @@ function storeWorkflow(){
 <div id="panelGroup">
 
 <div class="panel" id="wsdlPanel"></div>
-
-<!-- WSDLPanel -->
-<!-- 
-<div class="panel" id="wsdlPanel">
-	<h1 align="center" class="serviceEditor">WSDL interface</h1>
-	<ul>
-		<li value="http://rsg.pml.ac.uk/wps/raster.wsdl" class="wsdlLi">GRASS Raster</li>
-		<li value="http://rsg.pml.ac.uk/wps/vector.wsdl" class="wsdlLi">GRASS Vector</li>
-		<li value="http://rsg.pml.ac.uk/wps/generic.wsdl" class="wsdlLi">Generic</li>
-		<li value="" class="nestedList wsdlLi">Or click here to add</li>
-		<ul>	<div class="addHTTP">
-			<li value="" class="addHTTP wsdlLi">
-			
-				<form NAME="addWSDL" ACTION="" METHOD="GET"
-					onsubmit="return false;">
-					http://&nbsp;
-					<input id="inputWSDL" TYPE="text" NAME="inputbox"
-						VALUE="localhost/v1/example2.wsdl"></input>
-				</form>
-			</li>
-			</div>
-		</ul>
-	</ul>
-</div><!-- end of WSDLContainer -->
- -->
-
-<div class="panel" id="workspacePanel">
-<!--  test workspace loaded -->
-<div id="loadPanel">
-	<h1 align="center" class="serviceEditor">Workspace</h1>
-		<ul><li class="tableSaved savedLi">Load</li></ul>
-		<div id="tableSavedPanel">
-			<table table cellpadding="0" cellspacing="0" border="0" id="tableSaved"><tbody></tbody></table>
-			<button id="deleteButton">Delete</button>
-			<button id="loadButton">Load</button>
-			<button id="downloadButton">Download</button>
-			
-		</div><!--  end of tableSaved table -->
-		<ul><li class="saver savedLi">Save</li>
-		<ul><div id="saver">
-			<!-- 	<li class="fileName savedLi"> -->
-				<form NAME="saveFile" ACTION="" METHOD="GET"
-					onsubmit="return false;">
-					<input id="inputNameSave" TYPE="text" NAME="inputbox"
-						VALUE=""></input><input type="submit" value="Save" />
-				</form>
-		<!-- 		</li>  -->
-		
-			</div>
-		</ul>
-		
-		  	<li class="uploader savedLi">Upload</li>
-		  	<ul>
-			<div align="center" id=uploader>
-					<input type="file" id="file[]" name="browse" /></input>
-					</div>
-		     </ul>
-			</ul> <!-- end of saver savedLi -->	
-	</div>
-
-</div> <!-- end of workspace panel -->
+<div class="panel" id="workspacePanel"></div> <!-- end of workspace panel -->
 
 <div class="panel" id="servicePanel"></div>
-<div class="panel" id="ioPanel"><h2>Input and Output</h2>
-<h3 align="center">Input container</h3><div class="ioContainer" id="ioInput"></div>
+<div class="panel" id="ioPanel">
+<h2>Input and Output</h2>  
+ <h3 align="center">Input container</h3><div class="ioContainer" id="ioInput"></div>  
 <h3 align="center">Output container</h3><div class="ioContainer" id="ioOutput"></div>
 <h3 align="center">Input GIS container</h3><div class="ioContainer" id="ioInputGIS"></div>
 <h3 align="center">Output GIS container</h3><div class="ioContainer" id="ioOutputGIS"></div>
@@ -882,11 +758,8 @@ function storeWorkflow(){
 <div class="panel" id="exportPanel"></div> <!-- taverna panel -->
 
 
-
 </div> <!-- end panel group -->
 <!--  NOTE: panel attr points to the panel that contains the a link -->
-
-
 
 <!-- <div class="WSDLSelection">
 	
@@ -895,7 +768,9 @@ function storeWorkflow(){
 
 <div class="layer"></div>
 
-</div>
+
+</div> <!-- end of service editor -->
+
 <!-- testing append element -->
 <div class="trash"></div>
 </body>
