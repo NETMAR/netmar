@@ -5,8 +5,14 @@
 	Author:  Stefan Goessner/2006
 	Web:     http://goessner.net/ 
 */
+/*
+ * ATTENTION MODIFICATION IN CODE BY JMDJ
+ * in line 60 sometimes, v is null and crashes the code, there is no clear reason why v should be null since we
+ * parse a javascript object.
+ */
 
 self.onmessage=function(event){
+	
 	xmlContent=json2xml(event.data)
 	//append root elements and <xml> tags
 	xmlContent='<?xml version="1.0" encoding="UTF-8"?>'+'<root>'+xmlContent+'</root>';
@@ -45,7 +51,12 @@ function json2xml(o, tab) {
          }
       }
       else {
+    	 try
+    	 {
          xml += ind + "<" + name + ">" + v.toString() +  "</" + name + ">";
+    	 }
+    	 catch(err){  
+    	 };
       }
       return xml;
    }, xml="";
