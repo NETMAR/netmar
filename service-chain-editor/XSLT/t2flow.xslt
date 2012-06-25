@@ -11,15 +11,17 @@
     <!-- EXTERNAL VARIABLES -->
     <!-- $t2flowArr=array('dateEumis' => $dateEumis, 'uuidEumis'=> $uuidEumis); -->
     
-    <!-- TEST VARIABLES DEBUG-->
+    <!-- TEST VARIABLES DEBUG ACTIVATE TO DEBUG-->
     <!-- 
     <xsl:variable name="uuid"><xsl:value-of select="'16ccb095-cbc3-4eb9-a878-ac7c080eb884'" /></xsl:variable>
     <xsl:variable name="date"><xsl:value-of select="'2012-01-05 14:25:21 BST'" /></xsl:variable>
-     -->
-    <!-- REMOVE TO DEBUG -->
+	 -->
+    
+    <!-- REMOVE TO DEBUG  -->
     
     <xsl:param name="dateEumis" />
     <xsl:param name="uuidEumis" />
+   
 	<xsl:variable name="uuid">
 			<xsl:value-of select="$uuidEumis"></xsl:value-of>
 	</xsl:variable>
@@ -65,10 +67,13 @@
 			</xsl:element>
 			<!-- no input ports, inputs are actual processes with standard value -->
 			<xsl:element name="inputPorts" />
-			<xsl:for-each select="//positions/containerType[text()='output']/..">
-				<xsl:call-template name="outputPort">
-				</xsl:call-template>
+			<xsl:element name="outputPorts">
+				<xsl:for-each select="//positions/containerType[text()='output']/..">
+					<xsl:call-template name="outputPort">
+					</xsl:call-template>
 				</xsl:for-each>
+			</xsl:element>	
+				
 				<!-- PROCESSORS SECTION -->
 				<xsl:element name="processors">
 					<!--  input port that is actual a processor with constant value -->
@@ -120,17 +125,12 @@
 		</xsl:element><!-- end of workflow (root) element -->
 	</xsl:template>
 	<xsl:template name="outputPort">
-
-		<outputPorts>
 			<port>
 				<name>
-
 					<xsl:value-of select="./label/text()" />
 				</name>
 				<annotations />
 			</port>
-		</outputPorts>
-
 	</xsl:template> <!-- end of name='ouput' -->
 	
 	<xsl:template name="inputPort"><!-- input processor it is equal to the genericProcessor -->
@@ -165,7 +165,11 @@
 								<value>
 									<xsl:choose>
 										<xsl:when test="./literalData !=''"><xsl:value-of select="./literalData/text()"></xsl:value-of></xsl:when>
-										<xsl:otherwise><!-- assuming URL --><xsl:value-of select="concat('http://',./inputURL/text())" /></xsl:otherwise>	
+										<xsl:otherwise><!-- assuming URL -->
+									<!-- 	<xsl:value-of select="concat('http://',./inputURL/text())" />  -->
+											<xsl:value-of select="./inputURL/text()" />
+										</xsl:otherwise>	
+										
 									</xsl:choose>
 								</value>
 							</net.sf.taverna.t2.activities.stringconstant.StringConstantConfigurationBean>

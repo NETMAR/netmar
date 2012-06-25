@@ -1,0 +1,25 @@
+<root><wsdlURL>http://rsg.pml.ac.uk/wps/small.cgi?WSDL</wsdlURL><positions><label>ExecuteProcess_oilspil</label><inputTerminals isConnected="true">model1</inputTerminals><inputTerminals isConnected="true">model2</inputTerminals><outputTerminals isConnected="true">ksoutputResult</outputTerminals><outputTerminals isConnected="true">eucleoutputResult</outputTerminals><xtype>WireIt.TavernaContainer</xtype><position>175px</position><position>292.667px</position><wrapperXML><DataInputs>&lt;s:extensions xmlns:s="http://org.embl.ebi.escience/xscufl/0.1alpha"&gt;
+      &lt;s:complextype name="DataInputs" optional="false" qname="{http://www.opengis.net/wps/1.0.0}ExecuteProcess_oilspil" typename="ExecuteProcess_oilspil" unbounded="false"&gt;
+        &lt;s:elements&gt;
+          &lt;s:basetype name="model2" optional="false" qname="&gt;ExecuteProcess_oilspil&gt;model2" typename="anyType" unbounded="false"&gt;&lt;/s:basetype&gt;
+          &lt;s:basetype name="model1" optional="false" qname="&gt;ExecuteProcess_oilspil&gt;model1" typename="anyType" unbounded="false"&gt;&lt;/s:basetype&gt;
+        &lt;/s:elements&gt;
+      &lt;/s:complextype&gt;
+    &lt;/s:extensions&gt;</DataInputs><ProcessOutputs>&lt;s:extensions xmlns:s="http://org.embl.ebi.escience/xscufl/0.1alpha"&gt;
+      &lt;s:complextype name="ProcessOutputs" optional="false" qname="{http://www.opengis.net/wps/1.0.0}ExecuteProcess_oilspilResponse" typename="ExecuteProcess_oilspilResponse" unbounded="false"&gt;
+        &lt;s:elements&gt;
+          &lt;s:basetype name="eucleoutputResult" optional="false" qname="&gt;ExecuteProcess_oilspilResponse&gt;eucleoutputResult" typename="anyType" unbounded="false"&gt;&lt;/s:basetype&gt;
+          &lt;s:basetype name="ksoutputResult" optional="false" qname="&gt;ExecuteProcess_oilspilResponse&gt;ksoutputResult" typename="anyType" unbounded="false"&gt;&lt;/s:basetype&gt;
+        &lt;/s:elements&gt;
+      &lt;/s:complextype&gt;
+    &lt;/s:extensions&gt;</ProcessOutputs></wrapperXML></positions><positions>
+    <label>model1Input</label><containerType>input</containerType>
+    <xtype>WireIt.TavernaContainerIO</xtype><inputURL>http://rsg.pml.ac.uk/wps/testdata/rposi.kmz</inputURL>
+    <literalData></literalData><position>134px</position><position>94.3833px</position></positions>
+    <positions><label>model2Input</label><containerType>input</containerType>
+    <xtype>WireIt.TavernaContainerIO</xtype><inputURL>http://rsg.pml.ac.uk/wps/testdata/OILMAP_PREVIMER_GFS.KMZ</inputURL>
+    <literalData></literalData><position>0px</position><position>405px</position>
+    </positions><positions><label>outKS</label><inputTerminals isConnected="true">null</inputTerminals>
+    <containerType>output</containerType><xtype>WireIt.TavernaContainerIO</xtype><position>440px</position>
+    <position>234.817px</position></positions><positions><label>outEucled</label>
+    <inputTerminals isConnected="true">null</inputTerminals><containerType>output</containerType><xtype>WireIt.TavernaContainerIO</xtype><position>415px</position><position>362.817px</position></positions><wires><src><moduleId>ExecuteProcess_oilspil</moduleId><terminal>ksoutputResult</terminal><xtype>WireIt.TavernaContainer</xtype></src><tgt><moduleId>outKS</moduleId><terminal></terminal><xtype>output</xtype></tgt><xtype>WireIt.TavernaWire</xtype></wires><wires><src><moduleId>ExecuteProcess_oilspil</moduleId><terminal>eucleoutputResult</terminal><xtype>WireIt.TavernaContainer</xtype></src><tgt><moduleId>outEucled</moduleId><terminal></terminal><xtype>output</xtype></tgt><xtype>WireIt.TavernaWire</xtype></wires><wires><src><moduleId>model1Input</moduleId><terminal></terminal><xtype>input</xtype></src><tgt><moduleId>ExecuteProcess_oilspil</moduleId><terminal>model1</terminal><xtype>WireIt.TavernaContainer</xtype></tgt><xtype>WireIt.TavernaWire</xtype></wires><wires><src><moduleId>model2Input</moduleId><terminal></terminal><xtype>input</xtype></src><tgt><moduleId>ExecuteProcess_oilspil</moduleId><terminal>model2</terminal><xtype>WireIt.TavernaContainer</xtype></tgt><xtype>WireIt.TavernaWire</xtype></wires><uuid>00089205-5dca-4ccb-872a-42e0067f0e39</uuid><date>2012-06-25 10:42:05 BST</date></root>
