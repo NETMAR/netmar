@@ -1,4 +1,432 @@
 @charset "UTF-8";
+
+.f1_help_screen {
+	width:100%;
+	height:100%;
+	left:0;
+	top:0;
+	position:absolute;
+	display:none;
+	z-index: 200;
+	text-align:center;
+}
+
+.f1_information_block {
+	width:600px;
+	text-align:left;
+	height:80%;
+	top:10%;
+	position:relative;
+	margin-left:auto;
+	margin-right:auto;
+	-webkit-border-radius: 40px 40px 40px 40px;
+	-moz-border-radius: 40px 40px 40px 40px;
+	-ms-border-radius: 40px 40px 40px 40px;
+	-o-border-radius: 40px 40px 40px 40px;
+	border-radius: 40px 40px 40px 40px;
+	border: 2px solid #FFFFFF;
+	-webkit-box-shadow: 0px 0px 70px 20px #BBBBBB, inset 0px 76px 7px #FFFFFF;
+	-moz-box-shadow:    0px 0px 70px 20px #BBBBBB, inset 0px 76px 7px #FFFFFF;
+	-ms-box-shadow: 0px 0px 70px 20px #BBBBBB, inset 0px 76px 7px #FFFFFF;
+	-o-box-shadow: 0px 0px 70px 20px #BBBBBB, inset 0px 76px 7px #FFFFFF;
+	box-shadow:         0px 0px 70px 20px #BBBBBB, inset 0px 76px 7px #FFFFFF;
+	min-height:162px;
+	background-color:#E1E5E5;
+	overflow:hidden;
+}
+
+.f1_information_background {
+	opacity: 0.9;
+	width:100%;
+	height:100%;
+	position:absolute;
+	left:0;
+	top:0;
+
+	background:black;
+}
+
+.f1_information_header {
+	width:600px;
+	height:74px;
+}
+.f1_information_logo {
+	-webkit-border-radius: 29px;
+	-moz-border-radius: 29px;
+	-ms-border-radius: 29px;
+	-o-border-radius: 29px;
+	border-radius: 29px;
+	height:56px;
+	width:56px;
+	line-height:56px;
+	text-align:center;
+	font-size:46px;
+	color:#FFFFFF;
+	-webkit-text-shadow: 1px 1px 3px #000000;
+	-moz-text-shadow: 1px 1px 3px #000000;
+	-ms-text-shadow: 1px 1px 3px #000000;
+	-o-text-shadow: 1px 1px 3px #000000;
+	text-shadow: 1px 1px 3px #000000;
+	-webkit-box-shadow: inset 0px 0px 23px #FFFFFF, inset 0px 0px 4px #FFFFFF;
+	-moz-box-shadow:    inset 0px 0px 23px #FFFFFF, inset 0px 0px 4px #FFFFFF;
+	-ms-box-shadow: inset 0px 0px 23px #FFFFFF, inset 0px 0px 4px #FFFFFF;
+	-o-box-shadow:inset 0px 0px 23px #FFFFFF, inset 0px 0px 4px #FFFFFF;
+	box-shadow:         inset 0px 0px 23px #FFFFFF, inset 0px 0px 4px #FFFFFF;
+	background-color: #006666;
+	position:relative;
+	left:10px;
+	top:9px;
+}
+
+.f1_information_title {
+	color: #006666;
+	font-size: 35px;
+    height: 74px;
+    left: 0;
+    line-height: 74px;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    width: 600px;
+	-webkit-text-shadow: 5px 3px 2px #999999;
+	-moz-text-shadow: 5px 3px 2px #999999;
+	-ms-text-shadow: 5px 3px 2px #999999;
+	-o-text-shadow: 5px 3px 2px #999999;
+	text-shadow: 5px 3px 2px #999999;
+}
+.f1_information_text {
+	width:570px;
+	margin-left:15px;
+	margin-top:104px;
+	position:absolute;
+	left:0;
+	top:0;
+	height:80%;
+	overflow-x:hidden;
+	overflow-y:auto;
+}
+
+.f1_information_text span {
+	text-align:center;
+	line-height:26px;
+	width:570px;
+	position:relative;
+	display:block;
+	clear:both;
+	font-size:22px;
+	-webkit-text-shadow: 7px 5px 2px #999999;
+	-moz-text-shadow: 7px 5px 2px #999999;
+	-ms-text-shadow: 7px 5px 2px #999999;
+	-o-text-shadow: 7px 5px 2px #999999;
+	text-shadow: 7px 5px 2px #999999;
+}
+.f1_information_text p b {
+	-webkit-text-shadow: -3px -3px 0px #FFFFFF;
+	-moz-text-shadow:  -3px -3px 0px #FFFFFF;
+	-ms-text-shadow: -3px -3px 0px #FFFFFF;
+	-o-text-shadow: -3px -3px 0px #FFFFFF;
+	text-shadow: -3px -3px 0px #FFFFFF;
+}
+
+#serviceList .ui-draggable {
+	width: 300px !important;
+}
+
+
+
+.f1_instructions {
+	height:34px;
+	line-height:34px;
+	position:relative;
+	margin-top:10px;
+	width:400px;
+	margin-left:auto;
+	margin-right:auto;
+	text-align:center;
+	color:#FFFFFF;
+	-webkit-text-shadow: -2px -2px 0px #000000;
+	-moz-text-shadow:  -2px -2px 0px #000000;
+	-ms-text-shadow: -2px -2px 0px #000000;
+	-o-text-shadow: -2px -2px 0px #000000;
+	text-shadow: -2px -2px 0px #000000;
+	background-color:#006666;
+	-webkit-border-radius: 10px 10px 10px 10px;
+	-moz-border-radius: 10px 10px 10px 10px;
+	-ms-border-radius: 10px 10px 10px 10px;
+	-o-border-radius: 10px 10px 10px 10px;
+	border-radius: 10px 10px 10px 10px;
+
+}
+
+
+
+.eumis_loading_screen {
+	width:100%;
+	height:100%;
+	left:0;
+	top:0;
+	position:absolute;
+	z-index: 180;
+	text-align:center;
+}
+
+.eumis_loading_block {
+	width:600px;
+	text-align:left;
+	height:280px;
+	top:10%;
+	position:relative;
+	margin-left:auto;
+	margin-right:auto;
+	-webkit-border-radius: 40px 40px 40px 40px;
+	-moz-border-radius: 40px 40px 40px 40px;
+	-ms-border-radius: 40px 40px 40px 40px;
+	-o-border-radius: 40px 40px 40px 40px;
+	border-radius: 40px 40px 40px 40px;
+	border: 2px solid #FFFFFF;
+	-webkit-box-shadow: 0px 0px 70px 20px #BBBBBB, inset 0px 76px 7px #FFFFFF;
+	-moz-box-shadow:    0px 0px 70px 20px #BBBBBB, inset 0px 76px 7px #FFFFFF;
+	-ms-box-shadow: 0px 0px 70px 20px #BBBBBB, inset 0px 76px 7px #FFFFFF;
+	-o-box-shadow: 0px 0px 70px 20px #BBBBBB, inset 0px 76px 7px #FFFFFF;
+	box-shadow:         0px 0px 70px 20px #BBBBBB, inset 0px 76px 7px #FFFFFF;
+	min-height:162px;
+	background-color:#E1E5E5;
+	overflow:hidden;
+}
+
+.eumis_loading_background {
+	width:100%;
+	height:100%;
+	position:absolute;
+	left:0;
+	top:0;
+
+	background:black;
+}
+.emuis_loading_progressbar .ui-progressbar-value {
+	height:24px;
+}
+.eumis_loading_header {
+	width:600px;
+	height:74px;
+}
+.eumis_loading_logo {
+	-webkit-border-radius: 29px;
+	-moz-border-radius: 29px;
+	-ms-border-radius: 29px;
+	-o-border-radius: 29px;
+	border-radius: 29px;
+	height:56px;
+	width:56px;
+	line-height:56px;
+	text-align:center;
+	font-size:46px;
+	color:#FFFFFF;
+	-webkit-text-shadow: 1px 1px 3px #000000;
+	-moz-text-shadow: 1px 1px 3px #000000;
+	-ms-text-shadow: 1px 1px 3px #000000;
+	-o-text-shadow: 1px 1px 3px #000000;
+	text-shadow: 1px 1px 3px #000000;
+	-webkit-box-shadow: inset 0px 0px 23px #FFFFFF, inset 0px 0px 4px #FFFFFF;
+	-moz-box-shadow:    inset 0px 0px 23px #FFFFFF, inset 0px 0px 4px #FFFFFF;
+	-ms-box-shadow: inset 0px 0px 23px #FFFFFF, inset 0px 0px 4px #FFFFFF;
+	-o-box-shadow:inset 0px 0px 23px #FFFFFF, inset 0px 0px 4px #FFFFFF;
+	box-shadow:         inset 0px 0px 23px #FFFFFF, inset 0px 0px 4px #FFFFFF;
+	background-color: #006666;
+	position:relative;
+	left:10px;
+	top:9px;
+}
+
+.eumis_loading_title {
+	color: #006666;
+	font-size: 35px;
+    height: 74px;
+    left: 0;
+    line-height: 74px;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    width: 600px;
+	-webkit-text-shadow: 5px 3px 2px #999999;
+	-moz-text-shadow: 5px 3px 2px #999999;
+	-ms-text-shadow: 5px 3px 2px #999999;
+	-o-text-shadow: 5px 3px 2px #999999;
+	text-shadow: 5px 3px 2px #999999;
+}
+.eumis_loading_text {
+	width:570px;
+	margin-left:15px;
+	margin-top:104px;
+	position:absolute;
+	left:0;
+	top:0;
+	height:80%;
+	overflow-x:hidden;
+	overflow-y:auto;
+}
+
+.eumis_loading_text span {
+	text-align:center;
+	line-height:26px;
+	width:570px;
+	position:relative;
+	display:block;
+	clear:both;
+	font-size:22px;
+	-webkit-text-shadow: 7px 5px 2px #999999;
+	-moz-text-shadow: 7px 5px 2px #999999;
+	-ms-text-shadow: 7px 5px 2px #999999;
+	-o-text-shadow: 7px 5px 2px #999999;
+	text-shadow: 7px 5px 2px #999999;
+}
+.eumis_loading_text p b {
+	-webkit-text-shadow: -3px -3px 0px #FFFFFF;
+	-moz-text-shadow:  -3px -3px 0px #FFFFFF;
+	-ms-text-shadow: -3px -3px 0px #FFFFFF;
+	-o-text-shadow: -3px -3px 0px #FFFFFF;
+	text-shadow: -3px -3px 0px #FFFFFF;
+}
+
+.eumis_loading_text span b {
+	padding-top:33px;
+	clear:both;
+	display:block;
+}
+
+
+html, body {
+	width:100%;
+	height:100%;
+	position:absolute;
+	left:0;
+	top:0;
+	background-color:#006666;
+	padding:0;
+	margin:0;
+	border:0;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	overflow:hidden;
+}
+
+#titleGroup .serviceEditor {
+	color:#FFFFFF;
+	-webkit-text-shadow: 3px 3px 0px #000000;
+	-moz-text-shadow:  3px 3px 0px #000000;
+	-ms-text-shadow: 3px 3px 0px #000000;
+	-o-text-shadow: 3px 3px 0px #000000;
+	text-shadow: 3px 3px 0px #000000;
+}
+
+* {
+	outline: none;
+}
+
+.layer {
+	-webkit-border-radius: 24px 0 0 0;
+	-moz-border-radius: 24px 0 0 0;
+	-ms-border-radius: 24px 0 0 0;
+	-o-border-radius: 24px 0 0 0;
+	border-radius: 24px 0 0 0;
+	-webkit-box-shadow: 0px 0px 23px #FFFFFF;
+	-moz-box-shadow:    0px 0px 23px #FFFFFF;
+	-ms-box-shadow: 0px 0px 23px #FFFFFF;
+	-o-box-shadow:0px 0px 23px #FFFFFF;
+	box-shadow:         0px 0px 23px #FFFFFF;
+}
+
+
+
+#servicePanel {
+	top: 0 !important;
+	float:right;
+	
+}
+#ioPanel {
+	top: 0 !important;
+	float:right;
+	
+}
+#linkGroup {
+	z-index:170;
+	position:absolute;
+}
+#panelGroup {
+	position:absolute;
+	top:0;
+	width:100%;
+	overflow:visible;
+	float:right;
+}
+
+.servicePanel .reverseCurve {
+	height:50px;
+	width:50px;
+	background-color:#006666;
+}
+
+
+.serviceEditorMain {
+	left:0;
+	top:0;
+	width:100%;
+	height:100%;
+	position:absolute;
+	/*overflow:hidden;*/
+}
+#panelGroup {
+}
+
+#servicePanel .serviceEditor {
+	color:#FFFFFF;
+	-webkit-text-shadow: 3px 3px 0px #000000;
+	-moz-text-shadow:  3px 3px 0px #000000;
+	-ms-text-shadow: 3px 3px 0px #000000;
+	-o-text-shadow: 3px 3px 0px #000000;
+	text-shadow: 3px 3px 0px #000000;
+}
+
+/*html, body {
+	position:absolute;
+	left:0;
+	top:0;
+	margin:0;
+	border:0;
+	padding:0;
+	width:100%;
+	height:100%;
+}
+
+
+#panelGroup #servicePanel {
+	margin-right:40px;
+	margin-top:50px;
+	float:right;
+	left:0 !important;
+	top:0 !important;
+}
+
+#linkGroup {
+	
+	position:absolute;
+	z-index:120;
+	width:190px;
+}
+
+#panelGroup {
+	position:absolute;
+	left:0;
+	top:0;
+	width:100%;
+	height:100%;
+	z-index:110;
+}*/
+
 /* Colors:
 http://www.somacon.com/p142.php
 */
@@ -149,10 +577,22 @@ padding-top:10px;
 padding-right:20px;
 padding-bottom:30px;
 padding-left:100px;
--moz-border-radius-topright: 20px;
+/*-moz-border-radius-topright: 20px;
 -webkit-border-top-right-radius: 20px;
 -moz-border-radius-bottomright: 20px;
--webkit-border-bottom-right-radius: 20px;
+-webkit-border-bottom-right-radius: 20p318x;*/
+-webkit-border-radius: 0 20px 20px 0;
+-moz-border-radius:  0 20px 20px 0;
+-ms-border-radius:  0 20px 20px 0;
+-o-border-radius:  0 20px 20px 0;
+border-radius:  0 20px 20px 0;
+border:1px solid #008888;
+background-color: #008888;
+-webkit-box-shadow: 0px 0px 23px #006666, 0px 0px 4px #006666;
+-moz-box-shadow:    0px 0px 23px #006666, 0px 0px 4px #006666;
+-ms-box-shadow: 0px 0px 23px #006666, 0px 0px 4px #006666;
+-o-box-shadow:0px 0px 23px #006666, 0px 0px 4px #006666;
+box-shadow:         0px 0px 23px #006666, 0px 0px 4px #006666;
 }
 
 .panel#servicePanel{
@@ -164,16 +604,27 @@ overflow:auto;
 padding-top:10px;
 padding-right:30px;
 padding-bottom:30px;
-padding-left:30px;
-border:1px solid #444444;
--moz-border-radius-topleft: 20px;
+padding-left:30px; 
+border:1px solid #008888;
+background-color: #008888;
+-webkit-box-shadow: 0px 0px 23px #006666, 0px 0px 4px #006666;
+-moz-box-shadow:    0px 0px 23px #006666, 0px 0px 4px #006666;
+-ms-box-shadow: 0px 0px 23px #006666, 0px 0px 4px #006666;
+-o-box-shadow:0px 0px 23px #006666, 0px 0px 4px #006666;
+box-shadow:         0px 0px 23px #006666, 0px 0px 4px #006666;
+-webkit-border-radius: 0px 0px 0px 33px;
+-moz-border-radius: 0px 0px 0px 33px;
+-ms-border-radius: 0px 0px 0px 33px;
+-o-border-radius: 0px 0px 0px 33px;
+border-radius: 0px 0px 0px 33px;/**/
+/*-moz-border-radius-topleft: 20px;
 -moz-border-radius-topright: 20px;
 -webkit-border-top-left-radius: 20px;
 -webkit-border-top-right-radius: 20px;
 -moz-border-radius-bottomleft: 20px;
 -moz-border-radius-bottomright: 20px;
 -webkit-border-bottom-left-radius: 20px;
--webkit-border-bottom-right-radius: 20px;
+-webkit-border-bottom-right-radius: 20px;*/
 }
 
 .panel#ioPanel{
@@ -186,15 +637,32 @@ padding-top:10px;
 padding-right:30px;
 padding-bottom:30px;
 padding-left:30px;
-border:1px solid #444444;
--moz-border-radius-topleft: 20px;
+/*border:1px solid #444444;
+-webkit-border-radius: 0 20px 20px 0;
+-moz-border-radius: 0 20px 20px 0;
+-ms-border-radius: 0 20px 20px 0;
+-o-border-radius: 0 20px 20px 0;
+border-radius: 0 20px 20px 0;*/
+border:1px solid #006666;
+background-color: #006666;
+-webkit-box-shadow: 0px 0px 23px #006666, 0px 0px 4px #006666;
+-moz-box-shadow:    0px 0px 23px #006666, 0px 0px 4px #006666;
+-ms-box-shadow: 0px 0px 23px #006666, 0px 0px 4px #006666;
+-o-box-shadow:0px 0px 23px #006666, 0px 0px 4px #006666;
+box-shadow:         0px 0px 23px #006666, 0px 0px 4px #006666;
+-webkit-border-radius: 0px 0px 0px 33px;
+-moz-border-radius: 0px 0px 0px 33px;
+-ms-border-radius: 0px 0px 0px 33px;
+-o-border-radius: 0px 0px 0px 33px;
+border-radius: 0px 0px 0px 33px;
+/*-moz-border-radius-topleft: 20px;
 -moz-border-radius-topright: 20px;
 -webkit-border-top-left-radius: 20px;
 -webkit-border-top-right-radius: 20px;
 -moz-border-radius-bottomleft: 20px;
 -moz-border-radius-bottomright: 20px;
 -webkit-border-bottom-left-radius: 20px;
--webkit-border-bottom-right-radius: 20px;
+-webkit-border-bottom-right-radius: 20px;*/
 }
 
 /* 
@@ -252,12 +720,17 @@ border:1px solid #444444;
 left -moz-border-radius-topleft: 20px;
 -webkit-border-top-left-radius: 20px;
 */
--moz-border-radius-topright: 20px;
+-webkit-border-radius: 0 20px 20px 0;
+-moz-border-radius: 0 20px 20px 0;
+-ms-border-radius: 0 20px 20px 0;
+-o-border-radius: 0 20px 20px 0;
+border-radius: 0 20px 20px 0;
+/*-moz-border-radius-topright: 20px;
 -webkit-border-top-right-radius: 20px;
 -moz-border-radius-bottomright: 20px;
 -webkit-border-bottom-right-radius: 20px;
 -moz-border-radius-bottomleft: 0px;
--webkit-border-bottom-left-radius: 0px;
+-webkit-border-bottom-left-radius: 0px;*/
 display: block;
 }
 
@@ -274,12 +747,17 @@ padding-left:35px;
 font-weight: 700;
 /*background:#222222 url(images/plus.png) 85% 55% no-repeat;*/
 border:1px solid #444444;
--moz-border-radius-topright: 20px;
+-webkit-border-radius: 0 20px 20px 0;
+-moz-border-radius: 0 20px 20px 0;
+-ms-border-radius: 0 20px 20px 0;
+-o-border-radius: 0 20px 20px 0;
+border-radius: 0 20px 20px 0;
+/*-moz-border-radius-topright: 20px;
 -webkit-border-top-right-radius: 20px;
 -moz-border-radius-bottomright: 20px;
 -webkit-border-bottom-right-radius: 20px;
 -moz-border-radius-bottomleft: 0px;
--webkit-border-bottom-left-radius: 0px;
+-webkit-border-bottom-left-radius: 0px;*/
 display: block;
 }
 
@@ -306,13 +784,14 @@ top: 1px; left: 0px;
 }
 
 /* BULLETS IN WSDL MENU */
-.panel li.active {
-background: #FF8C00;
-}
 
 .panel li.addHTTP {
 width: 300px;
 height: 25px;
+}
+
+canvas.WireIt-Wire:after {
+	position:relative;
 }
 
 /* SERVICE ME*/

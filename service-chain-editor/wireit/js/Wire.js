@@ -283,9 +283,9 @@ YAHOO.lang.extend(WireIt.Wire, WireIt.CanvasElement, {
     * Redraw the wire and label
     * @method redraw
     */
-   redraw: function() {
+   redraw: function(e) {
 				
-      this.draw();
+      this.draw(e);
 
 		if(this.label) {
 			this.positionLabel();

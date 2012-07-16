@@ -1,0 +1,326 @@
+/*	 Service window help button
+	*/
+	.WireIt-ddHandle-Help {
+		color:	#000000;
+		background: #FFFFFF;
+	}
+
+/*	 Zoom slider
+	*/
+	 .scale_zoom .background {
+		background: none scroll no-repeat top left #006666;
+	}
+
+/*	 F1 Help screen
+	*/
+	/*Background overlay area*/
+		.f1_information_background {
+			opacity: 0.9;
+			background:black;
+		}
+	/*Main content area*/
+		/*Container*/
+			.f1_information_block {
+				border: 2px solid #FFFFFF;
+				-webkit-box-shadow: 0px 0px 70px 20px #BBBBBB, inset 0px 76px 7px #FFFFFF;
+				-moz-box-shadow:    0px 0px 70px 20px #BBBBBB, inset 0px 76px 7px #FFFFFF;
+				-ms-box-shadow: 0px 0px 70px 20px #BBBBBB, inset 0px 76px 7px #FFFFFF;
+				-o-box-shadow: 0px 0px 70px 20px #BBBBBB, inset 0px 76px 7px #FFFFFF;
+				box-shadow:         0px 0px 70px 20px #BBBBBB, inset 0px 76px 7px #FFFFFF;
+				background-color:#E1E5E5;
+		}
+		/*Text*/
+			/*Normal*/
+				.f1_information_text {
+				}
+			/*Span*/
+				.f1_information_text span {
+					-webkit-text-shadow: 7px 5px 2px #999999;
+					-moz-text-shadow: 7px 5px 2px #999999;
+					-ms-text-shadow: 7px 5px 2px #999999;
+					-o-text-shadow: 7px 5px 2px #999999;
+					text-shadow: 7px 5px 2px #999999;
+				}
+			/*Bold*/
+				.f1_information_text p b {
+					-webkit-text-shadow: -3px -3px 0px #FFFFFF;
+					-moz-text-shadow:  -3px -3px 0px #FFFFFF;
+					-ms-text-shadow: -3px -3px 0px #FFFFFF;
+					-o-text-shadow: -3px -3px 0px #FFFFFF;
+					text-shadow: -3px -3px 0px #FFFFFF;
+				}
+	/*Icon area*/
+		.f1_information_logo {
+			color:#FFFFFF;
+			-webkit-text-shadow: 1px 1px 3px #000000;
+			-moz-text-shadow: 1px 1px 3px #000000;
+			-ms-text-shadow: 1px 1px 3px #000000;
+			-o-text-shadow: 1px 1px 3px #000000;
+			text-shadow: 1px 1px 3px #000000;
+			-webkit-box-shadow: inset 0px 0px 23px #FFFFFF, inset 0px 0px 4px #FFFFFF;
+			-moz-box-shadow:    inset 0px 0px 23px #FFFFFF, inset 0px 0px 4px #FFFFFF;
+			-ms-box-shadow: inset 0px 0px 23px #FFFFFF, inset 0px 0px 4px #FFFFFF;
+			-o-box-shadow:inset 0px 0px 23px #FFFFFF, inset 0px 0px 4px #FFFFFF;
+			box-shadow:         inset 0px 0px 23px #FFFFFF, inset 0px 0px 4px #FFFFFF;
+			background-color: #006666;
+		}
+	/*Title section*/
+		.f1_information_title {
+			color: #006666;
+			-webkit-text-shadow: 5px 3px 2px #999999;
+			-moz-text-shadow: 5px 3px 2px #999999;
+			-ms-text-shadow: 5px 3px 2px #999999;
+			-o-text-shadow: 5px 3px 2px #999999;
+			text-shadow: 5px 3px 2px #999999;
+		}
+
+/* Loading screen
+	*/
+	/*Background overlay area*/
+		.eumis_loading_background {
+			background:black;
+		}
+	/*Main content area*/
+		.eumis_loading_block {
+			border: 2px solid #FFFFFF;
+			-webkit-box-shadow: 0px 0px 70px 20px #BBBBBB, inset 0px 76px 7px #FFFFFF;
+			-moz-box-shadow:    0px 0px 70px 20px #BBBBBB, inset 0px 76px 7px #FFFFFF;
+			-ms-box-shadow: 0px 0px 70px 20px #BBBBBB, inset 0px 76px 7px #FFFFFF;
+			-o-box-shadow: 0px 0px 70px 20px #BBBBBB, inset 0px 76px 7px #FFFFFF;
+			box-shadow:         0px 0px 70px 20px #BBBBBB, inset 0px 76px 7px #FFFFFF;
+			background-color:#E1E5E5;
+		}
+	/*Icon area*/
+		.eumis_loading_logo {
+			color:#FFFFFF;
+			-webkit-text-shadow: 1px 1px 3px #000000;
+			-moz-text-shadow: 1px 1px 3px #000000;
+			-ms-text-shadow: 1px 1px 3px #000000;
+			-o-text-shadow: 1px 1px 3px #000000;
+			text-shadow: 1px 1px 3px #000000;
+			-webkit-box-shadow: inset 0px 0px 23px #FFFFFF, inset 0px 0px 4px #FFFFFF;
+			-moz-box-shadow:    inset 0px 0px 23px #FFFFFF, inset 0px 0px 4px #FFFFFF;
+			-ms-box-shadow: inset 0px 0px 23px #FFFFFF, inset 0px 0px 4px #FFFFFF;
+			-o-box-shadow:inset 0px 0px 23px #FFFFFF, inset 0px 0px 4px #FFFFFF;
+			box-shadow:         inset 0px 0px 23px #FFFFFF, inset 0px 0px 4px #FFFFFF;
+			background-color: #006666;
+		}
+	/*Title section*/
+		.eumis_loading_title {
+			color: #006666;
+			-webkit-text-shadow: 5px 3px 2px #999999;
+			-moz-text-shadow: 5px 3px 2px #999999;
+			-ms-text-shadow: 5px 3px 2px #999999;
+			-o-text-shadow: 5px 3px 2px #999999;
+			text-shadow: 5px 3px 2px #999999;
+		}
+
+/*	 Spinning loader icon
+	*/
+	 .hex:before {
+		 border-bottom: 15px solid #006666;
+	 }
+	 .hex {
+		 background-color: #006666;
+		 border-top:1px solid #006666;
+		 border-bottom:1px solid #006666;
+	 }
+	 .hex:after {
+		 border-top: 15px solid #006666;
+	 }
+
+
+
+
+.eumis_loading_text span {
+	-webkit-text-shadow: 7px 5px 2px #999999;
+	-moz-text-shadow: 7px 5px 2px #999999;
+	-ms-text-shadow: 7px 5px 2px #999999;
+	-o-text-shadow: 7px 5px 2px #999999;
+	text-shadow: 7px 5px 2px #999999;
+}
+.eumis_loading_text p b {
+	-webkit-text-shadow: -3px -3px 0px #FFFFFF;
+	-moz-text-shadow:  -3px -3px 0px #FFFFFF;
+	-ms-text-shadow: -3px -3px 0px #FFFFFF;
+	-o-text-shadow: -3px -3px 0px #FFFFFF;
+	text-shadow: -3px -3px 0px #FFFFFF;
+}
+html, body {
+	background-color:#006666;
+}
+
+#titleGroup .serviceEditor {
+	color:#FFFFFF;
+	-webkit-text-shadow: 3px 3px 0px #000000;
+	-moz-text-shadow:  3px 3px 0px #000000;
+	-ms-text-shadow: 3px 3px 0px #000000;
+	-o-text-shadow: 3px 3px 0px #000000;
+	text-shadow: 3px 3px 0px #000000;
+}
+
+.layer {
+	-webkit-box-shadow: 0px 0px 23px #FFFFFF;
+	-moz-box-shadow:    0px 0px 23px #FFFFFF;
+	-ms-box-shadow: 0px 0px 23px #FFFFFF;
+	-o-box-shadow:0px 0px 23px #FFFFFF;
+	box-shadow:         0px 0px 23px #FFFFFF;
+}
+
+.servicePanel .reverseCurve {
+	background-color:#006666;
+}
+
+#servicePanel .serviceEditor {
+	color:#FFFFFF;
+	-webkit-text-shadow: 3px 3px 0px #000000;
+	-moz-text-shadow:  3px 3px 0px #000000;
+	-ms-text-shadow: 3px 3px 0px #000000;
+	-o-text-shadow: 3px 3px 0px #000000;
+	text-shadow: 3px 3px 0px #000000;
+}
+
+serviceEditor, input[type=text] {
+	color: #000000;
+}
+
+h1.serviceEditor {
+	/*color:#20B2AA;*/
+	color: black;
+}
+
+
+.panel li {
+	border:1px solid #111111;
+	/*background: #EDEDED;*/
+	background:white;
+}
+
+.panel {
+	background: #EDEDED;
+	border: 2px solid #111111;
+}
+
+.panel p{
+	margin: 0 0 15px 0;
+	padding: 0px;
+}
+
+.panel a, .panel a:visited{
+	color:black;
+}
+
+
+
+.panel, .panel  a:visited:hover{
+	color:black;
+	border-bottom: 2px solid #ffffff;
+}
+
+
+
+.panel#workspacePanel {
+	border:1px solid rgba(0, 136, 136, 0.75);
+	background-color: rgba(0, 136, 136, 0.75);
+	-webkit-box-shadow: 0px 0px 23px #006666, 0px 0px 4px #006666;
+	-moz-box-shadow:    0px 0px 23px #006666, 0px 0px 4px #006666;
+	-ms-box-shadow: 0px 0px 23px #006666, 0px 0px 4px #006666;
+	-o-box-shadow:0px 0px 23px #006666, 0px 0px 4px #006666;
+	box-shadow:         0px 0px 23px #006666, 0px 0px 4px #006666;
+}
+
+.dataTables_scroll {
+	background-color: #FFFFFF;
+}
+
+
+.panel#servicePanel{
+	border:1px solid rgba(0, 136, 136, 0.75);
+	background-color: rgba(0, 136, 136, 0.75);
+	-webkit-box-shadow: 0px 0px 23px #006666, 0px 0px 4px #006666;
+	-moz-box-shadow:    0px 0px 23px #006666, 0px 0px 4px #006666;
+	-ms-box-shadow: 0px 0px 23px #006666, 0px 0px 4px #006666;
+	-o-box-shadow:0px 0px 23px #006666, 0px 0px 4px #006666;
+	box-shadow:         0px 0px 23px #006666, 0px 0px 4px #006666;
+}
+
+.panel#ioPanel{
+	border:1px solid rgba(0, 136, 136, 0.75);
+	background-color: rgba(0, 136, 136, 0.75);
+	-webkit-box-shadow: 0px 0px 23px #006666, 0px 0px 4px #006666;
+	-moz-box-shadow:    0px 0px 23px #006666, 0px 0px 4px #006666;
+	-ms-box-shadow: 0px 0px 23px #006666, 0px 0px 4px #006666;
+	-o-box-shadow:0px 0px 23px #006666, 0px 0px 4px #006666;
+	box-shadow:         0px 0px 23px #006666, 0px 0px 4px #006666;
+}
+
+
+
+.panel#wsdlPanel{
+	border:1px solid rgba(0, 136, 136, 0.75) !important;
+	background-color: rgba(0, 136, 136, 0.75);
+	-webkit-box-shadow: 0px 0px 23px #006666, 0px 0px 4px #006666;
+	-moz-box-shadow:    0px 0px 23px #006666, 0px 0px 4px #006666;
+	-ms-box-shadow: 0px 0px 23px #006666, 0px 0px 4px #006666;
+	-o-box-shadow:0px 0px 23px #006666, 0px 0px 4px #006666;
+	box-shadow:         0px 0px 23px #006666, 0px 0px 4px #006666;
+}
+
+/* 
+* ICONS on ioPanel
+*/
+div.dummyIOContainer {
+	border:1px solid #444444;
+}
+
+
+
+
+/* GENERIC TRIGGER LINK */
+.serviceEditor a.trigger{
+	border:1px solid #444444;
+}
+
+.serviceEditor a.trigger:hover{
+
+	color:#ffffff;
+	border:1px solid #444444;
+}
+
+.serviceEditor a.trigger, .serviceEditor a.trigger:hover{
+background:#EDEDED url(../images/plus.png) 85% 48% no-repeat;
+color:black;
+}
+
+.serviceEditor a.active.trigger {
+background:#FF8C00 url(../images/minus.png) 85% 48% no-repeat;
+}
+
+
+
+/* BULLETS IN WSDL MENU */
+.panel li.active {
+background: #FF8C00;
+}
+
+
+.panel input[type=text] {
+background-color: white;
+border:1px solid #444444;
+}
+
+
+
+.row_selected {
+background-color: #FF8C00;
+}
+
+.panel ul#serviceList .ui-selecting {
+background: #FECA40;
+}
+
+. panel ul#serviceList .ui-selected {
+background: #F39814;
+color: white;
+}
+

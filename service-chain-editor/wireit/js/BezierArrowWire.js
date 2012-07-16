@@ -27,22 +27,169 @@ YAHOO.lang.extend(WireIt.BezierArrowWire, WireIt.BezierWire, {
 	/**
     * Attempted bezier drawing method for arrows
     */
-   draw: function() {
+   draw: function(e) {
+      
+   
 
-		var arrowWidth = Math.round(this.width * 1.5 + 20);
-		var arrowLength = Math.round(this.width * 1.2 + 20);
-		var d = arrowWidth/2; // arrow width/2
+      var arrowWidth = Math.round(this.width * 1.5 + 20);
+      var arrowLength = Math.round(this.width * 1.2 + 20);
+      var d = arrowWidth/2; // arrow width/2
       var redim = d+3; //we have to make the canvas a little bigger because of arrows
-      var margin=[4+redim,4+redim];
+      var margin=[0+redim,0+redim];
 
       // Get the positions of the terminals
       var p1 = this.terminal1.getXY();
       var p2 = this.terminal2.getXY();
+      var scaler = 0;
+      if(current_scale == 1) {
+         scaler = 1;
+      }
+      if(current_scale == 0.75) {
+         scaler = 1.333;
+      }
+      if(current_scale == 0.5) {
+         scaler = 2;
+      }
+      if(current_scale == 0.25) {
+         scaler = 4;
+      }
+      if(e == 'mouseup') {
+         scaler = 1;
+      }
+      console.log(e + (new Date().getTime()));
+      //console.log('wire-scale' + (new Date().getTime()));
+      var left = 0;
+      var top = 0;
+      var right = 0;
+      var bottom = 0;
+      var temp = 0;
 
+      if(p1[0] < p2[0]) {
+         left = p1[0];
+         right = p2[0] * scaler;
+      } else {
+         left = p2[0];
+         right = p1[0] * scaler;
+      }
+
+      if(p1[1] < p2[1]) {
+         top = p1[1];
+         bottom = p2[1] * scaler;
+      } else {
+         top = p2[1];
+         bottom = p1[1] * scaler;
+      }
+
+      p2[0] = right;
+      p2[1] = bottom;
+
+      if(left < p1[0]) {
+         right = right - ((p1[0] - left) * scaler);
+         left = p1[0];
+      }
+      if(top < p1[1]) {
+         bottom = bottom - ((p1[1] - top) * scaler);
+         top = p1[1];
+      }
+
+      var orientation_V = true;
+      var orientation_H = true;
+
+      if(right < left) {
+         temp = left;
+         left = right;
+         right = temp;
+         orientation_H = false;
+      }
+      if(bottom < top) {
+         temp = top;
+         top = bottom;
+         bottom = temp;
+         orientation_V = false;
+      }
+
+      if(bottom < (top +(margin[1] / 2))) {
+         bottom = top + (margin[1] / 2);
+      }
+
+      if(right < (left +(margin[0] / 2))) {
+         right = left + (margin[0] / 2);
+      }
+
+     /*$('.temp_canvas_test').css({
+         'left': left,
+         'top': top,
+         'width': right - left,
+         'height': bottom - top
+      });*/
+      //console.log($(this.element).css('top'));
+      $(this.element).css({
+         'left': left,
+         'top': top,
+         'width': (right - left),
+         'height': (bottom - top)
+      });
+      this.element.width = right - left;
+      this.element.height = bottom - top;
+      var ctxt = this.element.getContext('2d');
+
+      ctxt.lineWidth = this.width * 1.2;
+      ctxt.strokeStyle = this.bordercolor;
+      ctxt.fillStyle = this.color;
+      ctxt.beginPath();
+      var startx = this.width * 1.2;
+      var starty = this.width * 1.2;
+      var midx = this.element.width / 2;
+      var midy = this.width * 1.2;
+      var endx = this.element.width - (this.width * 1.2);
+      var endy = this.element.height - (this.width * 1.2);
+      if((orientation_V && orientation_H) || (!orientation_V && !orientation_H)) {
+         ctxt.moveTo(startx, starty);
+         ctxt.lineTo(midx,  starty);
+         ctxt.lineTo(midx,  endy);
+         ctxt.lineTo(endx, endy);
+      } else {
+         ctxt.moveTo(startx, endy);
+         ctxt.lineTo(midx,  endy);
+         ctxt.lineTo(midx,  starty);
+         ctxt.lineTo(endx, starty);
+      }
+      ctxt.stroke();
+      return [p1,p2,t1,t2];
+
+      //this.SetCanvasRegion(left - margin, top - margin, (right - left) + margin, (bottom - top) + margin);
+
+      console.log(left, top);
+      console.log(right, bottom);
+      console.log(p1);
+      console.log(p2);
+      console.log(null);
+
+      return true;
+      /*console.log('');
+      console.log(p1);
+      console.log(p2);
+      console.log('');*/
+      var t_value = 0;/*
+      switch(current_scale) {
+         case 1:
+         break;
+         case 0.75:
+            p2[0] =  ((p1[0] / 4) * 1)  + ((p2[0] / 4) * 1) + p2[0];
+            p2[1] = ((p2[1] / 4) * 1) + p2[1];
+         break;
+         case 0.5:
+            p2[0] =  ((p2[0] / 4) * 2) + p2[0];
+            p2[1] = ((p2[1] / 4) * 2) + p2[1];
+         break;
+         case 0.25:
+            p2[0] = ((p2[0] / 4) * 3) + p2[0];
+            p2[1] = ((p2[1] / 4) * 3) + p2[1];
+         break;
+      }*/
       // Coefficient multiplicateur de direction
       // 100 par defaut, si distance(p1,p2) < 100, on passe en distance/2
       var coeffMulDirection = this.coeffMulDirection;
-
 
       var distance=Math.sqrt(Math.pow(p1[0]-p2[0],2)+Math.pow(p1[1]-p2[1],2));
       if(distance < coeffMulDirection){
@@ -78,6 +225,7 @@ YAHOO.lang.extend(WireIt.BezierArrowWire, WireIt.BezierWire, {
             max[1] = p[1];
          }
       }
+
       // Redimensionnement du canvas
       //var margin = [4,4];
       min[0] = min[0]-margin[0];
@@ -87,10 +235,11 @@ YAHOO.lang.extend(WireIt.BezierArrowWire, WireIt.BezierWire, {
       var lw = Math.abs(max[0]-min[0]);
       var lh = Math.abs(max[1]-min[1]);
 
-		// Store the min, max positions to display the label later
-		this.min = min;
-		this.max = max;
+      // Store the min, max positions to display the label later
+      this.min = min;
+      this.max = max;
 
+      //this.SetCanvasRegion(min[0],min[1],lw,lh);
       this.SetCanvasRegion(min[0],min[1],lw,lh);
 
       var ctxt = this.getContext();
@@ -100,7 +249,7 @@ YAHOO.lang.extend(WireIt.BezierArrowWire, WireIt.BezierWire, {
       }
 
       // Draw the border
-      ctxt.lineCap = this.bordercap;
+      /*ctxt.lineCap = this.bordercap;
       ctxt.strokeStyle = this.bordercolor;
       ctxt.lineWidth = this.width+this.borderwidth*2;
       ctxt.beginPath();
@@ -115,7 +264,7 @@ YAHOO.lang.extend(WireIt.BezierArrowWire, WireIt.BezierWire, {
       ctxt.beginPath();
       ctxt.moveTo(bezierPoints[0][0],bezierPoints[0][1]);
       ctxt.bezierCurveTo(bezierPoints[1][0],bezierPoints[1][1],bezierPoints[2][0],bezierPoints[2][1],bezierPoints[3][0],bezierPoints[3][1]+arrowLength/2*this.terminal2.direction[1]);
-      ctxt.stroke();
+      ctxt.stroke();*/
 
 		//Variables from drawArrows
 		//var t1 = p1;
@@ -188,6 +337,33 @@ YAHOO.lang.extend(WireIt.BezierArrowWire, WireIt.BezierWire, {
 		ctxt.lineTo(t2[0],t2[1]);
 		ctxt.stroke();
 		
+      //ctxt.moveTo(bezierPoints[0][0],bezierPoints[0][1]);
+		var midX = (p1[0] > p2[0]) ? ((p1[0] - p2[0]) / 2) : ((p2[0] - p1[0]) / 2);
+		/*if(this.terminal1.ddConfig.type == 'output') {
+			if(p2[0] > midX) {
+				console.log('true2');
+			} else {
+				if(p1[0] > midX) {
+					midX = p1[0] + 20;
+					console.log('true1');
+				}
+			}
+		} else {
+
+		}*/
+		//console.log(this.borderwidth);
+
+      //ctxt.bezierCurveTo(bezierPoints[1][0],bezierPoints[1][1],bezierPoints[2][0],bezierPoints[2][1],bezierPoints[3][0],bezierPoints[3][1]+arrowLength/2*this.terminal2.direction[1]);
+
+		ctxt.lineWidth = this.width * 1.2;
+		ctxt.strokeStyle = this.bordercolor;
+		ctxt.fillStyle = this.color;
+		ctxt.beginPath();
+		ctxt.moveTo(p1[0], p1[1]);
+		ctxt.lineTo(midX, p1[1]);
+		ctxt.lineTo(midX, p2[1]);
+		ctxt.lineTo(p2[0], p2[1]);
+      ctxt.stroke();
 		return [p1,p2,t1,t2];
    }
 	

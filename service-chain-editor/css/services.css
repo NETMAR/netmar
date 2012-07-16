@@ -1,9 +1,10 @@
 @charset "UTF-8";
 /* CSS: Related to the wireIt structure*/
 
+
 .layer {
 	position:absolute;
-	background-color: #F0FFFF; 
+	background-color: #FFBBBB; 
 	border: 0; 
     overflow: hidden;
     margin: auto;
@@ -245,15 +246,17 @@ div.WireIt-Container-ddhandle {
    width: 100%;
    height: 22px;
    /*header color */
-   background-color: #000000;
+   background-color: #005050;
    border: 0px solid #000000;
  	cursor: move;
- 	-moz-border-radius-topleft: 20px;
- 	-moz-border-radius-topright: 20px;
-	-webkit-border-top-left-radius: 20px;
-	-webkit-border-top-right-radius: 20px;
-	padding-top: 3px;
-	line-height:150%;
+	-webkit-border-radius: 13px 13px 0 0;
+	-moz-border-radius: 13px 13px 0 0;
+	-ms-border-radius: 13px 13px 0 0;
+	-o-border-radius: 13px 13px 0 0;
+	border-radius: 13px 13px 0 0;
+	padding-top: 1px;
+	line-height:21px;
+	padding-bottom:2px;
 	color:white;
 	font-weight:bold;
 	text-align:center;

@@ -73,7 +73,10 @@ JKL.ParseXML.prototype.onerror = function ( func, args ) {
 //  return: parsed object
 //  Download a file from remote server and parse it.
 
-JKL.ParseXML.prototype.parse = function () {
+JKL.ParseXML.prototype.parse = function (override_data) {
+   if(override_data && override_data !== null) {
+      return override_data;
+   }
     if ( ! this.http ) return;
 
     // set onerror call back 

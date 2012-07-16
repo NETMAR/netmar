@@ -274,11 +274,11 @@ lang.extend(WireIt.TerminalProxy, YAHOO.util.DDProxy, {
 	      }
 	
 	      w = new klass(term1, term2, parentEl, term1.wireConfig);
-	      w.redraw();
+	      w.redraw(e.type);
 	   }
 	   else if(tgtTerm.wires.length < tgtTerm.nMaxWires) {
 	      w = new klass(term1, term2, parentEl, term1.wireConfig);
-	      w.redraw();
+	      w.redraw(e.type);
 	   }
 	   /*else {
 	      console.log("Cannot connect to this terminal: nMaxWires = ", ddTargets[0].terminal.nMaxWires);

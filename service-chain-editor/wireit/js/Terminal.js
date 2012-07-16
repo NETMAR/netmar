@@ -368,10 +368,11 @@ WireIt.Terminal.prototype = {
     * Redraw all the wires connected to this terminal
     * @method redrawAllWires
     */
-   redrawAllWires: function() {
+   redrawAllWires: function(e) {
+      //console.log(e + ' ---');
       if(this.wires) {
          for(var i = 0 ; i < this.wires.length ; i++) {
-            this.wires[i].redraw();
+            this.wires[i].redraw(e);
          }
       }
    },

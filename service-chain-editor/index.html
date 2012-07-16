@@ -1,776 +1,213 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
- <!--  Vertical sliding info -->
-<!-- http://www.datatables.net/ -->
-<!-- Facebook-style tooltip -->
- <!--//No XOR in Javascript: http://www.howtocreate.co.uk/xor.html -->
- <!-- http://michalkorecki.com/content/introducing-json-xml-jquery-plugin -->
-
-<!--  SAVE_AS HACK no server needed -->
-<!--http://stackoverflow.com/questions/1479020/save-the-document-generated-by-javascript  -->
-<!--http://www.bloggingdeveloper.com/post/Location-href-vs-Location-replace-The-Difference-Between-JavaScript-Redirect-Methods.aspx  -->
-<!-- click() doesnt work http://api.jquery.com/click/ -->
-<!-- window.location http://unitstep.net/blog/2010/04/12/triggering-links-from-javascript-using-jquery/ -->
-<!-- Internet Explorer 8 limits data URIs to a maximum length of 32 KB. (Internet Explorer 9 does not have this limitation) -->
-<!--  -->
-
-<!--  HTML5 File API -->
-<!-- http://www.html5rocks.com/en/tutorials/file/dndfiles/ -->
-
-<!-- sending XML content to server for transfomarion -->
-<!-- http://filamentgroup.com/lab/jquery_plugin_for_requesting_ajax_like_file_downloads/ -->
-<!-- 
-TODO:
-1- WSDL menu
-Maybe the menu in WSDL should use a changeClassName event
-http://stackoverflow.com/questions/3139608/class-name-change-event-in-jquery
-
- -->
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>EUMIS- Service chain editor</title>
-	<link rel="stylesheet" href="./css/panel.css" type="text/css" media="screen" />
-	<!-- jquery smooth style -->
-	<link rel="stylesheet" href="./css/smoothness/jquery-ui-1.8.13.custom.css" type="text/css" media="screen" />
-<style type="text/css">
-.ui-file-wrapper { position: relative; }
-
-.ui-file {
-  position: absolute;
-  left: 0; top: 0;
-  opacity: 0;
-  width: 300px;
-  text-align: right;
-}
-</style>
-
-	 <script type="text/javascript" src="./jquery/jquery-1.6.js"></script>
-	 <script type="text/javascript" src="./jquery/jquery-ui-1.8.13.custom.min.js"></script>
-	 <!-- http://www.datatables.net/usage/ -->
-	 <script type="text/javascript" src="./jquery/jquery.dataTables.js"></script>
-	 <!--  data storage code -->
-	 <script type="text/javascript" src="./jquery/jquery.json-2.2.min.js"></script>
-	 <script type="text/javascript" src="./jquery/jstorage.js"></script>
-	 <!-- integrated into extraFunctions -->
-<!-- 	<script type="text/javascript" src="./base64.js"></script>	  -->
-	 <!-- generic components to have thing more OO -->
-	 <script type="text/javascript" src="./jquery.wsdlPlugin.js"></script>
-	 <script type="text/javascript" src="./jquery.workspacePlugin.js"></script>
-	  <script type="text/javascript" src="./jquery.servicePlugin.js"></script>
-	  <script type="text/javascript" src="./jquery.ioPlugin.js"></script>
-	  <script type="text/javascript" src="./jquery.exportPlugin.js"></script>
-	 <script type="text/javascript" src="./jkl-parsexml.js"></script>
-	 <!-- http://goessner.net/download/prj/jsonxml/ -->
-	 <script type="text/javascript" src="./json2.js"></script>
-	  <script type="text/javascript" src="./json2xml.js"></script> 
-	 <script type="text/javascript" src="./wsdlParser.js"></script><!-- web service functions -->
-	 <script type="text/javascript" src="./extraFunctions.js"></script> <!-- support functions e.g. getContainer etc --> 
-	 
-	 <!--  Yet another plugin, for stying the input button -->
-	 <!-- http://jstnjns.com/jquery/file/ modified to work with jquery-ui -->
-	  <script src="jquery.fileinput.js"></script>
-	 <!-- WIRE IT STRUCTURE -->
-	 <!-- YUI -->
-	<link rel="stylesheet" href="./css/services.css" type="text/css" media="screen" />
-	<script type="text/javascript" src="./wireit/lib/yui/utilities/utilities.js"></script>
-	<script type="text/javascript" src="./wireit/lib/excanvas.js"></script>
-	 <!-- WireIt -->
- 	<script type="text/javascript" src="./wireit/js/WireIt.js"></script>
- 	<script type="text/javascript" src="./wireit/js/Layer.js"></script>
-	<script type="text/javascript" src="./wireit/js/Terminal.js"></script>
-	<script type="text/javascript" src="./wireit/js/TerminalProxy.js"></script>
-	<script type="text/javascript" src="./wireit/js/TerminalInput.js"></script>
-	<script type="text/javascript" src="./wireit/js/TerminalOutput.js"></script>
-	<script type="text/javascript" src="./wireit/js/Container.js"></script>
-
-	<script type="text/javascript" src="./wireit/js/DD.js"></script>
-	<script type="text/javascript" src="./wireit/js/DDResize.js"></script>
-	
-	<script type="text/javascript" src="./wireit/js/Scissors.js"></script>
-	<script type="text/javascript" src="./wireit/js/CanvasElement.js"></script>
- 	<script type="text/javascript" src="./wireit/js/Wire.js"></script>
- 	<script type="text/javascript" src="./wireit/js/BezierWire.js"></script>
- 	<script type="text/javascript" src="./wireit/js/BezierArrowWire.js"></script>
-
- 	<script type="text/javascript" src="./wireit_extended/js/TerminalInputTaverna.js"></script>
- 	<script type="text/javascript" src="./wireit_extended/js/TerminalOutputTaverna.js"></script>
- 	<script type="text/javascript" src="./wireit_extended/js/TerminalInputGISTaverna.js"></script>
- 	<script type="text/javascript" src="./wireit_extended/js/TerminalOutputGISTaverna.js"></script>
- 	<script type="text/javascript" src="./wireit_extended/js/TavernaWire.js"></script>
- 	<script type="text/javascript" src="./wireit_extended/js/TavernaContainer.js"></script>
- 
-	<script type="text/javascript" src="./wireit/js/CanvasContainer.js"></script>
-	<script type="text/javascript" src="./wireit/js/EllipseLabelContainer.js"></script>
- 	<script type="text/javascript" src="./wireit_extended/js/TavernaContainerIO.js"></script>
-
-<script type="text/javascript">
-//$.noConflict();
-
-/* GLOBAL VARIABLES */
-var oTable=null;
-var giRedraw = false; //Variable comes comes from datatable
-//var domainProxy=null;
-//in server: 
-var domainProxy="./proxy.php?url"
-//var domainProxy="http://localhost/v1/proxy.php?url="; //if  domainProxy=null then we dont use the proxy (WSDL and URL in the same domain)
-//wsdl
-var arrContainers=new Array();
-var data;
-//debug
-var tmp=null;
-var wsdlURL="./example.wsdl";
-//var wsdlURL="localhost/v1/example.wsdl";
-
-//workflow editor variables
-var layerEditor=null;
-
-/* GENERIC PLUGIN  METHOD*/
-$.fn.textWidth = function(){
-	 // e g.: $("ul#serviceList > li.serviceLi").each(function(){console.log($(this).textWidth());})
-	 var calc = '<span style="display:none">' + $(this).justtext() + '</span>';
-	 $('body').append(calc);
-	 var width = $('body').find('span:last').width();
-	 $('body').find('span:last').remove();
-	 return width;
-
-	};
-
-$.fn.justtext = function() {		 
-return $(this).clone().children().remove().end().text();
-};
-
-/* EVENTS */
-
-function panelOpen(e){ 
-	//get all panels that aren't this:
-	//check if they are open, if so trigger click to close them
-	$("div.panel:not(#"+this.id+")")
-	.each(function(index,el){
-		if ($(el).is(":visible")){
-		idEl=$(el).attr("id");
-		$("a[panel="+idEl+"]").trigger("click");
-		}; //end of is visible
-		});
-	
-}; //end of is paneOpen
-
-//This event is called after the servicePlugin and ioPlugin we need a switch
-function serviceDropped(event,ui){
-    layerOffset=$(this).offset()
-	posX=ui.helper.position().left-layerOffset.left
-	posY=ui.helper.position().top-layerOffset.top
-	//SWITCH
-	typeDropped=ui.draggable.attr('class')
-	switch(typeDropped){
-	case 'ioContainer ui-draggable':
-		//check ioInput,ioOutput,ioInputGIS,ioOutputGIS,
-		
-		var idDropped=ui.draggable.attr('id')
-		switch(idDropped){
-		case 'ioInput':
-			containerTypeValue="input";
-			break;
-		case 'ioOutput':
-			containerTypeValue="output";
-			break;
-		case 'ioInputGIS':
-			containerTypeValue="inputGIS";
-			break;
-		case 'ioOutputGIS':
-			containerTypeValue="outputGIS";
-			break;
-		default:
-			containerTypeValue="input"
-			break;
-
-		}//end switch_idDropped;
-		
-		newIO=new WireIt.TavernaContainerIO({position:[posX,posY],xtype:"WireIt.TavernaContainerIO",containerType:containerTypeValue},layerEditor);
-		layerEditor.containers.push(newIO);
-	
-		break;//break from typedropped
-	case 'serviceLi ui-draggable':
-		serviceName=ui.draggable[0].childNodes[0].textContent;
-		//this --> <div class="layer ui-droppable"
-	
-		//get container from arrContainer
-		container=getContainer(serviceName)
-		newContainer=new WireIt.TavernaContainer(
-			{height:100,
-			width:220,
-			xtype:"WireIt.TavernaContainer",
-			position:[posX,posY],
-			label:container.label,
-			title:container.label}, 
-			layerEditor);
-		layerEditor.containers.push(newContainer);
-		//add terminals Inputs
-		inputTerminals=container.containerInputs;
-		addInputTerminals(newContainer,inputTerminals)
-	
-		//add terminals 
-		//container has a event accomTerminals that resizes the container to 
-		//fit 
-		outputTerminals=container.containerOutputs;
-		addOutputTerminals(newContainer,outputTerminals)
-
-		//close service I/O
-		$(".ui-draggable.active").click()
-		break;
-	default:
-		//do nothing
-		break;
-	} //end switch_typeDropped
-	
-}
-/*
- *  UPLOAD READFUNCTIONS
- */
-
-
-function startRead() {  
-	  // obtain input element through DOM 
-	  //<input type="file" id="file[]" name="browse" /></input>
-	   var file=$("input[name='browse']")[0].files[0]
-	 
-	  if(file){
-		  var reader = new FileReader();
-		  reader.readAsText(file, "UTF-8");
-		  //BETTER function calling than using (function(){})(reader)
-		  reader.onload=loaded
-		  reader.onerror=errored
-
-	/*
-		  reader.onerror =(function(){
-			  if(reader.error && reader.error.name == "NOT_READABLE_ERR") {
-				    // The file could not be read
-				  }
-			  })(reader); 
-	*/
-	}//end if(file)
-
-} //end of startRead()
-
-function loaded(event){
-	try {
-		
-		var obj=JSON.parse(event.target.result);
-	
-		//var obj=jQuery.parseJSON(event.target.result);
-	 }
-	catch (err) { 
-		console.log("Not a valid JSON" ); 
-		return false
-		}
-	if (!(obj)){ 
-		console.log("Null JSON object"); 
-		return false
-		}
-	//passed all the problems lets see if we can make the workflow
-	generateLayerContent(obj);
-	
-	};
-function errored(event){if (event.target.error && event.target.error.name=="NOT_READABLE_ERR"){console.log("couldnt read file")}} 
-
-
-/*
-function workMenuProperties(){
- //workSpace menu structure
-	
-	//setting the savedWorkTable properties and structure;
-	savedWorkTable();
-	$("input[type='submit']").click
-	
-	$("li.savedLi").click(function(e){
-		if(e.target.name!="inputbox"){
-		$(this).toggleClass("active");
-		//$("li.savedLi").toggleClass("active",false);
-	
-	//what is this ?!?!??!?
-	$("li.savedLi:not(li.savedLi.active)").toggleClass("active",false);
-	
-	//toogle savedTable
-	var $target=$(e.target);
-	//for savedTable
-
-	//switch li.tableSaved,li.saver,li.uploader using is
-	
-	if ($target.is("li.tableSaved")){
-		
-	if ($("li.tableSaved.savedLi.active").length>0){
-		$("#tableSavedPanel").toggle("slow",function(e){oTable.fnAdjustColumnSizing();});
-		//deactivate any filename structure
-		$("li.saver").toggleClass("active",false);
-		$("li.fileName.savedLi").toggleClass("active",false);
-		$("li.fileName.savedLi").toggle("slow");
-		
-	} else {
-		$("#tableSavedPanel").toggle("slow");
-		};
-
-		$("li.saver").toggleClass("active",false);	
-	};//end if is li.tableSaved
-
-	if($target.is("li.saver")){
-		//deactvate the tabled panel
-		if ($("#tableSavedPanel").is(":visible")){
-		$("#tableSavedPanel").toggle("slow");
-		}
-	
-		if($("li.saver.savedLi.active").length>0){
-			
-			$("div#saver").toggle("slow");
-			$("li.fileName.savedLi").toggleClass("active",true);
-			
-			} else { 
-				
-				$("li.fileName.savedLi").toggleClass("active",false);
-				$("div#saver").toggle("slow");
-				}	
-	};  //end target is li.saver
-
-	if($target.is("li.uploader")){
-		if ($("#tableSavedPanel").is(":visible")){
-			$("#tableSavedPanel").toggle("slow");
-			}
-		if($("li.uploader.savedLi.active").length>0){
-				$("div#uploader").toggle("slow");
-				$("li.uploader.savedLi").toggleClass("active",true);
-			} else {
-				$("li.uploader.savedLi").toggleClass("active",false);
-				$("div#uploader").toggle("slow");
-				}
-
-		
-		
-		};
-
-	//save option
-
-		}  //if(e.target.name!="inputbox")
-
-
-
-
-	else { } //end of e.target.name!="inputbox"
-		
-		}/*end of li.saved $("li.savedLi").click(function(e)*/
-//	); //end of click
-/*
-	$("form[name=saveFile]").click(function(e){
-	if (e.target.name!="inputbox"){
-	$("div#saver").toggle("slow");
-	$("li.saver.savedLi").toggleClass("active",false);
-	}});//end of click form 
-
-
-	//Change <input type=file /> to something managable !!! with CSS and proper buttons
-   	$('input[type="file"]').file();
-
-   	$("input[type='submit']").click(function(event){
-			///$("li.saver").click(); no need the even bubbles up
-			 storeWorkflow();
- 	})
-//$("button#deleteButton").button( "option", "disabled", false );
-	
-	
- 	
-	
-	//SAVE and UPLOAD BUTTON
-	//$("button#uploadButton").button( "option", "disabled", false );
-	$("button#uploadButton").button({ disabled: true });
-	$("input[name='browse']").change(function(e){$("button#uploadButton").button("option","disabled",false);});
-	//$("button#uploadButton").button("options","disabled",false)
-	$("button#uploadButton").click(function(e){
-		$(this).button("disable");
-		$("li.uploader").click();
-		startRead();
-	});
-	
-}; //end of workMenuProperties	
-*/
-
-function savedWorkTable(){
-// loads the saved cookies and appends them workspace panel as table
-// to add CSS class {"sTitle":"Date2","sClass":"center"}
-	
-	/* Add a click handler to the rows - this could be used as a callback */
-	
-		$("#tableSaved tbody").click(function(event) {
-			
-			$(oTable.fnSettings().aoData).each(function (){
-				$(this.nTr).removeClass('row_selected');
-				
-			});
-			$(event.target.parentNode).addClass('row_selected');
-			//activate buttons
-			$("button#deleteButton").button( "option", "disabled", false );
-			$("button#loadButton").button("option", "disabled", false );
-			$("button#downloadButton").button("option", "disabled", false );
-		});
-	//	"aaData":[
-		//			["workfltytytytytyow1","03/May/11 13:56"],
-			//		["workflow2","04/May/11 13:56"],
-				//	["workflow2","04/May/11 13:56"]
-					//],
-	initObj={
-			"bPaginate":true,
-			//"sPaginationType": "full_numbers",
-			//"aLengthMenu": [[4, 8, 10, -1], [4, 8, 10, "All"]]
-			"bSort":true,
-			"sScrollY": "75px",
-			"bPaginate": false,
-			"bFilter":false,
-			"bAutoWidth":true, 
-			"bJQueryUI":true,
-		//	"aaData":savedWFData,
-			"aoColumns":[{"sTitle":"Name"},{"sTitle":"DateSaved"}]
-	}
-	if (savedWFData){
-		initObj["aaData"]=savedWFData
-		} else {
-			//nothing no need to add a thing
-			}
-		
-	 oTable=$('#tableSaved').dataTable(initObj);
-
-		//setting the buttons to work
-	 $("button#deleteButton").button({ disabled: true });
-	 $("button#loadButton").button({ disabled: true });
-	 $("button#downloadButton").button({ disabled: true });
-
-	 //setting onclick forbuttons
-	$("button#deleteButton").click(function(event){
-		
-		var anSelected = fnGetSelected( oTable );
-		$(anSelected).each(function(){
-			//remove from jStorage
-			var key=$($(this).children()[0]).text();
-			$.jStorage.deleteKey(key);
-			//remove key from list of saved objects
-			savedWFData=$.jStorage.get("savedWorkflow");
-			updatedWFData=$.grep(savedWFData,function(val,idx){return !(val[0]==key)})
-			$.jStorage.set("savedWorkflow",updatedWFData);
-			$(this).toggle("slow",function()
-					{oTable.fnDeleteRow( anSelected[0] );}
-			);});
-		});
-	$("button#loadButton").click(function(event){
-		fileName=$($(fnGetSelected(oTable)).children()[0]).text();
-		workflow=JSON.parse($.jStorage.get(fileName));
-		//update the input WSDL field
-		$("input[id=inputWSDL]").val(workflow.wsdlURL);
-		//load services to service list
-		$("input[name=inputbox]").trigger('change');
-		//it adds the containers and wires
-		generateLayerContent(workflow);
-		//Check if panel if open is so close it
-	}); //emd of load Button
-
-	$("button#downloadButton").click(function(event){
-		//selected items
-		fileName=$($(fnGetSelected(oTable)).children()[0]).text();
-		workflow=$.jStorage.get(fileName);
-
-		s64=Base64.encode(workflow);
-		//returnObj="data:application/json;charset=utf-8;base64," + s64;
-		//var $linkSave=$("div.trash").append("<a id='file' href='www.google.com'>wwww</a>")
-		var $linkSave=$("div.trash").append("<a id='file' href='data:application/json;charset=utf-8;base64,"+s64+"' filename='"+fileName+"'></a>").hide();
-		//location.href=$("a").attr('href')
-		//var $linkSave=$("body").add("<a id='file' filename='"+fileName+"'")
-		location.href=$("a#file").attr('href');
-		//$linkSave.
-		$linkSave.children().remove()
-		
-		}); //end of saveAsButton	
-
-	 
-	}; //end of Savedworktable
-
-function generateLayerContent(workflow){
-		//clean everything
-	if (typeof(layerEditor)!="undefined"){
-		//delete demoLayer
-	    //reset everything !!! ATTENTION TO GLOBLA VARIABLES
-	    layerEditor.clear()
-	    $(layerEditor.el).remove()
-	    delete layerEditor;
-	    //NEW LAYER
-		layerEditor = new WireIt.Layer({
-				layerMap: false,
-				parentEl:$(".layer")[0]});
-		//GENERATE CONTAINERS
-		jQuery.each(workflow.positions,function(index,container){
-				//Going thru container type
-				switch(container.containerType){
-				case "input":
-					newContainer=new WireIt.TavernaContainerIO({position:[parseFloat(container.position[0])
-					                                  					,parseFloat(container.position[1])],
-					                                  					xtype:"WireIt.TavernaContainerIO",
-					                                  					containerType:"input",
-					                                  					label:container.label,
-					                                  					literalData:container.literalData,
-					                                  					inputURL:container.inputURL},
-					                                  			layerEditor);
-					break;
-				case "output":
-					newContainer=new WireIt.TavernaContainerIO({position:[parseFloat(container.position[0]),
-					                                  					parseFloat(container.position[1])],
-					                                  					xtype:"WireIt.TavernaContainerIO",
-					                                  					containerType:"output",
-					                                  					label:container.label,
-					                                  					literalData:container.literalData,
-					                                  					inputURL:container.inputURL},
-					                                  					layerEditor);
-					break;
-				default:
-					newContainer=new WireIt.TavernaContainer({height:100,width:220,
-							xtype:"WireIt.TavernaContainer",
-							position:[parseFloat(container.position[0]),parseFloat(container.position[1])],
-							label:container.label,
-							title:container.label}, 
-							layerEditor);
-					containerStructure=getContainer(container.label);
-					//adding terminals
-					//add terminals Inputs
-					try {
-					inputTerminals=containerStructure.containerInputs;
-					addInputTerminals(newContainer,inputTerminals);
-					} catch(err) { console.log("No terminal inputs")}
-					try {
-					outputTerminals=containerStructure.containerOutputs;
-					addOutputTerminals(newContainer,outputTerminals);
-					} catch(err) {console.log("No terminal output")}
-				};//end switch
-				layerEditor.containers.push(newContainer);
-		});//end for each
-		//CREATE WIRES
-		//Attention that moduleId need to be a number and not a label
-		workflow.wires=replaceLabel2Id(workflow.wires);
-		jQuery.each(workflow.wires,function(idx,wires){layerEditor.addWire(wires)});
-		if ($(".panel#workspacePanel").is(":visible")){$("a#workspaceMenu").trigger("click")};
-	}; //end cleaning+ layer regeneration 
-	
-} //end of generateLayerContent()
-
-	
-function storeWorkflow(){
-		
-		//List of all saved object key: savedWorkflow
-		jsonToSave=getJSONWorkflow();
-		saveName=$("input[id=inputNameSave]").val();
-		//$.jStorage.set(saveName,jsonToSave);
-		var currentTime=new Date();
-		date=currentTime.toLocaleDateString();
-		time=currentTime.toLocaleTimeString();
-		
-		savedWF=$.jStorage.get("savedWorkflow")
-		if (savedWF){
-			savedWF.push([saveName,date+" "+time]);
-			} else {
-				savedWF=new Array();
-				savedWF.push([saveName,date+" "+time]);
-				}
-		
-		$.jStorage.set("savedWorkflow",savedWF);
-		oTable.fnAddData([saveName,date+" "+time]);
-
-		//Saving the actual JSON object
-		$.jStorage.set(saveName,jsonToSave);
-};
-
-
-
-</script>	 
-	<script type="text/javascript">
-	$(document).ready(function(){
-		//starting conditions:
-		//$("li.nestedList").toggleClass("active",false);	
-		//necessay or the li.addHTTP is displaid when the WSDLbutton is clicked
-		
-		
-		//$("li.addHTTP").css("display","none");
-
-
-		//hide the savetable
-		
-		/*
-		//workspace pannel
-		$(".trigger#workspaceMenu").click(function(){
-		$(".panel#workspacePanel").trigger("isOpen");	
-		$(".panel#workspacePanel").toggle("fast");
-		$(this).toggleClass("active");
-		return false;
-		});
-		*/
-
-
-		//wsdLMenu properties 
-		//wsdlMenuProperties();
-
-		//Catching enter key in text form for submission
-		/*
-		$("#inputWSDL").keyup(function(event){
-			  if(event.keyCode == 13){
-				  $("li.addHTTP").click();
-			  }
-			});
-			
-	 	*/
-
-	 
-		
-		/*
-		$("#inputNameSave").keyup(function(event){
-			  if(event.keyCode == 13){
-				  //
-				  $("li.saver").click();
-				  //SAVE work flow 
-				  storeWorkflow();
-				 
-			  }
-			});
-		*/		
-		
-		//setting the workspace panel;
-		//workMenuProperties();
-
-		//setting the service panel
-		//serviceMenuProperties();
-
-	/* TRIGGERS */
-	//if panel is open then close all other panels
-	$("#wsdlPanel").bind("isOpen",panelOpen);
-	//the workspacePanel requires the jQuery table plugin
-	$("#workspacePanel").bind("isOpen",panelOpen);
-	$("#servicePanel").bind("isOpen",panelOpen);
-	$("#ioPanel").bind("isOpen",panelOpen);
-	$("#exportPanel").bind("isOpen",panelOpen);
-	
-	/* ACTIVATE SELECTABLE */
-	//$( "#serviceList" ).selectable();
-	
-	/* TESTING  ADDING SOME SERVICES*/
-	parseWSDL(wsdlURL);
-	//appendServices();
-	
-	
-	/* DROPPABLE */
-	$(".dropBox").droppable({accept:".serviceLi",drop: function(event,ui){
-
-		//console.log(ui.draggable);
-		movedBox=$(ui.draggable).clone()
-		$(this).append(movedBox);
-		//after append disolve and remove !!!
-		movedBox.fadeOut("slow");
-		
-	}});
-
-
-	//CENTER LAYER MAP DIV
-	//window or document height ?!
-	 
-	leftMargin=parseInt($("a.trigger").css("width"))+100; //panels
-	rightMargin=300; //service list
-	topMargin=50; //title etc
-	
-	layerWidth=$(document).width()- leftMargin-rightMargin;
-	layerHeight=$(document).height()- topMargin;
-;
-	$(".layer").css({'width': layerWidth, 
-		'height': layerHeight, 
-		'top': topMargin,
-		'left':leftMargin});
-
-	//The the sizer of layerEditor is inherid from div.layer
-	layerEditor = new WireIt.Layer({
-		layerMap: false,
-		parentEl:$(".layer")[0]});
-
-	//panels with plugin
-	$("#wsdlPanel").wsdlPlugin(options={'defaultWSDL': wsdlURL});
-	$("#workspacePanel").workspacePlugin(options={});
-	$("#servicePanel").servicePlugin(options={'containers':arrContainers,'droppableEl':layerEditor,acceptableEl:".serviceLi"});
-	$("#ioPanel").ioPlugin(options={'droppableEl':layerEditor,acceptableEl:".ioContainer"});
-	$("#exportPanel").exportPlugin(options={});
-	
-	
-
-	
-	}); //end of ready
-
-	//Adding dummy saved data
-	savedWFData=$.jStorage.get("savedWorkflow");
-	if (savedWFData){
-			//there was something saved
-			savedWorkFlows=$.jStorage.get("savedWorkflow")
-			
-		} else {
-			//nothing everything is clean
-			savedWorkFlows=null;
-			}
-
-	//Dealing with click on transparent canvas
-	$("canvas.WireIt-Wire").live('click',function(e){
-		var clickPoint=new Object()
-		clickPoint.x=e.pageX
-		clickPoint.y=e.pageY
-		
-		//$(".WireIt-Container").map(function(){return getContainerCoord(this)})
-		$(".WireIt-Container").each(function(){
-			rect=getContainerCoord(this);
-			if (isPointInside(clickPoint,rect)){$(this).addClass("WireIt-Container-focused");};
-		})});
-	
-</script>
-	
-</head>
-<body>
-<!-- div wrapper of all portelet content -->
-<div class="serviceEditor"> 
-<div id="titleGroup">
-	<h1 align="center" class="serviceEditor">EUMIS - Service chain editor</h1>
-</div><!-- end of WSDLContainer -->
-
-<div id="linkGroup">
-<a class="trigger" id="wsdlMenu" href="#" panel="wsdlPanel">WSDL</a>
-<a class="trigger" id="workspaceMenu" href="#" panel="workspacePanel">Workspace</a>
-<a class="trigger" id="serviceMenu" href="#" panel="servicePanel">Service List</a>
-<a class="trigger" id="ioMenu" href="#" panel="ioPanel">Service I/O</a>
-<a class="trigger" id="exportMenu" href="#" panel="exportPanel">Export</a>
-</div> 
-<!-- end of linkGroup -->
-<div id="panelGroup">
-
-<div class="panel" id="wsdlPanel"></div>
-<div class="panel" id="workspacePanel"></div> <!-- end of workspace panel -->
-
-<div class="panel" id="servicePanel"></div>
-<div class="panel" id="ioPanel">
-<h2>Input and Output</h2>  
- <h3 align="center">Input container</h3><div class="ioContainer" id="ioInput"></div>  
-<h3 align="center">Output container</h3><div class="ioContainer" id="ioOutput"></div>
-<h3 align="center">Input GIS container</h3><div class="ioContainer" id="ioInputGIS"></div>
-<h3 align="center">Output GIS container</h3><div class="ioContainer" id="ioOutputGIS"></div>
-</div><!-- end ioPanel -->
-<div class="panel" id="exportPanel"></div> <!-- taverna panel -->
-
-
-</div> <!-- end panel group -->
-<!--  NOTE: panel attr points to the panel that contains the a link -->
-
-<!-- <div class="WSDLSelection">
-	
-</div> --> <!-- end of WSDLSelection -->
-<!-- <div class="WSDLPanel"> -->
-
-<div class="layer"></div>
-
-
-</div> <!-- end of service editor -->
-
-<!-- testing append element -->
-<div class="trash"></div>
-</body>
+   <!-- Comments -->
+      <!--  Vertical sliding info -->
+         <!-- http://www.datatables.net/ -->
+      <!-- Facebook-style tooltip -->
+         <!--//No XOR in Javascript: http://www.howtocreate.co.uk/xor.html -->
+      <!-- http://michalkorecki.com/content/introducing-json-xml-jquery-plugin -->
+
+      <!--  SAVE_AS HACK no server needed -->
+         <!--http://stackoverflow.com/questions/1479020/save-the-document-generated-by-javascript  -->
+         <!--http://www.bloggingdeveloper.com/post/Location-href-vs-Location-replace-The-Difference-Between-JavaScript-Redirect-Methods.aspx  -->
+         <!-- click() doesnt work http://api.jquery.com/click/ -->
+         <!-- window.location http://unitstep.net/blog/2010/04/12/triggering-links-from-javascript-using-jquery/ -->
+         <!-- Internet Explorer 8 limits data URIs to a maximum length of 32 KB. (Internet Explorer 9 does not have this limitation) -->
+      <!--  -->
+
+      <!--  HTML5 File API -->
+         <!-- http://www.html5rocks.com/en/tutorials/file/dndfiles/ -->
+
+         <!-- sending XML content to server for transfomarion -->
+         <!-- http://filamentgroup.com/lab/jquery_plugin_for_requesting_ajax_like_file_downloads/ -->
+      <!-- 
+      TODO:
+         1- WSDL menu
+         Maybe the menu in WSDL should use a changeClassName event
+         http://stackoverflow.com/questions/3139608/class-name-change-event-in-jquery
+      -->
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+      <title>EUMIS- Service chain editor</title>
+      <link rel="stylesheet" href="./css/panel.css" type="text/css" media="screen" />
+      <!-- jquery smooth style -->
+      <link rel="stylesheet" href="./css/smoothness/jquery-ui-1.8.13.custom.css" type="text/css" media="screen" />
+      <link rel="stylesheet" href="./jquery.ui.slider.css" type="text/css" media="screen" />
+      <link rel="stylesheet" href="css/main.css" type="text/css" media="screen" />
+      <link rel="stylesheet" href="css/colours.css" type="text/css" media="screen" />
+
+      <script type="text/javascript" src="./jquery/jquery-1.6.js"></script>
+      <script type="text/javascript" src="./jquery/jquery-ui-1.8.21.custom.min.js"></script>
+      <!-- http://www.datatables.net/usage/ -->
+      <script type="text/javascript" src="./jquery/jquery.dataTables.js"></script>
+      <!--  data storage code -->
+      <script type="text/javascript" src="./jquery/jquery.json-2.2.min.js"></script>
+      <script type="text/javascript" src="./jquery/jstorage.js"></script>
+      <!-- integrated into extraFunctions -->
+      <!-- 	<script type="text/javascript" src="./base64.js"></script>	  -->
+      <!-- generic components to have thing more OO -->
+      <script type="text/javascript" src="./jquery.wsdlPlugin.js"></script>
+      <script type="text/javascript" src="./jquery.workspacePlugin.js"></script>
+      <script type="text/javascript" src="./jquery.servicePlugin.js"></script>
+      <script type="text/javascript" src="./jquery.ioPlugin.js"></script>
+      <script type="text/javascript" src="./jquery.exportPlugin.js"></script>
+      <script type="text/javascript" src="./jquery.slider.js"></script>
+      <script type="text/javascript" src="./jkl-parsexml.js"></script>
+      <script type="text/javascript" src="./jquery/jquery.mousewheel.min.js"></script>
+      <script type="text/javascript" src="./jquery/transform-css.js"></script>
+      <script type="text/javascript" src="./jquery/3dtransform-css.js"></script>
+      <!-- http://goessner.net/download/prj/jsonxml/ -->
+      <!--<script type="text/javascript" src="./json2.js"></script>-->
+      <script type="text/javascript" src="./json2xml.js"></script> 
+      <script type="text/javascript" src="./wsdlParser.js"></script><!-- web service functions -->
+      <script type="text/javascript" src="./extraFunctions.js"></script> <!-- support functions e.g. getContainer etc --> 
+
+      <!--  Yet another plugin, for stying the input button -->
+      <!-- http://jstnjns.com/jquery/file/ modified to work with jquery-ui -->
+      <script src="jquery.fileinput.js"></script>
+      <!-- WIRE IT STRUCTURE -->
+      <!-- YUI -->
+      <link rel="stylesheet" href="./css/services.css" type="text/css" media="screen" />
+      <script src="jquery.contextMenu.js" type="text/javascript"></script>
+      <link href="jquery.contextMenu.css" rel="stylesheet" type="text/css" />
+      <script type="text/javascript" src="./wireit/lib/yui/utilities/utilities.js"></script>
+      <script type="text/javascript" src="./wireit/lib/excanvas.js"></script>
+      <!-- WireIt -->
+      <script type="text/javascript" src="./wireit/js/WireIt.js"></script>
+      <script type="text/javascript" src="./wireit/js/Layer.js"></script>
+      <script type="text/javascript" src="./wireit/js/Terminal.js"></script>
+      <script type="text/javascript" src="./wireit/js/TerminalProxy.js"></script>
+      <script type="text/javascript" src="./wireit/js/TerminalInput.js"></script>
+      <script type="text/javascript" src="./wireit/js/TerminalOutput.js"></script>
+      <script type="text/javascript" src="./wireit/js/Container.js"></script>
+
+      <script type="text/javascript" src="./wireit/js/DD.js"></script>
+      <script type="text/javascript" src="./wireit/js/DDResize.js"></script>
+
+      <script type="text/javascript" src="./wireit/js/Scissors.js"></script>
+      <script type="text/javascript" src="./wireit/js/CanvasElement.js"></script>
+      <script type="text/javascript" src="./wireit/js/Wire.js"></script>
+      <script type="text/javascript" src="./wireit/js/BezierWire.js"></script>
+      <script type="text/javascript" src="./wireit/js/BezierArrowWire.js"></script>
+
+      <script type="text/javascript" src="./wireit_extended/js/TerminalInputTaverna.js"></script>
+      <script type="text/javascript" src="./wireit_extended/js/TerminalOutputTaverna.js"></script>
+      <script type="text/javascript" src="./wireit_extended/js/TerminalInputGISTaverna.js"></script>
+      <script type="text/javascript" src="./wireit_extended/js/TerminalOutputGISTaverna.js"></script>
+      <script type="text/javascript" src="./wireit_extended/js/TavernaWire.js"></script>
+      <script type="text/javascript" src="./wireit_extended/js/TavernaContainer.js"></script>
+
+      <script type="text/javascript" src="./wireit/js/CanvasContainer.js"></script>
+      <script type="text/javascript" src="./wireit/js/EllipseLabelContainer.js"></script>
+      <script type="text/javascript" src="./wireit_extended/js/TavernaContainerIO.js"></script>
+
+      <script type="text/javascript" src="controller.js"></script>
+   </head>
+   <body>
+      <!-- div wrapper of all portelet content -->
+      <div class="serviceEditor serviceEditorMain"> 
+         <div id="titleGroup">
+            <h1 align="center" class="serviceEditor">EUMIS - Service chain editor</h1>
+         </div><!-- end of WSDLContainer -->
+
+         <div id="linkGroup">
+            <a class="trigger" id="wsdlMenu" href="#" panel="wsdlPanel">WSDL</a>
+            <a class="trigger" id="workspaceMenu" href="#" panel="workspacePanel">Workspace</a>
+            <a class="trigger" id="serviceMenu" href="#" panel="servicePanel">Service List</a>
+            <a class="trigger" id="ioMenu" href="#" panel="ioPanel">Service I/O</a>
+            <a class="trigger" id="exportMenu" href="#" panel="exportPanel">Export</a>
+         </div> 
+         <!-- end of linkGroup -->
+         <div id="panelGroup">
+
+            <div class="panel" id="wsdlPanel"></div>
+            <div class="panel" id="workspacePanel"></div> <!-- end of workspace panel -->
+
+            <div class="panel" id="servicePanel"></div>
+            <div class="panel" id="ioPanel">
+               <h2>Input and Output</h2>  
+               <h3 align="center">Input container</h3><div class="ioContainer" id="ioInput"></div>  
+               <h3 align="center">Output container</h3><div class="ioContainer" id="ioOutput"></div>
+               <h3 align="center">Input GIS container</h3><div class="ioContainer" id="ioInputGIS"></div>
+               <h3 align="center">Output GIS container</h3><div class="ioContainer" id="ioOutputGIS"></div>
+            </div><!-- end ioPanel -->
+            <div class="panel" id="exportPanel"></div> <!-- taverna panel -->
+         </div> <!-- end panel group -->
+         <!--  NOTE: panel attr points to the panel that contains the a link -->
+
+         <div class="layer"></div>
+      </div> <!-- end of service editor -->
+      <!-- testing append element -->
+      <div class="trash"></div>
+      <div class="tooltip">
+         <div class="normal_information"></div>
+         <div class="backshadow"></div>
+         <div class="more_information"></div>
+      </div>
+      <div class="scale_zoom">
+         <div class="background"></div>
+         <div class="slider"></div>
+      </div>
+      <div class="f1_help_screen">
+         <div class="f1_information_background"></div>
+         <div class="f1_information_block">
+            <div class="f1_information_header">
+               <div class="f1_information_logo">
+                  ?
+               </div>
+               <div class="f1_information_title">
+                  EUMIS - SCE Help
+               </div>
+            </div>
+            <div class="f1_information_text">
+               <span>Quick help notes</span>
+               <p>
+                  <b>EUMIS Service Chain Editor</b> is currently undergoing user-interface changes.
+               </p>
+               <p>
+                  You may notice several "glitches" with the main area, especially while zoomed out.<br />
+                  Please ignore these issues for now, as they <i>are</i> being worked on.
+               </p>
+               <p>
+                  If your browser freezes for extended periods of time without any noticable action of content being worked out<br />
+                  (For example, when loading a new WSDL file, there is a progress bar, while may lag - but doesn't cause things to <u>freeze</u>)<br />
+                  Then please e-mail the <a href="mailto:riwh@pml.ac.uk">PML Computing Scientist Web Based Visualisation</a> with any specific steps you followed, current WSDL file loaded, and other details that might help track and fix the noticed problem.<br />
+                  Please also state if you can reproduce (repeat) the issue.
+               </p>
+               <p>Thank you.</p>
+               <p style="color:transparent;">&nbsp;</p>
+            </div>
+         </div>
+      </div>
+      <div class="eumis_loading_screen">
+         <div class="eumis_loading_background"></div>
+         <div class="eumis_loading_block">
+            <div class="eumis_loading_header">
+               <div class="eumis_loading_logo">
+                  &copy;
+               </div>
+               <div class="eumis_loading_title">
+                  EUMIS - SCE Loading
+               </div>
+            </div>
+            <div class="eumis_loading_text">
+               <span>EUMIS - Service chain editor</span>
+               <span><b>Currently loading resources...</b></span>
+               <div class="testing" style="position:relative;margin-top:-26px;">
+                  <div class="hex hex-white"></div><div class="emuis_loading_progressbar" style="float:right;position:relative;left:0;top:0;margin-top:-30px;height:26px;width:511px;padding-right:2px;"></div>
+               </div>
+               <div class="f1_instructions">
+                  Please press <b>F1</b> for quick help notes
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="eumis_update_progressbar_handler" style="width:0;height:0;display:block;position:absolute;"></div>
+      <div class="hex-container"></div>
+      <ul id="myMenu" class="contextMenu">
+         <li class=""><a href="#collapse_all">Collapse </a></li>
+         <li class=""><a href="#expand_all">Expand</a></li>
+      </ul>
+   </body>
 </html>

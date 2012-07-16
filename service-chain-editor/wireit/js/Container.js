@@ -258,6 +258,7 @@ WireIt.Container.prototype = {
 	 */
 	makeDraggable: function() {
 		// Use the drag'n drop utility to make the container draggable
+      console.log(this);
 	   this.dd = new WireIt.util.DD(this.terminals,this.el);
 	
 		// Set minimum constraint on Drag Drop to the top left corner of the layer (minimum position is 0,0)
@@ -292,42 +293,57 @@ WireIt.Container.prototype = {
     * @method render
     */
    render: function() {
-   
       // Create the element
       this.el = WireIt.cn('div', {className: this.className});
-   
+
       if(this.width) {
          this.el.style.width = this.width+"px";
       }
       if(this.height) {
          this.el.style.height = this.height+"px";
       }
-   
+
       // Adds a handler for mousedown so we can notice the layer
       Event.addListener(this.el, "mousedown", this.onMouseDown, this, true);
-   
+
       if(this.ddHandle) {
          // Create the drag/drop handle
 			this.ddHandle = WireIt.cn('div', {className: this.ddHandleClassName});
 			this.el.appendChild(this.ddHandle);
 
+         console.log(this.el);
          // Icon
          if (this.icon) {
             var iconCn = WireIt.cn('img', {src: this.icon, className: 'WireIt-Container-icon'});
             this.ddHandle.appendChild(iconCn);
          }
-
+         
          // Set title
          if(this.title) {
-            this.ddHandle.appendChild( WireIt.cn('span', {className: 'floatleft'}, null, this.title) );
+            var label = this.title.split('ExecuteProcess');
+            if(label[1].substring(0, 1) == '_') {
+               label = label[1].substring(1);
+            } else {
+               if(label[1].substring(0, 6) == 'Async_') {
+                  label = label[1].substring(6) + ' ~ Async';
+               } else {
+                  label = this.title;
+               }
+            }
+            if($) {
+               $(this.el).addClass('WireIt-Draggable-Element');
+               $(this.el).find('.WireIt-Container-ddhandle').prepend('<div class="WireIt-ddHandle-Help">?</div>');
+               refreshDragElements();
+            }
+            this.ddHandle.appendChild( WireIt.cn('span', {className: 'floatleft'}, null, label) );
          }
          
       }
-   
+
       // Create the body element
       this.bodyEl = WireIt.cn('div', {className: "body"});
       this.el.appendChild(this.bodyEl);
-   
+
       if(this.resizable) {
          // Create the resize handle
 			this.ddResizeHandle = WireIt.cn('div', {className: this.resizeHandleClassName} );
@@ -353,7 +369,7 @@ WireIt.Container.prototype = {
       }   
       // Append to the layer element
       this.layer.el.appendChild(this.el);
-   
+
 		// Set the position
 		this.el.style.left = this.position[0]+"px";
 		this.el.style.top = this.position[1]+"px";
@@ -533,9 +549,9 @@ WireIt.Container.prototype = {
     * Redraw all the wires connected to the terminals of this container
     * @method redrawAllTerminals
     */
-   redrawAllWires: function() {
+   redrawAllWires: function(e) {
       for(var i = 0 ; i < this.terminals.length ; i++) {
-         this.terminals[i].redrawAllWires();
+         this.terminals[i].redrawAllWires(e);
       }
    },
 

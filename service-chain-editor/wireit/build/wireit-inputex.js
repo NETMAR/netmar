@@ -1558,6 +1558,7 @@ lang.extend(WireIt.TerminalProxy, YAHOO.util.DDProxy, {
 	      w.redraw();
 	   }
 	   else if(tgtTerm.wires.length < tgtTerm.nMaxWires) {
+         
 	      w = new klass(term1, term2, parentEl, term1.wireConfig);
 	      w.redraw();
 	   }

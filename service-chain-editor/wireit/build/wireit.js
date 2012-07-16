@@ -1295,7 +1295,7 @@ YAHOO.lang.extend(WireIt.BezierArrowWire, WireIt.BezierWire, {
  * @param {Object} options Configuration object (see "termConfig" property for details)
  */
 WireIt.TerminalProxy = function(terminal, options) {
-
+   
 	/**
 	 * Reference to the terminal parent
 	 */
@@ -2047,6 +2047,7 @@ WireIt.Terminal.prototype = {
     */
    getXY: function() {
    
+      console.log("Testing2");
       var layerEl = this.container && this.container.layer ? this.container.layer.el : document.body;
 
       var obj = this.el;
@@ -2266,6 +2267,7 @@ YAHOO.extend(WireIt.util.DD, YAHOO.util.DD, {
     * @method onDrag
     */
    onDrag: function(e) {
+
       // Make sure terminalList is an array
       var terminalList = YAHOO.lang.isArray(this._WireItTerminals) ? this._WireItTerminals : (this._WireItTerminals.isWireItTerminal ? [this._WireItTerminals] : []);
       // Redraw all the wires

@@ -52,7 +52,7 @@ function ioMenuProperties($thisPanel){
 	topPos=-($("div#titleGroup").height()+$("div#linkGroup").height());
 	//heigth=($(document).height()-$("div#titleGroup").height()-$("div#linkGroup").height());
 	//$thisPanel.css({'left':leftPos,'top':topPos,'height':heigth});
-	$thisPanel.css({'left':leftPos,'top':topPos});
+	//$thisPanel.css({'left':leftPos,'top':topPos});
 	// Generate the dummy Input / Output to be dragged
 	dummyInput=makeDummyIO("input");
 	$thisPanel.children("#ioInput").append(dummyInput);

@@ -135,7 +135,6 @@ $.fn.wsdlPlugin.wsdlFileList=function ($thisPanel,settings){
 $.fn.wsdlPlugin.wsdlMenuPropertiesGeneric=function ($thisPanel){
 	//$thisPanel-->div#exportPanel.panel
 	//Header
-	
 	var settings=$.fn.wsdlPlugin.settings;
 	//border 10px solid #11111 div#wsdlPanel
 	//CSS
@@ -154,7 +153,7 @@ $.fn.wsdlPlugin.wsdlMenuPropertiesGeneric=function ($thisPanel){
 	'border-top-right-radius': settings.radiusTopRight,
 	'-moz-border-radius-bottomright': settings.radiusBottomRight,
 	'-webkit-border-bottom-right-radius': settings.radiusBottomRight,
-	'border-bottom-right-radius': settings.radiusBottomRight,
+	'border-bottom-right-radius': settings.radiusBottomRight
 	});
 	var $addWSDL=$('<ul><li value="" class="nestedList wsdlLi">'+
 			'Or click here to add</li><div class="addHTTP">'+

@@ -101,6 +101,7 @@ YAHOO.lang.extend(WireIt.BezierWire, WireIt.Wire, {
          bezierPoints[i][1] = bezierPoints[i][1]-min[1];
       }
    
+
       // Draw the border
       ctxt.lineCap = this.bordercap;
       ctxt.strokeStyle = this.bordercolor;

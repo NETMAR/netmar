@@ -97,9 +97,10 @@ $.fn.workspacePlugin.workspaceMenuPropertiesGeneric=function($thisPanel){
 		$currentLi=$(e.target);
 		$("li.savedLi:not(#"+this.id+")").each(function(index,el){
 			//check if they are active
-			if ($(el).hasClass("active"))
+			if ($(el).hasClass("active")) {
 				//click event 
 				$(el).trigger("click");
+            }
 		})
 	}
 	/*
@@ -128,6 +129,18 @@ $.fn.workspacePlugin.workspaceMenuPropertiesGeneric=function($thisPanel){
 		'-moz-border-radius-bottomright': settings.radiusBottomRight,
 		'-webkit-border-bottom-right-radius': settings.radiusBottomRight,
 		'border-bottom-right-radius': settings.radiusBottomRight,
+      'border':'1px solid rgba(0, 136, 136, 0.75)',
+      'background-color':' rgba(0, 136, 136, 0.75)',
+      '-webkit-box-shadow':' 0px 0px 23px #006666, 0px 0px 4px #006666',
+      '-moz-box-shadow':'    0px 0px 23px #006666, 0px 0px 4px #006666',
+      '-ms-box-shadow':' 0px 0px 23px #006666, 0px 0px 4px #006666',
+      '-o-box-shadow':'0px 0px 23px #006666, 0px 0px 4px #006666',
+      'box-shadow':'         0px 0px 23px #006666, 0px 0px 4px #006666',
+      '-webkit-border-radius':' 0px 33px 33px 0',
+      '-moz-border-radius':' 0px 33px 33px 0',
+      '-ms-border-radius':' 0px 33px 33px 0',
+      '-o-border-radius':' 0px 33px 33px 0',
+      'border-radius':' 0px 33px 33px 0',
 		});
 
 	

@@ -9,7 +9,12 @@ var $this=null; //needed since 'this' changes context at reload
   var methods = {
     init : function( options ) {
 	  	$this=$(this);
-	  	var $newHeaderList=$('<h1 align="center" class="serviceEditor">Service List</h1><ul id="serviceList" ></ul>')
+	  	var $newHeaderList=$('<h1 align="center" class="serviceEditor">Service List</h1>' +
+         '<div class="serviceListSearchFilter">' +
+         '<input type="text" value="" />' +
+         '</div>' +
+         //<select name="serviceListSearch_Value"></select>
+      '<ul id="serviceList" ></ul>');
 	  	$this.append($newHeaderList);
 	  	txtHTML=createServicesHTML(options.containers);
 	  	var $ul=$this.children("ul");
@@ -52,29 +57,44 @@ var $this=null; //needed since 'this' changes context at reload
     		//RECALL: arrContainers and wsdlURL are global variables
     		arrContainers=[];
     		wsdlURL=$('input[id="inputWSDL"]').val();
-    		parseWSDL(wsdlURL);
-    		txtHTML=createServicesHTML(arrContainers);
-    		var $ul=$this.children("ul");
-			//remove children li
-			$ul.empty();
-			//append new children
-			$ul.append(txtHTML);
-			//resize the children
-			setServiceLiWidth($ul.children());
+         $('.emuis_loading_progressbar').progressbar({value: 0});
+         $('.hex-container').removeClass('hex-container-zoomed');
+         $('.eumis_loading_screen').css({'display': 'block', 'opacity': 1});
+         parseWSDL(wsdlURL, function(arrayContainers) {
+       		txtHTML=createServicesHTML(arrContainers);
+       		var $ul=$this.children("ul");
+		   	//remove children li
+			   $ul.empty();
+   			//append new children
+	   		$ul.append(txtHTML);
+		   	//resize the children
+			   setServiceLiWidth($ul.children());
 			
-			activatePluginClick($this);
+   			activatePluginClick($this);
 			
-			$ul.children("li.serviceLi").draggable({
-				drag: function(event, ui) {},
-				containment: 'div.serviceEditor',
-				appendTo: 'body',
-				zIndex:27000,
-				opacity: 0.35,
-				helper: 'clone',
-				dragstop: function(event,ui){var originalPosition=ui.originalPosition}
-					})
-			$this.servicePlugin("hideIO");
-    	}
+	   		$ul.children("li.serviceLi").draggable({
+		   		drag: function(event, ui) {},
+			   	containment: 'div.serviceEditor',
+				   appendTo: 'body',
+   				zIndex:27000,
+	   			opacity: 0.35,
+		   		helper: 'clone',
+			   	dragstop: function(event,ui){var originalPosition=ui.originalPosition}
+				  });
+   			$this.servicePlugin("hideIO");
+         }, function(val, max) {
+            //alert(val + " - " + max);
+            if(val == -1) {
+               $('.emuis_loading_progressbar').progressbar({value: 100});
+               $('.hex-container').addClass('hex-container-zoomed');
+               $('.eumis_loading_screen').animate({'opacity': 0}, 750, function() {
+                  $(this).hide();
+               });
+            } else {
+               $('.emuis_loading_progressbar').progressbar({value: (val / max) * 100});
+            }
+         });
+       }
     
   };
   $.fn.servicePlugin = function( method,options ) {
@@ -108,7 +128,7 @@ function serviceMenuProperties($thisPanel){
 	leftPos=$("div.serviceEditor").width()-panelWidth-100;
 	topPos=-($("div#titleGroup").height()+$("div#linkGroup").height());
 	heigth=($(document).height()-$("div#titleGroup").height()-$("div#linkGroup").height());
-	$thisPanel.css({'left':leftPos,'top':topPos,'height':heigth});
+	$thisPanel.css({'height':$(document).height() - 42});
 }
 
 function activatePluginDragDrop($thisPanel,options){
@@ -173,7 +193,18 @@ function createServicesHTML(containers){
 	// $("ul#serviceList > li.serviceLi").each(function(){console.log($(this).textWidth());})
 	var textToInsert="";
 	$.each(containers,function(index,value){
-		textToInsert  += '<li class="serviceLi">'+value.label;
+      var label = value.label.split('ExecuteProcess');
+      if(label[1].substring(0, 1) == '_') {
+         label = label[1].substring(1);
+      } else {
+         if(label[1].substring(0, 6) == 'Async_') {
+            label = label[1].substring(6) + ' ~ Async';
+         } else {
+            label = value.label;
+         }
+      }
+      
+		textToInsert  += '<li class="serviceLi" rel="' + value.label + '">'+label;
 		//nested input
 		textToInsert += "<ul>";
 		textToInsert +="<li class='serviceInputs'>Inputs</li>";

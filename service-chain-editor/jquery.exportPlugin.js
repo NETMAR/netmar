@@ -127,21 +127,21 @@ function exportMenuPropertiesGeneric($thisPanel){
 	$thisPanel.append($netmar);
 
 	//better to push it -100 to the left
-	leftPos=$("div.serviceEditor").width()-panelWidth-100;
-	topPos=-($("div#titleGroup").height()+$("div#linkGroup").height());
-	heigth=($(document).height()-$("div#titleGroup").height()-$("div#linkGroup").height());
-	$thisPanel.css({'left':leftPos,'top':topPos,'height':heigth});
+	//leftPos=$("div.serviceEditor").width()-panelWidth-100;
+	//topPos=-($("div#titleGroup").height()+$("div#linkGroup").height());
+	//heigth=($(document).height()-$("div#titleGroup").height()-$("div#linkGroup").height());
+	//$thisPanel.css({'left':leftPos,'top':topPos,'height':heigth});
 	//default CSS for round boxes
 	//<h2>Export</h2> 
 	$thisPanel.css({
 		'width': panelWidth,
 		'overflow':'auto',
-		'height':'auto',
+		/*'height':'auto',*/
 		'padding-top':'10px',
 		'padding-right':'30px',
 		'padding-bottom':'30px',
 		'padding-left':'30px',
-		'border':'1px solid #444444',
+		/*'border':'1px solid #444444',
 		'border-top-left-radius':'20px',
 		'border-top-right-radius':'20px',	
 		'-moz-border-radius-topleft': '20px',
@@ -153,7 +153,20 @@ function exportMenuPropertiesGeneric($thisPanel){
 	    '-moz-border-radius-bottomleft': '20px',
 	    '-moz-border-radius-bottomright': '20px',
 	    '-webkit-border-bottom-left-radius': '20px',
-	    '-webkit-border-bottom-right-radius': '20px'
+	    '-webkit-border-bottom-right-radius': '20px'*/
+      'border':'1px solid rgba(0, 136, 136, 0.75)',
+      'background-color':' rgba(0, 136, 136, 0.75)',
+      '-webkit-box-shadow':' 0px 0px 23px #006666, 0px 0px 4px #006666',
+      '-moz-box-shadow':'    0px 0px 23px #006666, 0px 0px 4px #006666',
+      '-ms-box-shadow':' 0px 0px 23px #006666, 0px 0px 4px #006666',
+      '-o-box-shadow':'0px 0px 23px #006666, 0px 0px 4px #006666',
+      'box-shadow':'         0px 0px 23px #006666, 0px 0px 4px #006666',
+      '-webkit-border-radius':' 0px 0px 0px 33px',
+      '-moz-border-radius':' 0px 0px 0px 33px',
+      '-ms-border-radius':' 0px 0px 0px 33px',
+      '-o-border-radius':' 0px 0px 0px 33px',
+      'border-radius':' 0px 0px 0px 33px',
+         'float':'right'
 	});	
 }; //end of exportMenuProperties
 

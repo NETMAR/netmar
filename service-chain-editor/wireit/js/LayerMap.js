@@ -35,7 +35,6 @@ WireIt.LayerMap = function(layer,options) {
    this.element.className = this.className;
    
    this.initEvents();
-   
    this.draw();
 };
 

@@ -8231,7 +8231,7 @@ lang.extend(WireIt.ModuleProxy,YAHOO.util.DDProxy, {
     * @method onDragDrop
     */
    onDragDrop: function(e, ddTargets) { 
-      // The layer is the only target :
+      // The layer is the only target :z
       var layerTarget = ddTargets[0],
 			 layer = ddTargets[0]._layer,
 			 del = this.getDragEl(),

@@ -40,7 +40,9 @@ YAHOO.extend(WireIt.util.DD, YAHOO.util.DD, {
                terminalList[i].wires[k].redraw();
             }
          }*/
-			terminalList[i].redrawAllWires();
+         updateGlobalTerminals(terminalList[i]);
+         //console.log(terminalList[i]);
+			terminalList[i].redrawAllWires('mouseup');
       }
    },
 
