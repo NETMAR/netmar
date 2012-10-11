@@ -165,7 +165,7 @@
             <!-- Mapfaces -->
             <dependency>
                 <groupId>org.mapfaces</groupId>
-                <artifactId>mapfaces-map</artifactId>
+                <artifactId>mapfaces-facelet-editor</artifactId>
                 <version>${mapfaces.version}</version>
             </dependency>
             <dependency>

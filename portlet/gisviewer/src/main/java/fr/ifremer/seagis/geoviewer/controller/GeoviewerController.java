@@ -14,7 +14,9 @@ import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -32,16 +34,23 @@ import org.geotoolkit.map.MapContext;
 import org.geotoolkit.referencing.CRS;
 
 import org.mapfaces.component.context.UIContext;
+import org.mapfaces.component.mappane.UIMapPane;
+import org.mapfaces.event.wps.ReceiveResponseEvent;
+import org.mapfaces.facelet.sldeditor.SLDEditorController;
 import org.mapfaces.model.Context;
 import org.mapfaces.model.DefaultDownloadedFile;
 import org.mapfaces.model.DownloadedFile;
 import org.mapfaces.model.FeaturesStore;
+import org.mapfaces.model.Layer;
+import org.mapfaces.model.layer.WmsLayer;
 import org.mapfaces.model.wpstool.ExecuteResponse;
+import org.mapfaces.utils.AjaxUtils;
 import org.mapfaces.utils.XMLContextUtilities;
 import org.mapfaces.event.wps.ReceiveResponseEvent;
 import org.mapfaces.utils.FacesUtils;
 
 import org.mapfaces.utils.WPSUtils;
+
 import org.opengis.feature.type.PropertyDescriptor;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.util.FactoryException;
@@ -89,7 +98,11 @@ public class GeoviewerController implements Serializable {
     // SessionMap key to get the MapContext file to download
     private final static String CONTEXT_KEY = "mainCtx";
     
-    
+    // Map of SLDEditorController
+    private SLDEditorController sldController = null;
+    private final Map<String, SLDEditorController> sldControllers = new HashMap<String, SLDEditorController>();
+
+
     /**
      * This method build the initial configuration for the current community.
      */
@@ -137,6 +150,12 @@ public class GeoviewerController implements Serializable {
                 sxtCfg.getGeoviewerLocalWest(), sxtCfg.getGeoviewerLocalSouth(),
                 sxtCfg.getGeoviewerLocalEast(), sxtCfg.getGeoviewerLocalNorth());
         mdViewerUrl = sxtCfg.getMdViewerUrl();
+
+        if (mdViewerUrl != null && mdViewerUrl.contains("?")) {
+            mdViewerUrl += "&url=";
+        } else {
+            mdViewerUrl += "?url=";
+        }
     }
 
     /**
@@ -290,6 +309,38 @@ public class GeoviewerController implements Serializable {
         }
         
         return null;
+    }
+
+    public String getInitSldController () {
+        // Get the layer id from request parameters
+        final FacesContext facesContext = FacesContext.getCurrentInstance();
+        final Map<String, String> params = facesContext.getExternalContext().getRequestParameterMap();
+        final String layerId = params.get(AjaxUtils.AJAX_LAYER_ID);
+
+        // Try to retrieve existing controller for this layer
+        sldController = sldControllers.get(layerId);
+
+        if (sldController == null) {
+            // Get the MapFaces layer model
+            final UIMapPane map = (UIMapPane) FacesUtils.findComponentById(facesContext.getViewRoot(), "mainMap");
+            final Context ctx = map.getModel();
+            final Layer layer = ctx.getLayerFromId(layerId);
+
+            if (layer instanceof WmsLayer) {
+                // Create and store a new controller
+                sldController = new SLDEditorController((WmsLayer) layer);
+                sldControllers.put(layerId, sldController);
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * Return a SLDEditorController instance for sldEditor component
+     */
+    public SLDEditorController getSldController() {
+        return sldController;
     }
 
     /**

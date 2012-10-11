@@ -10,9 +10,23 @@ but/*************************************************************************/
   background-position: left top;
   background-repeat: repeat-x;
 }*/
+
 html {
     overflow: auto;
 }
+
+.ui-volet-handleContainer {
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+.olLayerGooglePoweredBy {
+    display: none;
+}
+
 /** Forms ****************************************************************/
 
 /* conteneur des boutons (input ou a/span) d'actions (submit, clear, etc) */
@@ -144,6 +158,7 @@ html {
 }
 
 .geoviewerForm .ui-layout-footer {
+    height: 20px;
     margin: 5px;
 }
 
@@ -156,7 +171,7 @@ html {
     visibility: hidden;
 }
 
-/* le bouton placŽ dans une barre verticale, entre les panels placŽs ˆ l'ouest et ˆ l'est */
+/* le bouton placï¿½ dans une barre verticale, entre les panels placï¿½s ï¿½ l'ouest et ï¿½ l'est */
 .geoviewerForm .ui-layout-resizer-west,
 .geoviewerForm .ui-layout-resizer-east {
     background-image : url(../img/icons/vertical_handle.gif);
@@ -164,7 +179,7 @@ html {
     background-position: center center;
 }
 
-/* le bouton placŽ dans une barre horizontale, entre les panels placŽs au nord et au sud */
+/* le bouton placï¿½ dans une barre horizontale, entre les panels placï¿½s au nord et au sud */
 .geoviewerForm .ui-layout-resizer-north,
 .geoviewerForm .ui-layout-resizer-south {
     background-image : url(../img/icons/horizontal_handle.gif);
@@ -177,7 +192,7 @@ html {
 }
 
 
-/* mettre des bordures ssi la barre de redimensionnement est dŽjˆ dans un
+/* mettre des bordures ssi la barre de redimensionnement est dï¿½jï¿½ dans un
  * ui-layout-content cad dans un panel
 */
 .geoviewerForm .ui-layout-content .ui-layout-resizer {
@@ -1016,7 +1031,7 @@ html {
 .geoviewerForm .mfButtonBar .olControlMeasureItemInactive,
 .geoviewerForm .mfButtonBar .olControlMeasureItemActive {
     background-image: url("../img/icons/measure-distance.png");
-    background-position:-3px 0;
+    background-position:-3px -5px;
 }
 
 .geoviewerForm .mfButtonBar .olControlMeasureAreaItemInactive,
@@ -1048,8 +1063,8 @@ html {
     background-position: -24px 0px;
 }
 
-.geoviewerForm .mfButtonBar div.button.ui-state-hover.olControlMeasureItemInactive {
-    background-position: -33px 0px;
+.geoviewerForm .mfButtonBar div.button.olControlMeasureItemInactive.ui-state-hover {
+    background-position: -33px -5px;
 }
 
 
@@ -1069,7 +1084,7 @@ html {
     background-image: url("../img/grid.png");
 }
 
-/* Ajout de bord pour faire comme si le bouton etait enfoncŽ */
+/* Ajout de bord pour faire comme si le bouton etait enfoncï¿½ */
 .geoviewerForm .mfButtonBar .olControlZoomBoxItemActive,
 .geoviewerForm .mfButtonBar .olControlZoomOutItemActive,
 .geoviewerForm .mfButtonBar .olControlNavigationItemActive,
@@ -1087,7 +1102,7 @@ html {
 
 .geoviewerForm .mfButtonBar div.button.olControlMeasureItemActive.ui-state-hover,
 .geoviewerForm .mfButtonBar .olControlMeasureItemActive {
-    background-position: -33px 0px;
+    background-position: -33px -5px
 }
 
 .geoviewerForm .mfButtonBar .button {
@@ -1118,7 +1133,9 @@ html {
     cursor:pointer;
 }
 
-
+.changeActionPan {
+    background: #E2F3FF;
+}
 
 .geoviewerForm .map .toolbar .button {
     margin: 8px 6px;
@@ -1214,7 +1231,7 @@ html {
     height: 18px;
 }
 
-/*Ic™ne du SLDEditor */
+/*Icï¿½ne du SLDEditor */
 .ui-icon {cursor:pointer;}
 .ui-icon-triangle-1-n { background-position: 0 -16px; }
 .ui-icon-triangle-1-s { background-position: -65px -16px; }
@@ -1326,4 +1343,36 @@ html {
 .wpsForm .button-wps-xml.disabled {
     background: #FFF url("../img/ui-arrow-right.png") no-repeat center center;
     border-radius: 3px;
+}
+
+/******************************* MEASURE TOOL *********************************/
+
+.geoviewerForm #output {
+    position: absolute;
+    left: 260px;
+}
+
+/******************************** SLD EDITOR **********************************/
+
+.sld-editor-popup.changeActionPan {
+    background: white;
+}
+
+.sld-editor-popup a.btn-primary {
+    color: white;
+    line-height: 14px;
+    height: 14px;
+}
+
+.sld-editor-popup table {
+    border: none;
+}
+
+.sld-editor-popup table td {
+    border: none;
+}
+
+.sld-editor-popup .ui-slider-horizontal .ui-slider-handle {
+    top: -.5em;
+    margin-left: -.3em;
 }

@@ -26,7 +26,7 @@ var sidebarLayoutOptions = {
     east__paneSelector: ".inner-ui-layout-east", 
     west__paneSelector: ".inner-ui-layout-west", 
     north__size: "25%", 
-    north__minSize: "30" /* la taille (en px) du header "Thmes" + 5px*/, 
+    north__minSize: "30" /* la taille (en px) du header "ThÃ¨mes" + 5px*/,
     south__size: "25%", 
     closable: false, 
     spacing_open: 11, 
@@ -87,54 +87,48 @@ function loadLayout() {
     // Display loading overlay
     displayLoadingImg();
 
-    // crŽation du layout "interne" contenant les parties tabs (bouttons + panels)
-    var oTabsContainerLayout = mainCtn.layout(
-        {
-            name: 'tabsContainerLayout', 
-            center__paneSelector: "#viewerTab", 
-            resizable: false, 
-            slidable: false, 
-            closable: false, 
-            center__onresize: resizeTabPanelLayout // resize VISIBLE tabPanelLayouton
-        }
-    );
-	
-    // Initialize portlet body size
-    setDynamicHeightToPortletBody();
-
-    // Initialize layout size
-    resizeTabPanelLayout();
-    resizeSidebarLayout();
-
     // Handle button events
     initBtnEvents($('div#mainContainer'));
+
+    // Initialize dialog popup
     initDialogPopup();
+
+    // CrÃ©ation du layout "interne" contenant les parties tabs (bouttons + panels)
+    mainCtn.layout({
+        name: 'tabsContainerLayout',
+        center__paneSelector: "#viewerTab",
+        resizable: false,
+        slidable: false,
+        closable: false,
+        center__onresize: resizeTabPanelLayout // resize VISIBLE tabPanelLayouton
+    });
 
     // Handle window resize event
     $(window).resize(
         function() {
             setDynamicHeightToPortletBody();
             resizeTabPanelLayout();
+            resizeSidebarLayout();
             window.MapFaces.reloadAllMaps(true);
         }
     );
 
+    $(window).trigger("resize");
+
     // ???
-    // pour faire bouger les setter en mˆ»me temps que le scroll...
+    // pour faire bouger les setter en mÃªme temps que le scroll...
     $('div#viewerTab > div.ui-layout-west > div.ui-layout-content > div.inner-ui-layout-center > div.ui-layout-content').scroll(
         function() {
             setCoucheSetterPosition();
             return false;
         }
     );
-  
-    // Reload map
-    if (window && window.MapFaces) {
-        window.MapFaces.reloadAllMaps(true);
-        
-        var map = MapFaces.findMapByCompId("mainMap");
-    }
-    
+
+    // Center legends img on list_legend expand
+    $("#list_legend").click(function() {
+        resizeTabPanelLayout();
+    });
+
     // Hide loading overlay
     hideLoadingImg();
 }
@@ -428,7 +422,7 @@ function initDialogPopup() {
             }
         });
     });
-};
+}
 
 /**
  * Function used to display featureInfo request result (onComplete event).

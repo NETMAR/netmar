@@ -6,7 +6,7 @@
       xmlns:mf="http://mapfaces.org/taglib"
       xmlns:a4j="http://richfaces.org/a4j"
       xmlns:f="http://java.sun.com/jsf/core"
-                 xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets">
 
     <head>
         <title>Sextant</title>
@@ -41,8 +41,8 @@
         <!--                           JAVASCRIPT                            -->
         <!-- =============================================================== -->        
 
-        <!-- Configurations -->
         <script type="text/javascript"> 
+            // Configuration
             window.language = "#{facesContext.externalContext.requestLocale}";
             window.IE7_PNG_SUFFIX = ".png";
             window.deactiveOLLoadEvent=true;
@@ -50,30 +50,32 @@
             window.isDEV = false;
         </script>
         
-        <!-- IE Scripts for .png display fix -->
         <!--[if lt IE 9]>
             <script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
         <![endif]-->
 
-        <!-- Google api script -->
+        <!-- Google -->
         <script src="http://maps.google.com/maps/api/js?v=3.5&amp;sensor=false"></script>
         
         <!-- jQuery -->
         <script type="text/javascript" src="#{contextPath}/js/jquery.js"></script>
         
-        <!-- Mapfaces compressed scripts (on les met ici et non dans liferay-portlet.xml pour ne pas bloquer le rendu de la page) -->        
+        <!-- A4J -->        
         <script type="text/javascript" src="#{contextPath}/faces/rfResorg.ajax4jsf.javascript.AjaxScript"></script>
         <script type="text/javascript" src="#{contextPath}/mfRes/org/ajax4jsf/javascript/JSFAJAX.js"></script>
+        
+        <!-- Mapfaces --> 
         <script type="text/javascript" src="#{contextPath}/mfRes/org/mapfaces/resources/compressed/core-yc.js"></script>
         <script type="text/javascript" src="#{contextPath}/mfRes/org/mapfaces/resources/compressed/treetable.min.js"></script>
         <script type="text/javascript" src="#{contextPath}/mfRes/org/mapfaces/resources/compressed/calendar.min.js"></script>
         <script type="text/javascript" src="#{contextPath}/mfRes/org/mapfaces/resources/compressed/colorpicker.min.js"></script>
+        <script type="text/javascript" src="#{contextPath}/mfRes/org/mapfaces/resources/compressed/miniColors.min.js"></script>
         <script type="text/javascript" src="#{contextPath}/mfRes/org/mapfaces/resources/compressed/jqueryui.spinnerplugin.min.js"></script>
         <script type="text/javascript" src="#{contextPath}/mfRes/org/mapfaces/resources/compressed/openlayers.min.js"></script>
         <script type="text/javascript" src="#{contextPath}/mfRes/org/mapfaces/resources/compressed/geonames-autocomp-jq.min.js"></script>
         <script type="text/javascript" src="#{contextPath}/mfRes/org/mapfaces/resources/compressed/codemirror.min.js"></script>
         
-        <!-- Scripts depending on language --> 
+        <!-- Language --> 
         <c:if test="#{facesContext.externalContext.requestLocale == 'fr_FR'}">
             <script type="text/javascript" src="#{contextPath}/mfRes/org/mapfaces/resources/calendar/js/lang/calendar-fr-min.js"></script>  
             <script type="text/javascript" src="#{contextPath}/js/lib/openlayers/lang/openlayers-fr-min.js"></script>             
@@ -82,12 +84,12 @@
             <script type="text/javascript" src="#{contextPath}/js/lib/openlayers/lang/openlayers-en-min.js"></script>            
         </c:if>
         
-        <!-- Image path for OpenLayers -->
         <script type="text/javascript"> 
+            // Image path for OpenLayers
             OpenLayers.ImgPath = '#{contextPath}/mfRes/org/mapfaces/resources/img/';
         </script>
         
-        <!-- Geoviewer scripts -->
+        <!-- Geoviewer -->
         <script type="text/javascript" src="#{contextPath}/js/lib/calendar/ext/calendar-ext.js"></script>
         <script type="text/javascript" src="#{contextPath}/js/sxt-geoviewer.js"></script>
     </head>
@@ -107,6 +109,7 @@
         <!-- Geoviewer page content -->
         <h:form id="mainForm" class="geoviewerForm">
             
+            <mf:Div id="ctxContainer">
             <mf:Context id="mainCtx" service="#{geoviewer.ctxService}" loadAllGetCaps="true" activeNcWMS="true" storeContextAddedByUrl="true">      
                 
                 <div id="mainContainer" style="height:600px;">
@@ -264,8 +267,7 @@
                                 <mf:CursorTrack></mf:CursorTrack>
                                 <mf:ScaleBar  abbreviateLabel="true" 
                                               unitsLabelPos="right">                                    
-                                </mf:ScaleBar> 
-                                <span id="measureOutput"></span>
+                                </mf:ScaleBar>
                                 <span id="output"></span>
                             </div>
                             <!-- FIN viewer/layout-center/layout-footer -->
@@ -436,13 +438,14 @@
                         </mf:Div>
                     </mf:ModalPopup>
                  </a4j:region>
+            </mf:Context> 
+            </mf:Div>
 
-                <!-- PopUp SLD editor -->
-                <mf:ModalPopup id="sldEditorPopup" hidden="true" ajaxClose="true" width="500" height="300">
-                    <mf:SldEditor reRender="list,legends" />
-                </mf:ModalPopup>
-                
-            </mf:Context>
+            <!-- PopUp SLD editor -->
+            <mf:ModalPopup id="sldEditorPopup" hidden="true" ajaxClose="true" width="800" height="600" styleClass="sld-editor-popup" color="FFFFFF">
+                <input type="hidden" value="#{geoviewer.initSldController}"></input>
+                <mf:sldEditor controller="#{geoviewer.sldController}" saveClick="MapFaces.destroyAllMaps();" saveComplete="loadLayout();" saveReRender="ctxContainer" />
+            </mf:ModalPopup>
             
             <!-- PopUp print PDF -->
             <mf:ModalPopup id="printPopup" hidden="true" ajaxClose="true" width="500" height="300">
@@ -468,7 +471,7 @@
                                 actionListener="#{geoviewer.proceedWPSExecuteResponse}"
                                 callListenerOnExec="true"
                                 executeReRender="mainForm"
-                                onExecuteClick="displayLoadingImg();window.MapFaces.destroyAllMaps();"
+                                onExecuteClick="displayLoadingImg();MapFaces.destroyAllMaps();"
                                 onExecuteComplete="loadLayout();if(document.getElementById('xmlContainer').style.display='none'){document.getElementById('xmlButton').onclick();}"
                                 xmlEditorId="xmlEditor"
                                 wpsList="#{geoviewer.WPSList}" />

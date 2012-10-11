@@ -117,8 +117,8 @@ public abstract class AjaxActionComponent extends UICommand implements
             final java.util.Map params = getFacesContext().getExternalContext().getRequestParameterMap();
             //if((Boolean) params.get("synchronized")){
 
-            if (params.get("refresh") != null) {
-                setReRender((String) params.get("refresh"));
+            if (params.get("refresh") != null && !params.get("refresh").toString().trim().isEmpty()) {
+                setReRender((String) params.get("refresh"));// }
             }
             if (params.get("org.mapfaces.ajax.NO_RERENDER") != null
                     && ((String) params.get("org.mapfaces.ajax.NO_RERENDER")).equals("true")) {

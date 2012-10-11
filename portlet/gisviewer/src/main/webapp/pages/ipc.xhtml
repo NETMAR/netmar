@@ -10,16 +10,20 @@
     <head>
         <title>Sextant</title>
 
-        <!-- Meta Tags -->
+        <!-- Sets the "contextPath" expression -->
+        <c:set var="contextPath" value="#{facesContext.externalContext.requestContextPath}" />
+
+        <!-- =============================================================== -->
+        <!--                           META TAGS                             -->
+        <!-- =============================================================== -->
+
         <meta http-equiv="content-type" content="application/xhtml+xml; charset=utf-8" />
         <meta name="robots" content="index, follow" />
-
         <meta name="description" content="" />
         <meta name="keywords" content="" />
         <meta name="author" content="des mondes singuliers" />
-
-    <c:set var="contextPath" value="#{facesContext.externalContext.requestContextPath}" />
 </head>
+
 <body>
 <h:form id="mainForm" class="geoviewerForm">
     <h:outputText value="#{geoviewer.shareSession}" />
