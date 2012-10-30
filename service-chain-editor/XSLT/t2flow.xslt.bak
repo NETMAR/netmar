@@ -1014,21 +1014,21 @@
 	<xsl:template name="dataLinksProcess">
 		<datalink>
 				<sink type="processor">
-					<processor><xsl:value-of select="./name/text()" /></processor>
+					<processor><xsl:value-of select="./label/text()" /></processor>
 					<port>DataInputs</port>
 				</sink>
 				<source type="processor">
-					<processor><xsl:value-of select="./name/text()" />_DataInputs</processor>
+					<processor><xsl:value-of select="./label/text()" />_DataInputs</processor>
 					<port>output</port>
 				</source>
 			</datalink>
 			<datalink>
 				<sink type="processor">
-					<processor><xsl:value-of select="./name/text()"/>_ProcessOutputs</processor>
+					<processor><xsl:value-of select="./label/text()"/>_ProcessOutputs</processor>
 					<port>input</port>
 				</sink>
 				<source type="processor">
-					<processor><xsl:value-of select="./name/text()" /></processor>
+					<processor><xsl:value-of select="./label/text()" /></processor>
 					<port>ProcessOutputs</port>
 				</source>
 			</datalink>
