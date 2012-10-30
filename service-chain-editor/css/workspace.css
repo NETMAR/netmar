@@ -1,0 +1,115 @@
+.workspaceButtons {
+	height:			24px;
+	width:			400px;
+	overflow:		hidden;
+	border-bottom:	2px solid rgba(0, 135, 135, 0.9);
+}
+
+.workspaceSave {
+	height:			24px;
+	width:			99px;
+	float:			left;
+	line-height:	24px;
+	text-align:		center;
+	background:		none scroll no-repeat left top #FFFFFF;
+	box-shadow:		inset 0 0 16px #1EAFAF, 0px 0px 8px #FFFFFF;
+}
+
+.workspaceLoad {
+	height:			24px;
+	width:			99px;
+	position:		relative;
+	float:			left;
+	line-height:	24px;
+	text-align:		center;
+	background:		none scroll no-repeat left top #FFFFFF;
+	border-left:	1px solid rgba(0, 135, 135, 0.9);
+	border-right:	1px solid rgba(0, 135, 135, 0.9);
+	box-shadow:		inset 0 0 16px #1EAFAF, 0px 0px 8px #FFFFFF;
+}
+
+.workspaceImport {
+	height:			24px;
+	width:			99px;
+	position:		relative;
+	float:			left;
+	line-height:	24px;
+	text-align:		center;
+	background:		none scroll no-repeat left top #FFFFFF;
+	border-left:	1px solid rgba(0, 135, 135, 0.9);
+	border-right:	1px solid rgba(0, 135, 135, 0.9);
+	box-shadow:		inset 0 0 16px #1EAFAF, 0px 0px 8px #FFFFFF;
+}
+
+/*.workspaceTabs {
+
+	
+}
+.workspaceTabs div {
+	height:40px;
+	width:104px;
+	line-height:40px;
+	padding-left:40px;
+	box-shadow:inset 0 0 16px #FFFFFF;
+	font-size:18px;
+	font-weight: bold;
+	text-shadow: 1px 2px #000000;
+	color: #FFFFFF;	
+}
+.workspaceTabs div.selected {
+	background:darkOrange;
+	padding-left:40px;
+	box-shadow:inset 0 0 16px #1EAFAF;
+	text-shadow: 1px 2px #FFFFFF;
+	color: #000000;	
+}
+.workspaceExport, .workspaceImport {
+	border-bottom:2px solid rgba(0, 135, 135, 0.9);
+}
+.workspaceRun {
+	border-radius: 0 0 0 15px;
+}*/
+
+.workspaceDelete {
+	height:			24px;
+	width:			99px;
+	float:			left;
+	line-height:	24px;
+	text-align:		center;
+	background:		none scroll no-repeat left top #FFFFFF;
+	box-shadow:		inset 0 0 16px #1EAFAF, 0px 0px 8px #FFFFFF;
+}
+
+.workspaceDataTable {
+	display:				block;
+	height:					206px;
+	width:					400px;
+	overflow:				auto;
+	border-bottom:			2px solid rgba(0, 135, 135, 0.9);
+	background:				none scroll no-repeat left top #FFFFFF;
+	-webkit-border-radius:	15px 15px 0 0;
+	-moz-border-radius:		15px 15px 0 0;
+	-ms-border-radius:		15px 15px 0 0;
+	-o-border-radius:		15px 15px 0 0;
+	border-radius:			15px 15px 0 0;
+}
+
+.workspaceDataTable .odd {
+	background:	rgba(0, 135, 135, 0.3);
+}
+
+.workspaceDataTable .highlighted {
+	background:	darkOrange;
+}
+
+.workspaceDataTable td {
+	padding-left:	20px;
+}
+
+.workspaceDataTable th {
+	padding-top:	5px;
+}
+
+.dataTables_filter, .dataTables_length, .dataTables_info {
+	display:	none;
+}

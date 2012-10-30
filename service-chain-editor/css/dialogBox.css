@@ -1,0 +1,47 @@
+.dialogBox {
+	display:	block;
+	position:	absolute;
+	left:		0;
+	top:		0;
+	padding:	0;
+	margin:		0;
+	height:		100%;
+	width:		100%;
+	text-align:	center;
+	line-height:100%;
+	z-index:	99999;
+	background:	rgba(0,102,102,0.6);
+}
+
+.dialogBox .dialogBoxWindow {
+	height:					auto;
+	width:					auto;
+	position:				absolute;
+	margin-left:			auto;
+	margin-right:			auto;
+	background:				white;
+	padding:				0;
+	display:				block;
+	clear:					both;
+	text-align:				left;
+	padding-left:			30px;
+	padding-right:			30px;
+	padding-top:			20px;
+	padding-bottom:			20px;
+	-webkit-box-shadow:		0 0 22px #FFFFFF, 0 0 60px #FFFFFF, 0 0 140px #FFFFFF;
+	-moz-box-shadow:		0 0 22px #FFFFFF, 0 0 60px #FFFFFF, 0 0 140px #FFFFFF;
+	-ms-box-shadow:			0 0 22px #FFFFFF, 0 0 60px #FFFFFF, 0 0 140px #FFFFFF;
+	-o-box-shadow:			0 0 22px #FFFFFF, 0 0 60px #FFFFFF, 0 0 140px #FFFFFF;
+	box-shadow:				0 0 22px #FFFFFF, 0 0 60px #FFFFFF, 0 0 140px #FFFFFF;
+	-webkit-border-radius:	10px 10px 10px 10px;
+	-moz-border-radius:		10px 10px 10px 10px;
+	-ms-border-radius:		10px 10px 10px 10px;
+	-o-border-radius:		10px 10px 10px 10px;
+	border-radius:			10px 10px 10px 10px;
+}
+
+.dialogBox .button {
+	float:			left;
+	margin-right:	5px;
+	margin-left:	5px;
+}
