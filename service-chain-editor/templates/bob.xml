@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<wsdlURL>./example.wsdl</wsdlURL>
+	<positions>
+		<label>ExecuteProcess_gml2svg</label>
+		<inputTerminals isConnected="true">type</inputTerminals>
+		<inputTerminals isConnected="false">input</inputTerminals>
+		<outputTerminals isConnected="true">outputResult</outputTerminals>
+		<xtype>WireIt.TavernaContainer</xtype>
+		<position>695px</position>
+		<position>112px</position>
+	</positions>
+	<positions>
+		<label>inputTest</label>
+		<containerType>input</containerType>
+		<xtype>WireIt.TavernaContainerIO</xtype>
+		<inputURL/>
+		<literalData/>
+		<position>147px</position>
+		<position>190px</position>
+	</positions>
+	<positions>
+		<label>output938</label>
+		<inputTerminals isConnected="true">null</inputTerminals>
+		<containerType>output</containerType>
+		<xtype>WireIt.TavernaContainerIO</xtype>
+		<position>1118px</position>
+		<position>157px</position>
+	</positions>
+	<wires>
+		<src>
+			<moduleId>ExecuteProcess_gml2svg</moduleId>
+			<terminal>outputResult</terminal>
+			<xtype>WireIt.TavernaContainer</xtype>
+		</src>
+		<tgt>
+			<moduleId>output938</moduleId>
+			<terminal/>
+			<xtype>output</xtype>
+		</tgt>
+		<xtype>WireIt.TavernaWire</xtype>
+	</wires>
+	<wires>
+		<src>
+			<moduleId>inputTest</moduleId>
+			<terminal/>
+			<xtype>input</xtype>
+		</src>
+		<tgt>
+			<moduleId>ExecuteProcess_gml2svg</moduleId>
+			<terminal>type</terminal>
+			<xtype>WireIt.TavernaContainer</xtype>
+		</tgt>
+		<xtype>WireIt.TavernaWire</xtype>
+	</wires>
+	<uuid>a1396b1d-27c8-4479-bd8a-8e5be1d0040f</uuid>
+	<date>2012-09-Sep 16:17:03 GMT+0100</date>
+</root>
