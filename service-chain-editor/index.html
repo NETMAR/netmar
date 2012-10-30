@@ -1,213 +1,111 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!DOCTYPE html>
 <html>
-   <!-- Comments -->
-      <!--  Vertical sliding info -->
-         <!-- http://www.datatables.net/ -->
-      <!-- Facebook-style tooltip -->
-         <!--//No XOR in Javascript: http://www.howtocreate.co.uk/xor.html -->
-      <!-- http://michalkorecki.com/content/introducing-json-xml-jquery-plugin -->
-
-      <!--  SAVE_AS HACK no server needed -->
-         <!--http://stackoverflow.com/questions/1479020/save-the-document-generated-by-javascript  -->
-         <!--http://www.bloggingdeveloper.com/post/Location-href-vs-Location-replace-The-Difference-Between-JavaScript-Redirect-Methods.aspx  -->
-         <!-- click() doesnt work http://api.jquery.com/click/ -->
-         <!-- window.location http://unitstep.net/blog/2010/04/12/triggering-links-from-javascript-using-jquery/ -->
-         <!-- Internet Explorer 8 limits data URIs to a maximum length of 32 KB. (Internet Explorer 9 does not have this limitation) -->
-      <!--  -->
-
-      <!--  HTML5 File API -->
-         <!-- http://www.html5rocks.com/en/tutorials/file/dndfiles/ -->
-
-         <!-- sending XML content to server for transfomarion -->
-         <!-- http://filamentgroup.com/lab/jquery_plugin_for_requesting_ajax_like_file_downloads/ -->
-      <!-- 
-      TODO:
-         1- WSDL menu
-         Maybe the menu in WSDL should use a changeClassName event
-         http://stackoverflow.com/questions/3139608/class-name-change-event-in-jquery
-      -->
-   <head>
-      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-      <title>EUMIS- Service chain editor</title>
-      <link rel="stylesheet" href="./css/panel.css" type="text/css" media="screen" />
-      <!-- jquery smooth style -->
-      <link rel="stylesheet" href="./css/smoothness/jquery-ui-1.8.13.custom.css" type="text/css" media="screen" />
-      <link rel="stylesheet" href="./jquery.ui.slider.css" type="text/css" media="screen" />
-      <link rel="stylesheet" href="css/main.css" type="text/css" media="screen" />
-      <link rel="stylesheet" href="css/colours.css" type="text/css" media="screen" />
-
-      <script type="text/javascript" src="./jquery/jquery-1.6.js"></script>
-      <script type="text/javascript" src="./jquery/jquery-ui-1.8.21.custom.min.js"></script>
-      <!-- http://www.datatables.net/usage/ -->
-      <script type="text/javascript" src="./jquery/jquery.dataTables.js"></script>
-      <!--  data storage code -->
-      <script type="text/javascript" src="./jquery/jquery.json-2.2.min.js"></script>
-      <script type="text/javascript" src="./jquery/jstorage.js"></script>
-      <!-- integrated into extraFunctions -->
-      <!-- 	<script type="text/javascript" src="./base64.js"></script>	  -->
-      <!-- generic components to have thing more OO -->
-      <script type="text/javascript" src="./jquery.wsdlPlugin.js"></script>
-      <script type="text/javascript" src="./jquery.workspacePlugin.js"></script>
-      <script type="text/javascript" src="./jquery.servicePlugin.js"></script>
-      <script type="text/javascript" src="./jquery.ioPlugin.js"></script>
-      <script type="text/javascript" src="./jquery.exportPlugin.js"></script>
-      <script type="text/javascript" src="./jquery.slider.js"></script>
-      <script type="text/javascript" src="./jkl-parsexml.js"></script>
-      <script type="text/javascript" src="./jquery/jquery.mousewheel.min.js"></script>
-      <script type="text/javascript" src="./jquery/transform-css.js"></script>
-      <script type="text/javascript" src="./jquery/3dtransform-css.js"></script>
-      <!-- http://goessner.net/download/prj/jsonxml/ -->
-      <!--<script type="text/javascript" src="./json2.js"></script>-->
-      <script type="text/javascript" src="./json2xml.js"></script> 
-      <script type="text/javascript" src="./wsdlParser.js"></script><!-- web service functions -->
-      <script type="text/javascript" src="./extraFunctions.js"></script> <!-- support functions e.g. getContainer etc --> 
-
-      <!--  Yet another plugin, for stying the input button -->
-      <!-- http://jstnjns.com/jquery/file/ modified to work with jquery-ui -->
-      <script src="jquery.fileinput.js"></script>
-      <!-- WIRE IT STRUCTURE -->
-      <!-- YUI -->
-      <link rel="stylesheet" href="./css/services.css" type="text/css" media="screen" />
-      <script src="jquery.contextMenu.js" type="text/javascript"></script>
-      <link href="jquery.contextMenu.css" rel="stylesheet" type="text/css" />
-      <script type="text/javascript" src="./wireit/lib/yui/utilities/utilities.js"></script>
-      <script type="text/javascript" src="./wireit/lib/excanvas.js"></script>
-      <!-- WireIt -->
-      <script type="text/javascript" src="./wireit/js/WireIt.js"></script>
-      <script type="text/javascript" src="./wireit/js/Layer.js"></script>
-      <script type="text/javascript" src="./wireit/js/Terminal.js"></script>
-      <script type="text/javascript" src="./wireit/js/TerminalProxy.js"></script>
-      <script type="text/javascript" src="./wireit/js/TerminalInput.js"></script>
-      <script type="text/javascript" src="./wireit/js/TerminalOutput.js"></script>
-      <script type="text/javascript" src="./wireit/js/Container.js"></script>
-
-      <script type="text/javascript" src="./wireit/js/DD.js"></script>
-      <script type="text/javascript" src="./wireit/js/DDResize.js"></script>
-
-      <script type="text/javascript" src="./wireit/js/Scissors.js"></script>
-      <script type="text/javascript" src="./wireit/js/CanvasElement.js"></script>
-      <script type="text/javascript" src="./wireit/js/Wire.js"></script>
-      <script type="text/javascript" src="./wireit/js/BezierWire.js"></script>
-      <script type="text/javascript" src="./wireit/js/BezierArrowWire.js"></script>
-
-      <script type="text/javascript" src="./wireit_extended/js/TerminalInputTaverna.js"></script>
-      <script type="text/javascript" src="./wireit_extended/js/TerminalOutputTaverna.js"></script>
-      <script type="text/javascript" src="./wireit_extended/js/TerminalInputGISTaverna.js"></script>
-      <script type="text/javascript" src="./wireit_extended/js/TerminalOutputGISTaverna.js"></script>
-      <script type="text/javascript" src="./wireit_extended/js/TavernaWire.js"></script>
-      <script type="text/javascript" src="./wireit_extended/js/TavernaContainer.js"></script>
-
-      <script type="text/javascript" src="./wireit/js/CanvasContainer.js"></script>
-      <script type="text/javascript" src="./wireit/js/EllipseLabelContainer.js"></script>
-      <script type="text/javascript" src="./wireit_extended/js/TavernaContainerIO.js"></script>
-
-      <script type="text/javascript" src="controller.js"></script>
-   </head>
-   <body>
-      <!-- div wrapper of all portelet content -->
-      <div class="serviceEditor serviceEditorMain"> 
-         <div id="titleGroup">
-            <h1 align="center" class="serviceEditor">EUMIS - Service chain editor</h1>
-         </div><!-- end of WSDLContainer -->
-
-         <div id="linkGroup">
-            <a class="trigger" id="wsdlMenu" href="#" panel="wsdlPanel">WSDL</a>
-            <a class="trigger" id="workspaceMenu" href="#" panel="workspacePanel">Workspace</a>
-            <a class="trigger" id="serviceMenu" href="#" panel="servicePanel">Service List</a>
-            <a class="trigger" id="ioMenu" href="#" panel="ioPanel">Service I/O</a>
-            <a class="trigger" id="exportMenu" href="#" panel="exportPanel">Export</a>
-         </div> 
-         <!-- end of linkGroup -->
-         <div id="panelGroup">
-
-            <div class="panel" id="wsdlPanel"></div>
-            <div class="panel" id="workspacePanel"></div> <!-- end of workspace panel -->
-
-            <div class="panel" id="servicePanel"></div>
-            <div class="panel" id="ioPanel">
-               <h2>Input and Output</h2>  
-               <h3 align="center">Input container</h3><div class="ioContainer" id="ioInput"></div>  
-               <h3 align="center">Output container</h3><div class="ioContainer" id="ioOutput"></div>
-               <h3 align="center">Input GIS container</h3><div class="ioContainer" id="ioInputGIS"></div>
-               <h3 align="center">Output GIS container</h3><div class="ioContainer" id="ioOutputGIS"></div>
-            </div><!-- end ioPanel -->
-            <div class="panel" id="exportPanel"></div> <!-- taverna panel -->
-         </div> <!-- end panel group -->
-         <!--  NOTE: panel attr points to the panel that contains the a link -->
-
-         <div class="layer"></div>
-      </div> <!-- end of service editor -->
-      <!-- testing append element -->
-      <div class="trash"></div>
-      <div class="tooltip">
-         <div class="normal_information"></div>
-         <div class="backshadow"></div>
-         <div class="more_information"></div>
-      </div>
-      <div class="scale_zoom">
-         <div class="background"></div>
-         <div class="slider"></div>
-      </div>
-      <div class="f1_help_screen">
-         <div class="f1_information_background"></div>
-         <div class="f1_information_block">
-            <div class="f1_information_header">
-               <div class="f1_information_logo">
-                  ?
-               </div>
-               <div class="f1_information_title">
-                  EUMIS - SCE Help
-               </div>
-            </div>
-            <div class="f1_information_text">
-               <span>Quick help notes</span>
-               <p>
-                  <b>EUMIS Service Chain Editor</b> is currently undergoing user-interface changes.
-               </p>
-               <p>
-                  You may notice several "glitches" with the main area, especially while zoomed out.<br />
-                  Please ignore these issues for now, as they <i>are</i> being worked on.
-               </p>
-               <p>
-                  If your browser freezes for extended periods of time without any noticable action of content being worked out<br />
-                  (For example, when loading a new WSDL file, there is a progress bar, while may lag - but doesn't cause things to <u>freeze</u>)<br />
-                  Then please e-mail the <a href="mailto:riwh@pml.ac.uk">PML Computing Scientist Web Based Visualisation</a> with any specific steps you followed, current WSDL file loaded, and other details that might help track and fix the noticed problem.<br />
-                  Please also state if you can reproduce (repeat) the issue.
-               </p>
-               <p>Thank you.</p>
-               <p style="color:transparent;">&nbsp;</p>
-            </div>
-         </div>
-      </div>
-      <div class="eumis_loading_screen">
-         <div class="eumis_loading_background"></div>
-         <div class="eumis_loading_block">
-            <div class="eumis_loading_header">
-               <div class="eumis_loading_logo">
-                  &copy;
-               </div>
-               <div class="eumis_loading_title">
-                  EUMIS - SCE Loading
-               </div>
-            </div>
-            <div class="eumis_loading_text">
-               <span>EUMIS - Service chain editor</span>
-               <span><b>Currently loading resources...</b></span>
-               <div class="testing" style="position:relative;margin-top:-26px;">
-                  <div class="hex hex-white"></div><div class="emuis_loading_progressbar" style="float:right;position:relative;left:0;top:0;margin-top:-30px;height:26px;width:511px;padding-right:2px;"></div>
-               </div>
-               <div class="f1_instructions">
-                  Please press <b>F1</b> for quick help notes
-               </div>
-            </div>
-         </div>
-      </div>
-      <div class="eumis_update_progressbar_handler" style="width:0;height:0;display:block;position:absolute;"></div>
-      <div class="hex-container"></div>
-      <ul id="myMenu" class="contextMenu">
-         <li class=""><a href="#collapse_all">Collapse </a></li>
-         <li class=""><a href="#expand_all">Expand</a></li>
-      </ul>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>EUMIS - Service chain editor</title>
+		<link rel="stylesheet" href="css/main.css" type="text/css" media="screen" />
+		<link rel="stylesheet" href="css/colours.css" type="text/css" media="screen" />
+		<link rel="stylesheet" href="css/index.php" type="text/css" media="screen" />
+		<!--<script type="text/javascript" src="javascript/jquery/jquery.js"></script>-->
+		<!--<script type="text/javascript" src="javascript/javascript.js"></script>-->
+		<script type="text/javascript" src="javascript.js"></script>
+		<!--<script type="text/javascript" src="javascript/functions.js"></script>
+		<script type="text/javascript" src="javascript/jquery/jquery.ui.js"></script>
+		<script type="text/javascript" src="javascript/jquery/jquery.transform-css.js"></script>
+		<script type="text/javascript" src="javascript/jquery/jquery.3dtransform-css.js"></script>
+		<script type="text/javascript" src="javascript/jquery/jquery.slider.js"></script>
+		<script type="text/javascript" src="javascript/jquery/jquery.data-tables.js"></script>
+		<script type="text/javascript" src="javascript/jquery/jquery.fileinput.js"></script>
+		<script type="text/javascript" src="javascript/jquery/jquery.context-menu.js"></script>
+		<script type="text/javascript" src="javascript/jquery/jquery.mousewheel.js"></script>
+		<script type="text/javascript" src="javascript/jquery/jstorage.js"></script>
+		<script type="text/javascript" src="javascript/loading-screen.js"></script>-->
+	</head>
+	<body>
+		<div class="downloadframes" style="display:none;"><iframe src="" id="t2flowdownload"></iframe><iframe src="" id="netmardownload"></iframe></div>
+		<div class="serviceEditor serviceEditorMain"> 
+			<div id="titleGroup">
+				<span class="serviceEditor">EUMIS - Service chain editor</span>
+			</div>
+			<div id="linkGroup"></div>
+			<div id="panelGroup"></div>
+			<div class="layer Dragger">
+				<div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
+				<div class="viewport">
+					<canvas id="snapToGridCanvas"></canvas>
+					<canvas id="wireGridCanvas"></canvas>
+					<div class="layerCanvas"></div>
+				</div>
+			</div>
+			<ul id="layerContext" class="contextMenu">
+				<li class="rename"><a href="#rename">Rename Window</a></li>
+				<li class="collapse"><a href="#collapse_all">Collapse All</a></li>
+				<li class="expand"><a href="#expand_all">Expand All</a></li>
+			</ul>
+			<div class="trash"></div>
+			<div class="tooltip">
+				<div class="normal_information"></div>
+				<div class="backshadow"></div>
+				<div class="more_information"></div>
+			</div>
+			<div class="scale_zoom">
+				<div class="background"></div>
+				<div class="slider"></div>
+			</div>
+			<div class="f1_help_screen">
+				<div class="f1_information_background"></div>
+				<div class="f1_information_block">
+					<div class="f1_information_header">
+						<div class="f1_information_logo">?</div>
+						<div class="f1_information_title">EUMIS - SCE Help</div>
+					</div>
+					<div class="f1_information_text">
+						<span>Quick help notes</span>
+						<p>
+							<b>EUMIS Service Chain Editor</b> is currently undergoing user-interface changes.
+						</p>
+						<p>
+							You may notice several "glitches" with the main area, especially while zoomed out.<br />
+							Please ignore these issues for now, as they <i>are</i> being worked on.
+						</p>
+						<p>
+							If your browser freezes for extended periods of time without any noticable action of content being worked out<br />
+							(For example, when loading a new WSDL file, there is a progress bar, while may lag - but doesn't cause things to <u>freeze</u>)<br />
+							Then please e-mail the <a href="mailto:riwh@pml.ac.uk">PML Computing Scientist Web Based Visualisation</a> with any specific steps you followed, current WSDL file loaded, and other details that might help track and fix the noticed problem.<br />
+							Please also state if you can reproduce (repeat) the issue.
+						</p>
+						<p>Thank you.</p>
+						<p style="color:transparent;">&nbsp;</p>
+					</div>
+				</div>
+			</div>
+			<div class="service_draggable"><div class="leftcorner"></div><div class="rightcorner"></div><div class="title"></div></div>
+			<div class="eumis_loading_screen">
+				<div class="eumis_loading_background"></div>
+				<div class="eumis_loading_block">
+					<div class="eumis_loading_header">
+						<div class="eumis_loading_logo">&copy;</div>
+						<div class="eumis_loading_title">EUMIS - SCE Loading</div>
+					</div>
+					<div class="eumis_loading_text">
+						<span>EUMIS - Service chain editor</span>
+						<span><b>Currently loading resources...</b></span>
+						<div class="testing" style="position:relative;margin-top:-26px;">
+							<div class="hex hex-white"></div><div class="emuis_loading_progressbar" style="float:right;position:relative;left:0;top:0;margin-top:-30px;height:26px;width:511px;padding-right:2px;"></div>
+						</div>
+						<div class="f1_instructions">
+							Please press <b>F1</b> for quick help notes
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="eumis_update_progressbar_handler" style="width:0;height:0;display:block;position:absolute;"></div>
+			<div class="hex-container"></div>
+			<ul id="myMenu" class="contextMenu">
+				<li class=""><a href="#collapse_all">Collapse All</a></li>
+				<li class=""><a href="#expand_all">Expand All</a></li>
+			</ul>
+		</div>
+		<div class="dynamicscripts"></div>
    </body>
 </html>

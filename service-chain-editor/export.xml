@@ -1,0 +1,478 @@
+if(!loadedPlugins['workspacePlugin']) {
+	loadedPlugins['workspacePlugin'] = true;
+
+	$.data(document, 'template-importdialog',	getTemplate('importdialog'));
+	$.data(document, 'template-savedialog',	getTemplate('savedialog'));
+	$.data(document, 'template-saveoverdialog',	getTemplate('saveoverdialog'));
+	$.data(document, 'template-deletedialog',	getTemplate('deletedialog'));
+	
+	var workspacePlugin = {
+		panel: '#workspacePanel',
+		menu: '#workspaceMenu',
+		redraw: function() {
+			var dataWorkspace = [];
+			if($.jStorage.get('sceWorkspace') == null) {
+				$.jStorage.set('sceWorkspace', []);
+			} else {
+				$.each($.jStorage.get('sceWorkspace'), function(index,value) {
+					dataWorkspace[dataWorkspace.length] = [value.name, value.date];
+				});
+			}
+
+			$('.workspaceDataContainer').html('<table cellpadding="0" cellspacing="0" border="0" class="display workspaceDataTable"></table>');
+			$('.workspaceDataTable').dataTable({
+				"iDisplayLength": 10000,
+				"aLengthMenu": [[-1], ['All']],
+				"aaData": dataWorkspace,
+				"aoColumns": [
+					{"sTitle": "Name"},
+					{"sTitle": "Date"}
+				]
+			});
+			$('.workspaceDataTable tr').bind('click', function() {
+				$('.workspaceDataTable tr').removeClass('highlighted');
+				$(this).addClass('highlighted');
+			});
+		},
+		bind: function() {
+			var workspaceButtons = $('.workspaceButtons');
+			var $this = this;
+			if(workspaceButtons.length > 0) {
+				workspacePlugin.redraw();
+
+				$('.workspaceSave').bind('click', function() {
+					workspacePlugin.save();
+				});
+
+				$('.workspaceDelete').bind('click', function() {
+					workspacePlugin.remove();
+				});
+
+
+				$('.workspaceImport').bind('click', function() {
+					workspacePlugin.import();
+				});
+
+				$('#workspacePanel .export').next().bind('click', function(e) {
+					var netmar	= ((e.pageX - $(this).offset().left) >= 202) ? true : false;
+					var data	workspacePlugin.flowXML(workspacePlugin.flowJSON());
+					
+					/*var inputs = [];
+					var outputs = [];
+
+					$.each(data.find('positions'), function(index, value) {
+						var temp = [];
+						$.each($(value).find('inputterminals'), function(index, value) {
+							temp[temp.length] = value;
+						});
+						temp.reverse();
+						inputs.concat(temp);
+						
+						temp = [];
+						$.each($(value).find('outputterminals'), function(index, value) {
+							temp[temp.length] = value;
+						});
+						temp.reverse();
+						outputs.concat(temp);
+					});
+					//$.each(data.find('positions outputterminals'), function(index, value) {
+						//outputs[outputs.length] = value;
+					//});
+					//console.log(data.find('positions inputterminals'));
+					//console.log(inputs);
+
+					//inputs.reverse();
+					//console.log(inputs);
+
+					//outputs.reverse();
+					console.log(inputs);
+					console.log(inputs);
+					console.log(inputs);
+					console.log(inputs);
+					console.log(inputs);
+					console.log(inputs);
+					console.log(inputs);
+					console.log(inputs);
+					console.log(inputs);
+					console.log(inputs);
+					console.log(inputs);
+					*/
+					/*var inputs = data.find('positions inputterminals');
+					var outputs = data.find('positions outputterminals');
+
+					$.each(inputs, function(index, value) {
+						value = $(value);
+						var val = $(inputs[index]);
+						console.log(value.text());
+						console.log(val.text());
+						//console.log(value);
+						value.attr('isConnected', val.find('isconnected').text());
+						value.text(val.find('text').text());
+					});
+					$.each(outputs, function(index, value) {
+						value = $(value);
+						var val = $(outputs[outputs.length - (index + 1)]);
+						value.attr('isConnected', val.find('isconnected').text());
+						value.text(val.find('text').text());
+					});*/
+
+					/*$.each(data.find('positions'), function(index, value) {
+						value = $(value);
+						inputs = value.find('inputterminals');
+						$.each($(inputs.get().reverse()), function(index, term) {
+							$.each(inputs, function(inindex, interm) {
+								if(index == inindex) {
+									$(interm).attr('isConnected', $(term).find('isconnected').text());
+									$(interm).text($(term).find('text').text());
+								}
+							});
+						});
+						outputs = value.find('outputterminals');
+						$.each($(outputs.get().reverse()), function(index, term) {
+							$.each(outputs, function(outindex, outterm) {
+								if(index == outindex) {
+									$(outterm).attr('isConnected', $(term).find('isconnected').text());
+									$(outterm).text($(term).find('text').text());
+								}
+							});
+						});
+					});*/
+
+					/*$.each(data.find('positions outputterminals'), function(index, value) {
+						value = $(value);
+						var val = $(inputs[index - 1]);
+						value.attr('isConnected', val.find('isconnected').text());
+						value.text(val.find('text').text());
+					});*/
+					//console.log(data.html());
+					//window.open('data:application/json;charset=utf-8;base64,' + Base64.encode($result), '_new');
+					// + ' filename="eumis-sce_' + dataArr[3] + monthInt + dataArr[2] + dataArr[4].replace(/\:/g, '') + '"'
+					//window.open('data:application/x-json;charset=utf-8;base64,' +  + '  filename="test"', '_new');
+					//$('.eumis_download_netmar').remove();
+					//$('body').append('<a class="eumis_download_netmar" id="file" href="data:application/json;charset=utf-8;base64,' + Base64.encode($result) + '" filename="eumis-sce_' + dataArr[3] + monthInt + dataArr[2] + dataArr[4].replace(/\:/g, '') + '"></a>').hide();
+
+					//location.href = $('.eumis_download_netmar').attr('href');
+					//postMessage($result);
+					///$('.eumis_download_netmar').remove();
+					//console.log(result);
+					//console.log(JSON.stringify(result));
+					//console.log(toXml('{"root":' + JSON.stringify(result) + '}'));
+					//console.log();
+
+					//console.log(result);
+					//return;
+
+					//console.log(toXml('{"root":' + JSON.stringify(result) + '}'));
+					//console.log(result);
+					console.log(result);
+					window.location.href += (netmar ? 'netmar' : 'taverna') + '.php?xmlContent=' + encodeURIComponent(result);
+				});
+			} else {
+				if(panelInits.workspace == null) {
+					panelInits.workspace = setInterval(function() {workspacePlugin.bind();}, 200);
+				}
+			}
+		},
+		flowJSON: function() {
+			var date		= new Date();
+			var dataArr		=date.toLocaleString().split(' ');
+			var monthInt	=date.getMonth()+1;
+			var monthString	='0';
+			if(monthInt <= 9) {
+				monthString += monthInt;
+			} else {
+				monthString = monthInt;
+			}
+			var dateTaverna	= dataArr[3] + '-' + monthString + '-' + dataArr[1] + ' ' + dataArr[4] + ' ' + dataArr[5];
+
+			var result = {};
+			result.wsdlURL = [];
+
+			//var $result = '<?xml version="1.0" encoding="UTF-8"?>';
+			//$result += "\n<root>";
+			$.each(workspacePlugin.loadedWSDLs(), function(index, value) {
+				result.wsdlURL[result.wsdlURL.length] = value;
+				//$result += "\n\t<wsdlURL>" + value + "</wsdlURL>";
+			});
+			result.positions = [];
+			$.each($('.nmWindow'), function(index, vindow) {
+				vindow = $(vindow);
+				var vttr_id = vindow.attr('id');
+
+				//$result += "\n\t<positions>";
+
+				result.positions[result.positions.length] = {};
+				result.positions[result.positions.length - 1].label = vindow.attr('wsdl-label');
+				result.positions[result.positions.length - 1].inputTerminals = [];
+
+				//$result += "\n\t\t<label>" + vindow.attr('wsdl-label') + "</label>";
+				$.each(vindow.find('.body .left'), function(index, vnput) {
+					vnput = $(vnput);
+					var vonnected = false;
+					if(vnput.text() !== '') {
+						$.each($.data(document, 'wires-dest'), function(index, vid) {
+							if(vid.tid == vttr_id && vid.name == vnput.text()) {
+								vonnected = true;
+							}
+							if(vid.pid == vttr_id && vid.partner == vnput.text()) {
+								vonnected = true;
+							}
+						});
+						result.positions[result.positions.length - 1].inputTerminals[result.positions[result.positions.length - 1].inputTerminals.length] = {
+							text: vnput.text(),
+							isConnected: vonnected.toString()
+						};
+						//$result += "\n\t\t<inputTerminals isConnected=\"" + 'To-Do' + "\">" + vnput.text() + "</inputTerminals>";
+					}
+				});
+				result.positions[result.positions.length - 1].outputTerminals = [];
+
+				$.each(vindow.find('.body .right'), function(index, vutput) {
+					vutput = $(vutput);
+					var vonnected = false;
+					if(vutput.text() !== '') {
+						$.each($.data(document, 'wires-dest'), function(index, vid) {
+							if(vid.tid == vttr_id && vid.name == vutput.text()) {
+								vonnected = true;
+							}
+							if(vid.pid == vttr_id && vid.partner == vutput.text()) {
+								vonnected = true;
+							}
+						});
+						result.positions[result.positions.length - 1].outputTerminals[result.positions[result.positions.length - 1].outputTerminals.length] = {
+							text: vutput.text(),
+							isConnected: vonnected.toString()
+						};
+						//$result += "\n\t\t<outputTerminals isConnected=\"" + 'To-Do' + "\">" + vutput.text() + "</outputTerminals>";
+					}
+				});
+				result.positions[result.positions.length - 1].xtype = 'WireIt.TavernaContainer';
+				result.positions[result.positions.length - 1].position = [vindow.css('left'), vindow.css('top')];
+				//$result += "\n\t\t<xtype>WireIt.TavernaContainer</xtype>";
+				//$result += "\n\t\t<position>" + vindow.css('left') + "</position>";
+				//$result += "\n\t\t<position>" + vindow.css('top') + "</position>";
+				//$result += "\n\t</positions>";
+			});
+
+			//$result += "\n\t<uuid>" + UUID.generate() + "</uuid>";
+			//$result += "\n\t<date>" + dateTaverna + "</date>";
+			//$result += "\n</root>";
+
+			result.wires = [];
+			$.each($.data(document, 'wires-dest'), function(index, value) {
+				var found = false;
+				if(value.type == 'input') {
+					result.wires[result.wires.length] = {
+						src: {
+							moduleid: $('#' + value.pid).attr('wsdl-label'),
+							terminal: value.partner,
+							xtype: 'WireIt.TavernaContainer'
+						},
+						tgt: {
+							moduleid: $('#' + value.tid).attr('wsdl-label'),
+							terminal: value.name,
+							xtype: 'WireIt.TavernaContainer'
+						},
+						xtype: 'WireIt.TavernaWire'
+					};
+				}
+				if(value.type == 'output') {
+					result.wires[result.wires.length] = {
+						src: {
+							moduleid: $('#' + value.tid).attr('wsdl-label'),
+							terminal: value.name,
+							xtype: 'WireIt.TavernaContainer'
+						},
+						tgt: {
+							moduleid: $('#' + value.pid).attr('wsdl-label'),
+							terminal: value.partner,
+							xtype: 'WireIt.TavernaContainer'
+						},
+						xtype: 'WireIt.TavernaWire'
+					};
+				}
+			});
+
+			result.uuid = UUID.generate();
+			result.date = dateTaverna;
+			return result;
+		},
+		flowXML: function(data) {
+			return $("<xml>" + toXml('{"root":' + JSON.stringify(data) + '}') + "</xml>").find('root');
+			$.each(data.find('positions'), function(index, value) {
+				value = $(value);
+				var inputs = '';
+				var outputs = '';
+				$.each(value.find('inputterminals'), function(index, term) {
+					term = $(term);
+					inputs = '<inputTerminals isconnected="' + term.find('isconnected').text() + '">' + term.find('text').text() + '</inputTerminals>' + "\n" + inputs;
+				});
+				$.each(value.find('outputterminals'), function(index, term) {
+					term = $(term);
+					outputs = '<outputTerminals isconnected="' + term.find('isconnected').text() + '">' + term.find('text').text() + '</outputTerminals>' + "\n" + outputs;
+				});
+				value.find('inputterminals').remove();
+				value.find('outputterminals').remove();
+				value.find('label').after($(outputs));
+				value.find('label').after($(inputs));
+			});
+
+			var result = data.html();
+			/*result = result.split('positions');
+			//outputs = [];
+			$.each(result, function(index, value) {
+				value = value.split('inputterminals');
+				console.log(value);
+				$.each(value, function(index, term) {
+					if(term.substr(0, 14) == ' isconnected="') {
+						
+					}
+					if(term.substr(0, 14) == ' isconnected="') {
+						
+					}
+				});
+			});
+			*/
+			result = result.replace(/\<inputterminals isconnected=\"/g, "<inputTerminals isConnected=\"");
+			result = result.replace(/\<outputterminals isconnected=\"/g, "<outputTerminals isConnected=\"");
+			result = result.replace(/\<\/inputterminals\>/g, "</inputTerminals>");
+			result = result.replace(/\<\/outputterminals\>/g, "</outputTerminals>");
+			result = result.replace(/\<wsdlurl\>/g, "<wsdlURL>");
+			result = result.replace(/\<\/wsdlurl\>/g, "</wsdlURL>");
+			result = result.replace(/\<moduleid\>/g, "<moduleId>");
+			result = result.replace(/\<\/moduleid\>/g, "</moduleId>");
+			result = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n\t<root>" + result + "</root>";
+		},
+		import: function() {
+			$.dialogBox($.data(document, 'template-importdialog'), 'none', {'Ok': 1}, function(index) {
+			});
+		},
+		save: function() {
+			$.dialogBox($.data(document, 'template-savedialog'), 'none', {'Save':1, 'Cancel': 0}, function(index) {
+				var name = $('.dialogBoxWindow .saveName').val();
+				if(index == 1 && previousSave_prompt !== '' && previousSave_prompt !== null) {
+					$('.dialogBoxWindow .saveName').val(previousSave_prompt);
+					var sceWorkspace = $.jStorage.get('sceWorkspace');
+					var found = null;
+					var name = $('.dialogBoxWindow .saveName').val();
+					$.each(sceWorkspace, function(index, value) {
+						if(value.name == previousSave_prompt) {
+							found = index;
+						}
+					});
+					if(found == null) {
+						sceWorkspace[sceWorkspace.length] = {name: previousSave_prompt, date: (new Date().format('dS of M, Y ~ H:i:s'))};
+						$.jStorage.set('sceWorkspace', sceWorkspace);
+						workspacePlugin.redraw();
+					} else {
+						$.dialogBox($.data(document, 'template-saveoverdialog'), 'none', {'Replace':1, 'Back': 0}, function(index) {
+							if(index == 1) {
+								sceWorkspace[found] = {name: sceWorkspace[found].name, date: (new Date().format('dS of M, Y ~ H:i:s'))};
+								$.jStorage.set('sceWorkspace', sceWorkspace);
+								workspacePlugin.redraw();
+							} else {
+								workspacePlugin.save();
+							}
+						}, function() {
+							$('.dialogBoxWindow .saveover span').text(previousSave_prompt);
+						});
+					}
+				} else {
+					if(index == 1) {
+								workspacePlugin.save();
+					}
+				}
+			}, function() {
+				$('.dialogBoxWindow .saveName').val(previousSave_prompt);
+				$('.dialogBoxWindow .saveName').live('change', function() {
+					previousSave_prompt = $(this).val();
+				});
+			});
+		},
+		remove: function() {
+			$.dialogBox($.data(document, 'template-deletedialog'), 'none', {'Delete':1, 'Cancel': 0}, function(index) {
+				if(index == 1) {
+					var dataItem = $('.workspaceDataTable .highlighted td:first').text();
+					if(dataItem !== '') {
+						var data = $.jStorage.get('sceWorkspace');
+						var sceData = [];
+						$.each(data, function(index, value) {
+							if(value.name !== dataItem) {
+								sceData[sceData.length] = value;
+							}
+						});
+						$.jStorage.set('sceWorkspace', sceData);
+						workspacePlugin.redraw();
+					}
+				}
+			}, function() {
+				$('.dialogBoxWindow .deletedialogbox span').text($('.workspaceDataTable .highlighted td:first').text());
+			});
+		},
+		open: function() {
+			if($(this.menu).length < 1 || $(this.panel).length < 1) {return false;}
+			$(this.menu).addClass('active');
+			$(this.panel).addClass('animating').animate({
+				'margin-left': '0px'
+			}, 500, function() {
+				$(workspacePlugin.panel).addClass('opened').removeClass('animating');
+			});
+		},
+		close: function() {
+			if($(this.menu).length < 1 || $(this.panel).length < 1) {return false;}
+			$(this.menu).removeClass('active');
+			$(this.panel).addClass('animating').animate({
+				'margin-left': '-452px'
+			}, 500, function() {
+				$(workspacePlugin.panel).removeClass('opened').removeClass('animating');
+			});
+		},
+		toggle: function() {
+			if($(this.menu).length < 1 || $(this.panel).length < 1) {return false;}
+			if(!$(this.panel).hasClass('animating')) {
+				if($(this.panel).hasClass('opened')) {
+					this.close();
+				} else {
+					this.open();
+				}
+			}
+		},
+		loadedWSDLs: function() {
+			var windows = $('.nmWindow');
+			var wsdls = [];
+			$.each(windows, function(index, value) {
+				var wsdl = $(value).attr('wsdl-path');
+				var found = false;
+				$.each(wsdls, function(index, value) {
+					if(value == wsdl) {
+						found = true;
+					}
+				});
+				if(!found) {
+					wsdls[wsdls.length] = wsdl;
+				}
+			});
+			return wsdls;
+		},
+		loadedProcesses: function() {
+			var windows = $('.nmWindow');
+			var processes = [];
+			$.each(windows, function(index, value) {
+				var value = $(value);
+				processes[processes.length] = {
+					index: value.css('z-index'),
+					left: value.css('left'),
+					top: value.css('top'),
+					height: value.height(),
+					id: value.attr('id'),
+					relheight: value.attr('rel-height'),
+					collapsed: value.hasClass('collapsed'),
+					collapsable: value.hasClass('collapsable'),
+					label: value.attr('wsdl-label'),
+					path: value.attr('wsdl-path')
+				};
+			});
+			return processes;
+		}
+	};
+}
