@@ -1,0 +1,70 @@
+if(!loadedPlugins['scale']) {
+	loadedPlugins['scale'] = true;
+   $('.scale_zoom .slider').slider({
+      min: -3,
+      max: 0,
+      change: function(event, ui) {
+         var value = (ui.value >= 0) ? ui.value + 1 : ui.value;
+
+         switch(ui.value) {
+            case 3:
+               value = 1.75;
+            break;
+            case 2:
+               value = 1.5;
+            break;
+            case 1:
+               value = 1.25;
+            break;
+            case 0:
+               value = 1;
+            break;
+            case -1:
+               value = 0.75;
+            break;
+            case -2:
+               value = 0.5;
+            break;
+            case -3:
+               value = 0.25;
+            break;
+            default:
+               value = 1;
+            break;
+         }
+         current_scale = value;
+       $('.layer .layerCanvas').css({
+            '-webkit-transform': 'scale(' + value + ')',
+            '-moz-transform': 'scale(' + value + ')',
+            '-ms-transform': 'scale(' + value + ')',
+            '-o-transform': 'scale(' + value + ')',
+            'transform': 'scale(' + value + ')'
+         });
+         $(window).trigger('resize');
+      }
+   });
+   
+   $('.layer').bind('mousewheel', function(e, d) {
+      var slider_val = $('.scale_zoom .slider').slider('value');
+	  if(typeof(d) == 'undefined') {
+		d = e.originalEvent.wheelDelta > 0 ? 1 : -1;
+	  }
+      switch(slider_val) {
+         case 0:
+            slider_val = (d == 1) ? 0 : (d == -1) ? -1 : slider_val;
+         break;
+         case -1:
+            slider_val = (d == 1) ? 0 : (d == -1) ? -2 : slider_val;
+         break;
+         case -2:
+            slider_val = (d == 1) ? -1 : (d == -1) ? -3 : slider_val;
+         break;
+         case -3:
+            slider_val = (d == 1) ? -2 : (d == -1) ? -3 : slider_val;
+         break;
+         default:
+         break;
+      }
+      $('.scale_zoom .slider').slider('value', slider_val);
+   });
+}

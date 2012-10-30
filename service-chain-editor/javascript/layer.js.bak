@@ -1,0 +1,402 @@
+if(!loadedPlugins['layer']) {
+	loadedPlugins['layer'] = true;
+
+	$.data(document, 'template-layerwindow_sync',	 getTemplate('layerwindow_sync'));
+	$.data(document, 'template-layerwindow_async', getTemplate('layerwindow_async'));
+	$.data(document, 'template-layerhelp', getTemplate('layerhelp'));
+
+	var layerWindowZBase = 2000;
+	service_currentWindow = null;
+
+	function layer_option(id, options) {
+		var properties = layer_optionDefaults;
+		if(typeof(options) == 'object') {
+			$.each(options, function(index, value) {
+				switch(index) {
+					case 'title': properties.title = value; break;
+					case 'close': properties.close = value ? true : false; break;
+					case 'collapse': properties.collapse = value ? true : false; break;
+					case 'collapsed': properties.collapsed= value ? true : false; break;
+					case 'tooltip': properties.tooltip = value; break;
+					case 'body': properties.body = value; break;
+					case 'help':
+						if(typeof(value) == 'object') {
+							$.each(value, function(index, item) {
+								if(typeof(item) !== 'undefined') {
+									properties.help.enabled = item ? true : false;
+								}
+								if(typeof(item) == 'string') {
+									properties.help.content = item;
+								}
+							});
+						}
+					break;
+				}
+			});
+			layer_options[id] = properties;
+		}
+		return properties;
+	}
+
+	function layerWindowToFront($this) {
+		$.each($('.layer .layerCanvas .nmWindow'), function(index, value) {
+			var z = parseInt($(value).css('z-index'));
+			$(value).css('z-index', ((z < (layerWindowZBase + 1)) ? (layerWindowZBase + 1) : z)  - 1);
+		});
+		$this.css('z-index', $('.layer .layerCanvas .nmWindow').length + layerWindowZBase);
+	}
+
+	function getLayerWindowHeight($id) {
+		var $window = $('.layer .layerCanvas #nmWindow_' + $id);
+		return $window.height() + $window.find('.body').height();
+	}
+
+	function createHelpWindow() {
+		$('body').append($.data(document, 'template-layerhelp'));
+	}
+
+	function triggerLayerWindowHelp(id) {
+		var $help = $('.layerhelp');
+		if($help.length < 1) {
+			createHelpWindow();
+			$('.layerhelp .close').bind('click', function() {
+				$('.layerhelp').hide();
+			});
+		}
+		$help = $('.layerhelp');
+		if($help.length < 1) {
+			return false;
+		}
+		$help.find('.body').html((layer_option(id).help.content));
+		var $window = $('.layer .layerCanvas #nmWindow_' + id);
+		$help.css({
+			'left': (190 + (parseInt($window.css('left')) / ((current_scale == 1) ? 1 : ((current_scale == 0.75) ? 1.333 : ((current_scale == 0.5) ? 2 : ((current_scale == 0.25) ? 4 : 1)))))) + 'px',
+			'top': (50 + (parseInt($window.css('top')) / ((current_scale == 1) ? 1 : ((current_scale == 0.75) ? 1.333 : ((current_scale == 0.5) ? 2 : ((current_scale == 0.25) ? 4 : 1)))))) + 'px',
+			'display': 'block'
+		});
+	}
+
+	function updateLayerWindow(id, options) {
+		var $window = $('.layer .layerCanvas #nmWindow_' + id);
+		var properties = layer_option(id, options);
+		if(typeof(options) == 'object') {
+			$.each(options, function(index, value) {
+				switch(index) {
+					case 'title': properties.title = value; break;
+					case 'close': properties.close = value ? true : false; break;
+					case 'collapse': properties.collapse = value ? true : false; break;
+					case 'collapsed': properties.collapsed= value ? true : false; break;
+					case 'tooltip': properties.tooltip = value; break;
+					case 'body': properties.body = value; break;
+					case 'help':
+						if(typeof(value) == 'object') {
+							$.each(value, function(index, item) {
+								if(typeof(item) !== 'undefined') {
+									properties.help.enabled = item ? true : false;
+								}
+								if(typeof(item) == 'string') {
+									properties.help.content = item;
+								}
+							});
+						}
+					break;
+				}
+			});
+		}
+		$.data($window, 'layer_options', options);
+		$window.find('.handler').text(properties.title);
+		$window.find('.body').html(properties.body);
+	}
+
+	function createLayerWindow(options, aSync) {
+		var properties = layer_optionDefaults;
+		if(typeof(options) == 'object') {
+			$.each(options, function(index, value) {
+				switch(index) {
+					case 'title': properties.title = value; break;
+					case 'close': properties.close = value ? true : false; break;
+					case 'collapse': properties.collapse = value ? true : false; break;
+					case 'collapsed': properties.collapsed= value ? true : false; break;
+					case 'tooltip': properties.tooltip = value; break;
+					case 'body': properties.body = value; break;
+					case 'help':
+						if(typeof(value) == 'object') {
+							$.each(value, function(index, item) {
+								if(typeof(item) !== 'undefined') {
+									properties.help.enabled = item ? true : false;
+								}
+								if(typeof(item) == 'string') {
+									properties.help.content = item;
+								}
+							});
+						}
+					break;
+				}
+			});
+		}
+
+		var z = $('.layer .layerCanvas .nmWindow').length + layerWindowZBase;
+		var id = null;
+		for(var i = 0; i < 1000; i++) {
+			if(id == null) {
+				id = parseInt(Math.random() * 1000000);
+				if($('.layer .layerCanvas #nmWindow_' + id).length > 0) {
+					id = null;
+				}
+			}
+		}
+		var $window = $((aSync) ? $.data(document, 'template-layerwindow_async') : $.data(document, 'template-layerwindow_sync'));
+		$window.css({'z-index': z});
+		if(!properties.collapse) {
+			$window.addClass('nmWindow_noncollapse');
+		}
+		$window.find('.handler').text(properties.title);
+		$window.find('.body').html(properties.body);
+		$window.attr('id', 'nmWindow_' + id);
+		if(!properties.close) {
+			$window.find('.close').hide();
+		}
+		if(properties.collapse) {
+			if(properties.collapsed) {
+				$window.addClass('collapsed');
+			}
+			$window.addClass('collapsable');
+		}
+		if(!properties.help.enabled) {
+			$window.find('.help').hide();
+		}
+		$window.find('.close').bind('click', function() {
+			$(this).parents('.nmWindow').remove();
+		});
+		$window.find('.help').bind('mouseenter', function(mouse) {
+			help_mousetimer = setInterval(function() {
+				layer_mouseDown = false;
+				layer_currentWindow = null;
+			}, 10);
+		}).bind('mouseleave', function() {
+			clearInterval(help_mousetimer);
+		}).bind('click', id, function(id) {
+			triggerLayerWindowHelp(id.data);
+		});
+		$('.layer .layerCanvas').append($window);
+		var height = getLayerWindowHeight(id);
+		$('.layer .layerCanvas #nmWindow_' + id).css('height', height + 'px').attr('rel-height', height);
+		if(properties.collapsed) {
+			$window.addClass('nmWindow_collapsed').css({'height': '24px'});
+		}
+		return id;
+	}
+
+	$('.layer').live('mousedown', function(mouse) {
+		$('.layerhelp').hide();
+		if(mouse.which == 1) {
+			var potentials = [];
+			var x = mouse.pageX - 190;
+			var y = mouse.pageY - 50;
+			var left = 0;
+			var top = 0;
+			x = x * ((current_scale == 1) ? 1 : ((current_scale == 0.75) ? 1.333 : ((current_scale == 0.5) ? 2. : ((current_scale == 0.25) ? 4 : 1))));
+			y = y * ((current_scale == 1) ? 1 : ((current_scale == 0.75) ? 1.333 : ((current_scale == 0.5) ? 2. : ((current_scale == 0.25) ? 4 : 1))));
+			$.each($('.layer .layerCanvas .nmWindow .handler'), function(index, value) {
+				left = parseInt($(value).parents('.nmWindow').css('left'));
+				top = parseInt($(value).parents('.nmWindow').css('top'));
+				if(isNaN(left)) {left = 0;}
+				if(isNaN(top)) {top = 0;}
+				var right = $(value).parents('.nmWindow').width() + left;
+				var bottom = $(value).parents('.nmWindow .header').height() + top;
+				$(value).parents('.nmWindow').css({'opacity': 1});
+				if(x >= left && x <= right && y >= top && y <= bottom) {
+					$(value).parents('.nmWindow').css({'opacity': 0.7});
+					potentials[potentials.length] = $(value).parents('.nmWindow');
+				}
+			});
+			if(potentials.length > 0) {
+				var topmost = -1;
+				layer_currentWindow = potentials[0];
+				if(layer_ctrlDown) {
+					$.each(potentials, function(index, value) {
+						$(value).toggleClass('nmWindow_multiselect');
+					});
+				} else {
+					$.each(potentials, function(index, value) {
+						if(parseInt($(value).css('z-index')) > topmost) {
+							layer_currentWindow = value;
+							left = parseInt($(value).css('left'));
+							top = parseInt($(value).css('top'));
+							layer_currentWindowOffset = [(x - left), (y - top)];
+						}
+					});
+					layer_mouseDown = true;
+				}
+			} else {
+				layer_currentWindow = null;
+			}
+			layerWindowToFront($(layer_currentWindow));
+		}
+	}).live('mouseup', function(mouse) {
+		drawingWire = false;
+		if(service_mouseDown) {
+			if(service_currentWindow.label) {
+				var x = mouse.pageX - 190;
+				var y = mouse.pageY - 50;
+				x = (x * ((current_scale == 1) ? 1 : ((current_scale == 0.75) ? 1.333 : ((current_scale == 0.5) ? 2 : ((current_scale == 0.25) ? 4 : 1))))) - 115;
+				y = (y * ((current_scale == 1) ? 1 : ((current_scale == 0.75) ? 1.333 : ((current_scale == 0.5) ? 2 : ((current_scale == 0.25) ? 4 : 1))))) - 12;
+				if(x < 0) {x = 0;}
+				if(y < 0) {y = 0;}
+				if(snapToGrid) {
+					x = parseInt(x / snapToSize) * snapToSize;
+					y = parseInt(y / snapToSize) * snapToSize;
+				}
+				var len = 0;
+				var i = 0;
+				var j = 0;
+				var html = '';
+				if(service_currentWindow.containerInputs.length > service_currentWindow.containerOutputs.length) {
+					len = service_currentWindow.containerInputs.length - service_currentWindow.containerOutputs.length;
+					for(i = 0; i < service_currentWindow.containerInputs.length; i++) {
+						html += $($.data(document, 'serviceWindow-Link')).addClass('left').addClass('content').addClass('serviceLink').text(service_currentWindow.containerInputs[i])[0].outerHTML;
+						if(i >= len) {
+							html += $($.data(document, 'serviceWindow-Link')).addClass('right').addClass('content').addClass('serviceLink').text(service_currentWindow.containerOutputs[j])[0].outerHTML;
+							j++;
+						} else {
+							html += $($.data(document, 'serviceWindow-Link')).addClass('right').addClass('serviceLink')[0].outerHTML;
+						}
+					}
+				} else {
+					len = service_currentWindow.containerOutputs.length - service_currentWindow.containerInputs.length;
+					
+				}
+
+				var $id = createLayerWindow({title:servicePlugin.title(service_currentWindow.label),body:html,help:{enabled:true,content:'Loading description...'}}, false);
+				var nmWindow = $('#nmWindow_' + $id);
+				nmWindow.css({
+					'left': x + 'px',
+					'top': y + 'px'
+				}).attr('wsdl-label', service_currentWindow.label).attr('wsdl-path', service_currentWindow.wsdl).attr('wsdl-uri', service_currentWindow.uri).find('.header .help').bind('click', function() {
+
+					var parent = $(this).parents('.nmWindow');
+					var wsdl_path = parent.attr('wsdl-path');
+					var wsdl_label = parent.attr('wsdl-label');
+					var wsdl_uri = parent.attr('wsdl-uri');
+					var wsdl_replace = wsdl_path.replace(/\./g, '').replace(/\//g, '').replace(/\\/g, '');
+
+					$.each(loadedWSDLs[wsdl_replace], function(index, value) {
+						if(value.label == wsdl_label && value.wsdl == wsdl_path) {
+							if(typeof(value.help) == undefined || !value.help || value.help == '' || value.help == 'Loading description...') {
+								$data = $.ajax({url: './wsdlproxy.php?uri=' + wsdl_uri + '&wsdl=' + servicePlugin.title(value.label), async: true, wsdl_replace:wsdl_replace, wsdl_path:wsdl_path, wsdl_label:wsdl_label, success: function(data) {
+									var $this = this;
+									data = $(data.replace(/ows:/g, 'ows'));
+									$.each(loadedWSDLs[this.wsdl_replace], function(index, value) {
+										if(value.label == $this.wsdl_label && value.wsdl == $this.wsdl_path) {
+											value.data = data;
+											value.help = $(data.find('owstitle')[0]).text() || 'No service information available.';
+											$('.layerhelp .body').text(value.help);
+										}
+									});
+								}});
+							} else {
+								$('.layerhelp .body').text(value.help);
+							}
+						}
+					});
+				});
+				nmWindow.find('.body .serviceLink').bind('mousedown', function() {
+					if(!drawingWire && $(this).hasClass('content')) {
+						drawingWireWindow = $(this).parents('.nmWindow').attr('id');
+						drawingWire = true;
+						drawingWireIO = $(this).hasClass('left') ? 'input' : ($(this).hasClass('right') ? 'output' : null);
+					}
+				}).bind('mouseup', function() {
+					if(drawingWire && drawingWireWindow !== null && drawingWireIO !== null) {
+						if($(this).parents('.nmWindow').attr('id') !== drawingWireWindow && (($(this).hasClass('left') && drawingWireIO == 'output') || ($(this).hasClass('right') && drawingWireIO == 'input'))) {
+							console.log('wirenewwindow');
+						}
+					}
+					drawingWireWindow = null;
+					drawingWire = false;
+					drawingWireIO = null;
+				});
+
+			}
+			service_mouseDown = false;
+			service_currentWindow = null;
+		}
+		if(layer_currentWindow  == null) {
+			$('.nmWindow_multiselect').removeClass('nmWindow_multiselect');
+		}
+		layer_mouseDown = false;
+		layer_currentWindow = null;
+		$('.layer .layerCanvas .nmWindow').css({'opacity': 1});
+	}).live('mousemove', function(mouse) {
+		if(layer_mouseDown && layer_currentWindow !== null) {
+			var x = mouse.pageX - 190;
+			var y = mouse.pageY - 50;
+			x = (x * ((current_scale == 1) ? 1 : ((current_scale == 0.75) ? 1.333 : ((current_scale == 0.5) ? 2 : ((current_scale == 0.25) ? 4 : 1))))) - layer_currentWindowOffset[0];
+			y = (y * ((current_scale == 1) ? 1 : ((current_scale == 0.75) ? 1.333 : ((current_scale == 0.5) ? 2 : ((current_scale == 0.25) ? 4 : 1))))) - layer_currentWindowOffset[1];
+			if(x < 0) {x = 0;}
+			if(y < 0) {y = 0;}
+			if(snapToGrid) {
+				x = parseInt(x / snapToSize) * snapToSize;
+				y = parseInt(y / snapToSize) * snapToSize;
+			}
+			if(drawingWire) {
+				console.log('line');
+			} else {
+				$multiselectWindows = $('.nmWindow_multiselect');
+				if(!$(layer_currentWindow).hasClass('nmWindow_multiselect')) {
+					$multiselectWindows.removeClass('nmWindow_multiselect');
+					$multiselectWindows = [];
+				}
+				var left = parseInt($(layer_currentWindow).css('left'));
+				var top = parseInt($(layer_currentWindow).css('top'));
+				$(layer_currentWindow).css({
+					'left':x + 'px',
+					'top':y + 'px'
+				});
+				if($multiselectWindows.length > 0) {
+					$.each($multiselectWindows, function(index, value) {
+						if($(layer_currentWindow).attr('id') !== $(value).attr('id')) {
+							var _x = parseInt($(value).css('left')) + (x - left);
+							var _y = parseInt($(value).css('top')) + (y - top);
+							$(value).css({
+								'left':(_x) + 'px',
+								'top':(_y) + 'px'
+							});
+						}
+					});
+				}
+			}
+			renderPathLine();
+		}
+	});
+
+	$('.nmWindow .handler').live('dblclick', function() {
+		var $this = $(this).parents('.nmWindow');
+		$this.toggleClass('collapsed');
+		if($this.hasClass('collapsed')) {
+			$this.css('height', '24px');
+		} else {
+			$this.css('height', $this.attr('rel-height') + 'px');
+		}
+	});
+
+	$(document).live('keydown', function(k) {
+		if(k.keyCode == 17) {
+			layer_ctrlDown = true;
+		}
+	}).live('keyup', function(k) {
+		if(k.keyCode == 17) {
+			layer_ctrlDown = false;
+		}
+	});
+
+	$(window).keydown(function(e) {
+		if(e.keyCode == 17) {
+			document.title = "multiselect";
+		}
+	}).keyup(function(e) {
+		if(e.keyCode == 17) {
+			document.title = "normal";
+		}
+	});
+}

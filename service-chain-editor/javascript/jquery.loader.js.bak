@@ -1,0 +1,62 @@
+if(!loadedPlugins['jquery.loader']) {
+	loadedPlugins['jquery.loader'] = true;
+	addjQQueue([
+		'javascript/globals.js',
+		function() {devel?0:console={log:function(){}}},
+		'javascript/functions.js',
+		'javascript/jquery/jquery.ui.js',
+		'javascript/jquery/jquery.transform-css.js',
+		'javascript/jquery/jquery.3dtransform-css.js',
+		'javascript/loading-screen.js',
+		'javascript/help-screen.js',
+		'javascript/resize.js',
+		'javascript/scale.js',
+		'javascript/astar.js',
+		'javascript/layer.js',
+		'javascript/wsdl-parse.js',
+		'javascript/jquery/jquery.slider.js',
+		'javascript/jquery/jquery.data-tables.js',
+		'javascript/jquery/jquery.fileinput.js',
+		'javascript/jquery/jquery.context-menu.js',
+		'javascript/jquery/jquery.mousewheel.js',
+		'javascript/panel.js',
+		'javascript/load-menus.js',
+		'javascript/load-panels.js',
+		'javascript/plugins/wsdlPlugin.js',
+		'javascript/plugins/workspacePlugin.js',
+		'javascript/plugins/ioPlugin.js',
+		'javascript/plugins/servicePlugin.js',
+		'javascript/plugins/exportPlugin.js',
+		'javascript/plugins/settingsPlugin.js',
+		'javascript/workflow.js',
+		'javascript/plugins/dialogBox.js',
+		'javascript/plugins/initPlugins.js',
+		function() {$(window).trigger('resize');},
+		'javascript/load-init-wsdl.js',
+		function() {$('.checkbox-ui').bind('click', function() {	$(this).toggleClass('checked');});}/*,
+		function() {createLayerWindow({
+			title: 'Window',
+			close: true,
+			collapse: true,
+			collapsed: false,
+			tooltip: '',
+			body: 'Hello world!',
+			help: {
+				enabled: true,
+				content: '<div>Testing</div>'
+			}
+		})},
+		function() {createLayerWindow({
+			title: 'Window 2',
+			close: true,
+			collapse: true,
+			collapsed: false,
+			tooltip: '',
+			body: 'Hello world 2!',
+			help: {
+				enabled: true,
+				content: '<div>Testing2</div>'
+			}
+		})}*/
+	]);
+}

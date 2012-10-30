@@ -1,0 +1,54 @@
+if(!loadedPlugins['globals']) {
+	loadedPlugins['globals'] = true;
+	var domainProxy = "proxy.php?url";
+	var wsdlURL = "./example.wsdl";
+	var arrContainers = [];
+
+	var initialWSDL = false;
+	var layerEditor = null;
+	var currentProgressBar = 0;
+	var current_scale = 1;
+	var wireitdraggableelementbody = false;
+	var initialScripts = 0;
+	var initialLoadedScripts = 0;
+	var initialLoaded = false;
+	var devel = (window.location && window.location.host == 'localhost');
+
+	var layer_mouseDown = false;
+	var layer_ctrlDown = false;
+	var layer_ctrlWindows = [];
+	var layer_currentWindow = null;
+	var layer_currentWindowOffset = [0, 0];
+
+	var drawingWire = false;
+	var drawingWireWindow = null;
+
+	var service_mouseDown = false;
+	var service_currentWindow = null;
+	var service_currentWindowOffset = [0, 0];
+
+	var snapToGrid = false;
+	var snapToSize = 60;
+
+	var help_mousetimer = null;
+
+	var panelInits = {
+		settings: null
+	};
+
+	var loadedWSDLs = [];
+
+	var layer_options = [];
+	var layer_optionDefaults = {
+		title: 'Window',
+		close: true,
+		collapse: true,
+		collapsed: false,
+		tooltip: '',
+		body: '',
+		help: {
+			enabled: false,
+			content: ''
+		}
+	};
+}
