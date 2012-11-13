@@ -2,18 +2,17 @@
 <ows-context:OWSContext xmlns:ows-context="http://www.opengis.net/ows-context" xmlns:ows="http://www.opengis.net/ows" xmlns:sld="http://www.opengis.net/sld" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ogc="http://www.opengis.net/ogc" xmlns:gml="http://www.opengis.net/gml" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:ns9="http://www.w3.org/2005/Atom" xmlns:xal="urn:oasis:names:tc:ciq:xsdschema:xAL:2.0" xmlns:ins="http://www.inspire.org" xmlns:context="http://www.opengis.net/context" id="ows-context-ex-1-v3" version="0.3.0">
     <ows-context:General>
         <ows-context:Window height="672" width="1240"/>
-<!--
+
         <ows:BoundingBox crs="EPSG:4326">
             <ows:LowerCorner>-90.0 -180.0</ows:LowerCorner>
             <ows:UpperCorner>90.0 180.0</ows:UpperCorner>
         </ows:BoundingBox>
--->
 
         <!-- epsg 84 for compatibility with ncwms -->
-        <ows:BoundingBox crs="CRS:84">
+<!--        <ows:BoundingBox crs="CRS:84">
             <ows:LowerCorner>-180.0 -90.0</ows:LowerCorner>
             <ows:UpperCorner>180.0 90.0</ows:UpperCorner>
-        </ows:BoundingBox>
+        </ows:BoundingBox>-->
 
         <ows:Title>Netmar</ows:Title>
         <ows:Abstract></ows:Abstract>
