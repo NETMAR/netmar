@@ -220,6 +220,18 @@ public class GeoviewerController implements Serializable {
     }
 
     /**
+     * Change MapContext from "planar/square" projection to "stereographic" or
+     * from "stereographic" to "planar/square".
+     */
+    public void changeMapContext() {
+        if (ctxService.equals("/data/Netmar32661.xml")) {
+            ctxService = "/data/Netmar.xml";
+        } else {
+            ctxService = "/data/Netmar32661.xml";
+        }
+    }
+
+    /**
      * This is an action event for the getFeatureInfo
      * @throws JAXBException
      * @throws IOException

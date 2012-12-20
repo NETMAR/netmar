@@ -1,7 +1,6 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:rich="http://richfaces.org/rich"
       xmlns:c="http://java.sun.com/jstl/core"
       xmlns:mf="http://mapfaces.org/taglib"
       xmlns:a4j="http://richfaces.org/a4j"
@@ -264,6 +263,7 @@
                             <!-- FIN viewer/layout-center/layout-content -->
 
                             <div class="ui-layout-footer">
+                                <h:commandButton style="top:-8px;position: relative;float:left;" value="#{geoviewer.ctxService == '/data/Netmar32661.xml' ? msg.planar : msg.stereographic}" action="#{geoviewer.changeMapContext}" />
                                 <mf:CursorTrack></mf:CursorTrack>
                                 <mf:ScaleBar  abbreviateLabel="true" 
                                               unitsLabelPos="right">                                    

@@ -88,7 +88,7 @@
     <properties>
 
         <!-- SNAPSHOTS -->
-        <geotoolkit.version>3.x-SNAPSHOT</geotoolkit.version>
+        <geotoolkit.version>3.20-SEXTAN-1.1</geotoolkit.version>
         <mapfaces.version>0.44.1-SNAPSHOT</mapfaces.version>
 
         <!-- RELEASE -->
