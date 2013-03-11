@@ -1,5 +1,4 @@
 /*JQuery*/
-
 	/*!
 	 * jQuery JavaScript Library v1.7.2
 	 * http://jquery.com/
@@ -9423,7 +9422,7 @@
 	   }this.element.unbind("."+this.widgetName),a(document).unbind("mousemove."+this.widgetName,this._mouseMoveDelegate).unbind("mouseup."+this.widgetName,this._mouseUpDelegate)},
 
 
-	_mouseDown:function(b){
+	_mouseDown:function(b) {
 	   
 	   if(wireitdraggableelementbody) {
 		  return false;
@@ -9492,7 +9491,7 @@
 		  return!1;
 	   if(this.options.revert=="invalid"&&!c||this.options.revert=="valid"&&c||this.options.revert===!0||a.isFunction(this.options.revert)&&this.options.revert.call(this.element,c)){
 		  var f=this;
-		  console.log(this.originalPosition);
+		  //console.log(this.originalPosition);
 		  a(this.helper).animate(
 			 this.originalPosition,
 			 parseInt(this.options.revertDuration,10),
@@ -9522,7 +9521,7 @@
 	* https://github.com/jquery/jquery-ui
 	* Includes: jquery.ui.resizable.js
 	* Copyright (c) 2012 AUTHORS.txt; Licensed MIT, GPL */
-	(function(a,b){a.widget("ui.resizable",a.ui.mouse,{widgetEventPrefix:"resize",options:{alsoResize:!1,animate:!1,animateDuration:"slow",animateEasing:"swing",aspectRatio:!1,autoHide:!1,containment:!1,ghost:!1,grid:!1,handles:"e,s,se",helper:!1,maxHeight:null,maxWidth:null,minHeight:10,minWidth:10,zIndex:1e3},_create:function(){var b=this,c=this.options;this.element.addClass("ui-resizable"),a.extend(this,{_aspectRatio:!!c.aspectRatio,aspectRatio:c.aspectRatio,originalElement:this.element,_proportionallyResizeElements:[],_helper:c.helper||c.ghost||c.animate?c.helper||"ui-resizable-helper":null}),this.element[0].nodeName.match(/canvas|textarea|input|select|button|img/i)&&(this.element.wrap(a('<div class="ui-wrapper" style="overflow: hidden;"></div>').css({position:this.element.css("position"),width:this.element.outerWidth(),height:this.element.outerHeight(),top:this.element.css("top"),left:this.element.css("left")})),this.element=this.element.parent().data("resizable",this.element.data("resizable")),this.elementIsWrapper=!0,this.element.css({marginLeft:this.originalElement.css("marginLeft"),marginTop:this.originalElement.css("marginTop"),marginRight:this.originalElement.css("marginRight"),marginBottom:this.originalElement.css("marginBottom")}),this.originalElement.css({marginLeft:0,marginTop:0,marginRight:0,marginBottom:0}),this.originalResizeStyle=this.originalElement.css("resize"),this.originalElement.css("resize","none"),this._proportionallyResizeElements.push(this.originalElement.css({position:"static",zoom:1,display:"block"})),this.originalElement.css({margin:this.originalElement.css("margin")}),this._proportionallyResize()),this.handles=c.handles||(a(".ui-resizable-handle",this.element).length?{n:".ui-resizable-n",e:".ui-resizable-e",s:".ui-resizable-s",w:".ui-resizable-w",se:".ui-resizable-se",sw:".ui-resizable-sw",ne:".ui-resizable-ne",nw:".ui-resizable-nw"}:"e,s,se");if(this.handles.constructor==String){this.handles=="all"&&(this.handles="n,e,s,w,se,sw,ne,nw");var d=this.handles.split(",");this.handles={};for(var e=0;e<d.length;e++){var f=a.trim(d[e]),g="ui-resizable-"+f,h=a('<div class="ui-resizable-handle '+g+'"></div>');h.css({zIndex:c.zIndex}),"se"==f&&h.addClass("ui-icon ui-icon-gripsmall-diagonal-se"),this.handles[f]=".ui-resizable-"+f,this.element.append(h)}}this._renderAxis=function(b){b=b||this.element;for(var c in this.handles){this.handles[c].constructor==String&&(this.handles[c]=a(this.handles[c],this.element).show());if(this.elementIsWrapper&&this.originalElement[0].nodeName.match(/textarea|input|select|button/i)){var d=a(this.handles[c],this.element),e=0;e=/sw|ne|nw|se|n|s/.test(c)?d.outerHeight():d.outerWidth();var f=["padding",/ne|nw|n/.test(c)?"Top":/se|sw|s/.test(c)?"Bottom":/^e$/.test(c)?"Right":"Left"].join("");b.css(f,e),this._proportionallyResize()}if(!a(this.handles[c]).length)continue}},this._renderAxis(this.element),this._handles=a(".ui-resizable-handle",this.element).disableSelection(),this._handles.mouseover(function(){if(!b.resizing){if(this.className)var a=this.className.match(/ui-resizable-(se|sw|ne|nw|n|e|s|w)/i);b.axis=a&&a[1]?a[1]:"se"}}),c.autoHide&&(this._handles.hide(),a(this.element).addClass("ui-resizable-autohide").hover(function(){if(c.disabled)return;a(this).removeClass("ui-resizable-autohide"),b._handles.show()},function(){if(c.disabled)return;b.resizing||(a(this).addClass("ui-resizable-autohide"),b._handles.hide())})),this._mouseInit()},destroy:function(){this._mouseDestroy();var b=function(b){a(b).removeClass("ui-resizable ui-resizable-disabled ui-resizable-resizing").removeData("resizable").unbind(".resizable").find(".ui-resizable-handle").remove()};if(this.elementIsWrapper){b(this.element);var c=this.element;c.after(this.originalElement.css({position:c.css("position"),width:c.outerWidth(),height:c.outerHeight(),top:c.css("top"),left:c.css("left")})).remove()}return this.originalElement.css("resize",this.originalResizeStyle),b(this.originalElement),this},_mouseCapture:function(b){var c=!1;for(var d in this.handles)a(this.handles[d])[0]==b.target&&(c=!0);return!this.options.disabled&&c},_mouseStart:function(b){var d=this.options,e=this.element.position(),f=this.element;this.resizing=!0,this.documentScroll={top:a(document).scrollTop(),left:a(document).scrollLeft()},(f.is(".ui-draggable")||/absolute/.test(f.css("position")))&&f.css({position:"absolute",top:e.top,left:e.left}),this._renderProxy();var g=c(this.helper.css("left")),h=c(this.helper.css("top"));d.containment&&(g+=a(d.containment).scrollLeft()||0,h+=a(d.containment).scrollTop()||0),this.offset=this.helper.offset(),this.position={left:g,top:h},this.size=this._helper?{width:f.outerWidth(),height:f.outerHeight()}:{width:f.width(),height:f.height()},this.originalSize=this._helper?{width:f.outerWidth(),height:f.outerHeight()}:{width:f.width(),height:f.height()},this.originalPosition={left:g,top:h},this.sizeDiff={width:f.outerWidth()-f.width(),height:f.outerHeight()-f.height()},this.originalMousePosition={left:b.pageX,top:b.pageY},this.aspectRatio=typeof d.aspectRatio=="number"?d.aspectRatio:this.originalSize.width/this.originalSize.height||1;var i=a(".ui-resizable-"+this.axis).css("cursor");return a("body").css("cursor",i=="auto"?this.axis+"-resize":i),f.addClass("ui-resizable-resizing"),this._propagate("start",b),!0},_mouseDrag:function(b){var c=this.helper,d=this.options,e={},f=this,g=this.originalMousePosition,h=this.axis,i=b.pageX-g.left||0,j=b.pageY-g.top||0,k=this._change[h];if(!k)return!1;var l=k.apply(this,[b,i,j]),m=a.browser.msie&&a.browser.version<7,n=this.sizeDiff;this._updateVirtualBoundaries(b.shiftKey);if(this._aspectRatio||b.shiftKey)l=this._updateRatio(l,b);return l=this._respectSize(l,b),this._propagate("resize",b),c.css({top:this.position.top+"px",left:this.position.left+"px",width:this.size.width+"px",height:this.size.height+"px"}),!this._helper&&this._proportionallyResizeElements.length&&this._proportionallyResize(),this._updateCache(l),this._trigger("resize",b,this.ui()),!1},_mouseStop:function(b){this.resizing=!1;var c=this.options,d=this;if(this._helper){var e=this._proportionallyResizeElements,f=e.length&&/textarea/i.test(e[0].nodeName),g=f&&a.ui.hasScroll(e[0],"left")?0:d.sizeDiff.height,h=f?0:d.sizeDiff.width,i={width:d.helper.width()-h,height:d.helper.height()-g},j=parseInt(d.element.css("left"),10)+(d.position.left-d.originalPosition.left)||null,k=parseInt(d.element.css("top"),10)+(d.position.top-d.originalPosition.top)||null;c.animate||this.element.css(a.extend(i,{top:k,left:j})),d.helper.height(d.size.height),d.helper.width(d.size.width),this._helper&&!c.animate&&this._proportionallyResize()}return a("body").css("cursor","auto"),this.element.removeClass("ui-resizable-resizing"),this._propagate("stop",b),this._helper&&this.helper.remove(),!1},_updateVirtualBoundaries:function(a){var b=this.options,c,e,f,g,h;h={minWidth:d(b.minWidth)?b.minWidth:0,maxWidth:d(b.maxWidth)?b.maxWidth:Infinity,minHeight:d(b.minHeight)?b.minHeight:0,maxHeight:d(b.maxHeight)?b.maxHeight:Infinity};if(this._aspectRatio||a)c=h.minHeight*this.aspectRatio,f=h.minWidth/this.aspectRatio,e=h.maxHeight*this.aspectRatio,g=h.maxWidth/this.aspectRatio,c>h.minWidth&&(h.minWidth=c),f>h.minHeight&&(h.minHeight=f),e<h.maxWidth&&(h.maxWidth=e),g<h.maxHeight&&(h.maxHeight=g);this._vBoundaries=h},_updateCache:function(a){var b=this.options;this.offset=this.helper.offset(),d(a.left)&&(this.position.left=a.left),d(a.top)&&(this.position.top=a.top),d(a.height)&&(this.size.height=a.height),d(a.width)&&(this.size.width=a.width)},_updateRatio:function(a,b){var c=this.options,e=this.position,f=this.size,g=this.axis;return d(a.height)?a.width=a.height*this.aspectRatio:d(a.width)&&(a.height=a.width/this.aspectRatio),g=="sw"&&(a.left=e.left+(f.width-a.width),a.top=null),g=="nw"&&(a.top=e.top+(f.height-a.height),a.left=e.left+(f.width-a.width)),a},_respectSize:function(a,b){var c=this.helper,e=this._vBoundaries,f=this._aspectRatio||b.shiftKey,g=this.axis,h=d(a.width)&&e.maxWidth&&e.maxWidth<a.width,i=d(a.height)&&e.maxHeight&&e.maxHeight<a.height,j=d(a.width)&&e.minWidth&&e.minWidth>a.width,k=d(a.height)&&e.minHeight&&e.minHeight>a.height;j&&(a.width=e.minWidth),k&&(a.height=e.minHeight),h&&(a.width=e.maxWidth),i&&(a.height=e.maxHeight);var l=this.originalPosition.left+this.originalSize.width,m=this.position.top+this.size.height,n=/sw|nw|w/.test(g),o=/nw|ne|n/.test(g);j&&n&&(a.left=l-e.minWidth),h&&n&&(a.left=l-e.maxWidth),k&&o&&(a.top=m-e.minHeight),i&&o&&(a.top=m-e.maxHeight);var p=!a.width&&!a.height;return p&&!a.left&&a.top?a.top=null:p&&!a.top&&a.left&&(a.left=null),a},_proportionallyResize:function(){var b=this.options;if(!this._proportionallyResizeElements.length)return;var c=this.helper||this.element;for(var d=0;d<this._proportionallyResizeElements.length;d++){var e=this._proportionallyResizeElements[d];if(!this.borderDif){var f=[e.css("borderTopWidth"),e.css("borderRightWidth"),e.css("borderBottomWidth"),e.css("borderLeftWidth")],g=[e.css("paddingTop"),e.css("paddingRight"),e.css("paddingBottom"),e.css("paddingLeft")];this.borderDif=a.map(f,function(a,b){var c=parseInt(a,10)||0,d=parseInt(g[b],10)||0;return c+d})}if(!a.browser.msie||!a(c).is(":hidden")&&!a(c).parents(":hidden").length)e.css({height:c.height()-this.borderDif[0]-this.borderDif[2]||0,width:c.width()-this.borderDif[1]-this.borderDif[3]||0});else continue}},_renderProxy:function(){var b=this.element,c=this.options;this.elementOffset=b.offset();if(this._helper){this.helper=this.helper||a('<div style="overflow:hidden;"></div>');var d=a.browser.msie&&a.browser.version<7,e=d?1:0,f=d?2:-1;this.helper.addClass(this._helper).css({width:this.element.outerWidth()+f,height:this.element.outerHeight()+f,position:"absolute",left:this.elementOffset.left-e+"px",top:this.elementOffset.top-e+"px",zIndex:++c.zIndex}),this.helper.appendTo("body").disableSelection()}else this.helper=this.element},_change:{e:function(a,b,c){return{width:this.originalSize.width+b}},w:function(a,b,c){var d=this.options,e=this.originalSize,f=this.originalPosition;return{left:f.left+b,width:e.width-b}},n:function(a,b,c){var d=this.options,e=this.originalSize,f=this.originalPosition;return{top:f.top+c,height:e.height-c}},s:function(a,b,c){return{height:this.originalSize.height+c}},se:function(b,c,d){return a.extend(this._change.s.apply(this,arguments),this._change.e.apply(this,[b,c,d]))},sw:function(b,c,d){return a.extend(this._change.s.apply(this,arguments),this._change.w.apply(this,[b,c,d]))},ne:function(b,c,d){return a.extend(this._change.n.apply(this,arguments),this._change.e.apply(this,[b,c,d]))},nw:function(b,c,d){return a.extend(this._change.n.apply(this,arguments),this._change.w.apply(this,[b,c,d]))}},_propagate:function(b,c){a.ui.plugin.call(this,b,[c,this.ui()]),b!="resize"&&this._trigger(b,c,this.ui())},plugins:{},ui:function(){return{originalElement:this.originalElement,element:this.element,helper:this.helper,position:this.position,size:this.size,originalSize:this.originalSize,originalPosition:this.originalPosition}}}),a.extend(a.ui.resizable,{version:"1.8.21"}),a.ui.plugin.add("resizable","alsoResize",{start:function(b,c){var d=a(this).data("resizable"),e=d.options,f=function(b){a(b).each(function(){var b=a(this);b.data("resizable-alsoresize",{width:parseInt(b.width(),10),height:parseInt(b.height(),10),left:parseInt(b.css("left"),10),top:parseInt(b.css("top"),10)})})};typeof e.alsoResize=="object"&&!e.alsoResize.parentNode?e.alsoResize.length?(e.alsoResize=e.alsoResize[0],f(e.alsoResize)):a.each(e.alsoResize,function(a){f(a)}):f(e.alsoResize)},resize:function(b,c){var d=a(this).data("resizable"),e=d.options,f=d.originalSize,g=d.originalPosition,h={height:d.size.height-f.height||0,width:d.size.width-f.width||0,top:d.position.top-g.top||0,left:d.position.left-g.left||0},i=function(b,d){a(b).each(function(){var b=a(this),e=a(this).data("resizable-alsoresize"),f={},g=d&&d.length?d:b.parents(c.originalElement[0]).length?["width","height"]:["width","height","top","left"];a.each(g,function(a,b){var c=(e[b]||0)+(h[b]||0);c&&c>=0&&(f[b]=c||null)}),b.css(f)})};typeof e.alsoResize=="object"&&!e.alsoResize.nodeType?a.each(e.alsoResize,function(a,b){i(a,b)}):i(e.alsoResize)},stop:function(b,c){a(this).removeData("resizable-alsoresize")}}),a.ui.plugin.add("resizable","animate",{stop:function(b,c){var d=a(this).data("resizable"),e=d.options,f=d._proportionallyResizeElements,g=f.length&&/textarea/i.test(f[0].nodeName),h=g&&a.ui.hasScroll(f[0],"left")?0:d.sizeDiff.height,i=g?0:d.sizeDiff.width,j={width:d.size.width-i,height:d.size.height-h},k=parseInt(d.element.css("left"),10)+(d.position.left-d.originalPosition.left)||null,l=parseInt(d.element.css("top"),10)+(d.position.top-d.originalPosition.top)||null;d.element.animate(a.extend(j,l&&k?{top:l,left:k}:{}),{duration:e.animateDuration,easing:e.animateEasing,step:function(){var c={width:parseInt(d.element.css("width"),10),height:parseInt(d.element.css("height"),10),top:parseInt(d.element.css("top"),10),left:parseInt(d.element.css("left"),10)};f&&f.length&&a(f[0]).css({width:c.width,height:c.height}),d._updateCache(c),d._propagate("resize",b)}})}}),a.ui.plugin.add("resizable","containment",{start:function(b,d){var e=a(this).data("resizable"),f=e.options,g=e.element,h=f.containment,i=h instanceof a?h.get(0):/parent/.test(h)?g.parent().get(0):h;if(!i)return;e.containerElement=a(i);console.log('scrollHeight1');if(/document/.test(h)||h==document)e.containerOffset={left:0,top:0},e.containerPosition={left:0,top:0},e.parentData={element:a(document),left:0,top:0,width:a(document).width(),height:a(document).height()||document.body.parentNode.scrollHeight};else{var j=a(i),k=[];a(["Top","Right","Left","Bottom"]).each(function(a,b){k[a]=c(j.css("padding"+b))}),e.containerOffset=j.offset(),e.containerPosition=j.position(),e.containerSize={height:j.innerHeight()-k[3],width:j.innerWidth()-k[1]};console.log('scrollHeight2');var l=e.containerOffset,m=e.containerSize.height,n=e.containerSize.width,o=a.ui.hasScroll(i,"left")?i.scrollWidth:n,p=a.ui.hasScroll(i)?i.scrollHeight:m;e.parentData={element:i,left:l.left,top:l.top,width:o,height:p}}},resize:function(b,c){var d=a(this).data("resizable"),e=d.options,f=d.containerSize,g=d.containerOffset,h=d.size,i=d.position,j=d._aspectRatio||b.shiftKey,k={top:0,left:0},l=d.containerElement;l[0]!=document&&/static/.test(l.css("position"))&&(k=g),i.left<(d._helper?g.left:0)&&(d.size.width=d.size.width+(d._helper?d.position.left-g.left:d.position.left-k.left),j&&(d.size.height=d.size.width/d.aspectRatio),d.position.left=e.helper?g.left:0),i.top<(d._helper?g.top:0)&&(d.size.height=d.size.height+(d._helper?d.position.top-g.top:d.position.top),j&&(d.size.width=d.size.height*d.aspectRatio),d.position.top=d._helper?g.top:0),d.offset.left=d.parentData.left+d.position.left,d.offset.top=d.parentData.top+d.position.top;var m=Math.abs((d._helper?d.offset.left-k.left:d.offset.left-k.left)+d.sizeDiff.width),n=Math.abs((d._helper?d.offset.top-k.top:d.offset.top-g.top)+d.sizeDiff.height),o=d.containerElement.get(0)==d.element.parent().get(0),p=/relative|absolute/.test(d.containerElement.css("position"));o&&p&&(m-=d.parentData.left),m+d.size.width>=d.parentData.width&&(d.size.width=d.parentData.width-m,j&&(d.size.height=d.size.width/d.aspectRatio)),n+d.size.height>=d.parentData.height&&(d.size.height=d.parentData.height-n,j&&(d.size.width=d.size.height*d.aspectRatio))},stop:function(b,c){var d=a(this).data("resizable"),e=d.options,f=d.position,g=d.containerOffset,h=d.containerPosition,i=d.containerElement,j=a(d.helper),k=j.offset(),l=j.outerWidth()-d.sizeDiff.width,m=j.outerHeight()-d.sizeDiff.height;d._helper&&!e.animate&&/relative/.test(i.css("position"))&&a(this).css({left:k.left-h.left-g.left,width:l,height:m}),d._helper&&!e.animate&&/static/.test(i.css("position"))&&a(this).css({left:k.left-h.left-g.left,width:l,height:m})}}),a.ui.plugin.add("resizable","ghost",{start:function(b,c){var d=a(this).data("resizable"),e=d.options,f=d.size;d.ghost=d.originalElement.clone(),d.ghost.css({opacity:.25,display:"block",position:"relative",height:f.height,width:f.width,margin:0,left:0,top:0}).addClass("ui-resizable-ghost").addClass(typeof e.ghost=="string"?e.ghost:""),d.ghost.appendTo(d.helper)},resize:function(b,c){var d=a(this).data("resizable"),e=d.options;d.ghost&&d.ghost.css({position:"relative",height:d.size.height,width:d.size.width})},stop:function(b,c){var d=a(this).data("resizable"),e=d.options;d.ghost&&d.helper&&d.helper.get(0).removeChild(d.ghost.get(0))}}),a.ui.plugin.add("resizable","grid",{resize:function(b,c){var d=a(this).data("resizable"),e=d.options,f=d.size,g=d.originalSize,h=d.originalPosition,i=d.axis,j=e._aspectRatio||b.shiftKey;e.grid=typeof e.grid=="number"?[e.grid,e.grid]:e.grid;var k=Math.round((f.width-g.width)/(e.grid[0]||1))*(e.grid[0]||1),l=Math.round((f.height-g.height)/(e.grid[1]||1))*(e.grid[1]||1);/^(se|s|e)$/.test(i)?(d.size.width=g.width+k,d.size.height=g.height+l):/^(ne)$/.test(i)?(d.size.width=g.width+k,d.size.height=g.height+l,d.position.top=h.top-l):/^(sw)$/.test(i)?(d.size.width=g.width+k,d.size.height=g.height+l,d.position.left=h.left-k):(d.size.width=g.width+k,d.size.height=g.height+l,d.position.top=h.top-l,d.position.left=h.left-k)}});var c=function(a){return parseInt(a,10)||0},d=function(a){return!isNaN(parseInt(a,10))}})(jQuery);;/*! jQuery UI - v1.8.21 - 2012-06-05
+	(function(a,b){a.widget("ui.resizable",a.ui.mouse,{widgetEventPrefix:"resize",options:{alsoResize:!1,animate:!1,animateDuration:"slow",animateEasing:"swing",aspectRatio:!1,autoHide:!1,containment:!1,ghost:!1,grid:!1,handles:"e,s,se",helper:!1,maxHeight:null,maxWidth:null,minHeight:10,minWidth:10,zIndex:1e3},_create:function(){var b=this,c=this.options;this.element.addClass("ui-resizable"),a.extend(this,{_aspectRatio:!!c.aspectRatio,aspectRatio:c.aspectRatio,originalElement:this.element,_proportionallyResizeElements:[],_helper:c.helper||c.ghost||c.animate?c.helper||"ui-resizable-helper":null}),this.element[0].nodeName.match(/canvas|textarea|input|select|button|img/i)&&(this.element.wrap(a('<div class="ui-wrapper" style="overflow: hidden;"></div>').css({position:this.element.css("position"),width:this.element.outerWidth(),height:this.element.outerHeight(),top:this.element.css("top"),left:this.element.css("left")})),this.element=this.element.parent().data("resizable",this.element.data("resizable")),this.elementIsWrapper=!0,this.element.css({marginLeft:this.originalElement.css("marginLeft"),marginTop:this.originalElement.css("marginTop"),marginRight:this.originalElement.css("marginRight"),marginBottom:this.originalElement.css("marginBottom")}),this.originalElement.css({marginLeft:0,marginTop:0,marginRight:0,marginBottom:0}),this.originalResizeStyle=this.originalElement.css("resize"),this.originalElement.css("resize","none"),this._proportionallyResizeElements.push(this.originalElement.css({position:"static",zoom:1,display:"block"})),this.originalElement.css({margin:this.originalElement.css("margin")}),this._proportionallyResize()),this.handles=c.handles||(a(".ui-resizable-handle",this.element).length?{n:".ui-resizable-n",e:".ui-resizable-e",s:".ui-resizable-s",w:".ui-resizable-w",se:".ui-resizable-se",sw:".ui-resizable-sw",ne:".ui-resizable-ne",nw:".ui-resizable-nw"}:"e,s,se");if(this.handles.constructor==String){this.handles=="all"&&(this.handles="n,e,s,w,se,sw,ne,nw");var d=this.handles.split(",");this.handles={};for(var e=0;e<d.length;e++){var f=a.trim(d[e]),g="ui-resizable-"+f,h=a('<div class="ui-resizable-handle '+g+'"></div>');h.css({zIndex:c.zIndex}),"se"==f&&h.addClass("ui-icon ui-icon-gripsmall-diagonal-se"),this.handles[f]=".ui-resizable-"+f,this.element.append(h)}}this._renderAxis=function(b){b=b||this.element;for(var c in this.handles){this.handles[c].constructor==String&&(this.handles[c]=a(this.handles[c],this.element).show());if(this.elementIsWrapper&&this.originalElement[0].nodeName.match(/textarea|input|select|button/i)){var d=a(this.handles[c],this.element),e=0;e=/sw|ne|nw|se|n|s/.test(c)?d.outerHeight():d.outerWidth();var f=["padding",/ne|nw|n/.test(c)?"Top":/se|sw|s/.test(c)?"Bottom":/^e$/.test(c)?"Right":"Left"].join("");b.css(f,e),this._proportionallyResize()}if(!a(this.handles[c]).length)continue}},this._renderAxis(this.element),this._handles=a(".ui-resizable-handle",this.element).disableSelection(),this._handles.mouseover(function(){if(!b.resizing){if(this.className)var a=this.className.match(/ui-resizable-(se|sw|ne|nw|n|e|s|w)/i);b.axis=a&&a[1]?a[1]:"se"}}),c.autoHide&&(this._handles.hide(),a(this.element).addClass("ui-resizable-autohide").hover(function(){if(c.disabled)return;a(this).removeClass("ui-resizable-autohide"),b._handles.show()},function(){if(c.disabled)return;b.resizing||(a(this).addClass("ui-resizable-autohide"),b._handles.hide())})),this._mouseInit()},destroy:function(){this._mouseDestroy();var b=function(b){a(b).removeClass("ui-resizable ui-resizable-disabled ui-resizable-resizing").removeData("resizable").unbind(".resizable").find(".ui-resizable-handle").remove()};if(this.elementIsWrapper){b(this.element);var c=this.element;c.after(this.originalElement.css({position:c.css("position"),width:c.outerWidth(),height:c.outerHeight(),top:c.css("top"),left:c.css("left")})).remove()}return this.originalElement.css("resize",this.originalResizeStyle),b(this.originalElement),this},_mouseCapture:function(b){var c=!1;for(var d in this.handles)a(this.handles[d])[0]==b.target&&(c=!0);return!this.options.disabled&&c},_mouseStart:function(b){var d=this.options,e=this.element.position(),f=this.element;this.resizing=!0,this.documentScroll={top:a(document).scrollTop(),left:a(document).scrollLeft()},(f.is(".ui-draggable")||/absolute/.test(f.css("position")))&&f.css({position:"absolute",top:e.top,left:e.left}),this._renderProxy();var g=c(this.helper.css("left")),h=c(this.helper.css("top"));d.containment&&(g+=a(d.containment).scrollLeft()||0,h+=a(d.containment).scrollTop()||0),this.offset=this.helper.offset(),this.position={left:g,top:h},this.size=this._helper?{width:f.outerWidth(),height:f.outerHeight()}:{width:f.width(),height:f.height()},this.originalSize=this._helper?{width:f.outerWidth(),height:f.outerHeight()}:{width:f.width(),height:f.height()},this.originalPosition={left:g,top:h},this.sizeDiff={width:f.outerWidth()-f.width(),height:f.outerHeight()-f.height()},this.originalMousePosition={left:b.pageX,top:b.pageY},this.aspectRatio=typeof d.aspectRatio=="number"?d.aspectRatio:this.originalSize.width/this.originalSize.height||1;var i=a(".ui-resizable-"+this.axis).css("cursor");return a("body").css("cursor",i=="auto"?this.axis+"-resize":i),f.addClass("ui-resizable-resizing"),this._propagate("start",b),!0},_mouseDrag:function(b){var c=this.helper,d=this.options,e={},f=this,g=this.originalMousePosition,h=this.axis,i=b.pageX-g.left||0,j=b.pageY-g.top||0,k=this._change[h];if(!k)return!1;var l=k.apply(this,[b,i,j]),m=a.browser.msie&&a.browser.version<7,n=this.sizeDiff;this._updateVirtualBoundaries(b.shiftKey);if(this._aspectRatio||b.shiftKey)l=this._updateRatio(l,b);return l=this._respectSize(l,b),this._propagate("resize",b),c.css({top:this.position.top+"px",left:this.position.left+"px",width:this.size.width+"px",height:this.size.height+"px"}),!this._helper&&this._proportionallyResizeElements.length&&this._proportionallyResize(),this._updateCache(l),this._trigger("resize",b,this.ui()),!1},_mouseStop:function(b){this.resizing=!1;var c=this.options,d=this;if(this._helper){var e=this._proportionallyResizeElements,f=e.length&&/textarea/i.test(e[0].nodeName),g=f&&a.ui.hasScroll(e[0],"left")?0:d.sizeDiff.height,h=f?0:d.sizeDiff.width,i={width:d.helper.width()-h,height:d.helper.height()-g},j=parseInt(d.element.css("left"),10)+(d.position.left-d.originalPosition.left)||null,k=parseInt(d.element.css("top"),10)+(d.position.top-d.originalPosition.top)||null;c.animate||this.element.css(a.extend(i,{top:k,left:j})),d.helper.height(d.size.height),d.helper.width(d.size.width),this._helper&&!c.animate&&this._proportionallyResize()}return a("body").css("cursor","auto"),this.element.removeClass("ui-resizable-resizing"),this._propagate("stop",b),this._helper&&this.helper.remove(),!1},_updateVirtualBoundaries:function(a){var b=this.options,c,e,f,g,h;h={minWidth:d(b.minWidth)?b.minWidth:0,maxWidth:d(b.maxWidth)?b.maxWidth:Infinity,minHeight:d(b.minHeight)?b.minHeight:0,maxHeight:d(b.maxHeight)?b.maxHeight:Infinity};if(this._aspectRatio||a)c=h.minHeight*this.aspectRatio,f=h.minWidth/this.aspectRatio,e=h.maxHeight*this.aspectRatio,g=h.maxWidth/this.aspectRatio,c>h.minWidth&&(h.minWidth=c),f>h.minHeight&&(h.minHeight=f),e<h.maxWidth&&(h.maxWidth=e),g<h.maxHeight&&(h.maxHeight=g);this._vBoundaries=h},_updateCache:function(a){var b=this.options;this.offset=this.helper.offset(),d(a.left)&&(this.position.left=a.left),d(a.top)&&(this.position.top=a.top),d(a.height)&&(this.size.height=a.height),d(a.width)&&(this.size.width=a.width)},_updateRatio:function(a,b){var c=this.options,e=this.position,f=this.size,g=this.axis;return d(a.height)?a.width=a.height*this.aspectRatio:d(a.width)&&(a.height=a.width/this.aspectRatio),g=="sw"&&(a.left=e.left+(f.width-a.width),a.top=null),g=="nw"&&(a.top=e.top+(f.height-a.height),a.left=e.left+(f.width-a.width)),a},_respectSize:function(a,b){var c=this.helper,e=this._vBoundaries,f=this._aspectRatio||b.shiftKey,g=this.axis,h=d(a.width)&&e.maxWidth&&e.maxWidth<a.width,i=d(a.height)&&e.maxHeight&&e.maxHeight<a.height,j=d(a.width)&&e.minWidth&&e.minWidth>a.width,k=d(a.height)&&e.minHeight&&e.minHeight>a.height;j&&(a.width=e.minWidth),k&&(a.height=e.minHeight),h&&(a.width=e.maxWidth),i&&(a.height=e.maxHeight);var l=this.originalPosition.left+this.originalSize.width,m=this.position.top+this.size.height,n=/sw|nw|w/.test(g),o=/nw|ne|n/.test(g);j&&n&&(a.left=l-e.minWidth),h&&n&&(a.left=l-e.maxWidth),k&&o&&(a.top=m-e.minHeight),i&&o&&(a.top=m-e.maxHeight);var p=!a.width&&!a.height;return p&&!a.left&&a.top?a.top=null:p&&!a.top&&a.left&&(a.left=null),a},_proportionallyResize:function(){var b=this.options;if(!this._proportionallyResizeElements.length)return;var c=this.helper||this.element;for(var d=0;d<this._proportionallyResizeElements.length;d++){var e=this._proportionallyResizeElements[d];if(!this.borderDif){var f=[e.css("borderTopWidth"),e.css("borderRightWidth"),e.css("borderBottomWidth"),e.css("borderLeftWidth")],g=[e.css("paddingTop"),e.css("paddingRight"),e.css("paddingBottom"),e.css("paddingLeft")];this.borderDif=a.map(f,function(a,b){var c=parseInt(a,10)||0,d=parseInt(g[b],10)||0;return c+d})}if(!a.browser.msie||!a(c).is(":hidden")&&!a(c).parents(":hidden").length)e.css({height:c.height()-this.borderDif[0]-this.borderDif[2]||0,width:c.width()-this.borderDif[1]-this.borderDif[3]||0});else continue}},_renderProxy:function(){var b=this.element,c=this.options;this.elementOffset=b.offset();if(this._helper){this.helper=this.helper||a('<div style="overflow:hidden;"></div>');var d=a.browser.msie&&a.browser.version<7,e=d?1:0,f=d?2:-1;this.helper.addClass(this._helper).css({width:this.element.outerWidth()+f,height:this.element.outerHeight()+f,position:"absolute",left:this.elementOffset.left-e+"px",top:this.elementOffset.top-e+"px",zIndex:++c.zIndex}),this.helper.appendTo("body").disableSelection()}else this.helper=this.element},_change:{e:function(a,b,c){return{width:this.originalSize.width+b}},w:function(a,b,c){var d=this.options,e=this.originalSize,f=this.originalPosition;return{left:f.left+b,width:e.width-b}},n:function(a,b,c){var d=this.options,e=this.originalSize,f=this.originalPosition;return{top:f.top+c,height:e.height-c}},s:function(a,b,c){return{height:this.originalSize.height+c}},se:function(b,c,d){return a.extend(this._change.s.apply(this,arguments),this._change.e.apply(this,[b,c,d]))},sw:function(b,c,d){return a.extend(this._change.s.apply(this,arguments),this._change.w.apply(this,[b,c,d]))},ne:function(b,c,d){return a.extend(this._change.n.apply(this,arguments),this._change.e.apply(this,[b,c,d]))},nw:function(b,c,d){return a.extend(this._change.n.apply(this,arguments),this._change.w.apply(this,[b,c,d]))}},_propagate:function(b,c){a.ui.plugin.call(this,b,[c,this.ui()]),b!="resize"&&this._trigger(b,c,this.ui())},plugins:{},ui:function(){return{originalElement:this.originalElement,element:this.element,helper:this.helper,position:this.position,size:this.size,originalSize:this.originalSize,originalPosition:this.originalPosition}}}),a.extend(a.ui.resizable,{version:"1.8.21"}),a.ui.plugin.add("resizable","alsoResize",{start:function(b,c){var d=a(this).data("resizable"),e=d.options,f=function(b){a(b).each(function(){var b=a(this);b.data("resizable-alsoresize",{width:parseInt(b.width(),10),height:parseInt(b.height(),10),left:parseInt(b.css("left"),10),top:parseInt(b.css("top"),10)})})};typeof e.alsoResize=="object"&&!e.alsoResize.parentNode?e.alsoResize.length?(e.alsoResize=e.alsoResize[0],f(e.alsoResize)):a.each(e.alsoResize,function(a){f(a)}):f(e.alsoResize)},resize:function(b,c){var d=a(this).data("resizable"),e=d.options,f=d.originalSize,g=d.originalPosition,h={height:d.size.height-f.height||0,width:d.size.width-f.width||0,top:d.position.top-g.top||0,left:d.position.left-g.left||0},i=function(b,d){a(b).each(function(){var b=a(this),e=a(this).data("resizable-alsoresize"),f={},g=d&&d.length?d:b.parents(c.originalElement[0]).length?["width","height"]:["width","height","top","left"];a.each(g,function(a,b){var c=(e[b]||0)+(h[b]||0);c&&c>=0&&(f[b]=c||null)}),b.css(f)})};typeof e.alsoResize=="object"&&!e.alsoResize.nodeType?a.each(e.alsoResize,function(a,b){i(a,b)}):i(e.alsoResize)},stop:function(b,c){a(this).removeData("resizable-alsoresize")}}),a.ui.plugin.add("resizable","animate",{stop:function(b,c){var d=a(this).data("resizable"),e=d.options,f=d._proportionallyResizeElements,g=f.length&&/textarea/i.test(f[0].nodeName),h=g&&a.ui.hasScroll(f[0],"left")?0:d.sizeDiff.height,i=g?0:d.sizeDiff.width,j={width:d.size.width-i,height:d.size.height-h},k=parseInt(d.element.css("left"),10)+(d.position.left-d.originalPosition.left)||null,l=parseInt(d.element.css("top"),10)+(d.position.top-d.originalPosition.top)||null;d.element.animate(a.extend(j,l&&k?{top:l,left:k}:{}),{duration:e.animateDuration,easing:e.animateEasing,step:function(){var c={width:parseInt(d.element.css("width"),10),height:parseInt(d.element.css("height"),10),top:parseInt(d.element.css("top"),10),left:parseInt(d.element.css("left"),10)};f&&f.length&&a(f[0]).css({width:c.width,height:c.height}),d._updateCache(c),d._propagate("resize",b)}})}}),a.ui.plugin.add("resizable","containment",{start:function(b,d){var e=a(this).data("resizable"),f=e.options,g=e.element,h=f.containment,i=h instanceof a?h.get(0):/parent/.test(h)?g.parent().get(0):h;if(!i)return;e.containerElement=a(i);/*console.log('scrollHeight1');*/if(/document/.test(h)||h==document)e.containerOffset={left:0,top:0},e.containerPosition={left:0,top:0},e.parentData={element:a(document),left:0,top:0,width:a(document).width(),height:a(document).height()||document.body.parentNode.scrollHeight};else{var j=a(i),k=[];a(["Top","Right","Left","Bottom"]).each(function(a,b){k[a]=c(j.css("padding"+b))}),e.containerOffset=j.offset(),e.containerPosition=j.position(),e.containerSize={height:j.innerHeight()-k[3],width:j.innerWidth()-k[1]};/*console.log('scrollHeight2');*/var l=e.containerOffset,m=e.containerSize.height,n=e.containerSize.width,o=a.ui.hasScroll(i,"left")?i.scrollWidth:n,p=a.ui.hasScroll(i)?i.scrollHeight:m;e.parentData={element:i,left:l.left,top:l.top,width:o,height:p}}},resize:function(b,c){var d=a(this).data("resizable"),e=d.options,f=d.containerSize,g=d.containerOffset,h=d.size,i=d.position,j=d._aspectRatio||b.shiftKey,k={top:0,left:0},l=d.containerElement;l[0]!=document&&/static/.test(l.css("position"))&&(k=g),i.left<(d._helper?g.left:0)&&(d.size.width=d.size.width+(d._helper?d.position.left-g.left:d.position.left-k.left),j&&(d.size.height=d.size.width/d.aspectRatio),d.position.left=e.helper?g.left:0),i.top<(d._helper?g.top:0)&&(d.size.height=d.size.height+(d._helper?d.position.top-g.top:d.position.top),j&&(d.size.width=d.size.height*d.aspectRatio),d.position.top=d._helper?g.top:0),d.offset.left=d.parentData.left+d.position.left,d.offset.top=d.parentData.top+d.position.top;var m=Math.abs((d._helper?d.offset.left-k.left:d.offset.left-k.left)+d.sizeDiff.width),n=Math.abs((d._helper?d.offset.top-k.top:d.offset.top-g.top)+d.sizeDiff.height),o=d.containerElement.get(0)==d.element.parent().get(0),p=/relative|absolute/.test(d.containerElement.css("position"));o&&p&&(m-=d.parentData.left),m+d.size.width>=d.parentData.width&&(d.size.width=d.parentData.width-m,j&&(d.size.height=d.size.width/d.aspectRatio)),n+d.size.height>=d.parentData.height&&(d.size.height=d.parentData.height-n,j&&(d.size.width=d.size.height*d.aspectRatio))},stop:function(b,c){var d=a(this).data("resizable"),e=d.options,f=d.position,g=d.containerOffset,h=d.containerPosition,i=d.containerElement,j=a(d.helper),k=j.offset(),l=j.outerWidth()-d.sizeDiff.width,m=j.outerHeight()-d.sizeDiff.height;d._helper&&!e.animate&&/relative/.test(i.css("position"))&&a(this).css({left:k.left-h.left-g.left,width:l,height:m}),d._helper&&!e.animate&&/static/.test(i.css("position"))&&a(this).css({left:k.left-h.left-g.left,width:l,height:m})}}),a.ui.plugin.add("resizable","ghost",{start:function(b,c){var d=a(this).data("resizable"),e=d.options,f=d.size;d.ghost=d.originalElement.clone(),d.ghost.css({opacity:.25,display:"block",position:"relative",height:f.height,width:f.width,margin:0,left:0,top:0}).addClass("ui-resizable-ghost").addClass(typeof e.ghost=="string"?e.ghost:""),d.ghost.appendTo(d.helper)},resize:function(b,c){var d=a(this).data("resizable"),e=d.options;d.ghost&&d.ghost.css({position:"relative",height:d.size.height,width:d.size.width})},stop:function(b,c){var d=a(this).data("resizable"),e=d.options;d.ghost&&d.helper&&d.helper.get(0).removeChild(d.ghost.get(0))}}),a.ui.plugin.add("resizable","grid",{resize:function(b,c){var d=a(this).data("resizable"),e=d.options,f=d.size,g=d.originalSize,h=d.originalPosition,i=d.axis,j=e._aspectRatio||b.shiftKey;e.grid=typeof e.grid=="number"?[e.grid,e.grid]:e.grid;var k=Math.round((f.width-g.width)/(e.grid[0]||1))*(e.grid[0]||1),l=Math.round((f.height-g.height)/(e.grid[1]||1))*(e.grid[1]||1);/^(se|s|e)$/.test(i)?(d.size.width=g.width+k,d.size.height=g.height+l):/^(ne)$/.test(i)?(d.size.width=g.width+k,d.size.height=g.height+l,d.position.top=h.top-l):/^(sw)$/.test(i)?(d.size.width=g.width+k,d.size.height=g.height+l,d.position.left=h.left-k):(d.size.width=g.width+k,d.size.height=g.height+l,d.position.top=h.top-l,d.position.left=h.left-k)}});var c=function(a){return parseInt(a,10)||0},d=function(a){return!isNaN(parseInt(a,10))}})(jQuery);;/*! jQuery UI - v1.8.21 - 2012-06-05
 	* https://github.com/jquery/jquery-ui
 	* Includes: jquery.ui.selectable.js
 	* Copyright (c) 2012 AUTHORS.txt; Licensed MIT, GPL */
@@ -9538,7 +9537,7 @@
 	* https://github.com/jquery/jquery-ui
 	* Includes: jquery.ui.autocomplete.js
 	* Copyright (c) 2012 AUTHORS.txt; Licensed MIT, GPL */
-	(function(a,b){var c=0;a.widget("ui.autocomplete",{options:{appendTo:"body",autoFocus:!1,delay:300,minLength:1,position:{my:"left top",at:"left bottom",collision:"none"},source:null},pending:0,_create:function(){var b=this,c=this.element[0].ownerDocument,d;this.isMultiLine=this.element.is("textarea"),this.element.addClass("ui-autocomplete-input").attr("autocomplete","off").attr({role:"textbox","aria-autocomplete":"list","aria-haspopup":"true"}).bind("keydown.autocomplete",function(c){if(b.options.disabled||b.element.propAttr("readOnly"))return;d=!1;var e=a.ui.keyCode;switch(c.keyCode){case e.PAGE_UP:b._move("previousPage",c);break;case e.PAGE_DOWN:b._move("nextPage",c);break;case e.UP:b._keyEvent("previous",c);break;case e.DOWN:b._keyEvent("next",c);break;case e.ENTER:case e.NUMPAD_ENTER:b.menu.active&&(d=!0,c.preventDefault());case e.TAB:if(!b.menu.active)return;b.menu.select(c);break;case e.ESCAPE:b.element.val(b.term),b.close(c);break;default:clearTimeout(b.searching),b.searching=setTimeout(function(){b.term!=b.element.val()&&(b.selectedItem=null,b.search(null,c))},b.options.delay)}}).bind("keypress.autocomplete",function(a){d&&(d=!1,a.preventDefault())}).bind("focus.autocomplete",function(){if(b.options.disabled)return;b.selectedItem=null,b.previous=b.element.val()}).bind("blur.autocomplete",function(a){if(b.options.disabled)return;clearTimeout(b.searching),b.closing=setTimeout(function(){b.close(a),b._change(a)},150)}),this._initSource(),this.menu=a("<ul></ul>").addClass("ui-autocomplete").appendTo(a(this.options.appendTo||"body",c)[0]).mousedown(function(c){var d=b.menu.element[0];a(c.target).closest(".ui-menu-item").length||setTimeout(function(){a(document).one("mousedown",function(c){c.target!==b.element[0]&&c.target!==d&&!a.ui.contains(d,c.target)&&b.close()})},1),setTimeout(function(){clearTimeout(b.closing)},13)}).menu({focus:function(a,c){var d=c.item.data("item.autocomplete");!1!==b._trigger("focus",a,{item:d})&&/^key/.test(a.originalEvent.type)&&b.element.val(d.value)},selected:function(a,d){var e=d.item.data("item.autocomplete"),f=b.previous;b.element[0]!==c.activeElement&&(b.element.focus(),b.previous=f,setTimeout(function(){b.previous=f,b.selectedItem=e},1)),!1!==b._trigger("select",a,{item:e})&&b.element.val(e.value),b.term=b.element.val(),b.close(a),b.selectedItem=e},blur:function(a,c){b.menu.element.is(":visible")&&b.element.val()!==b.term&&b.element.val(b.term)}}).zIndex(this.element.zIndex()+1).css({top:0,left:0}).hide().data("menu"),a.fn.bgiframe&&this.menu.element.bgiframe(),b.beforeunloadHandler=function(){b.element.removeAttr("autocomplete")},a(window).bind("beforeunload",b.beforeunloadHandler)},destroy:function(){this.element.removeClass("ui-autocomplete-input").removeAttr("autocomplete").removeAttr("role").removeAttr("aria-autocomplete").removeAttr("aria-haspopup"),this.menu.element.remove(),a(window).unbind("beforeunload",this.beforeunloadHandler),a.Widget.prototype.destroy.call(this)},_setOption:function(b,c){a.Widget.prototype._setOption.apply(this,arguments),b==="source"&&this._initSource(),b==="appendTo"&&this.menu.element.appendTo(a(c||"body",this.element[0].ownerDocument)[0]),b==="disabled"&&c&&this.xhr&&this.xhr.abort()},_initSource:function(){var b=this,c,d;a.isArray(this.options.source)?(c=this.options.source,this.source=function(b,d){d(a.ui.autocomplete.filter(c,b.term))}):typeof this.options.source=="string"?(d=this.options.source,this.source=function(c,e){b.xhr&&b.xhr.abort(),b.xhr=a.ajax({url:d,data:c,dataType:"json",success:function(a,b){e(a)},error:function(){e([])}})}):this.source=this.options.source},search:function(a,b){a=a!=null?a:this.element.val(),this.term=this.element.val();if(a.length<this.options.minLength)return this.close(b);clearTimeout(this.closing);if(this._trigger("search",b)===!1)return;return this._search(a)},_search:function(a){this.pending++,this.element.addClass("ui-autocomplete-loading"),this.source({term:a},this._response())},_response:function(){var a=this,b=++c;return function(d){b===c&&a.__response(d),a.pending--,a.pending||a.element.removeClass("ui-autocomplete-loading")}},__response:function(a){!this.options.disabled&&a&&a.length?(a=this._normalize(a),this._suggest(a),this._trigger("open")):this.close()},close:function(a){clearTimeout(this.closing),this.menu.element.is(":visible")&&(this.menu.element.hide(),this.menu.deactivate(),this._trigger("close",a))},_change:function(a){this.previous!==this.element.val()&&this._trigger("change",a,{item:this.selectedItem})},_normalize:function(b){return b.length&&b[0].label&&b[0].value?b:a.map(b,function(b){return typeof b=="string"?{label:b,value:b}:a.extend({label:b.label||b.value,value:b.value||b.label},b)})},_suggest:function(b){var c=this.menu.element.empty().zIndex(this.element.zIndex()+1);this._renderMenu(c,b),this.menu.deactivate(),this.menu.refresh(),c.show(),this._resizeMenu(),c.position(a.extend({of:this.element},this.options.position)),this.options.autoFocus&&this.menu.next(new a.Event("mouseover"))},_resizeMenu:function(){var a=this.menu.element;a.outerWidth(Math.max(a.width("").outerWidth()+1,this.element.outerWidth()))},_renderMenu:function(b,c){var d=this;a.each(c,function(a,c){d._renderItem(b,c)})},_renderItem:function(b,c){return a("<li></li>").data("item.autocomplete",c).append(a("<a></a>").text(c.label)).appendTo(b)},_move:function(a,b){if(!this.menu.element.is(":visible")){this.search(null,b);return}if(this.menu.first()&&/^previous/.test(a)||this.menu.last()&&/^next/.test(a)){this.element.val(this.term),this.menu.deactivate();return}this.menu[a](b)},widget:function(){return this.menu.element},_keyEvent:function(a,b){if(!this.isMultiLine||this.menu.element.is(":visible"))this._move(a,b),b.preventDefault()}}),a.extend(a.ui.autocomplete,{escapeRegex:function(a){return a.replace(/[-[\]{}()*+?.,\\^$|#\s]/g,"\\$&")},filter:function(b,c){var d=new RegExp(a.ui.autocomplete.escapeRegex(c),"i");return a.grep(b,function(a){return d.test(a.label||a.value||a)})}})})(jQuery),function(a){a.widget("ui.menu",{_create:function(){var b=this;this.element.addClass("ui-menu ui-widget ui-widget-content ui-corner-all").attr({role:"listbox","aria-activedescendant":"ui-active-menuitem"}).click(function(c){if(!a(c.target).closest(".ui-menu-item a").length)return;c.preventDefault(),b.select(c)}),this.refresh()},refresh:function(){var b=this,c=this.element.children("li:not(.ui-menu-item):has(a)").addClass("ui-menu-item").attr("role","menuitem");c.children("a").addClass("ui-corner-all").attr("tabindex",-1).mouseenter(function(c){b.activate(c,a(this).parent())}).mouseleave(function(){b.deactivate()})},activate:function(a,b){this.deactivate();if(this.hasScroll()){var c=b.offset().top-this.element.offset().top,d=this.element.scrollTop(),e=this.element.height();c<0?this.element.scrollTop(d+c):c>=e&&this.element.scrollTop(d+c-e+b.height())}this.active=b.eq(0).children("a").addClass("ui-state-hover").attr("id","ui-active-menuitem").end(),this._trigger("focus",a,{item:b})},deactivate:function(){if(!this.active)return;this.active.children("a").removeClass("ui-state-hover").removeAttr("id"),this._trigger("blur"),this.active=null},next:function(a){this.move("next",".ui-menu-item:first",a)},previous:function(a){this.move("prev",".ui-menu-item:last",a)},first:function(){return this.active&&!this.active.prevAll(".ui-menu-item").length},last:function(){return this.active&&!this.active.nextAll(".ui-menu-item").length},move:function(a,b,c){if(!this.active){this.activate(c,this.element.children(b));return}var d=this.active[a+"All"](".ui-menu-item").eq(0);d.length?this.activate(c,d):this.activate(c,this.element.children(b))},nextPage:function(b){if(this.hasScroll()){if(!this.active||this.last()){this.activate(b,this.element.children(".ui-menu-item:first"));return}var c=this.active.offset().top,d=this.element.height(),e=this.element.children(".ui-menu-item").filter(function(){var b=a(this).offset().top-c-d+a(this).height();return b<10&&b>-10});e.length||(e=this.element.children(".ui-menu-item:last")),this.activate(b,e)}else this.activate(b,this.element.children(".ui-menu-item").filter(!this.active||this.last()?":first":":last"))},previousPage:function(b){if(this.hasScroll()){if(!this.active||this.first()){this.activate(b,this.element.children(".ui-menu-item:last"));return}var c=this.active.offset().top,d=this.element.height(),e=this.element.children(".ui-menu-item").filter(function(){var b=a(this).offset().top-c+d-a(this).height();return b<10&&b>-10});e.length||(e=this.element.children(".ui-menu-item:first")),this.activate(b,e)}else this.activate(b,this.element.children(".ui-menu-item").filter(!this.active||this.first()?":last":":first"))},hasScroll:function(){console.log('scrollHeight3');return this.element.height()<this.element[a.fn.prop?"prop":"attr"]("scrollHeight")},select:function(a){this._trigger("selected",a,{item:this.active})}})}(jQuery);;/*! jQuery UI - v1.8.21 - 2012-06-05
+	(function(a,b){var c=0;a.widget("ui.autocomplete",{options:{appendTo:"body",autoFocus:!1,delay:300,minLength:1,position:{my:"left top",at:"left bottom",collision:"none"},source:null},pending:0,_create:function(){var b=this,c=this.element[0].ownerDocument,d;this.isMultiLine=this.element.is("textarea"),this.element.addClass("ui-autocomplete-input").attr("autocomplete","off").attr({role:"textbox","aria-autocomplete":"list","aria-haspopup":"true"}).bind("keydown.autocomplete",function(c){if(b.options.disabled||b.element.propAttr("readOnly"))return;d=!1;var e=a.ui.keyCode;switch(c.keyCode){case e.PAGE_UP:b._move("previousPage",c);break;case e.PAGE_DOWN:b._move("nextPage",c);break;case e.UP:b._keyEvent("previous",c);break;case e.DOWN:b._keyEvent("next",c);break;case e.ENTER:case e.NUMPAD_ENTER:b.menu.active&&(d=!0,c.preventDefault());case e.TAB:if(!b.menu.active)return;b.menu.select(c);break;case e.ESCAPE:b.element.val(b.term),b.close(c);break;default:clearTimeout(b.searching),b.searching=setTimeout(function(){b.term!=b.element.val()&&(b.selectedItem=null,b.search(null,c))},b.options.delay)}}).bind("keypress.autocomplete",function(a){d&&(d=!1,a.preventDefault())}).bind("focus.autocomplete",function(){if(b.options.disabled)return;b.selectedItem=null,b.previous=b.element.val()}).bind("blur.autocomplete",function(a){if(b.options.disabled)return;clearTimeout(b.searching),b.closing=setTimeout(function(){b.close(a),b._change(a)},150)}),this._initSource(),this.menu=a("<ul></ul>").addClass("ui-autocomplete").appendTo(a(this.options.appendTo||"body",c)[0]).mousedown(function(c){var d=b.menu.element[0];a(c.target).closest(".ui-menu-item").length||setTimeout(function(){a(document).one("mousedown",function(c){c.target!==b.element[0]&&c.target!==d&&!a.ui.contains(d,c.target)&&b.close()})},1),setTimeout(function(){clearTimeout(b.closing)},13)}).menu({focus:function(a,c){var d=c.item.data("item.autocomplete");!1!==b._trigger("focus",a,{item:d})&&/^key/.test(a.originalEvent.type)&&b.element.val(d.value)},selected:function(a,d){var e=d.item.data("item.autocomplete"),f=b.previous;b.element[0]!==c.activeElement&&(b.element.focus(),b.previous=f,setTimeout(function(){b.previous=f,b.selectedItem=e},1)),!1!==b._trigger("select",a,{item:e})&&b.element.val(e.value),b.term=b.element.val(),b.close(a),b.selectedItem=e},blur:function(a,c){b.menu.element.is(":visible")&&b.element.val()!==b.term&&b.element.val(b.term)}}).zIndex(this.element.zIndex()+1).css({top:0,left:0}).hide().data("menu"),a.fn.bgiframe&&this.menu.element.bgiframe(),b.beforeunloadHandler=function(){b.element.removeAttr("autocomplete")},a(window).bind("beforeunload",b.beforeunloadHandler)},destroy:function(){this.element.removeClass("ui-autocomplete-input").removeAttr("autocomplete").removeAttr("role").removeAttr("aria-autocomplete").removeAttr("aria-haspopup"),this.menu.element.remove(),a(window).unbind("beforeunload",this.beforeunloadHandler),a.Widget.prototype.destroy.call(this)},_setOption:function(b,c){a.Widget.prototype._setOption.apply(this,arguments),b==="source"&&this._initSource(),b==="appendTo"&&this.menu.element.appendTo(a(c||"body",this.element[0].ownerDocument)[0]),b==="disabled"&&c&&this.xhr&&this.xhr.abort()},_initSource:function(){var b=this,c,d;a.isArray(this.options.source)?(c=this.options.source,this.source=function(b,d){d(a.ui.autocomplete.filter(c,b.term))}):typeof this.options.source=="string"?(d=this.options.source,this.source=function(c,e){b.xhr&&b.xhr.abort(),b.xhr=a.ajax({url:d,data:c,dataType:"json",success:function(a,b){e(a)},error:function(){e([])}})}):this.source=this.options.source},search:function(a,b){a=a!=null?a:this.element.val(),this.term=this.element.val();if(a.length<this.options.minLength)return this.close(b);clearTimeout(this.closing);if(this._trigger("search",b)===!1)return;return this._search(a)},_search:function(a){this.pending++,this.element.addClass("ui-autocomplete-loading"),this.source({term:a},this._response())},_response:function(){var a=this,b=++c;return function(d){b===c&&a.__response(d),a.pending--,a.pending||a.element.removeClass("ui-autocomplete-loading")}},__response:function(a){!this.options.disabled&&a&&a.length?(a=this._normalize(a),this._suggest(a),this._trigger("open")):this.close()},close:function(a){clearTimeout(this.closing),this.menu.element.is(":visible")&&(this.menu.element.hide(),this.menu.deactivate(),this._trigger("close",a))},_change:function(a){this.previous!==this.element.val()&&this._trigger("change",a,{item:this.selectedItem})},_normalize:function(b){return b.length&&b[0].label&&b[0].value?b:a.map(b,function(b){return typeof b=="string"?{label:b,value:b}:a.extend({label:b.label||b.value,value:b.value||b.label},b)})},_suggest:function(b){var c=this.menu.element.empty().zIndex(this.element.zIndex()+1);this._renderMenu(c,b),this.menu.deactivate(),this.menu.refresh(),c.show(),this._resizeMenu(),c.position(a.extend({of:this.element},this.options.position)),this.options.autoFocus&&this.menu.next(new a.Event("mouseover"))},_resizeMenu:function(){var a=this.menu.element;a.outerWidth(Math.max(a.width("").outerWidth()+1,this.element.outerWidth()))},_renderMenu:function(b,c){var d=this;a.each(c,function(a,c){d._renderItem(b,c)})},_renderItem:function(b,c){return a("<li></li>").data("item.autocomplete",c).append(a("<a></a>").text(c.label)).appendTo(b)},_move:function(a,b){if(!this.menu.element.is(":visible")){this.search(null,b);return}if(this.menu.first()&&/^previous/.test(a)||this.menu.last()&&/^next/.test(a)){this.element.val(this.term),this.menu.deactivate();return}this.menu[a](b)},widget:function(){return this.menu.element},_keyEvent:function(a,b){if(!this.isMultiLine||this.menu.element.is(":visible"))this._move(a,b),b.preventDefault()}}),a.extend(a.ui.autocomplete,{escapeRegex:function(a){return a.replace(/[-[\]{}()*+?.,\\^$|#\s]/g,"\\$&")},filter:function(b,c){var d=new RegExp(a.ui.autocomplete.escapeRegex(c),"i");return a.grep(b,function(a){return d.test(a.label||a.value||a)})}})})(jQuery),function(a){a.widget("ui.menu",{_create:function(){var b=this;this.element.addClass("ui-menu ui-widget ui-widget-content ui-corner-all").attr({role:"listbox","aria-activedescendant":"ui-active-menuitem"}).click(function(c){if(!a(c.target).closest(".ui-menu-item a").length)return;c.preventDefault(),b.select(c)}),this.refresh()},refresh:function(){var b=this,c=this.element.children("li:not(.ui-menu-item):has(a)").addClass("ui-menu-item").attr("role","menuitem");c.children("a").addClass("ui-corner-all").attr("tabindex",-1).mouseenter(function(c){b.activate(c,a(this).parent())}).mouseleave(function(){b.deactivate()})},activate:function(a,b){this.deactivate();if(this.hasScroll()){var c=b.offset().top-this.element.offset().top,d=this.element.scrollTop(),e=this.element.height();c<0?this.element.scrollTop(d+c):c>=e&&this.element.scrollTop(d+c-e+b.height())}this.active=b.eq(0).children("a").addClass("ui-state-hover").attr("id","ui-active-menuitem").end(),this._trigger("focus",a,{item:b})},deactivate:function(){if(!this.active)return;this.active.children("a").removeClass("ui-state-hover").removeAttr("id"),this._trigger("blur"),this.active=null},next:function(a){this.move("next",".ui-menu-item:first",a)},previous:function(a){this.move("prev",".ui-menu-item:last",a)},first:function(){return this.active&&!this.active.prevAll(".ui-menu-item").length},last:function(){return this.active&&!this.active.nextAll(".ui-menu-item").length},move:function(a,b,c){if(!this.active){this.activate(c,this.element.children(b));return}var d=this.active[a+"All"](".ui-menu-item").eq(0);d.length?this.activate(c,d):this.activate(c,this.element.children(b))},nextPage:function(b){if(this.hasScroll()){if(!this.active||this.last()){this.activate(b,this.element.children(".ui-menu-item:first"));return}var c=this.active.offset().top,d=this.element.height(),e=this.element.children(".ui-menu-item").filter(function(){var b=a(this).offset().top-c-d+a(this).height();return b<10&&b>-10});e.length||(e=this.element.children(".ui-menu-item:last")),this.activate(b,e)}else this.activate(b,this.element.children(".ui-menu-item").filter(!this.active||this.last()?":first":":last"))},previousPage:function(b){if(this.hasScroll()){if(!this.active||this.first()){this.activate(b,this.element.children(".ui-menu-item:last"));return}var c=this.active.offset().top,d=this.element.height(),e=this.element.children(".ui-menu-item").filter(function(){var b=a(this).offset().top-c+d-a(this).height();return b<10&&b>-10});e.length||(e=this.element.children(".ui-menu-item:first")),this.activate(b,e)}else this.activate(b,this.element.children(".ui-menu-item").filter(!this.active||this.first()?":last":":first"))},hasScroll:function(){/*console.log('scrollHeight3');*/return this.element.height()<this.element[a.fn.prop?"prop":"attr"]("scrollHeight")},select:function(a){this._trigger("selected",a,{item:this.active})}})}(jQuery);;/*! jQuery UI - v1.8.21 - 2012-06-05
 	* https://github.com/jquery/jquery-ui
 	* Includes: jquery.ui.button.js
 	* Copyright (c) 2012 AUTHORS.txt; Licensed MIT, GPL */
@@ -9546,7 +9545,7 @@
 	* https://github.com/jquery/jquery-ui
 	* Includes: jquery.ui.dialog.js
 	* Copyright (c) 2012 AUTHORS.txt; Licensed MIT, GPL */
-	(function(a,b){var c="ui-dialog ui-widget ui-widget-content ui-corner-all ",d={buttons:!0,height:!0,maxHeight:!0,maxWidth:!0,minHeight:!0,minWidth:!0,width:!0},e={maxHeight:!0,maxWidth:!0,minHeight:!0,minWidth:!0},f=a.attrFn||{val:!0,css:!0,html:!0,text:!0,data:!0,width:!0,height:!0,offset:!0,click:!0};a.widget("ui.dialog",{options:{autoOpen:!0,buttons:{},closeOnEscape:!0,closeText:"close",dialogClass:"",draggable:!0,hide:null,height:"auto",maxHeight:!1,maxWidth:!1,minHeight:150,minWidth:150,modal:!1,position:{my:"center",at:"center",collision:"fit",using:function(b){var c=a(this).css(b).offset().top;c<0&&a(this).css("top",b.top-c)}},resizable:!0,show:null,stack:!0,title:"",width:300,zIndex:1e3},_create:function(){this.originalTitle=this.element.attr("title"),typeof this.originalTitle!="string"&&(this.originalTitle=""),this.options.title=this.options.title||this.originalTitle;var b=this,d=b.options,e=d.title||"&#160;",f=a.ui.dialog.getTitleId(b.element),g=(b.uiDialog=a("<div></div>")).appendTo(document.body).hide().addClass(c+d.dialogClass).css({zIndex:d.zIndex}).attr("tabIndex",-1).css("outline",0).keydown(function(c){d.closeOnEscape&&!c.isDefaultPrevented()&&c.keyCode&&c.keyCode===a.ui.keyCode.ESCAPE&&(b.close(c),c.preventDefault())}).attr({role:"dialog","aria-labelledby":f}).mousedown(function(a){b.moveToTop(!1,a)}),h=b.element.show().removeAttr("title").addClass("ui-dialog-content ui-widget-content").appendTo(g),i=(b.uiDialogTitlebar=a("<div></div>")).addClass("ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix").prependTo(g),j=a('<a href="#"></a>').addClass("ui-dialog-titlebar-close ui-corner-all").attr("role","button").hover(function(){j.addClass("ui-state-hover")},function(){j.removeClass("ui-state-hover")}).focus(function(){j.addClass("ui-state-focus")}).blur(function(){j.removeClass("ui-state-focus")}).click(function(a){return b.close(a),!1}).appendTo(i),k=(b.uiDialogTitlebarCloseText=a("<span></span>")).addClass("ui-icon ui-icon-closethick").text(d.closeText).appendTo(j),l=a("<span></span>").addClass("ui-dialog-title").attr("id",f).html(e).prependTo(i);a.isFunction(d.beforeclose)&&!a.isFunction(d.beforeClose)&&(d.beforeClose=d.beforeclose),i.find("*").add(i).disableSelection(),d.draggable&&a.fn.draggable&&b._makeDraggable(),d.resizable&&a.fn.resizable&&b._makeResizable(),b._createButtons(d.buttons),b._isOpen=!1,a.fn.bgiframe&&g.bgiframe()},_init:function(){this.options.autoOpen&&this.open()},destroy:function(){var a=this;return a.overlay&&a.overlay.destroy(),a.uiDialog.hide(),a.element.unbind(".dialog").removeData("dialog").removeClass("ui-dialog-content ui-widget-content").hide().appendTo("body"),a.uiDialog.remove(),a.originalTitle&&a.element.attr("title",a.originalTitle),a},widget:function(){return this.uiDialog},close:function(b){var c=this,d,e;if(!1===c._trigger("beforeClose",b))return;return c.overlay&&c.overlay.destroy(),c.uiDialog.unbind("keypress.ui-dialog"),c._isOpen=!1,c.options.hide?c.uiDialog.hide(c.options.hide,function(){c._trigger("close",b)}):(c.uiDialog.hide(),c._trigger("close",b)),a.ui.dialog.overlay.resize(),c.options.modal&&(d=0,a(".ui-dialog").each(function(){this!==c.uiDialog[0]&&(e=a(this).css("z-index"),isNaN(e)||(d=Math.max(d,e)))}),a.ui.dialog.maxZ=d),c},isOpen:function(){return this._isOpen},moveToTop:function(b,c){var d=this,e=d.options,f;return e.modal&&!b||!e.stack&&!e.modal?d._trigger("focus",c):(e.zIndex>a.ui.dialog.maxZ&&(a.ui.dialog.maxZ=e.zIndex),d.overlay&&(a.ui.dialog.maxZ+=1,d.overlay.$el.css("z-index",a.ui.dialog.overlay.maxZ=a.ui.dialog.maxZ)),f={scrollTop:d.element.scrollTop(),scrollLeft:d.element.scrollLeft()},a.ui.dialog.maxZ+=1,d.uiDialog.css("z-index",a.ui.dialog.maxZ),d.element.attr(f),d._trigger("focus",c),d)},open:function(){if(this._isOpen)return;var b=this,c=b.options,d=b.uiDialog;return b.overlay=c.modal?new a.ui.dialog.overlay(b):null,b._size(),b._position(c.position),d.show(c.show),b.moveToTop(!0),c.modal&&d.bind("keydown.ui-dialog",function(b){if(b.keyCode!==a.ui.keyCode.TAB)return;var c=a(":tabbable",this),d=c.filter(":first"),e=c.filter(":last");if(b.target===e[0]&&!b.shiftKey)return d.focus(1),!1;if(b.target===d[0]&&b.shiftKey)return e.focus(1),!1}),a(b.element.find(":tabbable").get().concat(d.find(".ui-dialog-buttonpane :tabbable").get().concat(d.get()))).eq(0).focus(),b._isOpen=!0,b._trigger("open"),b},_createButtons:function(b){var c=this,d=!1,e=a("<div></div>").addClass("ui-dialog-buttonpane ui-widget-content ui-helper-clearfix"),g=a("<div></div>").addClass("ui-dialog-buttonset").appendTo(e);c.uiDialog.find(".ui-dialog-buttonpane").remove(),typeof b=="object"&&b!==null&&a.each(b,function(){return!(d=!0)}),d&&(a.each(b,function(b,d){d=a.isFunction(d)?{click:d,text:b}:d;var e=a('<button type="button"></button>').click(function(){d.click.apply(c.element[0],arguments)}).appendTo(g);a.each(d,function(a,b){if(a==="click")return;a in f?e[a](b):e.attr(a,b)}),a.fn.button&&e.button()}),e.appendTo(c.uiDialog))},_makeDraggable:function(){function f(a){return{position:a.position,offset:a.offset}}var b=this,c=b.options,d=a(document),e;b.uiDialog.draggable({cancel:".ui-dialog-content, .ui-dialog-titlebar-close",handle:".ui-dialog-titlebar",containment:"document",start:function(d,g){e=c.height==="auto"?"auto":a(this).height(),a(this).height(a(this).height()).addClass("ui-dialog-dragging"),b._trigger("dragStart",d,f(g))},drag:function(a,c){b._trigger("drag",a,f(c))},stop:function(g,h){c.position=[h.position.left-d.scrollLeft(),h.position.top-d.scrollTop()],a(this).removeClass("ui-dialog-dragging").height(e),b._trigger("dragStop",g,f(h)),a.ui.dialog.overlay.resize()}})},_makeResizable:function(c){function h(a){return{originalPosition:a.originalPosition,originalSize:a.originalSize,position:a.position,size:a.size}}c=c===b?this.options.resizable:c;var d=this,e=d.options,f=d.uiDialog.css("position"),g=typeof c=="string"?c:"n,e,s,w,se,sw,ne,nw";d.uiDialog.resizable({cancel:".ui-dialog-content",containment:"document",alsoResize:d.element,maxWidth:e.maxWidth,maxHeight:e.maxHeight,minWidth:e.minWidth,minHeight:d._minHeight(),handles:g,start:function(b,c){a(this).addClass("ui-dialog-resizing"),d._trigger("resizeStart",b,h(c))},resize:function(a,b){d._trigger("resize",a,h(b))},stop:function(b,c){a(this).removeClass("ui-dialog-resizing"),e.height=a(this).height(),e.width=a(this).width(),d._trigger("resizeStop",b,h(c)),a.ui.dialog.overlay.resize()}}).css("position",f).find(".ui-resizable-se").addClass("ui-icon ui-icon-grip-diagonal-se")},_minHeight:function(){var a=this.options;return a.height==="auto"?a.minHeight:Math.min(a.minHeight,a.height)},_position:function(b){var c=[],d=[0,0],e;if(b){if(typeof b=="string"||typeof b=="object"&&"0"in b)c=b.split?b.split(" "):[b[0],b[1]],c.length===1&&(c[1]=c[0]),a.each(["left","top"],function(a,b){+c[a]===c[a]&&(d[a]=c[a],c[a]=b)}),b={my:c.join(" "),at:c.join(" "),offset:d.join(" ")};b=a.extend({},a.ui.dialog.prototype.options.position,b)}else b=a.ui.dialog.prototype.options.position;e=this.uiDialog.is(":visible"),e||this.uiDialog.show(),this.uiDialog.css({top:0,left:0}).position(a.extend({of:window},b)),e||this.uiDialog.hide()},_setOptions:function(b){var c=this,f={},g=!1;a.each(b,function(a,b){c._setOption(a,b),a in d&&(g=!0),a in e&&(f[a]=b)}),g&&this._size(),this.uiDialog.is(":data(resizable)")&&this.uiDialog.resizable("option",f)},_setOption:function(b,d){var e=this,f=e.uiDialog;switch(b){case"beforeclose":b="beforeClose";break;case"buttons":e._createButtons(d);break;case"closeText":e.uiDialogTitlebarCloseText.text(""+d);break;case"dialogClass":f.removeClass(e.options.dialogClass).addClass(c+d);break;case"disabled":d?f.addClass("ui-dialog-disabled"):f.removeClass("ui-dialog-disabled");break;case"draggable":var g=f.is(":data(draggable)");g&&!d&&f.draggable("destroy"),!g&&d&&e._makeDraggable();break;case"position":e._position(d);break;case"resizable":var h=f.is(":data(resizable)");h&&!d&&f.resizable("destroy"),h&&typeof d=="string"&&f.resizable("option","handles",d),!h&&d!==!1&&e._makeResizable(d);break;case"title":a(".ui-dialog-title",e.uiDialogTitlebar).html(""+(d||"&#160;"))}a.Widget.prototype._setOption.apply(e,arguments)},_size:function(){var b=this.options,c,d,e=this.uiDialog.is(":visible");this.element.show().css({width:"auto",minHeight:0,height:0}),b.minWidth>b.width&&(b.width=b.minWidth),c=this.uiDialog.css({height:"auto",width:b.width}).height(),d=Math.max(0,b.minHeight-c);if(b.height==="auto")if(a.support.minHeight)this.element.css({minHeight:d,height:"auto"});else{this.uiDialog.show();var f=this.element.css("height","auto").height();e||this.uiDialog.hide(),this.element.height(Math.max(f,d))}else this.element.height(Math.max(b.height-c,0));this.uiDialog.is(":data(resizable)")&&this.uiDialog.resizable("option","minHeight",this._minHeight())}}),a.extend(a.ui.dialog,{version:"1.8.21",uuid:0,maxZ:0,getTitleId:function(a){var b=a.attr("id");return b||(this.uuid+=1,b=this.uuid),"ui-dialog-title-"+b},overlay:function(b){this.$el=a.ui.dialog.overlay.create(b)}}),a.extend(a.ui.dialog.overlay,{instances:[],oldInstances:[],maxZ:0,events:a.map("focus,mousedown,mouseup,keydown,keypress,click".split(","),function(a){return a+".dialog-overlay"}).join(" "),create:function(b){this.instances.length===0&&(setTimeout(function(){a.ui.dialog.overlay.instances.length&&a(document).bind(a.ui.dialog.overlay.events,function(b){if(a(b.target).zIndex()<a.ui.dialog.overlay.maxZ)return!1})},1),a(document).bind("keydown.dialog-overlay",function(c){b.options.closeOnEscape&&!c.isDefaultPrevented()&&c.keyCode&&c.keyCode===a.ui.keyCode.ESCAPE&&(b.close(c),c.preventDefault())}),a(window).bind("resize.dialog-overlay",a.ui.dialog.overlay.resize));var c=(this.oldInstances.pop()||a("<div></div>").addClass("ui-widget-overlay")).appendTo(document.body).css({width:this.width(),height:this.height()});return a.fn.bgiframe&&c.bgiframe(),this.instances.push(c),c},destroy:function(b){var c=a.inArray(b,this.instances);c!=-1&&this.oldInstances.push(this.instances.splice(c,1)[0]),this.instances.length===0&&a([document,window]).unbind(".dialog-overlay"),b.remove();var d=0;a.each(this.instances,function(){d=Math.max(d,this.css("z-index"))}),this.maxZ=d},height:function(){console.log('scrollHeight4');var b,c;return a.browser.msie&&a.browser.version<7?(b=Math.max(document.documentElement.scrollHeight,document.body.scrollHeight),c=Math.max(document.documentElement.offsetHeight,document.body.offsetHeight),b<c?a(window).height()+"px":b+"px"):a(document).height()+"px"},width:function(){var b,c;return a.browser.msie?(b=Math.max(document.documentElement.scrollWidth,document.body.scrollWidth),c=Math.max(document.documentElement.offsetWidth,document.body.offsetWidth),b<c?a(window).width()+"px":b+"px"):a(document).width()+"px"},resize:function(){var b=a([]);a.each(a.ui.dialog.overlay.instances,function(){b=b.add(this)}),b.css({width:0,height:0}).css({width:a.ui.dialog.overlay.width(),height:a.ui.dialog.overlay.height()})}}),a.extend(a.ui.dialog.overlay.prototype,{destroy:function(){a.ui.dialog.overlay.destroy(this.$el)}})})(jQuery);;/*! jQuery UI - v1.8.21 - 2012-06-05
+	(function(a,b){var c="ui-dialog ui-widget ui-widget-content ui-corner-all ",d={buttons:!0,height:!0,maxHeight:!0,maxWidth:!0,minHeight:!0,minWidth:!0,width:!0},e={maxHeight:!0,maxWidth:!0,minHeight:!0,minWidth:!0},f=a.attrFn||{val:!0,css:!0,html:!0,text:!0,data:!0,width:!0,height:!0,offset:!0,click:!0};a.widget("ui.dialog",{options:{autoOpen:!0,buttons:{},closeOnEscape:!0,closeText:"close",dialogClass:"",draggable:!0,hide:null,height:"auto",maxHeight:!1,maxWidth:!1,minHeight:150,minWidth:150,modal:!1,position:{my:"center",at:"center",collision:"fit",using:function(b){var c=a(this).css(b).offset().top;c<0&&a(this).css("top",b.top-c)}},resizable:!0,show:null,stack:!0,title:"",width:300,zIndex:1e3},_create:function(){this.originalTitle=this.element.attr("title"),typeof this.originalTitle!="string"&&(this.originalTitle=""),this.options.title=this.options.title||this.originalTitle;var b=this,d=b.options,e=d.title||"&#160;",f=a.ui.dialog.getTitleId(b.element),g=(b.uiDialog=a("<div></div>")).appendTo(document.body).hide().addClass(c+d.dialogClass).css({zIndex:d.zIndex}).attr("tabIndex",-1).css("outline",0).keydown(function(c){d.closeOnEscape&&!c.isDefaultPrevented()&&c.keyCode&&c.keyCode===a.ui.keyCode.ESCAPE&&(b.close(c),c.preventDefault())}).attr({role:"dialog","aria-labelledby":f}).mousedown(function(a){b.moveToTop(!1,a)}),h=b.element.show().removeAttr("title").addClass("ui-dialog-content ui-widget-content").appendTo(g),i=(b.uiDialogTitlebar=a("<div></div>")).addClass("ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix").prependTo(g),j=a('<a href="#"></a>').addClass("ui-dialog-titlebar-close ui-corner-all").attr("role","button").hover(function(){j.addClass("ui-state-hover")},function(){j.removeClass("ui-state-hover")}).focus(function(){j.addClass("ui-state-focus")}).blur(function(){j.removeClass("ui-state-focus")}).click(function(a){return b.close(a),!1}).appendTo(i),k=(b.uiDialogTitlebarCloseText=a("<span></span>")).addClass("ui-icon ui-icon-closethick").text(d.closeText).appendTo(j),l=a("<span></span>").addClass("ui-dialog-title").attr("id",f).html(e).prependTo(i);a.isFunction(d.beforeclose)&&!a.isFunction(d.beforeClose)&&(d.beforeClose=d.beforeclose),i.find("*").add(i).disableSelection(),d.draggable&&a.fn.draggable&&b._makeDraggable(),d.resizable&&a.fn.resizable&&b._makeResizable(),b._createButtons(d.buttons),b._isOpen=!1,a.fn.bgiframe&&g.bgiframe()},_init:function(){this.options.autoOpen&&this.open()},destroy:function(){var a=this;return a.overlay&&a.overlay.destroy(),a.uiDialog.hide(),a.element.unbind(".dialog").removeData("dialog").removeClass("ui-dialog-content ui-widget-content").hide().appendTo("body"),a.uiDialog.remove(),a.originalTitle&&a.element.attr("title",a.originalTitle),a},widget:function(){return this.uiDialog},close:function(b){var c=this,d,e;if(!1===c._trigger("beforeClose",b))return;return c.overlay&&c.overlay.destroy(),c.uiDialog.unbind("keypress.ui-dialog"),c._isOpen=!1,c.options.hide?c.uiDialog.hide(c.options.hide,function(){c._trigger("close",b)}):(c.uiDialog.hide(),c._trigger("close",b)),a.ui.dialog.overlay.resize(),c.options.modal&&(d=0,a(".ui-dialog").each(function(){this!==c.uiDialog[0]&&(e=a(this).css("z-index"),isNaN(e)||(d=Math.max(d,e)))}),a.ui.dialog.maxZ=d),c},isOpen:function(){return this._isOpen},moveToTop:function(b,c){var d=this,e=d.options,f;return e.modal&&!b||!e.stack&&!e.modal?d._trigger("focus",c):(e.zIndex>a.ui.dialog.maxZ&&(a.ui.dialog.maxZ=e.zIndex),d.overlay&&(a.ui.dialog.maxZ+=1,d.overlay.$el.css("z-index",a.ui.dialog.overlay.maxZ=a.ui.dialog.maxZ)),f={scrollTop:d.element.scrollTop(),scrollLeft:d.element.scrollLeft()},a.ui.dialog.maxZ+=1,d.uiDialog.css("z-index",a.ui.dialog.maxZ),d.element.attr(f),d._trigger("focus",c),d)},open:function(){if(this._isOpen)return;var b=this,c=b.options,d=b.uiDialog;return b.overlay=c.modal?new a.ui.dialog.overlay(b):null,b._size(),b._position(c.position),d.show(c.show),b.moveToTop(!0),c.modal&&d.bind("keydown.ui-dialog",function(b){if(b.keyCode!==a.ui.keyCode.TAB)return;var c=a(":tabbable",this),d=c.filter(":first"),e=c.filter(":last");if(b.target===e[0]&&!b.shiftKey)return d.focus(1),!1;if(b.target===d[0]&&b.shiftKey)return e.focus(1),!1}),a(b.element.find(":tabbable").get().concat(d.find(".ui-dialog-buttonpane :tabbable").get().concat(d.get()))).eq(0).focus(),b._isOpen=!0,b._trigger("open"),b},_createButtons:function(b){var c=this,d=!1,e=a("<div></div>").addClass("ui-dialog-buttonpane ui-widget-content ui-helper-clearfix"),g=a("<div></div>").addClass("ui-dialog-buttonset").appendTo(e);c.uiDialog.find(".ui-dialog-buttonpane").remove(),typeof b=="object"&&b!==null&&a.each(b,function(){return!(d=!0)}),d&&(a.each(b,function(b,d){d=a.isFunction(d)?{click:d,text:b}:d;var e=a('<button type="button"></button>').click(function(){d.click.apply(c.element[0],arguments)}).appendTo(g);a.each(d,function(a,b){if(a==="click")return;a in f?e[a](b):e.attr(a,b)}),a.fn.button&&e.button()}),e.appendTo(c.uiDialog))},_makeDraggable:function(){function f(a){return{position:a.position,offset:a.offset}}var b=this,c=b.options,d=a(document),e;b.uiDialog.draggable({cancel:".ui-dialog-content, .ui-dialog-titlebar-close",handle:".ui-dialog-titlebar",containment:"document",start:function(d,g){e=c.height==="auto"?"auto":a(this).height(),a(this).height(a(this).height()).addClass("ui-dialog-dragging"),b._trigger("dragStart",d,f(g))},drag:function(a,c){b._trigger("drag",a,f(c))},stop:function(g,h){c.position=[h.position.left-d.scrollLeft(),h.position.top-d.scrollTop()],a(this).removeClass("ui-dialog-dragging").height(e),b._trigger("dragStop",g,f(h)),a.ui.dialog.overlay.resize()}})},_makeResizable:function(c){function h(a){return{originalPosition:a.originalPosition,originalSize:a.originalSize,position:a.position,size:a.size}}c=c===b?this.options.resizable:c;var d=this,e=d.options,f=d.uiDialog.css("position"),g=typeof c=="string"?c:"n,e,s,w,se,sw,ne,nw";d.uiDialog.resizable({cancel:".ui-dialog-content",containment:"document",alsoResize:d.element,maxWidth:e.maxWidth,maxHeight:e.maxHeight,minWidth:e.minWidth,minHeight:d._minHeight(),handles:g,start:function(b,c){a(this).addClass("ui-dialog-resizing"),d._trigger("resizeStart",b,h(c))},resize:function(a,b){d._trigger("resize",a,h(b))},stop:function(b,c){a(this).removeClass("ui-dialog-resizing"),e.height=a(this).height(),e.width=a(this).width(),d._trigger("resizeStop",b,h(c)),a.ui.dialog.overlay.resize()}}).css("position",f).find(".ui-resizable-se").addClass("ui-icon ui-icon-grip-diagonal-se")},_minHeight:function(){var a=this.options;return a.height==="auto"?a.minHeight:Math.min(a.minHeight,a.height)},_position:function(b){var c=[],d=[0,0],e;if(b){if(typeof b=="string"||typeof b=="object"&&"0"in b)c=b.split?b.split(" "):[b[0],b[1]],c.length===1&&(c[1]=c[0]),a.each(["left","top"],function(a,b){+c[a]===c[a]&&(d[a]=c[a],c[a]=b)}),b={my:c.join(" "),at:c.join(" "),offset:d.join(" ")};b=a.extend({},a.ui.dialog.prototype.options.position,b)}else b=a.ui.dialog.prototype.options.position;e=this.uiDialog.is(":visible"),e||this.uiDialog.show(),this.uiDialog.css({top:0,left:0}).position(a.extend({of:window},b)),e||this.uiDialog.hide()},_setOptions:function(b){var c=this,f={},g=!1;a.each(b,function(a,b){c._setOption(a,b),a in d&&(g=!0),a in e&&(f[a]=b)}),g&&this._size(),this.uiDialog.is(":data(resizable)")&&this.uiDialog.resizable("option",f)},_setOption:function(b,d){var e=this,f=e.uiDialog;switch(b){case"beforeclose":b="beforeClose";break;case"buttons":e._createButtons(d);break;case"closeText":e.uiDialogTitlebarCloseText.text(""+d);break;case"dialogClass":f.removeClass(e.options.dialogClass).addClass(c+d);break;case"disabled":d?f.addClass("ui-dialog-disabled"):f.removeClass("ui-dialog-disabled");break;case"draggable":var g=f.is(":data(draggable)");g&&!d&&f.draggable("destroy"),!g&&d&&e._makeDraggable();break;case"position":e._position(d);break;case"resizable":var h=f.is(":data(resizable)");h&&!d&&f.resizable("destroy"),h&&typeof d=="string"&&f.resizable("option","handles",d),!h&&d!==!1&&e._makeResizable(d);break;case"title":a(".ui-dialog-title",e.uiDialogTitlebar).html(""+(d||"&#160;"))}a.Widget.prototype._setOption.apply(e,arguments)},_size:function(){var b=this.options,c,d,e=this.uiDialog.is(":visible");this.element.show().css({width:"auto",minHeight:0,height:0}),b.minWidth>b.width&&(b.width=b.minWidth),c=this.uiDialog.css({height:"auto",width:b.width}).height(),d=Math.max(0,b.minHeight-c);if(b.height==="auto")if(a.support.minHeight)this.element.css({minHeight:d,height:"auto"});else{this.uiDialog.show();var f=this.element.css("height","auto").height();e||this.uiDialog.hide(),this.element.height(Math.max(f,d))}else this.element.height(Math.max(b.height-c,0));this.uiDialog.is(":data(resizable)")&&this.uiDialog.resizable("option","minHeight",this._minHeight())}}),a.extend(a.ui.dialog,{version:"1.8.21",uuid:0,maxZ:0,getTitleId:function(a){var b=a.attr("id");return b||(this.uuid+=1,b=this.uuid),"ui-dialog-title-"+b},overlay:function(b){this.$el=a.ui.dialog.overlay.create(b)}}),a.extend(a.ui.dialog.overlay,{instances:[],oldInstances:[],maxZ:0,events:a.map("focus,mousedown,mouseup,keydown,keypress,click".split(","),function(a){return a+".dialog-overlay"}).join(" "),create:function(b){this.instances.length===0&&(setTimeout(function(){a.ui.dialog.overlay.instances.length&&a(document).bind(a.ui.dialog.overlay.events,function(b){if(a(b.target).zIndex()<a.ui.dialog.overlay.maxZ)return!1})},1),a(document).bind("keydown.dialog-overlay",function(c){b.options.closeOnEscape&&!c.isDefaultPrevented()&&c.keyCode&&c.keyCode===a.ui.keyCode.ESCAPE&&(b.close(c),c.preventDefault())}),a(window).bind("resize.dialog-overlay",a.ui.dialog.overlay.resize));var c=(this.oldInstances.pop()||a("<div></div>").addClass("ui-widget-overlay")).appendTo(document.body).css({width:this.width(),height:this.height()});return a.fn.bgiframe&&c.bgiframe(),this.instances.push(c),c},destroy:function(b){var c=a.inArray(b,this.instances);c!=-1&&this.oldInstances.push(this.instances.splice(c,1)[0]),this.instances.length===0&&a([document,window]).unbind(".dialog-overlay"),b.remove();var d=0;a.each(this.instances,function(){d=Math.max(d,this.css("z-index"))}),this.maxZ=d},height:function(){/*console.log('scrollHeight4');*/var b,c;return a.browser.msie&&a.browser.version<7?(b=Math.max(document.documentElement.scrollHeight,document.body.scrollHeight),c=Math.max(document.documentElement.offsetHeight,document.body.offsetHeight),b<c?a(window).height()+"px":b+"px"):a(document).height()+"px"},width:function(){var b,c;return a.browser.msie?(b=Math.max(document.documentElement.scrollWidth,document.body.scrollWidth),c=Math.max(document.documentElement.offsetWidth,document.body.offsetWidth),b<c?a(window).width()+"px":b+"px"):a(document).width()+"px"},resize:function(){var b=a([]);a.each(a.ui.dialog.overlay.instances,function(){b=b.add(this)}),b.css({width:0,height:0}).css({width:a.ui.dialog.overlay.width(),height:a.ui.dialog.overlay.height()})}}),a.extend(a.ui.dialog.overlay.prototype,{destroy:function(){a.ui.dialog.overlay.destroy(this.$el)}})})(jQuery);;/*! jQuery UI - v1.8.21 - 2012-06-05
 	* https://github.com/jquery/jquery-ui
 	* Includes: jquery.ui.slider.js
 	* Copyright (c) 2012 AUTHORS.txt; Licensed MIT, GPL */
@@ -10223,17 +10222,16 @@
 	// This plugin is dual-licensed under the GNU General Public License
 	//   and the MIT License and is copyright A Beautiful Site, LLC.
 	//
-	if(jQuery)( function() {
+	if(jQuery)(function() {
 		$.extend($.fn, {
-			
 			contextMenu: function(o, callback) {
 				// Defaults
-				if( o.menu == undefined ) return false;
-				if( o.inSpeed == undefined ) o.inSpeed = 150;
-				if( o.outSpeed == undefined ) o.outSpeed = 75;
+				if(o.menu == undefined) {return false;}
+				if(o.inSpeed == undefined) {o.inSpeed = 150;}
+				if(o.outSpeed == undefined) {o.outSpeed = 75;}
 				// 0 needs to be -1 for expected results (no fade)
-				if( o.inSpeed == 0 ) o.inSpeed = -1;
-				if( o.outSpeed == 0 ) o.outSpeed = -1;
+				if(o.inSpeed == 0) {o.inSpeed = -1;}
+				if(o.outSpeed == 0) {o.outSpeed = -1;}
 				// Loop each context menu
 				$(this).each( function() {
 					var el = $(this);
@@ -10241,38 +10239,43 @@
 					// Add contextMenu class
 					$('#' + o.menu).addClass('contextMenu');
 					// Simulate a true right click
-					$(this).mousedown( function(e) {
+					$(this).mousedown(function(e) {
 						var evt = e;
 						if(e.button != 2) {
 							return;
 						}
+						//console.log(e);
 						evt.stopPropagation();
-						$(this).mouseup( function(e) {
-							e.stopPropagation();
+						$(this).mouseup(function(e) {
 							var srcElement = $(this);
 							$(this).unbind('mouseup');
-							if( evt.button == 2 ) {
+							//console.log(evt.button);
+							if(evt.button == 2) {
+
+								$('#layerContext .rename').hide();
+								e.stopPropagation();
 								// Hide context menus that may be showing
 								$(".contextMenu").hide();
+
+								$('.layer').trigger('mousemove');
 								// Get this context menu
 								var menu = $('#' + o.menu);
 								
-								if( $(el).hasClass('disabled') ) return false;
+								if($(el).hasClass('disabled')) {return false};
 								
 								// Detect mouse position
 								var d = {}, x, y;
-								if( self.innerHeight ) {
+								if(self.innerHeight) {
 									d.pageYOffset = self.pageYOffset;
 									d.pageXOffset = self.pageXOffset;
 									d.innerHeight = self.innerHeight;
 									d.innerWidth = self.innerWidth;
-								} else if( document.documentElement &&
-									document.documentElement.clientHeight ) {
+								} else if(document.documentElement && document.documentElement.clientHeight) {
 									d.pageYOffset = document.documentElement.scrollTop;
 									d.pageXOffset = document.documentElement.scrollLeft;
 									d.innerHeight = document.documentElement.clientHeight;
 									d.innerWidth = document.documentElement.clientWidth;
-								} else if( document.body ) {
+								} else if(document.body) {
 									d.pageYOffset = document.body.scrollTop;
 									d.pageXOffset = document.body.scrollLeft;
 									d.innerHeight = document.body.clientHeight;
@@ -10283,9 +10286,11 @@
 								
 								// Show the menu
 								$(document).unbind('click');
-								$(menu).css({ top: y, left: x }).fadeIn(o.inSpeed);
+								$(menu).css({top: y, left: x}).fadeIn(o.inSpeed);
+
+								$wireitemselected = {};
 								// Hover events
-								$(menu).find('A').mouseover( function() {
+								$(menu).find('A').mouseover(function() {
 									$(menu).find('LI.hover').removeClass('hover');
 									$(this).parent().addClass('hover');
 								}).mouseout( function() {
@@ -10293,22 +10298,22 @@
 								});
 								
 								// Keyboard
-								$(document).keypress( function(e) {
-									switch( e.keyCode ) {
+								$(document).keypress(function(e) {
+									switch(e.keyCode) {
 										case 38: // up
-											if( $(menu).find('LI.hover').size() == 0 ) {
+											if($(menu).find('LI.hover').size() == 0) {
 												$(menu).find('LI:last').addClass('hover');
 											} else {
 												$(menu).find('LI.hover').removeClass('hover').prevAll('LI:not(.disabled)').eq(0).addClass('hover');
-												if( $(menu).find('LI.hover').size() == 0 ) $(menu).find('LI:last').addClass('hover');
+												if($(menu).find('LI.hover').size() == 0) {$(menu).find('LI:last').addClass('hover');}
 											}
 										break;
 										case 40: // down
-											if( $(menu).find('LI.hover').size() == 0 ) {
+											if($(menu).find('LI.hover').size() == 0) {
 												$(menu).find('LI:first').addClass('hover');
 											} else {
 												$(menu).find('LI.hover').removeClass('hover').nextAll('LI:not(.disabled)').eq(0).addClass('hover');
-												if( $(menu).find('LI.hover').size() == 0 ) $(menu).find('LI:first').addClass('hover');
+												if($(menu).find('LI.hover').size() == 0) {$(menu).find('LI:first').addClass('hover');}
 											}
 										break;
 										case 13: // enter
@@ -10322,36 +10327,41 @@
 								
 								// When items are selected
 								$('#' + o.menu).find('A').unbind('click');
-								$('#' + o.menu).find('LI:not(.disabled) A').click( function() {
+								$('#' + o.menu).find('LI:not(.disabled) A').click(function() {
 									$(document).unbind('click').unbind('keypress');
 									$(".contextMenu").hide();
+									$('.layer').trigger('mousemove');
 									// Callback
-									if( callback ) callback( $(this).attr('href').substr(1), $(srcElement), {x: x - offset.left, y: y - offset.top, docX: x, docY: y} );
+									if(callback) {callback($(this).attr('href').substr(1), $(srcElement), {x: x - offset.left, y: y - offset.top, docX: x, docY: y})};
 									return false;
 								});
 								
 								// Hide bindings
-								setTimeout( function() { // Delay for Mozilla
-									$(document).click( function() {
+								setTimeout(function() { // Delay for Mozilla
+									$(document).click(function() {
 										$(document).unbind('click').unbind('keypress');
-										$(menu).fadeOut(o.outSpeed);
+										$(menu).fadeOut(o.outSpeed, function() {$('.layer').trigger('mousemove');});
+										$wireitemselected = {};
 										return false;
 									});
 								}, 0);
+							}
+							if(typeof($._data($(this)[0], 'events')['mouseup2']) !== 'undefined') {
+								$(this).on('mouseup', function(a,b,c,d,e,f,g,h,i,j,k) {$(this).trigger('mouseup2',a,b,c,d,e,f,g,h,i,j,k);});
 							}
 						});
 					});
 					
 					// Disable text selection
-					if( $.browser.mozilla ) {
-						$('#' + o.menu).each( function() { $(this).css({ 'MozUserSelect' : 'none' }); });
-					} else if( $.browser.msie ) {
-						$('#' + o.menu).each( function() { $(this).bind('selectstart.disableTextSelect', function() { return false; }); });
+					if($.browser.mozilla) {
+						$('#' + o.menu).each(function() {$(this).css({'MozUserSelect' : 'none'});});
+					} else if($.browser.msie) {
+						$('#' + o.menu).each(function() {$(this).bind('selectstart.disableTextSelect', function() {return false;});});
 					} else {
-						$('#' + o.menu).each(function() { $(this).bind('mousedown.disableTextSelect', function() { return false; }); });
+						$('#' + o.menu).each(function() {$(this).bind('mousedown.disableTextSelect', function() {return false;});});
 					}
 					// Disable browser context menu (requires both selectors to work in IE/Safari + FF/Chrome)
-					$(el).add($('UL.contextMenu')).bind('contextmenu', function() { return false; });
+					$(el).add($('UL.contextMenu')).bind('contextmenu', function() {return false;});
 					
 				});
 				return $(this);
@@ -10359,70 +10369,68 @@
 			
 			// Disable context menu items on the fly
 			disableContextMenuItems: function(o) {
-				if( o == undefined ) {
+				if(o == undefined) {
 					// Disable all
 					$(this).find('LI').addClass('disabled');
-					return( $(this) );
+					return($(this));
 				}
-				$(this).each( function() {
-					if( o != undefined ) {
+				$(this).each(function() {
+					if(o != undefined) {
 						var d = o.split(',');
-						for( var i = 0; i < d.length; i++ ) {
+						for(var i = 0; i < d.length; i++) {
 							$(this).find('A[href="' + d[i] + '"]').parent().addClass('disabled');
-							
 						}
 					}
 				});
-				return( $(this) );
+				return($(this));
 			},
 			
 			// Enable context menu items on the fly
 			enableContextMenuItems: function(o) {
-				if( o == undefined ) {
+				if(o == undefined) {
 					// Enable all
 					$(this).find('LI.disabled').removeClass('disabled');
-					return( $(this) );
+					return($(this));
 				}
-				$(this).each( function() {
-					if( o != undefined ) {
+				$(this).each(function() {
+					if(o != undefined) {
 						var d = o.split(',');
-						for( var i = 0; i < d.length; i++ ) {
+						for(var i = 0; i < d.length; i++) {
 							$(this).find('A[href="' + d[i] + '"]').parent().removeClass('disabled');
-							
 						}
 					}
 				});
-				return( $(this) );
+				return($(this));
 			},
 			
 			// Disable context menu(s)
 			disableContextMenu: function() {
-				$(this).each( function() {
+				$(this).each(function() {
 					$(this).addClass('disabled');
 				});
-				return( $(this) );
+				return($(this));
 			},
 			
 			// Enable context menu(s)
 			enableContextMenu: function() {
-				$(this).each( function() {
+				$(this).each(function() {
 					$(this).removeClass('disabled');
 				});
-				return( $(this) );
+				return($(this));
 			},
 			
 			// Destroy context menu(s)
 			destroyContextMenu: function() {
 				// Destroy specified context menus
-				$(this).each( function() {
+				$(this).each(function() {
 					// Disable action
 					$(this).unbind('mousedown').unbind('mouseup');
 				});
-				return( $(this) );
+				return($(this));
 			}
 			
 		});
-	})(jQuery);
+	}) (jQuery);
 /*JQuery Data Tables*/
 	/*
 	 * File:        jquery.dataTables.js
@@ -17309,13 +17317,15 @@
 				if(m[3]) {
 					rotateUnits = m[3];
 				}
-				$(this).css({
-					'-webkit-transform':style.replace(/none|rotate\([^)]*\)/, '') + 'rotate(' + m[1] + rotateUnits + ')',
-					'-moz-transform':	style.replace(/none|rotate\([^)]*\)/, '') + 'rotate(' + m[1] + rotateUnits + ')',
-					'-ms-transform':	style.replace(/none|rotate\([^)]*\)/, '') + 'rotate(' + m[1] + rotateUnits + ')',
-					'-o-transform':		style.replace(/none|rotate\([^)]*\)/, '') + 'rotate(' + m[1] + rotateUnits + ')',
-					'transform':		style.replace(/none|rotate\([^)]*\)/, '') + 'rotate(' + m[1] + rotateUnits + ')'
-				});
+				//if($('body').attr('retro') == undefined) {
+					$(this).css({
+						'-webkit-transform':style.replace(/none|rotate\([^)]*\)/, '') + 'rotate(' + m[1] + rotateUnits + ')',
+						'-moz-transform':	style.replace(/none|rotate\([^)]*\)/, '') + 'rotate(' + m[1] + rotateUnits + ')',
+						'-ms-transform':	style.replace(/none|rotate\([^)]*\)/, '') + 'rotate(' + m[1] + rotateUnits + ')',
+						'-o-transform':		style.replace(/none|rotate\([^)]*\)/, '') + 'rotate(' + m[1] + rotateUnits + ')',
+						'transform':		style.replace(/none|rotate\([^)]*\)/, '') + 'rotate(' + m[1] + rotateUnits + ')'
+					});
+				//}
 			}
 			return this;
 		}
@@ -17331,14 +17341,16 @@
 				}
 				return 1;
 			}
-			$(this).css({
-				'-webkit-transform':	style.replace(/none|scale\([^)]*\)/, '') + 'scale(' + val + ')',
-				'-moz-transform':		style.replace(/none|scale\([^)]*\)/, '') + 'scale(' + val + ')',
-				'-ms-transform':		style.replace(/none|scale\([^)]*\)/, '') + 'scale(' + val + ')',
-				'-o-transform':			style.replace(/none|scale\([^)]*\)/, '') + 'scale(' + val + ')',
-				'transform':			style.replace(/none|scale\([^)]*\)/, '') + 'scale(' + val + ')'
+			//if($('body').attr('retro') == undefined) {
+				$(this).css({
+					'-webkit-transform':	style.replace(/none|scale\([^)]*\)/, '') + 'scale(' + val + ')',
+					'-moz-transform':		style.replace(/none|scale\([^)]*\)/, '') + 'scale(' + val + ')',
+					'-ms-transform':		style.replace(/none|scale\([^)]*\)/, '') + 'scale(' + val + ')',
+					'-o-transform':			style.replace(/none|scale\([^)]*\)/, '') + 'scale(' + val + ')',
+					'transform':			style.replace(/none|scale\([^)]*\)/, '') + 'scale(' + val + ')'
 
-			});
+				});
+			//}
 			return this;
 		}
 		// fx.cur() must be monkey patched because otherwise it would always
@@ -18152,11 +18164,1443 @@
 			$.error('Method ' +  method + ' does not exist on jQuery.tooltip');
 		};
 	})(jQuery);
+/*jQuery ComboBox*/
+	(function ($) {
+	    $.widget("ui.combobox", {
+	        _create: function () {
+	            var self = this,
+					select = this.element.hide(),
+					selected = select.children(":selected"),
+					value = selected.val() ? selected.text() : "",
+					regSearch = /^[^a-zA-Z0-9]*([a-zA-Z0-9])/i,
+					comboData = select.children("option").map(function () {
+						if (this.value ) {
+							var text = $(this).text(), 
+								labelHtml = self.options.label ? self.options.label(this) : text; //allows list customization
+	 
+							return {
+								label: labelHtml,
+								value: text,
+								option: this
+							};
+						}
+					});
+	 
+	            var input = this.input = $("<input type='text' />")
+						.insertAfter(select)
+						.val(value)
+						.keydown( function( event ) {
+								var keyCode = $.ui.keyCode;
+								switch( event.keyCode ) {
+									case keyCode.PAGE_UP:
+									case keyCode.PAGE_DOWN:
+									case keyCode.UP:
+									case keyCode.DOWN:
+									case keyCode.ENTER:
+									case keyCode.NUMPAD_ENTER:
+									case keyCode.TAB:
+									case keyCode.ESCAPE:
+										//let autocomplete handle these
+										break;
+									default:
+										//prevent autocomplete doing anything
+										event.stopImmediatePropagation();
+										//only react to [a-zA-Z0-9]
+										if ((event.keyCode < 91 && event.keyCode > 59)
+											|| (event.keyCode < 58 && event.keyCode > 47)) {
+	 
+											var str = String.fromCharCode(event.keyCode).toLowerCase(), currVal = input.val(), opt;
+	 
+											//find all options whose first alpha character matches that pressed
+											var matchOpt = select.children().filter(function() {
+												var test = regSearch.exec(this.text);
+												return (test && test.length == 2 && test[1].toLowerCase() == str);
+											});
+	 
+											if (!matchOpt.length ) return false;
+	 
+											//if there is something selected we need to find the next in the list
+											if (currVal.length) {
+												var test = regSearch.exec(currVal);
+												if (test && test.length == 2 && test[1].toLowerCase() == str) {
+													//the next one that begins with that letter
+													matchOpt.each(function(ix, el) {
+														if (el.selected) {
+															if ((ix + 1) <= matchOpt.length-1) {
+																opt = matchOpt[ix + 1];
+															}
+															return false;
+														}
+													});
+												}
+											} 
+	 
+											//fallback to the first one that begins with that character
+											if (!opt)
+												opt = matchOpt[0];
+	 
+											//select that item
+											opt.selected = true;
+											input.val(opt.text);
+	 
+											//if the dropdown is open, find it in the list
+											if (input.autocomplete("widget").is(":visible")) {
+												input.data("autocomplete").widget().children('li').each(function() {		
+													var $li = $(this);
+													if ($li.data("item.autocomplete").option == opt) {
+														input.data("autocomplete").menu.activate(event,$li);
+														return false;
+													}
+												});
+											}
+										}
+										//ignore all other keystrokes
+										return false;
+										break;
+									}
+						  })
+						.autocomplete({
+						    delay: 0,
+						    minLength: 0,
+						    source: function (request, response) { response(comboData); },
+						    select: function (event, ui) {
+						        ui.item.option.selected = true;
+						        self._trigger("selected", event, {
+						            item: ui.item.option
+						        });
+						    },
+						    change: function (event, ui) {
+								if (!ui.item) {					
+									var matcher = new RegExp("^" + $.ui.autocomplete.escapeRegex($(this).val()) + "$", "i"),
+										valid = false;
+									select.children("option").each(function () {
+										if ($(this).text().match(matcher)) {
+											this.selected = valid = true;
+											return false;
+										}
+									});
+									if (!valid) {
+										// remove invalid value, as it didn't match anything
+										$(this).val("");
+										select.val("");
+										input.data("autocomplete").term = "";
+										return false;
+									}
+								}
+						    }
+						})
+						.addClass("ui-widget ui-widget-content ui-corner-left")
+						.click(function() { self.button.click(); })
+						.bind("autocompleteopen", function(event, ui){
+							//find the currently selected item and highlight it in the list
+							var opt = select.children(":selected")[0];
+							input.data("autocomplete").widget().children('li').each(function() {		
+								var $li = $(this);
+								if ($li.data("item.autocomplete").option == opt) {
+									input.data("autocomplete").menu.activate(event,$li);
+									return false;
+								}
+							});
+						});
+	 
+	            input.data("autocomplete")._renderItem = function (ul, item) {
+	                return $("<li></li>")
+						.data("item.autocomplete", item)
+						.append("<a href='#'>" + item.label + "</a>")
+						.appendTo(ul);
+	            };
+	 
+	            this.button = $("<button type='button'>&nbsp;</button>")
+						.attr("tabIndex", -1)
+						.attr("title", "Show All Items")
+						.insertAfter(input)
+						.button({
+						    icons: {
+						        primary: "ui-icon-triangle-1-s"
+						    },
+						    text: false
+						})
+						.removeClass("ui-corner-all")
+						.addClass("ui-corner-right ui-button-icon")
+						.click(function () {
+						    // close if already visible
+						    if (input.autocomplete("widget").is(":visible")) {
+						        input.autocomplete("close");
+						        return;
+						    }
+	 
+						    // pass empty string as value to search for, displaying all results
+						    input.autocomplete("search", "");
+						    input.focus();
+						});
+	        },
+	 
+			//allows programmatic selection of combo using the option value
+	        setValue: function (value) {
+	            var $input = this.input;
+	            $("option", this.element).each(function () {
+	                if ($(this).val() == value) {
+	                    this.selected = true;
+	                    $input.val(this.text);
+						return false;
+	                }
+	            });
+	        },
+	 
+	        destroy: function () {
+	            this.input.remove();
+	            this.button.remove();
+	            this.element.show();
+	            $.Widget.prototype.destroy.call(this);
+	        }
+	    });
+	})(jQuery);
+/*jQuery DragToSelect*/
+	/***
+		@title:
+		Drag to Select
+
+		@version:
+		1.1
+
+		@author:
+		Andreas Lagerkvist
+
+		@date:
+		2009-04-06
+
+		@url:
+		http://andreaslagerkvist.com/jquery/drag-to-select/
+
+		@license:
+		http://creativecommons.org/licenses/by/3.0/
+
+		@copyright:
+		2008 Andreas Lagerkvist (andreaslagerkvist.com)
+
+		@requires:
+		jquery, jquery.dragToSelect.css
+
+		@does:
+		Use this plug-in to allow your users to select certain elements by dragging a "select box". Works very similar to how you can drag-n-select files and folders in most OS:es.
+
+		@howto:
+		$('#my-files').dragToSelect(selectables: 'li'); would make every li in the #my-files-element selectable by dragging. The li:s will recieve a "selected"-class when they are within range of the select box when user drops.
+
+		Make sure a parent-element of the selectables has position: relative as well as overflow: auto or scroll.
+
+		@exampleHTML:
+		<ul>
+			<li><img src="http://exscale.se/__files/3d/lamp-and-mates/lamp-and-mates-01_small.jpg" alt="Lamp and Mates" /></li>
+			<li><img src="http://exscale.se/__files/3d/stugan-winter_small.jpg" alt="The Cottage - Winter time" /></li>
+			<li><img src="http://exscale.se/__files/3d/ps2_small.jpg" alt="PS2" /></li>
+		</ul>
+
+		@exampleJS:
+		$('#jquery-drag-to-select-example').dragToSelect({
+			selectables: 'li', 
+			onHide: function () {
+				alert($('#jquery-drag-to-select-example li.selected').length + ' selected');
+			}
+		});
+	***/
+	jQuery.fn.dragToSelect = function (conf) {
+		var c = typeof(conf) == 'object' ? conf : {};
+
+		// Config
+		var config = jQuery.extend({
+			className:		'jquery-drag-to-select', 
+			activeClass:	'active', 
+			disabledClass:	'disabled', 
+			selectedClass:	'selected', 
+			scrollTH:		10, 
+			percentCovered:	25, 
+			selectables:	false, 
+			autoScroll:		false, 
+			selectOnMove:	false, 
+			onShow:			function () {return true;}, 
+			onHide:			function () {return true;}, 
+			onRefresh:		function () {return true;}
+		}, c);
+
+		var realParent	= jQuery(this);
+		var parent		= realParent;
+
+		do {
+			if (/auto|scroll|hidden/.test(parent.css('overflow'))) {
+				break;
+			}
+			parent = parent.parent();
+		} while (parent[0].parentNode);
+
+		// Does user want to disable dragToSelect
+		if (conf == 'disable') {
+			parent.addClass(config.disabledClass);
+			return this;
+		}
+		else if (conf == 'enable') {
+			parent.removeClass(config.disabledClass);
+			return this;
+		}
+
+		var parentOffset	= parent.offset();
+		var parentDim		= {
+			left:	parentOffset.left, 
+			top:	parentOffset.top, 
+			width:	parent.width(), 
+			height:	parent.height()
+		};
+
+		// Current origin of select box
+		var selectBoxOrigin = {
+			left:	0, 
+			top:	0
+		};
+
+		// Create select box
+		var selectBox = jQuery('<div/>')
+							.appendTo(parent)
+							.attr('class', config.className)
+							.css('position', 'absolute');
+
+		// Shows the select box
+		var showSelectBox = function (e) {
+			if (parent.is('.' + config.disabledClass)) {
+				return;
+			}
+
+			selectBoxOrigin.left	= e.pageX - parentDim.left + parent[0].scrollLeft;
+			selectBoxOrigin.top		= e.pageY - parentDim.top + parent[0].scrollTop;
+
+			var css = {
+				left:		selectBoxOrigin.left + 'px', 
+				top:		selectBoxOrigin.top + 'px', 
+				width:		'1px', 
+				height:		'1px'
+			};
+			selectBox.addClass(config.activeClass).css(css);
+
+			config.onShow();
+		};
+
+		// Refreshes the select box dimensions and possibly position
+		var refreshSelectBox = function (e) {
+			if (!selectBox.is('.' + config.activeClass) || parent.is('.' + config.disabledClass)) {
+				return;
+			}
+
+			var left		= e.pageX - parentDim.left + parent[0].scrollLeft;
+			var top			= e.pageY - parentDim.top + parent[0].scrollTop;
+			var newLeft		= left;
+			var newTop		= top;
+			var newWidth	= selectBoxOrigin.left - newLeft;
+			var newHeight	= selectBoxOrigin.top - newTop;
+
+			if (left > selectBoxOrigin.left) {
+				newLeft		= selectBoxOrigin.left;
+				newWidth	= left - selectBoxOrigin.left;
+			}
+
+			if (top > selectBoxOrigin.top) {
+				newTop		= selectBoxOrigin.top;
+				newHeight	= top - selectBoxOrigin.top;
+			}
+
+			var css = {
+				left:	newLeft + 'px', 
+				top:	newTop + 'px', 
+				width:	newWidth + 'px', 
+				height:	newHeight + 'px'
+			};
+			selectBox.css(css);
+
+			config.onRefresh();
+		};
+
+		// Hides the select box
+		var hideSelectBox = function (e) {
+			if (!selectBox.is('.' + config.activeClass) || parent.is('.' + config.disabledClass)) {
+				return;
+			}
+			if (config.onHide(selectBox) !== false) {
+				selectBox.removeClass(config.activeClass);
+			}
+		};
+
+		// Scrolls parent if needed
+		var scrollPerhaps = function (e) {
+			if (!selectBox.is('.' + config.activeClass) || parent.is('.' + config.disabledClass)) {
+				return;
+			}
+
+			// Scroll down
+			if ((e.pageY + config.scrollTH) > (parentDim.top + parentDim.height)) {
+				parent[0].scrollTop += config.scrollTH;
+			}
+			// Scroll up
+			if ((e.pageY - config.scrollTH) < parentDim.top) {
+				parent[0].scrollTop -= config.scrollTH;
+			}
+			// Scroll right
+			if ((e.pageX + config.scrollTH) > (parentDim.left + parentDim.width)) {
+				parent[0].scrollLeft += config.scrollTH;
+			}
+			// Scroll left
+			if ((e.pageX - config.scrollTH) < parentDim.left) {
+				parent[0].scrollLeft -= config.scrollTH;
+			}
+		};
+
+		// Selects all the elements in the select box's range
+		var selectElementsInRange = function () {
+			if (!selectBox.is('.' + config.activeClass) || parent.is('.' + config.disabledClass)) {
+				return;
+			}
+
+			var selectables		= realParent.find(config.selectables);
+			var selectBoxOffset	= selectBox.offset();
+			var selectBoxDim	= {
+				left:	selectBoxOffset.left, 
+				top:	selectBoxOffset.top, 
+				width:	selectBox.width(), 
+				height:	selectBox.height()
+			};
+
+			selectables.each(function (i) {
+				var el			= $(this);
+				var elOffset	= el.offset();
+				var elDim		= {
+					left:	elOffset.left, 
+					top:	elOffset.top, 
+					width:	el.width(), 
+					height:	el.height()
+				};
+
+				if (percentCovered(selectBoxDim, elDim) > config.percentCovered) {
+					el.addClass(config.selectedClass);
+				}
+				else {
+					el.removeClass(config.selectedClass);
+				}
+			});
+		};
+
+		// Returns the amount (in %) that dim1 covers dim2
+		var percentCovered = function (dim1, dim2) {
+			// The whole thing is covering the whole other thing
+			if (
+				(dim1.left <= dim2.left) && 
+				(dim1.top <= dim2.top) && 
+				((dim1.left + dim1.width) >= (dim2.left + dim2.width)) && 
+				((dim1.top + dim1.height) > (dim2.top + dim2.height))
+			) {
+				return 100;
+			}
+			// Only parts may be covered, calculate percentage
+			else {
+				dim1.right		= dim1.left + dim1.width;
+				dim1.bottom		= dim1.top + dim1.height;
+				dim2.right		= dim2.left + dim2.width;
+				dim2.bottom		= dim2.top + dim2.height;
+
+				var l = Math.max(dim1.left, dim2.left);
+				var r = Math.min(dim1.right, dim2.right);
+				var t = Math.max(dim1.top, dim2.top);
+				var b = Math.min(dim1.bottom, dim2.bottom);
+
+				if (b >= t && r >= l) {
+				/*	$('<div/>').appendTo(document.body).css({
+						background:	'red', 
+						position:	'absolute',
+						left:		l + 'px', 
+						top:		t + 'px', 
+						width:		(r - l) + 'px', 
+						height:		(b - t) + 'px', 
+						zIndex:		100
+					}); */
+
+					var percent = (((r - l) * (b - t)) / (dim2.width * dim2.height)) * 100;
+
+				//	alert(percent + '% covered')
+
+					return percent;
+				}
+			}
+			// Nothing covered, return 0
+			return 0;
+		};
+
+		// Do the right stuff then return this
+		selectBox
+			.mousemove(function (e) {
+				refreshSelectBox(e);
+
+				if (config.selectables && config.selectOnMove) {			
+					selectElementsInRange();
+				}
+
+				if (config.autoScroll) {
+					scrollPerhaps(e);
+				}
+
+				e.preventDefault();
+			})
+			.mouseup(function(e) {
+				if (config.selectables) {			
+					selectElementsInRange();
+				}
+
+				hideSelectBox(e);
+
+				e.preventDefault();
+			});
+
+		if (jQuery.fn.disableTextSelect) {
+			parent.disableTextSelect();
+		}
+
+		parent
+			.mousedown(function (e) {
+				// Make sure user isn't clicking scrollbar (or disallow clicks far to the right actually)
+				if ((e.pageX + 20) > jQuery(document.body).width()) {
+					return;
+				}
+
+				showSelectBox(e);
+
+				e.preventDefault();
+			})
+			.mousemove(function (e) {
+				refreshSelectBox(e);
+
+				if (config.selectables && config.selectOnMove) {			
+					selectElementsInRange();
+				}
+
+				if (config.autoScroll) {
+					scrollPerhaps(e);
+				}
+
+				e.preventDefault();
+			})
+			.mouseup(function (e) {
+				if (config.selectables) {			
+					selectElementsInRange();
+				}
+
+				hideSelectBox(e);
+
+				e.preventDefault();
+			});
+
+		// Be nice
+		return this;
+	};
+/*jQuery Drag 2.2*/
+	/*! 
+		 * jquery.event.drag - v 2.2
+		 * Copyright (c) 2010 Three Dub Media - http://threedubmedia.com
+		 * Open Source MIT License - http://threedubmedia.com/code/license
+	 */
+	// Created: 2008-06-04 
+	// Updated: 2012-05-21
+	// REQUIRES: jquery 1.7.x
+	;(function( $ ){
+
+	// add the jquery instance method
+	$.fn.drag = function( str, arg, opts ){
+		// figure out the event type
+		var type = typeof str == "string" ? str : "",
+		// figure out the event handler...
+		fn = $.isFunction( str ) ? str : $.isFunction( arg ) ? arg : null;
+		// fix the event type
+		if ( type.indexOf("drag") !== 0 ) 
+			type = "drag"+ type;
+		// were options passed
+		opts = ( str == fn ? arg : opts ) || {};
+		// trigger or bind event handler
+		return fn ? this.bind( type, opts, fn ) : this.trigger( type );
+	};
+
+	// local refs (increase compression)
+	var $event = $.event, 
+	$special = $event.special,
+	// configure the drag special event 
+	drag = $special.drag = {
+		
+		// these are the default settings
+		defaults: {
+			which: 1, // mouse button pressed to start drag sequence
+			distance: 0, // distance dragged before dragstart
+			not: ':input', // selector to suppress dragging on target elements
+			handle: null, // selector to match handle target elements
+			relative: false, // true to use "position", false to use "offset"
+			drop: true, // false to suppress drop events, true or selector to allow
+			click: false // false to suppress click events after dragend (no proxy)
+		},
+		
+		// the key name for stored drag data
+		datakey: "dragdata",
+		
+		// prevent bubbling for better performance
+		noBubble: true,
+		
+		// count bound related events
+		add: function( obj ){ 
+			// read the interaction data
+			var data = $.data( this, drag.datakey ),
+			// read any passed options 
+			opts = obj.data || {};
+			// count another realted event
+			data.related += 1;
+			// extend data options bound with this event
+			// don't iterate "opts" in case it is a node 
+			$.each( drag.defaults, function( key, def ){
+				if ( opts[ key ] !== undefined )
+					data[ key ] = opts[ key ];
+			});
+		},
+		
+		// forget unbound related events
+		remove: function(){
+			$.data( this, drag.datakey ).related -= 1;
+		},
+		
+		// configure interaction, capture settings
+		setup: function(){
+			// check for related events
+			if ( $.data( this, drag.datakey ) ) 
+				return;
+			// initialize the drag data with copied defaults
+			var data = $.extend({ related:0 }, drag.defaults );
+			// store the interaction data
+			$.data( this, drag.datakey, data );
+			// bind the mousedown event, which starts drag interactions
+			$event.add( this, "touchstart mousedown", drag.init, data );
+			// prevent image dragging in IE...
+			if ( this.attachEvent ) 
+				this.attachEvent("ondragstart", drag.dontstart ); 
+		},
+		
+		// destroy configured interaction
+		teardown: function(){
+			var data = $.data( this, drag.datakey ) || {};
+			// check for related events
+			if ( data.related ) 
+				return;
+			// remove the stored data
+			$.removeData( this, drag.datakey );
+			// remove the mousedown event
+			$event.remove( this, "touchstart mousedown", drag.init );
+			// enable text selection
+			drag.textselect( true ); 
+			// un-prevent image dragging in IE...
+			if ( this.detachEvent ) 
+				this.detachEvent("ondragstart", drag.dontstart ); 
+		},
+			
+		// initialize the interaction
+		init: function( event ){ 
+			// sorry, only one touch at a time
+			if ( drag.touched ) 
+				return;
+			// the drag/drop interaction data
+			var dd = event.data, results;
+			// check the which directive
+			if ( event.which != 0 && dd.which > 0 && event.which != dd.which ) 
+				return; 
+			// check for suppressed selector
+			if ( $( event.target ).is( dd.not ) ) 
+				return;
+			// check for handle selector
+			if ( dd.handle && !$( event.target ).closest( dd.handle, event.currentTarget ).length ) 
+				return;
+
+			drag.touched = event.type == 'touchstart' ? this : null;
+			dd.propagates = 1;
+			dd.mousedown = this;
+			dd.interactions = [ drag.interaction( this, dd ) ];
+			dd.target = event.target;
+			dd.pageX = event.pageX;
+			dd.pageY = event.pageY;
+			dd.dragging = null;
+			// handle draginit event... 
+			results = drag.hijack( event, "draginit", dd );
+			// early cancel
+			if ( !dd.propagates )
+				return;
+			// flatten the result set
+			results = drag.flatten( results );
+			// insert new interaction elements
+			if ( results && results.length ){
+				dd.interactions = [];
+				$.each( results, function(){
+					dd.interactions.push( drag.interaction( this, dd ) );
+				});
+			}
+			// remember how many interactions are propagating
+			dd.propagates = dd.interactions.length;
+			// locate and init the drop targets
+			if ( dd.drop !== false && $special.drop ) 
+				$special.drop.handler( event, dd );
+			// disable text selection
+			drag.textselect( false ); 
+			// bind additional events...
+			if ( drag.touched )
+				$event.add( drag.touched, "touchmove touchend", drag.handler, dd );
+			else 
+				$event.add( document, "mousemove mouseup", drag.handler, dd );
+			// helps prevent text selection or scrolling
+			if ( !drag.touched || dd.live )
+				return false;
+		},	
+		
+		// returns an interaction object
+		interaction: function( elem, dd ){
+			var offset = $( elem )[ dd.relative ? "position" : "offset" ]() || { top:0, left:0 };
+			return {
+				drag: elem, 
+				callback: new drag.callback(), 
+				droppable: [],
+				offset: offset
+			};
+		},
+		
+		// handle drag-releatd DOM events
+		handler: function( event ){ 
+			// read the data before hijacking anything
+			var dd = event.data;	
+			// handle various events
+			switch ( event.type ){
+				// mousemove, check distance, start dragging
+				case !dd.dragging && 'touchmove': 
+					event.preventDefault();
+				case !dd.dragging && 'mousemove':
+					//  drag tolerance, x² + y² = distance²
+					if ( Math.pow(  event.pageX-dd.pageX, 2 ) + Math.pow(  event.pageY-dd.pageY, 2 ) < Math.pow( dd.distance, 2 ) ) 
+						break; // distance tolerance not reached
+					event.target = dd.target; // force target from "mousedown" event (fix distance issue)
+					drag.hijack( event, "dragstart", dd ); // trigger "dragstart"
+					if ( dd.propagates ) // "dragstart" not rejected
+						dd.dragging = true; // activate interaction
+				// mousemove, dragging
+				case 'touchmove':
+					event.preventDefault();
+				case 'mousemove':
+					if ( dd.dragging ){
+						// trigger "drag"		
+						drag.hijack( event, "drag", dd );
+						if ( dd.propagates ){
+							// manage drop events
+							if ( dd.drop !== false && $special.drop )
+								$special.drop.handler( event, dd ); // "dropstart", "dropend"							
+							break; // "drag" not rejected, stop		
+						}
+						event.type = "mouseup"; // helps "drop" handler behave
+					}
+				// mouseup, stop dragging
+				case 'touchend': 
+				case 'mouseup': 
+				default:
+					if ( drag.touched )
+						$event.remove( drag.touched, "touchmove touchend", drag.handler ); // remove touch events
+					else 
+						$event.remove( document, "mousemove mouseup", drag.handler ); // remove page events	
+					if ( dd.dragging ){
+						if ( dd.drop !== false && $special.drop )
+							$special.drop.handler( event, dd ); // "drop"
+						drag.hijack( event, "dragend", dd ); // trigger "dragend"	
+					}
+					drag.textselect( true ); // enable text selection
+					// if suppressing click events...
+					if ( dd.click === false && dd.dragging )
+						$.data( dd.mousedown, "suppress.click", new Date().getTime() + 5 );
+					dd.dragging = drag.touched = false; // deactivate element	
+					break;
+			}
+		},
+			
+		// re-use event object for custom events
+		hijack: function( event, type, dd, x, elem ){
+			// not configured
+			if ( !dd ) 
+				return;
+			// remember the original event and type
+			var orig = { event:event.originalEvent, type:event.type },
+			// is the event drag related or drog related?
+			mode = type.indexOf("drop") ? "drag" : "drop",
+			// iteration vars
+			result, i = x || 0, ia, $elems, callback,
+			len = !isNaN( x ) ? x : dd.interactions.length;
+			// modify the event type
+			event.type = type;
+			// remove the original event
+			event.originalEvent = null;
+			// initialize the results
+			dd.results = [];
+			// handle each interacted element
+			do if ( ia = dd.interactions[ i ] ){
+				// validate the interaction
+				if ( type !== "dragend" && ia.cancelled )
+					continue;
+				// set the dragdrop properties on the event object
+				callback = drag.properties( event, dd, ia );
+				// prepare for more results
+				ia.results = [];
+				// handle each element
+				$( elem || ia[ mode ] || dd.droppable ).each(function( p, subject ){
+					// identify drag or drop targets individually
+					callback.target = subject;
+					// force propagtion of the custom event
+					event.isPropagationStopped = function(){ return false; };
+					// handle the event	
+					result = subject ? $event.dispatch.call( subject, event, callback ) : null;
+					// stop the drag interaction for this element
+					if ( result === false ){
+						if ( mode == "drag" ){
+							ia.cancelled = true;
+							dd.propagates -= 1;
+						}
+						if ( type == "drop" ){
+							ia[ mode ][p] = null;
+						}
+					}
+					// assign any dropinit elements
+					else if ( type == "dropinit" )
+						ia.droppable.push( drag.element( result ) || subject );
+					// accept a returned proxy element 
+					if ( type == "dragstart" )
+						ia.proxy = $( drag.element( result ) || ia.drag )[0];
+					// remember this result	
+					ia.results.push( result );
+					// forget the event result, for recycling
+					delete event.result;
+					// break on cancelled handler
+					if ( type !== "dropinit" )
+						return result;
+				});	
+				// flatten the results	
+				dd.results[ i ] = drag.flatten( ia.results );	
+				// accept a set of valid drop targets
+				if ( type == "dropinit" )
+					ia.droppable = drag.flatten( ia.droppable );
+				// locate drop targets
+				if ( type == "dragstart" && !ia.cancelled )
+					callback.update(); 
+			}
+			while ( ++i < len )
+			// restore the original event & type
+			event.type = orig.type;
+			event.originalEvent = orig.event;
+			// return all handler results
+			return drag.flatten( dd.results );
+		},
+			
+		// extend the callback object with drag/drop properties...
+		properties: function( event, dd, ia ){		
+			var obj = ia.callback;
+			// elements
+			obj.drag = ia.drag;
+			obj.proxy = ia.proxy || ia.drag;
+			// starting mouse position
+			obj.startX = dd.pageX;
+			obj.startY = dd.pageY;
+			// current distance dragged
+			obj.deltaX = event.pageX - dd.pageX;
+			obj.deltaY = event.pageY - dd.pageY;
+			// original element position
+			obj.originalX = ia.offset.left;
+			obj.originalY = ia.offset.top;
+			// adjusted element position
+			obj.offsetX = obj.originalX + obj.deltaX; 
+			obj.offsetY = obj.originalY + obj.deltaY;
+			// assign the drop targets information
+			obj.drop = drag.flatten( ( ia.drop || [] ).slice() );
+			obj.available = drag.flatten( ( ia.droppable || [] ).slice() );
+			return obj;	
+		},
+		
+		// determine is the argument is an element or jquery instance
+		element: function( arg ){
+			if ( arg && ( arg.jquery || arg.nodeType == 1 ) )
+				return arg;
+		},
+		
+		// flatten nested jquery objects and arrays into a single dimension array
+		flatten: function( arr ){
+			return $.map( arr, function( member ){
+				return member && member.jquery ? $.makeArray( member ) : 
+					member && member.length ? drag.flatten( member ) : member;
+			});
+		},
+		
+		// toggles text selection attributes ON (true) or OFF (false)
+		textselect: function( bool ){ 
+			$( document )[ bool ? "unbind" : "bind" ]("selectstart", drag.dontstart )
+				.css("MozUserSelect", bool ? "" : "none" );
+			// .attr("unselectable", bool ? "off" : "on" )
+			document.unselectable = bool ? "off" : "on"; 
+		},
+		
+		// suppress "selectstart" and "ondragstart" events
+		dontstart: function(){ 
+			return false; 
+		},
+		
+		// a callback instance contructor
+		callback: function(){}
+		
+	};
+
+	// callback methods
+	drag.callback.prototype = {
+		update: function(){
+			if ( $special.drop && this.available.length )
+				$.each( this.available, function( i ){
+					$special.drop.locate( this, i );
+				});
+		}
+	};
+
+	// patch $.event.$dispatch to allow suppressing clicks
+	var $dispatch = $event.dispatch;
+	$event.dispatch = function( event ){
+		if ( $.data( this, "suppress."+ event.type ) - new Date().getTime() > 0 ){
+			$.removeData( this, "suppress."+ event.type );
+			return;
+		}
+		return $dispatch.apply( this, arguments );
+	};
+
+	// event fix hooks for touch events...
+	var touchHooks = 
+	$event.fixHooks.touchstart = 
+	$event.fixHooks.touchmove = 
+	$event.fixHooks.touchend =
+	$event.fixHooks.touchcancel = {
+		props: "clientX clientY pageX pageY screenX screenY".split( " " ),
+		filter: function( event, orig ) {
+			if ( orig ){
+				var touched = ( orig.touches && orig.touches[0] )
+					|| ( orig.changedTouches && orig.changedTouches[0] )
+					|| null; 
+				// iOS webkit: touchstart, touchmove, touchend
+				if ( touched ) 
+					$.each( touchHooks.props, function( i, prop ){
+						event[ prop ] = touched[ prop ];
+					});
+			}
+			return event;
+		}
+	};
+
+	// share the same special event configuration with related events...
+	$special.draginit = $special.dragstart = $special.dragend = drag;
+
+	})( jQuery );
+/*jquery Drag Live*/
+	/*! 
+		 * jquery.event.drag.live - v 2.2
+		 * Copyright (c) 2010 Three Dub Media - http://threedubmedia.com
+		 * Open Source MIT License - http://threedubmedia.com/code/license
+	 */
+	// Created: 2010-06-07
+	// Updated: 2012-05-21
+	// REQUIRES: jquery 1.7.x, event.drag 2.2
+
+	;(function( $ ){
+		
+	// local refs (increase compression)
+	var $event = $.event,
+	// ref the special event config
+	drag = $event.special.drag,
+	// old drag event add method
+	origadd = drag.add,
+	// old drag event teradown method
+	origteardown = drag.teardown;
+
+	// allow events to bubble for delegation
+	drag.noBubble = false;
+
+	// the namespace for internal live events
+	drag.livekey = "livedrag";
+
+	// new drop event add method
+	drag.add = function( obj ){ 
+		// call the old method
+		origadd.apply( this, arguments );
+		// read the data
+		var data = $.data( this, drag.datakey );
+		// bind the live "draginit" delegator
+		if ( !data.live && obj.selector ){
+			data.live = true;
+			$event.add( this, "draginit."+ drag.livekey, drag.delegate );
+		}
+	};
+
+	// new drop event teardown method
+	drag.teardown = function(){ 
+		// call the old method
+		origteardown.apply( this, arguments );
+		// read the data
+		var data = $.data( this, drag.datakey ) || {};
+		// bind the live "draginit" delegator
+		if ( data.live ){
+			// remove the "live" delegation
+			$event.remove( this, "draginit."+ drag.livekey, drag.delegate );
+			data.live = false;
+		}
+	};
+
+	// identify potential delegate elements
+	drag.delegate = function( event ){
+		// local refs
+		var elems = [], target, 
+		// element event structure
+		events = $.data( this, "events" ) || {};
+		// query live events
+		$.each( events || [], function( key, arr ){
+			// no event type matches
+			if ( key.indexOf("drag") !== 0 )
+				return;
+			$.each( arr || [], function( i, obj ){
+				// locate the element to delegate
+				target = $( event.target ).closest( obj.selector, event.currentTarget )[0];
+				// no element found
+				if ( !target ) 
+					return;
+				// add an event handler
+				$event.add( target, obj.origType+'.'+drag.livekey, obj.origHandler || obj.handler, obj.data );
+				// remember new elements
+				if ( $.inArray( target, elems ) < 0 )
+					elems.push( target );		
+			});
+		});
+		// if there are no elements, break
+		if ( !elems.length ) 
+			return false;
+		// return the matched results, and clenup when complete		
+		return $( elems ).bind("dragend."+ drag.livekey, function(){
+			$event.remove( this, "."+ drag.livekey ); // cleanup delegation
+		});
+	};
+		
+	})( jQuery );
+/*jQuery Drop 2.2*/
+	/*! 
+		 * jquery.event.drop - v 2.2
+		 * Copyright (c) 2010 Three Dub Media - http://threedubmedia.com
+		 * Open Source MIT License - http://threedubmedia.com/code/license
+		*/
+	// Created: 2008-06-04 
+	// Updated: 2012-05-21
+	// REQUIRES: jquery 1.7.x, event.drag 2.2
+
+	;(function($){ // secure $ jQuery alias
+
+	// Events: drop, dropstart, dropend
+
+	// add the jquery instance method
+	$.fn.drop = function( str, arg, opts ){
+		// figure out the event type
+		var type = typeof str == "string" ? str : "",
+		// figure out the event handler...
+		fn = $.isFunction( str ) ? str : $.isFunction( arg ) ? arg : null;
+		// fix the event type
+		if ( type.indexOf("drop") !== 0 ) 
+			type = "drop"+ type;
+		// were options passed
+		opts = ( str == fn ? arg : opts ) || {};
+		// trigger or bind event handler
+		return fn ? this.bind( type, opts, fn ) : this.trigger( type );
+	};
+
+	// DROP MANAGEMENT UTILITY
+	// returns filtered drop target elements, caches their positions
+	$.drop = function( opts ){ 
+		opts = opts || {};
+		// safely set new options...
+		drop.multi = opts.multi === true ? Infinity : 
+			opts.multi === false ? 1 : !isNaN( opts.multi ) ? opts.multi : drop.multi;
+		drop.delay = opts.delay || drop.delay;
+		drop.tolerance = $.isFunction( opts.tolerance ) ? opts.tolerance : 
+			opts.tolerance === null ? null : drop.tolerance;
+		drop.mode = opts.mode || drop.mode || 'intersect';
+	};
+
+	// local refs (increase compression)
+	var $event = $.event, 
+	$special = $event.special,
+	// configure the drop special event
+	drop = $.event.special.drop = {
+
+		// these are the default settings
+		multi: 1, // allow multiple drop winners per dragged element
+		delay: 20, // async timeout delay
+		mode: 'overlap', // drop tolerance mode
+			
+		// internal cache
+		targets: [], 
+		
+		// the key name for stored drop data
+		datakey: "dropdata",
+			
+		// prevent bubbling for better performance
+		noBubble: true,
+		
+		// count bound related events
+		add: function( obj ){ 
+			// read the interaction data
+			var data = $.data( this, drop.datakey );
+			// count another realted event
+			data.related += 1;
+		},
+		
+		// forget unbound related events
+		remove: function(){
+			$.data( this, drop.datakey ).related -= 1;
+		},
+		
+		// configure the interactions
+		setup: function(){
+			// check for related events
+			if ( $.data( this, drop.datakey ) ) 
+				return;
+			// initialize the drop element data
+			var data = { 
+				related: 0,
+				active: [],
+				anyactive: 0,
+				winner: 0,
+				location: {}
+			};
+			// store the drop data on the element
+			$.data( this, drop.datakey, data );
+			// store the drop target in internal cache
+			drop.targets.push( this );
+		},
+		
+		// destroy the configure interaction	
+		teardown: function(){ 
+			var data = $.data( this, drop.datakey ) || {};
+			// check for related events
+			if ( data.related ) 
+				return;
+			// remove the stored data
+			$.removeData( this, drop.datakey );
+			// reference the targeted element
+			var element = this;
+			// remove from the internal cache
+			drop.targets = $.grep( drop.targets, function( target ){ 
+				return ( target !== element ); 
+			});
+		},
+		
+		// shared event handler
+		handler: function( event, dd ){ 
+			// local vars
+			var results, $targets;
+			// make sure the right data is available
+			if ( !dd ) 
+				return;
+			// handle various events
+			switch ( event.type ){
+				// draginit, from $.event.special.drag
+				case 'mousedown': // DROPINIT >>
+				case 'touchstart': // DROPINIT >>
+					// collect and assign the drop targets
+					$targets =  $( drop.targets );
+					if ( typeof dd.drop == "string" )
+						$targets = $targets.filter( dd.drop );
+					// reset drop data winner properties
+					$targets.each(function(){
+						var data = $.data( this, drop.datakey );
+						data.active = [];
+						data.anyactive = 0;
+						data.winner = 0;
+					});
+					// set available target elements
+					dd.droppable = $targets;
+					// activate drop targets for the initial element being dragged
+					$special.drag.hijack( event, "dropinit", dd ); 
+					break;
+				// drag, from $.event.special.drag
+				case 'mousemove': // TOLERATE >>
+				case 'touchmove': // TOLERATE >>
+					drop.event = event; // store the mousemove event
+					if ( !drop.timer )
+						// monitor drop targets
+						drop.tolerate( dd ); 
+					break;
+				// dragend, from $.event.special.drag
+				case 'mouseup': // DROP >> DROPEND >>
+				case 'touchend': // DROP >> DROPEND >>
+					drop.timer = clearTimeout( drop.timer ); // delete timer	
+					if ( dd.propagates ){
+						$special.drag.hijack( event, "drop", dd ); 
+						$special.drag.hijack( event, "dropend", dd ); 
+					}
+					break;
+					
+			}
+		},
+			
+		// returns the location positions of an element
+		locate: function( elem, index ){ 
+			var data = $.data( elem, drop.datakey ),
+			$elem = $( elem ), 
+			posi = $elem.offset() || {}, 
+			height = $elem.outerHeight(), 
+			width = $elem.outerWidth(),
+			location = { 
+				elem: elem, 
+				width: width, 
+				height: height,
+				top: posi.top, 
+				left: posi.left, 
+				right: posi.left + width, 
+				bottom: posi.top + height
+			};
+			// drag elements might not have dropdata
+			if ( data ){
+				data.location = location;
+				data.index = index;
+				data.elem = elem;
+			}
+			return location;
+		},
+		
+		// test the location positions of an element against another OR an X,Y coord
+		contains: function( target, test ){ // target { location } contains test [x,y] or { location }
+			return ( ( test[0] || test.left ) >= target.left && ( test[0] || test.right ) <= target.right
+				&& ( test[1] || test.top ) >= target.top && ( test[1] || test.bottom ) <= target.bottom ); 
+		},
+		
+		// stored tolerance modes
+		modes: { // fn scope: "$.event.special.drop" object 
+			// target with mouse wins, else target with most overlap wins
+			'intersect': function( event, proxy, target ){
+				return this.contains( target, [ event.pageX, event.pageY ] ) ? // check cursor
+					1e9 : this.modes.overlap.apply( this, arguments ); // check overlap
+			},
+			// target with most overlap wins	
+			'overlap': function( event, proxy, target ){
+				// calculate the area of overlap...
+				return Math.max( 0, Math.min( target.bottom, proxy.bottom ) - Math.max( target.top, proxy.top ) )
+					* Math.max( 0, Math.min( target.right, proxy.right ) - Math.max( target.left, proxy.left ) );
+			},
+			// proxy is completely contained within target bounds	
+			'fit': function( event, proxy, target ){
+				return this.contains( target, proxy ) ? 1 : 0;
+			},
+			// center of the proxy is contained within target bounds	
+			'middle': function( event, proxy, target ){
+				return this.contains( target, [ proxy.left + proxy.width * .5, proxy.top + proxy.height * .5 ] ) ? 1 : 0;
+			}
+		},	
+		
+		// sort drop target cache by by winner (dsc), then index (asc)
+		sort: function( a, b ){
+			return ( b.winner - a.winner ) || ( a.index - b.index );
+		},
+			
+		// async, recursive tolerance execution
+		tolerate: function( dd ){		
+			// declare local refs
+			var i, drp, drg, data, arr, len, elem,
+			// interaction iteration variables
+			x = 0, ia, end = dd.interactions.length,
+			// determine the mouse coords
+			xy = [ drop.event.pageX, drop.event.pageY ],
+			// custom or stored tolerance fn
+			tolerance = drop.tolerance || drop.modes[ drop.mode ];
+			// go through each passed interaction...
+			do if ( ia = dd.interactions[x] ){
+				// check valid interaction
+				if ( !ia )
+					return; 
+				// initialize or clear the drop data
+				ia.drop = [];
+				// holds the drop elements
+				arr = []; 
+				len = ia.droppable.length;
+				// determine the proxy location, if needed
+				if ( tolerance )
+					drg = drop.locate( ia.proxy ); 
+				// reset the loop
+				i = 0;
+				// loop each stored drop target
+				do if ( elem = ia.droppable[i] ){ 
+					data = $.data( elem, drop.datakey );
+					drp = data.location;
+					if ( !drp ) continue;
+					// find a winner: tolerance function is defined, call it
+					data.winner = tolerance ? tolerance.call( drop, drop.event, drg, drp ) 
+						// mouse position is always the fallback
+						: drop.contains( drp, xy ) ? 1 : 0; 
+					arr.push( data );	
+				} while ( ++i < len ); // loop 
+				// sort the drop targets
+				arr.sort( drop.sort );			
+				// reset the loop
+				i = 0;
+				// loop through all of the targets again
+				do if ( data = arr[ i ] ){
+					// winners...
+					if ( data.winner && ia.drop.length < drop.multi ){
+						// new winner... dropstart
+						if ( !data.active[x] && !data.anyactive ){
+							// check to make sure that this is not prevented
+							if ( $special.drag.hijack( drop.event, "dropstart", dd, x, data.elem )[0] !== false ){ 	
+								data.active[x] = 1;
+								data.anyactive += 1;
+							}
+							// if false, it is not a winner
+							else
+								data.winner = 0;
+						}
+						// if it is still a winner
+						if ( data.winner )
+							ia.drop.push( data.elem );
+					}
+					// losers... 
+					else if ( data.active[x] && data.anyactive == 1 ){
+						// former winner... dropend
+						$special.drag.hijack( drop.event, "dropend", dd, x, data.elem ); 
+						data.active[x] = 0;
+						data.anyactive -= 1;
+					}
+				} while ( ++i < len ); // loop 		
+			} while ( ++x < end ) // loop
+			// check if the mouse is still moving or is idle
+			if ( drop.last && xy[0] == drop.last.pageX && xy[1] == drop.last.pageY ) 
+				delete drop.timer; // idle, don't recurse
+			else  // recurse
+				drop.timer = setTimeout(function(){ 
+					drop.tolerate( dd ); 
+				}, drop.delay );
+			// remember event, to compare idleness
+			drop.last = drop.event; 
+		}
+		
+	};
+
+	// share the same special event configuration with related events...
+	$special.dropinit = $special.dropstart = $special.dropend = drop;
+
+	})(jQuery); // confine scope	
+/*jQuery Drop Live*/
+	/*! 
+		 * jquery.event.drop.live - v 2.2
+		 * Copyright (c) 2010 Three Dub Media - http://threedubmedia.com
+		 * Open Source MIT License - http://threedubmedia.com/code/license
+	 */
+	// Created: 2010-06-07
+	// Updated: 2012-05-21
+	// REQUIRES: jquery 1.7.x, event.drag 2.2, event.drop 2.2
+
+	;(function($){ // secure $ jQuery alias
+
+	// local refs (increase compression)
+	var $event = $.event,
+	// ref the drop special event config
+	drop = $event.special.drop,
+	// old drop event add method
+	origadd = drop.add,
+	// old drop event teradown method
+	origteardown = drop.teardown;
+
+	// allow events to bubble for delegation
+	drop.noBubble = false;
+
+	// the namespace for internal live events
+	drop.livekey = "livedrop";
+
+	// new drop event add method
+	drop.add = function( obj ){ 
+		// call the old method
+		origadd.apply( this, arguments );
+		// read the data
+		var data = $.data( this, drop.datakey );
+		// bind the live "dropinit" delegator
+		if ( !data.live && obj.selector ){
+			data.live = true;
+			$event.add( this, "dropinit."+ drop.livekey, drop.delegate );
+		}
+	};
+
+	// new drop event teardown method
+	drop.teardown = function(){ 
+		// call the old method
+		origteardown.apply( this, arguments );
+		// read the data
+		var data = $.data( this, drop.datakey ) || {};
+		// remove the live "dropinit" delegator
+		if ( data.live ){
+			// remove the "live" delegation
+			$event.remove( this, "dropinit", drop.delegate );
+			data.live = false;
+		}
+	};
+
+	// identify potential delegate elements
+	drop.delegate = function( event, dd ){
+		// local refs
+		var elems = [], $targets, 
+		// element event structure
+		events = $.data( this, "events" ) || {};
+		// query live events
+		$.each( events || [], function( key, arr ){
+			// no event type matches
+			if ( key.indexOf("drop") !== 0 )
+				return;
+			$.each( arr, function( i, obj ){
+				// locate the elements to delegate
+				$targets = $( event.currentTarget ).find( obj.selector );
+				// no element found
+				if ( !$targets.length ) 
+					return;
+				// take each target...
+				$targets.each(function(){
+					// add an event handler
+					$event.add( this, obj.origType +'.'+ drop.livekey, obj.origHandler || obj.handler, obj.data );
+					// remember new elements
+					if ( $.inArray( this, elems ) < 0 )
+						elems.push( this );	
+				});	
+			});
+		});
+		// may not exist when artifically triggering dropinit event
+		if ( dd )
+			// clean-up after the interaction ends
+			$event.add( dd.drag, "dragend."+drop.livekey, function(){
+				$.each( elems.concat( this ), function(){
+					$event.remove( this, '.'+ drop.livekey );							
+				});
+			});
+		//drop.delegates.push( elems );
+		return elems.length ? $( elems ) : false;
+	};
+
+	})( jQuery ); // confine scope	
 
 /*Globals*/
+	var revision					= '0.1.44-0246513'; //Version + \- HH II /*d*/d /*M*/M /*YYY*/Y
+	var showSnapGrid				= ($.jStorage.get('showSnapGrid') !== undefined ? ($.jStorage.get('showSnapGrid') ? true : false) : false);
+	var loadLastSaved				= false;
+	var loadLastBackup				= false;
+	var loadWelcomeWindow			= false;
+	var loadAllWSDLs				= false;
+	var serviceLinkHover			= false;
+	var layerHighlighting			= false;
+	var layer_moved					= false;
+	var confirmWindowDeletes		= true;
+	var $email						= '';
+	var $wireitemselected			= {};
+	var $wireitem					= {};
 	var layer_currentViewAllowed	= true;
 	var domainProxy					= "proxy.php?url";																	//====================================\
-	var wsdlURL						= "http://rsg.pml.ac.uk/wps/generic.cgi?WSDL";										//====================================|
+	var wsdlURL						= "";//http://rsg.pml.ac.uk/wps/generic.cgi?WSDL";									//====================================|
 	var arrContainers				= [];																				//====			=======			======|
 	var initialWSDL					= false;																			//====			=======			======|
 	var wsdlList					= '';																				//====			=======			======|
@@ -18208,9 +19652,9 @@
 			content:	''																								//====							======|
 		}																												//====							======|
 	};																													//====							======|
-/*Functions*/																											//====							======|
+/*Functions*/
 	/*Types*/
-		function typeString(param) {	return (typeof(param) == 'string');};
+		function typeString(param) {	return (typeof(param) == 'string');};function typeFuncObj(param) {return (typeObject(param) || typeFunction(param));}
 		function typeNumber(param) {	return (typeof(param) == 'number');};											  //====		    ==============-
 		function typeNumStr(param) {	return (typeNumber(param) || typeString(param));};								 //====			  ==================\
 		function typeObject(param) {	return (typeof(param) == 'object');};											//====			 ====================\
@@ -18223,6 +19667,7 @@
 			return ajax('templates/' + template + '.xhtml', avoidCache);												   //==============			 ========/
 		}																												     //=========			=======/
 	function xmlStrip(value) {return (value == undefined) ? '' : value.replace(/[^a-zA-Z0-9]/g, '_');}
+	function count(o) {var c = 0;for(k in o){c++;}return c;}
 	/*Colours*/
 		function get_random_color() {
 			var letters	= '0123456789ABCDEF'.split('');
@@ -18245,7 +19690,6 @@
 	/*Debug*/
 		var cl = function() {
 			if(typeof(console) == 'undefined' || typeof(console.log) == 'undefined') {
-				alert(arguments);
 			} else {
 				console.log(arguments);
 			}
@@ -18367,7 +19811,6 @@
 			if($panel_handler.length < 1) {
 				$panel_handler = $('#panelGroup');
 			}
-			//console.log($(getTemplate(panel + 'Panel', true)));
 			$panel_handler.append($($.data(document, panel + 'Panel')).bind('click', function() {return callback();}));
 		}
 	/*Menu*/
@@ -18396,7 +19839,8 @@
 			return urlregex.test(textval);
 		}
 
-		function addContainer(labelText,inputs, outputs, wsdl){
+
+		function addContainer(labelText, inputs, outputs, wsdl){
 			//creates and adds container to arrContainer based on the last container position
 			var obj = {'label':labelText,containerInputs:inputs,containerOutputs:outputs, wsdl: wsdl};
 			arrContainers.push(obj);
@@ -18405,11 +19849,13 @@
 				loadedWSDLs[wsdl] = [];
 			}
 			loadedWSDLs[wsdl][loadedWSDLs[wsdl].length] = obj;
+			//console.log("ADDC", labelText, wsdl, obj, loadedWSDLs[wsdl][loadedWSDLs[wsdl].length - 1]);
+			return obj;
 			//console.warn(wsdl);
 		}
 
 		function getMessage(data, name) {
-			console.log(typeof(data), "MESSAGE", data);
+			//console.log(typeof(data), "MESSAGE", data);
 			if(typeof(data) == 'undefined') {
 			} else {
 			//} && $(data).length > 0) {
@@ -18420,8 +19866,6 @@
 
 		function getLocalName(elementName) {
 			//from element name, remove name space if existing
-			//console.log(elementName);
-			//console.log('elementName');
 			try {
 			if(elementName.indexOf(":") < 0) {
 				//no namespace
@@ -18444,7 +19888,6 @@
 					elements.each(function(index, value) {
 						arr.push($(value).attr('name'));
 						if(elCount && prog_callback) {
-						//prog_callback(arrContainers.length, elCount);
 						}
 					});
 				} else {
@@ -18452,12 +19895,6 @@
 				}
 			}
 			currentProgressBar = (counter / elCount) * 100;
-			//alert(currentProgressBar);
-			//upb(prog_callback, counter, elCount);
-			if(elCount && prog_callback) {
-				//alert(arrContainers.length);
-				//prog_callback(arrContainers.length, elCount);
-			}
 
 			return arr;
 
@@ -18469,12 +19906,8 @@
 		}
 
 		function URLExists(fileLocation) {
-			//console.log(fileLocation);
 			return getTemplate('../' + fileLocation + '&head=true&') == 200 ? true : false;
-			//var response = getTemplate('..')
-			console.log(fileLocation);
-			console.log(fileLocation);
-			console.log(fileLocation);
+
 			var response = $.ajax({
 				url: fileLocation,
 				type: 'HEAD',
@@ -18484,8 +19917,9 @@
 		}
 
 		function parseWSDL(wsdlURL, callback, prog_callback){
-			if(loadedWSDLs[wsdlURL.replace(/\./g, '').replace(/\//g, '').replace(/\\/g, '')]) {
-				callback(loadedWSDLs[wsdlURL.replace(/\./g, '').replace(/\//g, '').replace(/\\/g, '')]);
+			var wsdl_stripped = wsdlURL.replace(/\./g, '').replace(/\//g, '').replace(/\\/g, '');
+			if(loadedWSDLs[wsdl_stripped]) {
+				callback(loadedWSDLs[wsdl_stripped]);
 				if(prog_callback) {
 					prog_callback(-1, 100);
 				}
@@ -18493,10 +19927,48 @@
 			}
 
 			//check if URL existis and is ok
-			//console.log((domainProxy ? domainProxy + '=' : '') + wsdlURL);
 			if(!(URLExists((domainProxy ? domainProxy + '=' : '') + wsdlURL))) {
-				alert("NO WSDL IN URL~") //need a proper pop up
+				alert("NO WSDL IN URL~"); //need a proper pop up
+
+				if(prog_callback) {
+					prog_callback(-1, 100);
+				}
 				return null;
+			}
+			if($('#wsdlLoadDropdown option[value="' + wsdlURL + '"]').length < 1) {
+				var urlsplit = wsdlURL.split("/");
+				var host = '';
+				$.each(urlsplit, function(index, value) {
+					if(host == '') {
+						if(value !== '') {
+							if(index !== 0) {
+								host = value + ' ~ ';
+							}
+						}
+					}
+				});
+				var name = (host + urlsplit[count(urlsplit) - 1]);
+				$('#wsdlLoadDropdown').append('<option value="' + wsdlURL + '">' + name + '</option>');
+				var jRememberedWSDLs = $.jStorage.get('jRememberedWSDLs');
+				if(jRememberedWSDLs == undefined) {
+					jRememberedWSDLs = [];
+				}
+				var found = false;
+				$.each(jRememberedWSDLs, function(index, value) {
+					if(value.url == wsdlURL) {found = true;}
+				});
+				if(!found) {
+					jRememberedWSDLs[jRememberedWSDLs.length] = {
+						url: wsdlURL,
+						name: name
+					};
+					$.jStorage.set('jRememberedWSDLs', jRememberedWSDLs);
+				}
+				var xml = '<option value="" selected disabled>Select WSDL from below</option>';
+				$.each(jRememberedWSDLs, function(index, value) {
+					xml = xml + '<option value="' + value.url + '">' + value.name + '</option>';
+				});
+				$('#wsdlLoadDropdown').html(xml);
 			}
 			$.ajax({
 				url: (domainProxy ? domainProxy + '=' : '') + wsdlURL,
@@ -18518,11 +19990,13 @@
 					var elCount = $data.find('sequence element[name="input"]').length;
 					currentProgressBar = 0;
 					var $operations = $data.find('portType operation');
+					window.$tempDLs = {};
 					$operations.each(function(index, value) {
 						value = $(value);
 						++counter;
 						var outputArray = [];
 						var outName = getElement($data, getLocalName($(getMessage($data, getLocalName(value.find('output').attr('message')))).find('part').attr('element')));
+
 						if($(outName).length > 0) {
 							outputArray = getIOFromSchema(outName, $operations.length, prog_callback, counter, wsdlURL);
 							var inputArray = [];
@@ -18530,12 +20004,37 @@
 							if(inName.length > 0) {
 								inputArray = getIOFromSchema(inName, $operations.length, prog_callback, counter);
 							}
-							addContainer($(value).attr('name'), inputArray, outputArray, wsdlURL);
+							$tempDLs[count($tempDLs)] = addContainer($(value).attr('name'), inputArray, outputArray, wsdlURL);
 							if(callback && (index == $operations.length - 1)) {
 								if(prog_callback) {
 									prog_callback(-1, 100);
 								}
-								callback(wsdlURL.replace(/\./g, '').replace(/\//g, '').replace(/\\/g, ''));
+								loadedWSDLs[wsdl_stripped] = $tempDLs;
+								callback(wsdl_stripped);
+								var cap_Location = $data.find('service').last().find('port address').attr('location');
+								$.ajax({
+									url:'wsdlproxy.php?uri=' + cap_Location,
+									type: 'GET',
+									dataType:'text',
+									async:'true',
+									success:function(capabilities) {
+										capabilities = $('<wsdl>' + $(capabilities).outerHTML() + '</wsdl>').find('wpsCapabilities');
+										var wpsProcessOfferings = capabilities.find('wpsProcessOfferings');
+										var owsIdentifier = wpsProcessOfferings.find('owsIdentifier');
+										$.each(loadedWSDLs[wsdl_stripped], function(index, value) {
+											$.each(owsIdentifier, function(ondex, oalue) {
+												oalue = $(oalue);
+												if(oalue.text() == servicePlugin.title(value.label)) {
+													loadedWSDLs[wsdl_stripped][index].identifier = oalue.text();
+													loadedWSDLs[wsdl_stripped][index].title = oalue.parent().find('owsTitle').text();
+													loadedWSDLs[wsdl_stripped][index].abstract = oalue.parent().find('owsAbstract').text();
+													loadedWSDLs[wsdl_stripped][index].capabilities_location = cap_Location;
+													loadedWSDLs[wsdl_stripped][index].describe_location = capabilities.find('owsOperationsMetadata owsOperation[name="DescribeProcess"] owsDCP owsHTTP owsGet').attr('href');
+												}
+											})
+										});
+									}
+								});
 							}
 						}
 					});
@@ -18587,7 +20086,6 @@
 			//List of all saved object key: savedWorkflow
 			jsonToSave	= getJSONWorkflow();
 			saveName	= $("input[id=inputNameSave]").val();
-			//$.jStorage.set(saveName,jsonToSave);
 			var currentTime = new Date();
 			date	= currentTime.toLocaleDateString();
 			time	= currentTime.toLocaleTimeString();
@@ -19504,329 +21002,326 @@
 		// methods in a closure to avoid creating global variables.
 
 		var JSON;
-		if (!JSON) {
+		if(!JSON) {
 			JSON = {};
 		}
 
-		(function () {
-		'use strict';
+		(function() {
+			'use strict';
 
-		function f(n) {
-			// Format integers to have at least two digits.
-			return n < 10 ? '0' + n : n;
-		}
-
-		if (typeof Date.prototype.toJSON !== 'function') {
-
-			Date.prototype.toJSON = function (key) {
-
-			return isFinite(this.valueOf())
-			? this.getUTCFullYear()     + '-' +
-			f(this.getUTCMonth() + 1) + '-' +
-			f(this.getUTCDate())      + 'T' +
-			f(this.getUTCHours())     + ':' +
-			f(this.getUTCMinutes())   + ':' +
-			f(this.getUTCSeconds())   + 'Z'
-			: null;
-			};
-
-			String.prototype.toJSON      =
-			Number.prototype.toJSON  =
-			Boolean.prototype.toJSON = function (key) {
-				return this.valueOf();
-			};
-		}
-
-		var cx = /[\u0000\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g,
-		escapable = /[\\\"\x00-\x1f\x7f-\x9f\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g,
-		gap,
-		indent,
-		meta = {    // table of character substitutions
-			'\b': '\\b',
-			'\t': '\\t',
-			'\n': '\\n',
-			'\f': '\\f',
-			'\r': '\\r',
-			'"' : '\\"',
-			'\\': '\\\\'
-		},
-		rep;
-
-
-		function quote(string) {
-
-			// If the string contains no control characters, no quote characters, and no
-			// backslash characters, then we can safely slap some quotes around it.
-			// Otherwise we must also replace the offending characters with safe escape
-			// sequences.
-
-			escapable.lastIndex = 0;
-			return escapable.test(string) ? '"' + string.replace(escapable, function (a) {
-			var c = meta[a];
-			return typeof c === 'string'
-			? c
-			: '\\u' + ('0000' + a.charCodeAt(0).toString(16)).slice(-4);
-			}) + '"' : '"' + string + '"';
-		}
-
-
-		function str(key, holder) {
-
-			// Produce a string from holder[key].
-
-			var i,          // The loop counter.
-			k,          // The member key.
-			v,          // The member value.
-			length,
-			mind = gap,
-			partial,
-			value = holder[key];
-
-			// If the value has a toJSON method, call it to obtain a replacement value.
-
-			if (value && typeof value === 'object' &&
-			typeof value.toJSON === 'function') {
-			value = value.toJSON(key);
+			function f(n) {
+				// Format integers to have at least two digits.
+				return n < 10 ? '0' + n : n;
 			}
 
-			// If we were called with a replacer function, then call the replacer to
-			// obtain a replacement value.
+			if(typeof(Date.prototype.toJSON) !== 'function') {
 
-			if (typeof rep === 'function') {
-			value = rep.call(holder, key, value);
+				Date.prototype.toJSON = function(key) {
+
+					return isFinite(this.valueOf())
+						? this.getUTCFullYear()     + '-' +
+							f(this.getUTCMonth() + 1) + '-' +
+							f(this.getUTCDate())      + 'T' +
+							f(this.getUTCHours())     + ':' +
+							f(this.getUTCMinutes())   + ':' +
+							f(this.getUTCSeconds())   + 'Z'
+						: null;
+				}
+
+				String.prototype.toJSON = Number.prototype.toJSON =	Boolean.prototype.toJSON = function(key) {
+					return this.valueOf();
+				};
 			}
 
-			// What happens next depends on the value's type.
+			var cx = /[\u0000\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g,
+			escapable = /[\\\"\x00-\x1f\x7f-\x9f\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g,
+			gap,
+			indent,
+			meta = {    // table of character substitutions
+				'\b': '\\b',
+				'\t': '\\t',
+				'\n': '\\n',
+				'\f': '\\f',
+				'\r': '\\r',
+				'"' : '\\"',
+				'\\': '\\\\'
+			},
+			rep;
 
-			switch (typeof value) {
-			case 'string':
-			return quote(value);
+			function quote(string) {
 
-			case 'number':
+				// If the string contains no control characters, no quote characters, and no
+				// backslash characters, then we can safely slap some quotes around it.
+				// Otherwise we must also replace the offending characters with safe escape
+				// sequences.
 
-			// JSON numbers must be finite. Encode non-finite numbers as null.
-
-			return isFinite(value) ? String(value) : 'null';
-
-			case 'boolean':
-			case 'null':
-
-			// If the value is a boolean or null, convert it to a string. Note:
-			// typeof null does not produce 'null'. The case is included here in
-			// the remote chance that this gets fixed someday.
-
-			return String(value);
-
-			// If the type is 'object', we might be dealing with an object or an array or
-			// null.
-
-			case 'object':
-
-			// Due to a specification blunder in ECMAScript, typeof null is 'object',
-			// so watch out for that case.
-
-			if (!value) {
-			return 'null';
+				escapable.lastIndex = 0;
+				return escapable.test(string) ? '"' + string.replace(escapable, function(a) {
+					var c = meta[a];
+					return typeof(c) === 'string'
+						? c
+						: '\\u' + ('0000' + a.charCodeAt(0).toString(16)).slice(-4);
+				}) + '"' : '"' + string + '"';
 			}
 
-			// Make an array to hold the partial results of stringifying this object value.
+			function str(key, holder) {
 
-			gap += indent;
-			partial = [];
+				// Produce a string from holder[key].
 
-			// Is the value an array?
+				var i,          // The loop counter.
+				k,          // The member key.
+				v,          // The member value.
+				length,
+				mind = gap,
+				partial,
+				value = holder[key];
 
-			if (Object.prototype.toString.apply(value) === '[object Array]') {
+				// If the value has a toJSON method, call it to obtain a replacement value.
 
-			// The value is an array. Stringify every element. Use null as a placeholder
-			// for non-JSON values.
+				if(value && typeof(value) === 'object' && typeof(value.toJSON) === 'function') {
+					value = value.toJSON(key);
+				}
 
-			length = value.length;
-			for (i = 0; i < length; i += 1) {
-			partial[i] = str(i, value) || 'null';
+				// If we were called with a replacer function, then call the replacer to
+				// obtain a replacement value.
+
+				if(typeof(rep) === 'function') {
+					value = rep.call(holder, key, value);
+				}
+
+				// What happens next depends on the value's type.
+
+				switch(typeof(value)) {
+					case 'string':
+						return quote(value);
+
+					case 'number':
+
+						// JSON numbers must be finite. Encode non-finite numbers as null.
+
+						return isFinite(value) ? String(value) : 'null';
+
+					case 'boolean':
+					case 'null':
+
+						// If the value is a boolean or null, convert it to a string. Note:
+						// typeof null does not produce 'null'. The case is included here in
+						// the remote chance that this gets fixed someday.
+
+						return String(value);
+
+					// If the type is 'object', we might be dealing with an object or an array or
+					// null.
+
+					case 'object':
+
+						// Due to a specification blunder in ECMAScript, typeof null is 'object',
+						// so watch out for that case.
+
+						if(!value) {
+							return 'null';
+						}
+
+						// Make an array to hold the partial results of stringifying this object value.
+
+						gap += indent;
+						partial = [];
+
+						// Is the value an array?
+
+						if(Object.prototype.toString.apply(value) === '[object Array]') {
+
+							// The value is an array. Stringify every element. Use null as a placeholder
+							// for non-JSON values.
+
+							length = value.length;
+							for(i = 0; i < length; i += 1) {
+								partial[i] = str(i, value) || 'null';
+							}
+
+							// Join all of the elements together, separated with commas, and wrap them in
+							// brackets.
+
+							v = ((partial.length === 0)
+								? '[]'
+								: (gap
+									? '[\n' + gap + partial.join(',\n' + gap) + '\n' + mind + ']'
+									: '[' + partial.join(',') + ']'));
+							
+							gap = mind;
+							return v;
+						}
+
+						// If the replacer is an array, use it to select the members to be stringified.
+
+						if(rep && typeof(rep) === 'object') {
+							length = rep.length;
+							for(i = 0; i < length; i += 1) {
+								if(typeof(rep[i]) === 'string') {
+									k = rep[i];
+									v = str(k, value);
+									if(v) {
+										partial.push(quote(k) + (gap ? ': ' : ':') + v);
+									}
+								}
+							}
+						} else {
+
+							// Otherwise, iterate through all of the keys in the object.
+
+							for(k in value) {
+								if(Object.prototype.hasOwnProperty.call(value, k)) {
+									v = str(k, value);
+									if(v) {
+										partial.push(quote(k) + (gap ? ': ' : ':') + v);
+									}
+								}
+							
+							}
+						}
+
+						// Join all of the member texts together, separated with commas,
+						// and wrap them in braces.
+
+						v = ((partial.length === 0)
+							? '{}'
+							: (gap
+								? '{\n' + gap + partial.join(',\n' + gap) + '\n' + mind + '}'
+								: '{' + partial.join(',') + '}'));
+
+							gap = mind;
+						return v;
+				}
 			}
 
-			// Join all of the elements together, separated with commas, and wrap them in
-			// brackets.
+			// If the JSON object does not yet have a stringify method, give it one.
 
-			v = partial.length === 0
-			? '[]'
-			: gap
-			? '[\n' + gap + partial.join(',\n' + gap) + '\n' + mind + ']'
-			: '[' + partial.join(',') + ']';
-			gap = mind;
-			return v;
-			}
+			if(typeof(JSON.stringify) !== 'function') {
+				JSON.stringify = function(value, replacer, space) {
 
-			// If the replacer is an array, use it to select the members to be stringified.
+				// The stringify method takes a value and an optional replacer, and an optional
+				// space parameter, and returns a JSON text. The replacer can be a function
+				// that can replace values, or an array of strings that will select the keys.
+				// A default replacer method can be provided. Use of the space parameter can
+				// produce text that is more easily readable.
 
-			if (rep && typeof rep === 'object') {
-			length = rep.length;
-			for (i = 0; i < length; i += 1) {
-			if (typeof rep[i] === 'string') {
-			k = rep[i];
-			v = str(k, value);
-			if (v) {
-			partial.push(quote(k) + (gap ? ': ' : ':') + v);
-			}
-			}
-			}
-			} else {
+				var i;
+				gap = '';
+				indent = '';
 
-			// Otherwise, iterate through all of the keys in the object.
+				// If the space parameter is a number, make an indent string containing that
+				// many spaces.
 
-			for (k in value) {
-			if (Object.prototype.hasOwnProperty.call(value, k)) {
-			v = str(k, value);
-			if (v) {
-			partial.push(quote(k) + (gap ? ': ' : ':') + v);
-			}
-			}
-			}
-			}
+				if(typeof(space) === 'number') {
+					for(i = 0; i < space; i += 1) {
+						indent += ' ';
+					}
 
-			// Join all of the member texts together, separated with commas,
-			// and wrap them in braces.
+					// If the space parameter is a string, it will be used as the indent string.
 
-			v = partial.length === 0
-			? '{}'
-			: gap
-			? '{\n' + gap + partial.join(',\n' + gap) + '\n' + mind + '}'
-			: '{' + partial.join(',') + '}';
-			gap = mind;
-			return v;
-			}
-		}
+				} else {
+					if(typeof(space) === 'string') {
+						indent = space;
+					}
+				}
 
-		// If the JSON object does not yet have a stringify method, give it one.
+				// If there is a replacer, it must be a function or an array.
+				// Otherwise, throw an error.
 
-		if (typeof JSON.stringify !== 'function') {
-			JSON.stringify = function (value, replacer, space) {
+				rep = replacer;
+				if(replacer && typeof(replacer) !== 'function' && (typeof(replacer) !== 'object' || typeof(replacer.length) !== 'number')) {
+					throw new Error('JSON.stringify');
+				}
 
-			// The stringify method takes a value and an optional replacer, and an optional
-			// space parameter, and returns a JSON text. The replacer can be a function
-			// that can replace values, or an array of strings that will select the keys.
-			// A default replacer method can be provided. Use of the space parameter can
-			// produce text that is more easily readable.
+				// Make a fake root object containing our value under the key of ''.
+				// Return the result of stringifying the value.
 
-			var i;
-			gap = '';
-			indent = '';
-
-			// If the space parameter is a number, make an indent string containing that
-			// many spaces.
-
-			if (typeof space === 'number') {
-			for (i = 0; i < space; i += 1) {
-			indent += ' ';
-			}
-
-			// If the space parameter is a string, it will be used as the indent string.
-
-			} else if (typeof space === 'string') {
-			indent = space;
-			}
-
-			// If there is a replacer, it must be a function or an array.
-			// Otherwise, throw an error.
-
-			rep = replacer;
-			if (replacer && typeof replacer !== 'function' &&
-			(typeof replacer !== 'object' ||
-			typeof replacer.length !== 'number')) {
-			throw new Error('JSON.stringify');
-			}
-
-			// Make a fake root object containing our value under the key of ''.
-			// Return the result of stringifying the value.
-
-			return str('', {'': value});
-			};
-		}
-
-
-		// If the JSON object does not yet have a parse method, give it one.
-
-		if (typeof JSON.parse !== 'function') {
-			JSON.parse = function (text, reviver) {
-
-			// The parse method takes a text and an optional reviver function, and returns
-			// a JavaScript value if the text is a valid JSON text.
-
-			var j;
-
-			function walk(holder, key) {
-
-			// The walk method is used to recursively walk the resulting structure so
-			// that modifications can be made.
-
-			var k, v, value = holder[key];
-			if (value && typeof value === 'object') {
-			for (k in value) {
-			if (Object.prototype.hasOwnProperty.call(value, k)) {
-			v = walk(value, k);
-			if (v !== undefined) {
-			value[k] = v;
-			} else {
-			delete value[k];
+				return str('', {'': value});
 			}
 			}
-			}
-			}
-			return reviver.call(holder, key, value);
-			}
 
 
-			// Parsing happens in four stages. In the first stage, we replace certain
-			// Unicode characters with escape sequences. JavaScript handles many characters
-			// incorrectly, either silently deleting them, or treating them as line endings.
+			// If the JSON object does not yet have a parse method, give it one.
 
-			text = String(text);
-			cx.lastIndex = 0;
-			if (cx.test(text)) {
-			text = text.replace(cx, function (a) {
-			return '\\u' +
-			('0000' + a.charCodeAt(0).toString(16)).slice(-4);
-			});
-			}
+			if(typeof(JSON.parse) !== 'function') {
+				JSON.parse = function(text, reviver) {
 
-			// In the second stage, we run the text against regular expressions that look
-			// for non-JSON patterns. We are especially concerned with '()' and 'new'
-			// because they can cause invocation, and '=' because it can cause mutation.
-			// But just to be safe, we want to reject all unexpected forms.
+					// The parse method takes a text and an optional reviver function, and returns
+					// a JavaScript value if the text is a valid JSON text.
 
-			// We split the second stage into 4 regexp operations in order to work around
-			// crippling inefficiencies in IE's and Safari's regexp engines. First we
-			// replace the JSON backslash pairs with '@' (a non-JSON character). Second, we
-			// replace all simple value tokens with ']' characters. Third, we delete all
-			// open brackets that follow a colon or comma or that begin the text. Finally,
-			// we look to see that the remaining characters are only whitespace or ']' or
-			// ',' or ':' or '{' or '}'. If that is so, then the text is safe for eval.
+					var j;
 
-			if (/^[\],:{}\s]*$/
-			.test(text.replace(/\\(?:["\\\/bfnrt]|u[0-9a-fA-F]{4})/g, '@')
-			.replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g, ']')
-			.replace(/(?:^|:|,)(?:\s*\[)+/g, ''))) {
+					function walk(holder, key) {
 
-			// In the third stage we use the eval function to compile the text into a
-			// JavaScript structure. The '{' operator is subject to a syntactic ambiguity
-			// in JavaScript: it can begin a block or an object literal. We wrap the text
-			// in parens to eliminate the ambiguity.
+						// The walk method is used to recursively walk the resulting structure so
+						// that modifications can be made.
 
-			j = eval('(' + text + ')');
+						var k, v, value = holder[key];
+						if(value && typeof(value) === 'object') {
+							for(k in value) {
+								if(Object.prototype.hasOwnProperty.call(value, k)) {
+									v = walk(value, k);
+									if(v !== undefined) {
+										value[k] = v;
+									} else {
+										delete(value[k]);
+									}
+								}
+							}
+						}
+						return reviver.call(holder, key, value);
+					}
 
-			// In the optional fourth stage, we recursively walk the new structure, passing
-			// each name/value pair to a reviver function for possible transformation.
 
-			return typeof reviver === 'function'
-			? walk({'': j}, '')
-			: j;
-			}
+					// Parsing happens in four stages. In the first stage, we replace certain
+					// Unicode characters with escape sequences. JavaScript handles many characters
+					// incorrectly, either silently deleting them, or treating them as line endings.
 
-			// If the text is not JSON parseable, then a SyntaxError is thrown.
+					text = String(text);
+					cx.lastIndex = 0;
+					if(cx.test(text)) {
+						text = text.replace(cx, function (a) {
+							return '\\u' +
+								('0000' + a.charCodeAt(0).toString(16)).slice(-4);
+						});
+					}
 
-			throw new SyntaxError('JSON.parse');
-			};
+					// In the second stage, we run the text against regular expressions that look
+					// for non-JSON patterns. We are especially concerned with '()' and 'new'
+					// because they can cause invocation, and '=' because it can cause mutation.
+					// But just to be safe, we want to reject all unexpected forms.
+
+					// We split the second stage into 4 regexp operations in order to work around
+					// crippling inefficiencies in IE's and Safari's regexp engines. First we
+					// replace the JSON backslash pairs with '@' (a non-JSON character). Second, we
+					// replace all simple value tokens with ']' characters. Third, we delete all
+					// open brackets that follow a colon or comma or that begin the text. Finally,
+					// we look to see that the remaining characters are only whitespace or ']' or
+					// ',' or ':' or '{' or '}'. If that is so, then the text is safe for eval.
+
+					if(/^[\],:{}\s]*$/
+						.test(text.replace(/\\(?:["\\\/bfnrt]|u[0-9a-fA-F]{4})/g, '@')
+						.replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g, ']')
+						.replace(/(?:^|:|,)(?:\s*\[)+/g, ''))
+					) {
+
+						// In the third stage we use the eval function to compile the text into a
+						// JavaScript structure. The '{' operator is subject to a syntactic ambiguity
+						// in JavaScript: it can begin a block or an object literal. We wrap the text
+						// in parens to eliminate the ambiguity.
+
+						j = eval('(' + text + ')');
+
+						// In the optional fourth stage, we recursively walk the new structure, passing
+						// each name/value pair to a reviver function for possible transformation.
+
+						return typeof(reviver) === 'function' ? walk({'': j}, '') : j;
+					}
+
+					// If the text is not JSON parseable, then a SyntaxError is thrown.
+
+					throw new SyntaxError('JSON.parse');
+				};
 			}
 		}());
 
@@ -19842,7 +21337,6 @@
 			var json = eval("(" + data + ")");
 			return formatXml(xotree.writeXML(json));
 		};
-
 
 		window.formatXml = function (xml) {
 			var reg = /(>)(<)(\/*)/g;
@@ -19874,24 +21368,25 @@
 			'other->other': 0
 			};
 
-			for (var i = 0; i < lines.length; i++) {
-			var ln = lines[i];
-			var single = Boolean(ln.match(/<.+\/>/)); // is this line a single tag? ex. <br />
-			var closing = Boolean(ln.match(/<\/.+>/)); // is this a closing tag? ex. </a>
-			var opening = Boolean(ln.match(/<[^!].*>/)); // is this even a tag (that's not <!something>)
-			var type = single ? 'single' : closing ? 'closing' : opening ? 'opening' : 'other';
-			var fromTo = lastType + '->' + type;
-			lastType = type;
-			var padding = '';
+			for(var i = 0; i < lines.length; i++) {
+				var ln = lines[i];
+				var single = Boolean(ln.match(/<.+\/>/)); // is this line a single tag? ex. <br />
+				var closing = Boolean(ln.match(/<\/.+>/)); // is this a closing tag? ex. </a>
+				var opening = Boolean(ln.match(/<[^!].*>/)); // is this even a tag (that's not <!something>)
+				var type = single ? 'single' : closing ? 'closing' : opening ? 'opening' : 'other';
+				var fromTo = lastType + '->' + type;
+				lastType = type;
+				var padding = '';
 
-			indent += transitions[fromTo];
-			for (var j = 0; j < indent; j++) {
-			padding += '\t';
-			}
-			if (fromTo == 'opening->closing')
-			formatted = formatted.substr(0, formatted.length - 1) + ln + '\n'; // substr removes line break (\n) from prev loop
-			else
-			formatted += padding + ln + '\n';
+				indent += transitions[fromTo];
+				for(var j = 0; j < indent; j++) {
+					padding += '\t';
+				}
+				if(fromTo == 'opening->closing') {
+					formatted = formatted.substr(0, formatted.length - 1) + ln + '\n'; // substr removes line break (\n) from prev loop
+				} else {
+					formatted += padding + ln + '\n';
+				}
 			}
 
 			return formatted;
@@ -20027,7 +21522,6 @@
 			this.h				= h;
 			this.f				= f;
 		};
-
 var InitPlugins = setInterval(function() {if($) {
 /*Plugins*/																												  //====		    ==============-
 	/*HidVis*/																											 //====			  ==================\
@@ -20060,9 +21554,6 @@ var InitPlugins = setInterval(function() {if($) {
 					var callbackpre	= function() {};
 					var icon		= "None";
 					var message		= "";
-
-					//console.error(dialogBoxTemplate);
-
 					var throwError = function() {
 						throw new Error('Dialog Box plugin - usage: $(element).dialogBox(/*String*/ "Message", /*String*/ "Icon" /*[Warning, Question, Alert, None*/, /*String/Object*/ "Type" /*Yes/No, Cancel, Yes/No/Cancel, Retry, Yes/No/Cancel/Retry, Retry/Abort*/ /*{"Option1": "yes", "Option2": "no"}*/, /*post-done-function*/ function() {callback();}, /*pre-done-function*/ function({callback();});');
 						return false;
@@ -20164,7 +21655,6 @@ var InitPlugins = setInterval(function() {if($) {
 						button.find('.dialogBox_button_value').text(index).attr('rel', value).removeClass('dialogBox_button_value');
 						buttons += button.html();
 					});
-					//console.log(buttons);
 					buttons = $(buttons);
 					$.each(buttons, function(index, value) {
 						$(value).bind('click', function() {
@@ -20174,6 +21664,9 @@ var InitPlugins = setInterval(function() {if($) {
 								callback($(this).find('.button').attr('rel'));
 							}
 							$(this).parents('.dialogBox').remove();
+							if($('.dialogBox').length == 0) {
+								$('body').removeClass('dialog');
+							}
 						});
 					});
 
@@ -20182,13 +21675,12 @@ var InitPlugins = setInterval(function() {if($) {
 					temp.find('.dialogBox_text_value').html(message).removeClass('dialogBox_text_value');
 					temp.find('.dialogBox_icon_value').text(icon).removeClass('dialogBox_icon_value');
 					temp.bind('keypress', function(k) {
-						//console.log(k);
 						if(k.keyCode == 13) {
 							temp.find('.button[rel=1]').trigger('click');
 						}
 					});
-					//console.log(temp)
 					this.append(temp);
+					$('body').addClass('dialog');
 					callbackpre();
 					$(window).trigger('resize');
 					return true;
@@ -20226,12 +21718,12 @@ var InitPlugins = setInterval(function() {if($) {
 			a.fn.tinyscrollbar = function(d) {
 				var c = a.extend({}, a.tiny.scrollbar.options, d);
 				this.each(function() {
-					a(this).data("tsb", new b(a(this), c))
+					a(this).data("tsb", new b(a(this), c));
 				});
-				return this
+				return this;
 			};
 			a.fn.tinyscrollbar_update = function(c) {
-				return a(this).data("tsb").update(c)
+				return a(this).data("tsb").update(c);
 			};
 			function b(q, g) {
 				var k = this, t = q, j = {
@@ -20251,7 +21743,7 @@ var InitPlugins = setInterval(function() {if($) {
 				function c() {
 					k.update();
 					s();
-					return k
+					return k;
 				}
 				this.update = function(z) {
 					j[g.axis] = j.obj[0]["offset" + v];
@@ -20263,7 +21755,7 @@ var InitPlugins = setInterval(function() {if($) {
 					d.ratio = g.sizethumb === "auto" ? (h[g.axis] / m[g.axis]) : (h[g.axis] - j[g.axis]) / (m[g.axis] - p[g.axis]);
 					r = (z === "relative" && h.ratio <= 1) ? Math.min((h[g.axis] - j[g.axis]), Math.max(0, r)) : 0;
 					r = (z === "bottom" && h.ratio <= 1) ? (h[g.axis] - j[g.axis]) : isNaN(parseInt(z, 10)) ? r : parseInt(z, 10);
-					w()
+					w();
 				};
 				function w() {
 					var z = v.toLowerCase();
@@ -20272,27 +21764,28 @@ var InitPlugins = setInterval(function() {if($) {
 					o.start = p.obj.offset()[n];
 					d.obj.css(z, m[g.axis]);
 					m.obj.css(z, m[g.axis]);
-					p.obj.css(z, p[g.axis])
+					p.obj.css(z, p[g.axis]);
 				}
 
 				function s() {
-					if (!e) {
+					if(!e) {
 						p.obj.bind("mousedown", i);
-						m.obj.bind("mouseup", u)
+						m.obj.bind("mouseup", u);
 					} else {
 						j.obj[0].ontouchstart = function(z) {
-							if (1 === z.touches.length) {
+							if(1 === z.touches.length) {
 								i(z.touches[0]);
-								z.stopPropagation()
+								//console.log('FAIL1');
+								z.stopPropagation();
 							}
 						}
 					}
-					if (g.scroll && window.addEventListener) {
+					if(g.scroll && window.addEventListener) {
 						t[0].addEventListener("DOMMouseScroll", x, false);
-						t[0].addEventListener("mousewheel", x, false)
+						t[0].addEventListener("mousewheel", x, false);
 					} else {
-						if (g.scroll) {
-							t[0].onmousewheel = x
+						if(g.scroll) {
+							t[0].onmousewheel = x;
 						}
 					}
 				}
@@ -20301,43 +21794,43 @@ var InitPlugins = setInterval(function() {if($) {
 					var z = parseInt(p.obj.css(n), 10);
 					o.start = l ? A.pageX : A.pageY;
 					y.start = z == "auto" ? 0 : z;
-					if (!e) {
+					if(!e) {
 						a(document).bind("mousemove", u);
 						a(document).bind("mouseup", f);
-						p.obj.bind("mouseup", f)
+						p.obj.bind("mouseup", f);
 					} else {
 						document.ontouchmove = function(B) {
 							B.preventDefault();
-							u(B.touches[0])
+							u(B.touches[0]);
 						};
-						document.ontouchend = f
+						document.ontouchend = f;
 					}
 				}
 
 				function x(B) {
-					if (h.ratio < 1) {
+					if(h.ratio < 1) {
 						var A = B || window.event, z = A.wheelDelta ? A.wheelDelta / 120 : -A.detail / 3;
 						r -= z * g.wheel;
 						r = Math.min((h[g.axis] - j[g.axis]), Math.max(0, r));
 						p.obj.css(n, r / d.ratio);
 						h.obj.css(n, -r);
-						if (g.lockscroll || (r !== (h[g.axis] - j[g.axis]) && r !== 0)) {
+						if(g.lockscroll || (r !== (h[g.axis] - j[g.axis]) && r !== 0)) {
 							A = a.event.fix(A);
-							A.preventDefault()
+							A.preventDefault();
 						}
 					}
 				}
 
 				function u(z) {
-					if (h.ratio < 1) {
-						if (!e) {
-							y.now = Math.min((m[g.axis] - p[g.axis]), Math.max(0, (y.start + (( l ? z.pageX : z.pageY) - o.start))))
+					if(h.ratio < 1) {
+						if(!e) {
+							y.now = Math.min((m[g.axis] - p[g.axis]), Math.max(0, (y.start + (( l ? z.pageX : z.pageY) - o.start))));
 						} else {
-							y.now = Math.min((m[g.axis] - p[g.axis]), Math.max(0, (y.start + (o.start - ( l ? z.pageX : z.pageY)))))
+							y.now = Math.min((m[g.axis] - p[g.axis]), Math.max(0, (y.start + (o.start - ( l ? z.pageX : z.pageY)))));
 						}
 						r = y.now * d.ratio;
 						h.obj.css(n, -r);
-						p.obj.css(n, y.now)
+						p.obj.css(n, y.now);
 					}
 				}
 
@@ -20345,9 +21838,9 @@ var InitPlugins = setInterval(function() {if($) {
 					a(document).unbind("mousemove", u);
 					a(document).unbind("mouseup", f);
 					p.obj.unbind("mouseup", f);
-					document.ontouchmove = document.ontouchend = null
+					document.ontouchmove = document.ontouchend = null;
 				}
-				return c()
+				return c();
 			}
 
 		}(jQuery));
@@ -20380,23 +21873,23 @@ var InitPlugins = setInterval(function() {if($) {
 		 *	------------------------------------------------------------------------
 		 */
 		(function($) { // secure $ jQuery alias
-			$.fn.scrollsync = function( options ){
+			$.fn.scrollsync = function(options){
 				var settings = $.extend(
-						{   
-							targetSelector:':first',
-							axis: 'xy'
-						},options || {});
+					{
+						targetSelector: ':first',
+						axis: 'xy'
+					}, options || {}
+				);
 				
 				
 				function scrollHandler(event) {
-					if (event.data.xaxis){
+					if(event.data.xaxis){
 						event.data.followers.scrollLeft(event.data.target.scrollLeft());
 					}
-					if (event.data.yaxis){
+					if(event.data.yaxis){
 						event.data.followers.scrollTop(event.data.target.scrollTop());
 					}
 				}
-				
 				// Find target to follow and separate from followers
 				settings.target = this.filter(settings.targetSelector).filter(':first');
 				settings.followers=this.not(settings.target); // the rest of elements
@@ -20404,13 +21897,13 @@ var InitPlugins = setInterval(function() {if($) {
 				// Parse axis
 				settings.xaxis= (settings.axis=='xy' || settings.axis=='x') ? true : false; 
 				settings.yaxis= (settings.axis=='xy' || settings.axis=='y') ? true : false;
-				if (!settings.xaxis && !settings.yaxis) return;  // No axis left 
+				if(!settings.xaxis && !settings.yaxis) {return;}  // No axis left 
 				
 				// bind scroll event passing array of followers
 				settings.target.bind('scroll', settings, scrollHandler);
 				
 			}; // end plugin scrollsync
-		})( jQuery ); // confine scope
+		})(jQuery); // confine scope
 	/*Drag Scrollable*/
 		/*
 		 * jQuery dragscrollable Plugin
@@ -20467,72 +21960,64 @@ var InitPlugins = setInterval(function() {if($) {
 						dragSelector:'>:first',
 						acceptPropagatedEvent: true,
 						preventDefault: true
-					},options || {});
+					}, options || {});
 				 
 				
 				var dragscroll = {
 					mouseDownHandler: function(event) {
 						// mousedown, left click, check propagation
-						//if($(this).parents('.layer').hasClass('Dragger')) {
-							console.log(event.target);
-							console.log(this);
-							if (event.which != 1 || (!event.data.acceptPropagatedEvent && event.target != this)) {
-								//return false;
-							} else {
-								
-								// Initial coordinates will be the last when dragging
-								event.data.lastCoord = {left: event.clientX, top: event.clientY};
+						if(event.which != 1 || (!event.data.acceptPropagatedEvent && event.target != this)) {
+							//return false;
+						} else {
 							
-								$.event.add(document, "mouseup", dragscroll.mouseUpHandler, event.data);
-								$.event.add(document, "mousemove", dragscroll.mouseMoveHandler, event.data);
-								if(event.data.preventDefault) {
-									event.preventDefault();
-									return false;
-								}
-							}
-						//}
-					},
-					mouseMoveHandler: function(event) { // User is dragging
-						// How much did the mouse move?
-						//if($(this).parents('.layer').hasClass('Dragger')) {
-							var delta = {left:	(event.clientX - event.data.lastCoord.left),
-										top:	(event.clientY - event.data.lastCoord.top)};
-							
-							// Set the scroll position relative to what ever the scroll is now
-							event.data.scrollable.scrollLeft(event.data.scrollable.scrollLeft() - delta.left);
-							event.data.scrollable.scrollTop(event.data.scrollable.scrollTop() - delta.top);
-							
-							// Save where the cursor is
-							event.data.lastCoord = {left: event.clientX, top: event.clientY}
+							// Initial coordinates will be the last when dragging
+							event.data.lastCoord = {left: event.clientX, top: event.clientY};
+						
+							$.event.add(document, "mouseup", dragscroll.mouseUpHandler, event.data);
+							$.event.add(document, "mousemove", dragscroll.mouseMoveHandler, event.data);
 							if(event.data.preventDefault) {
 								event.preventDefault();
 								return false;
 							}
-						//}
+						}
+					},
+					mouseMoveHandler: function(event) { // User is dragging
+						// How much did the mouse move?
+						var delta = {left:	(event.clientX - event.data.lastCoord.left),
+									top:	(event.clientY - event.data.lastCoord.top)};
+						
+						// Set the scroll position relative to what ever the scroll is now
+						event.data.scrollable.scrollLeft(event.data.scrollable.scrollLeft() - delta.left);
+						event.data.scrollable.scrollTop(event.data.scrollable.scrollTop() - delta.top);
+						
+						// Save where the cursor is
+						event.data.lastCoord = {left: event.clientX, top: event.clientY}
+						if(event.data.preventDefault) {
+							event.preventDefault();
+							return false;
+						}
 					},
 					mouseUpHandler: function(event) { // Stop scrolling
-						//if($(this).parents('.layer').hasClass('Dragger')) {
-							$.event.remove(document, "mousemove", dragscroll.mouseMoveHandler);
-							$.event.remove(document, "mouseup", dragscroll.mouseUpHandler);
-							if (event.data.preventDefault) {
-								event.preventDefault();
-								return false;
-							}
-						//}
+						$.event.remove(document, "mousemove", dragscroll.mouseMoveHandler);
+						$.event.remove(document, "mouseup", dragscroll.mouseUpHandler);
+						if(event.data.preventDefault) {
+							event.preventDefault();
+							return false;
+						}
 					}
 				}
 				
 				// set up the initial events
 				this.each(function() {
 					// closure object data for each scrollable element
-					var data = {scrollable: $(this), acceptPropagatedEvent: settings.acceptPropagatedEvent, preventDefault: settings.preventDefault}
+					var data = {scrollable: $(this), acceptPropagatedEvent: settings.acceptPropagatedEvent, preventDefault: settings.preventDefault};
 					// Set mouse initiating event on the desired descendant
 					$(this).find(settings.dragSelector).bind('mousedown', data, dragscroll.mouseDownHandler);
 				});
 			}; //end plugin dragscrollable
 		})(jQuery); // confine scope
 	/*WorkSpace*/
-		console.log2 = console.log;//console.log = function() {if(arguments.length > 0) {if(typeof(arguments[0] == 'string')) {if(arguments[0].toString().substring(0,7) == 'SERVICE'){return console.log2(arguments);}}}return;};
+		console.log2 = console.log;
 		window.workspacePlugin = {
 			panel: '#workspacePanel',
 			menu: '#workspaceMenu',
@@ -20545,7 +22030,6 @@ var InitPlugins = setInterval(function() {if($) {
 						dataWorkspace[dataWorkspace.length] = [value.name, value.date];
 					});
 				}
-
 				$('.workspaceDataContainer').html('<table cellpadding="0" cellspacing="0" border="0" class="display workspaceDataTable"></table>');
 				$('.workspaceDataTable').dataTable({
 					"iDisplayLength": 10000,
@@ -20560,51 +22044,70 @@ var InitPlugins = setInterval(function() {if($) {
 					$('.workspaceDataTable tr').removeClass('highlighted');
 					$(this).addClass('highlighted');
 				});
+				$('.workspaceDataTable').find('th').first().addClass('width180').next().addClass('width80');
 			},
 			bind: function() {
 				var workspaceButtons = $('.workspaceButtons');
 				var $this = this;
 				if(workspaceButtons.length > 0) {
 					workspacePlugin.redraw();
-
 					$('.workspaceSave').bind('click', function() {
 						workspacePlugin.save();
 					});
-
 					$('.workspaceDelete').bind('click', function() {
 						workspacePlugin.remove();
 					});
-
-
-					$('.workspaceImport').bind('click', function() {
-						workspacePlugin.import();
+					$('.workspaceTabs div').bind('click', function() {
+						$('.workspaceTabs div').removeClass('active');
+						$('.workspaceTabbeds div').removeClass('active');
+						$(this).addClass('active');
+						if($(this).hasClass('workspaceTabExport')) {
+							$('.workspaceTabbeds .export').addClass('active');
+						}
+						if($(this).hasClass('workspaceTabImport')) {
+							$('.workspaceTabbeds .import').addClass('active');
+						}
+						if($(this).hasClass('workspaceTabRun')) {
+							$('.workspaceTabbeds .run').addClass('active');
+						}
 					});
-
+					$('.workspaceClear').bind('click', function() {
+						clearAll();
+						$(window).trigger('resize');
+					});
 					$('.workspaceLoad').bind('click', function() {
 						workspacePlugin.load();
 					});
-
-					$('#workspacePanel .export').next().bind('click', function(e) {
+					$('#workspacePanel .workspaceTabbeds div div').bind('click', function(e) {
 						checkWindowsForErrors();
 						if($('.nmError').length > 0) {
 							$.dialogBox('Cannot export workflow, errors have been found<br />Please correct any highlighted windows and try again.');
 						} else {
-							console.log(e);
+							var self = $(this);
+							//console.log(e);
 							//var netmar = ((e.pageX - $(this).offset().left) >= 202) ? true : false;
-							var service = ((e.pageX - $(this).offset().left) >= 133) ? (((e.pageX - $(this).offset().left) >= 267) ? 'netmar' : 'taverna') : 'run';
-							if(service == 'run') {
-
-								$('.dialogBoxWorkFlowRun').parents('.dialogBox').remove();
-								$.dialogBox('<div class="dialogBoxWorkFlowRun"><div>Your flow is currently: <span>Loading</span></div></div>', 'none', {});
-
+							var service = $(this).attr('rel');//((e.pageX - $(this).offset().left) >= 133) ? (((e.pageX - $(this).offset().left) >= 267) ? 'netmar' : 'taverna') : 'run';
+							if(service == undefined) {
+								return;
 							}
-							//console.log(encodeURIComponent(workspacePlugin.flowXML(workspacePlugin.flowJSON())));
+							if(service == 'import') {
+								return workspacePlugin.import();
+							}
+							if(service == 'email') {
+								return $.dialogBox('Please enter the email address you would like to send this flow to: <input type="text" id="emailFlowAddress" />', 'none', {Ok:1, Cancel: 0}, function(i){if(i==1){workspacePlugin.emailWorkflow();}}, function() {$('#emailFlowAddress').bind('keypress', function() {$email = $('#emailFlowAddress').val();});$('#emailFlowAddress').bind('keyup', function() {$email = $('#emailFlowAddress').val();});$('#emailFlowAddress').bind('keydown', function() {$email = $('#emailFlowAddress').val();});});
+							}
+							if(service == 'run') {
+								//$('.dialogBoxWorkFlowRun').parents('.dialogBox').remove();
+								self.hide();
+								$('.workspaceRunData .processStateBox .state').html('<span>Loading...</span>');
+								self.parent().find('.workspaceRunData').last().show();
+								//$.dialogBox('<div class="dialogBoxWorkFlowRun"><div>Your flow is currently: <span><b>Loading</b></span></div></div>', 'none', {});
+							}
 							$.ajax({
-								type:'POST',
-								url:'download.php?type=' + service + '&t=' + (new Date().getTime()),
-								data: {data: workspacePlugin.flowXML(workspacePlugin.flowJSON())},
+								type:	'POST',
+								url:	'download.php?type=' + service + '&t=' + (new Date().getTime()),
+								data:	{data: workspacePlugin.flowXML(workspacePlugin.flowJSON())},
 								success: function(data) {
-									console.log(data);
 									if(service == 'run') {
 										workspacePlugin.runWorkflow(data);
 									} else {
@@ -20622,10 +22125,42 @@ var InitPlugins = setInterval(function() {if($) {
 					}
 				}
 			},
+			emailWorkflow: function() {
+				var $name = '';
+				var tempTime = 0;
+				var item = null;
+				$.each($('.workspaceDataTable tr'), function(index, value) {
+					var entry = $(value);
+					value = entry.find('td');
+					if(value.length > 0) {
+						entry = value.parent();
+						value = value.last().text().split(' ');
+						value = new Date(value[2].replace(/\,/g, '') + ' ' + parseInt(value[0]) + ', ' + value[3] + ' ' + value[5]).getTime();
+					} else {
+						value = 0;
+					}
+					if(tempTime < value) {
+						item = entry;
+						$name = entry.find('td').first().text();
+						tempTime = value;
+					}
+				});
+				$.ajax({
+					type:'POST',
+					url:'download.php?type=netmar&email=' + $email + (($name !== '') ? '&name=' + encodeURIComponent($name) : '') + '&t=' + (new Date().getTime()),
+					data: {data: workspacePlugin.flowXML(workspacePlugin.flowJSON())},
+					success: function(data) {
+						if($(data).text() == '1') {
+						} else {
+						}
+					},
+					dataType:'text'
+				});
+			},
 			runWorkflow: function(data, ticker) {
+				$stateBox = $('.workspaceRunData .processStateBox .state');
 				if(ticker !== true) {
-					$('.dialogBoxWorkFlowRun').parents('.dialogBox').remove();
-					$.dialogBox('<div class="dialogBoxWorkFlowRun"><div>Your flow is currently: <span>Loading</span>&gt;<span>Starting</span>.</div><div></div></div>', 'none', {});
+					$stateBox.html('<span style="text-shadow:0 0 4px #000000;">Loading...</span><span>Starting</span>');
 				}
 				$.ajax({
 					type:'GET',
@@ -20633,35 +22168,77 @@ var InitPlugins = setInterval(function() {if($) {
 					dataType:'text',
 					success: function(state) {
 						if(state == 'Finished') {
+							$('.processStateBox').find('span').last().text('');
 							$.ajax({
 								type:'GET',
 								url:'download.php?type=run&obj=' + data + '&out=wd&t=' + (new Date().getTime()),
 								dataType:'text',
 								success: function(content) {
 									var content = $(content.replace(/ts\:/g, 'ts-').replace(/ts-rest\:/g, 'ts-rest').replace(/ts-rest\:/g, 'ts-rest').replace(/xmlns\:/g, 'xmlns-').replace(/xlink\:/g, 'xlink-'));
-									window.t = content;
-									$('.dialogBoxWorkFlowRun').parents('.dialogBox').remove();
+									$stateBox.parent().find('span').first().text('Your flow has finished!');
 									var files = '';
 									$.each(content.find('ts-file'), function(index, value) {
 										value = $(value);
-										files = files + '<div><strong>' + value.attr('ts-name') + '</strong>: <a href="' + value.attr('xlink-href') + '" target="_new">View</a></div>';
+										files = files + '<div><strong>' + value.attr('ts-name') + '</strong>: <a href="' + value.attr('xlink-href') + '" target="_blank">View</a></div>';
 									});
 									if(files == '') {
-										$.dialogBox('<div class="dialogBoxWorkFlowRun"><div>Your flow has finished but there were no results available.</div></div>', 'none', {'Ok': 1});
+										$stateBox.html('<div class="dialogBoxWorkFlowRun"><div>There were no results available.<div class="button" rel="close">Close</div></div></div>');
 									} else {
-										$.dialogBox('<div class="dialogBoxWorkFlowRun"><div>Your flow has finished and your results are available;</div>' + files + '</div>', 'none', {'Ok': 1});
+										$stateBox.html('<div class="dialogBoxWorkFlowRun"><div>Your results are available;</div>' + files + '<div class="button" rel="close">Close</div></div>');
 									}
-									//console.log(content);
+									$stateBox.find('.button').bind('click', function() {
+										rel = $(this).attr('rel');
+										switch(rel) {
+											case 'close':
+												$('.workspaceRunData').hide();
+												$('.workspaceRunData').parent().find('div').first().show();
+												$('.processStateBox').find('span').first().text('Your flow is currently:');
+											break;
+											case 'share':
+												$('#workspacePanel .workspaceTabbeds .export .email').trigger('click');
+											break;
+										}
+									});
+									var flowfiles = $('.dialogBoxWorkFlowRun div a');
+									$.each(flowfiles, function(index, value) {
+										var out = $(value).attr('href');
+										out = out.split('/');
+										out = out[out.length - 1];
+										$.ajax({
+											type: 'GET',
+											url: 'mime.php?obj=' + data + '&out=' + out,
+											dataType: 'text',
+											success: function(mime) {
+												$(value).after('\:' + mime);
+											}
+										});
+									});
+									flowfiles.bind('click', function() {window.open($(this).attr('href'), '_blank');});
 								}
 							});
 						} else {
-							$('.dialogBoxWorkFlowRun').find('div').last().append('.');
 							if(state !== 'Operating' && state !== 'Initialized') {
-								$('.dialogBoxWorkFlowRun').parents('.dialogBox').remove();
 								$.dialogBox('There was a problem with your workflow', 'none', {'Ok': 1});
+								$('.workspaceRunData').hide();
+								$('.workspaceRunData').parent().find('div').first().show();
+								$('.processStateBox').find('span').first().text('Your flow is currently:');
 							} else {
-								if($('.dialogBoxWorkFlowRun').find('div span').last().text() !== state) {
-									$('.dialogBoxWorkFlowRun').find('div span').last().after('&gt;<span>' + state + '</span>');
+								if($stateBox.find('span').last().text() !== state) {
+									var itt = 1;
+									var spans = $stateBox.find('span');
+									$.each(spans, function(index, value) {
+										$(value).css({
+											'text-shadow': '0 0 ' + (1 * (spans.length)) + 'px #000000'
+										});
+										itt++;
+									});
+									$stateBox.find('span').last().html($stateBox.find('span').last().text());
+									$stateBox.append('<span><b>' + state + '</b></span>');
+								} else {
+									var dots = $('.processStateBox').find('span').last();
+									var text = dots.text();
+									dots.text(text + ' .');
+									setTimeout(function() {var dots = $('.processStateBox').find('span').last();var text = dots.text();dots.text(text + ' .');}, 1875);
 								}
 								setTimeout(function() {workspacePlugin.runWorkflow(data, true);}, 3750);
 							}
@@ -20670,7 +22247,7 @@ var InitPlugins = setInterval(function() {if($) {
 				});
 			},
 			flowXML: function(data) {
-				data = $("<xml>" + toXml('{"root":' + JSON.stringify(data) + '}') + "</xml>").find('root');
+				data = $("<xml_data>" + toXml('{"root":' + JSON.stringify(data) + '}').replace(/\<\?xml version=\"1.0\" encoding=\"UTF-8\" \?\>/g, '') + "</xml_data>").find('root');
 				$.each(data.find('positions'), function(index, value) {
 					value = $(value);
 					var inputs = '';
@@ -20689,7 +22266,7 @@ var InitPlugins = setInterval(function() {if($) {
 					value.find('label').after($(inputs));
 				});
 				var result = data.html();
-
+				result = "" + result + "";
 				result = result.replace(/\<inputterminals isconnected=\"/g,		"<inputTerminals isConnected=\"");
 				result = result.replace(/\<outputterminals isconnected=\"/g,	"<outputTerminals isConnected=\"");
 				result = result.replace(/\<\/inputterminals\>/g,				"</inputTerminals>");
@@ -20714,7 +22291,7 @@ var InitPlugins = setInterval(function() {if($) {
 				var date		= new Date();
 				var dataArr		= date.toLocaleString().split(' ');
 				var monthInt	= date.getMonth() + 1;
-				var monthString	='0';
+				var monthString	= '0';
 				if(monthInt <= 9) {
 					monthString += monthInt;
 				} else {
@@ -20723,7 +22300,6 @@ var InitPlugins = setInterval(function() {if($) {
 				var dateTaverna = (new Date().format('Y-m-d H:i:s \\G\\M\\T O')).replace(/\+/g, '');
 				var result = {};
 				result.wsdlURL = [];
-
 				$.each(workspacePlugin.loadedWSDLs(), function(index, value) {
 					if(
 						value !== undefined &&
@@ -20739,7 +22315,7 @@ var InitPlugins = setInterval(function() {if($) {
 					}
 				});
 				result.positions = [];
-				$.each($('.nmWindow'), function(index, vindow) {
+				$.each($('.nmWindow').not('.nmWelcome'), function(index, vindow) {
 					vindow = $(vindow);
 					var serviceio = vindow.hasClass('serviceio');
 					var vttr_id = vindow.attr('id');
@@ -20755,17 +22331,15 @@ var InitPlugins = setInterval(function() {if($) {
 					if(vlabel == '') {
 						vlabel = vindow.attr('wsdl-label');
 					}
-
 					result.positions[result.positions.length] = {};
-					result.positions[result.positions.length - 1].label = xmlStrip(vlabel);
-					result.positions[result.positions.length - 1].name	= xmlStrip(vindow.find('.header .handler').text());
+					result.positions[result.positions.length - 1].label = (vlabel ? vlabel : '').replace(/\ /g,"_").replace(/\//g,"_").replace(/\-/g,"_");
+					result.positions[result.positions.length - 1].name	= (vindow.find('.header .handler').text() ? vindow.find('.header .handler').text() : '').replace(/\ /g,"_").replace(/\//g,"_").replace(/\-/g,"_");
 					result.positions[result.positions.length - 1].inputTerminals = [];
-
 					$.each(vindow.find('.body .left'), function(index, vnput) {
 						vnput = $(vnput);
 						var vonnected = false;
 						if(vnput.text() !== '') {
-							$.each($.data(document, 'wires-dest'), function(index, vid) {
+							$.each($.data(document, 'wiresDest'), function(index, vid) {
 								if(serviceio) {
 									if(
 										(vid.tid == vttr_id && vid.name == vindow.text()) ||
@@ -20794,7 +22368,7 @@ var InitPlugins = setInterval(function() {if($) {
 						vutput = $(vutput);
 						var vonnected = false;
 						if(vutput.text() !== '') {
-							$.each($.data(document, 'wires-dest'), function(index, vid) {
+							$.each($.data(document, 'wiresDest'), function(index, vid) {
 								if(serviceio) {
 									if(
 										(vid.tid == vttr_id && vid.name == vindow.find('.body').text()) ||
@@ -20837,7 +22411,7 @@ var InitPlugins = setInterval(function() {if($) {
 				});
 
 				result.wires = [];
-				$.each($.data(document, 'wires-dest'), function(index, value) {
+				$.each($.data(document, 'wiresDest'), function(index, value) {
 					var found = false;
 					var tindow = $('#' + value.tid);
 					var pindow = $('#' + value.pid);
@@ -20848,66 +22422,23 @@ var InitPlugins = setInterval(function() {if($) {
 						var plabel = '';
 						var tname	= value.name;
 						var pname	= value.partner;
-						if(terviceio) {
-							//tlabel = tindow.find('.labelinput');
-							tlabel = tindow.find('.header .handler');
-							if(tlabel.length > 0) {
-								if(tlabel.parent().hasClass('right')) {
-									//tname = 'Input value';
-									if(tindow.hasClass('servicei')) {
-										tname == 'value';
-									}
-								} else {
-									if(tindow.hasClass('servicei')) {
-										tname == 'value';
-									}
-									//tname = 'Output value';
-								}
-								tlabel = tlabel.text();
-							} else {
-								tlabel = '';
-							}
-						}
-						if(tindow.hasClass('servicei')) {
-							tname == 'value';
-						}
-						if(perviceio) {
-							//plabel = pindow.find('.labelinput');
-							plabel = pindow.find('.header .handler');
-							if(plabel.length > 0) {
-								if(plabel.parent().hasClass('right')) {
-									if(pindow.hasClass('servicei')) {
-										pname == 'value';
-									}
-									//pname = 'Input value';
-								} else {
-									if(pindow.hasClass('servicei')) {
-										pname == 'value';
-									}
-									//pname = 'Output value';
-								}
-								plabel = plabel.text();
-							} else {
-								plabel = '';
-							}
-						}
-						if(pindow.hasClass('servicei')) {
+						if(pindow.hasClass('servicei') || pindow.hasClass('serviceo')) {
 							pname = "value";
 						}
-						if(tindow.hasClass('servicei')) {
+						if(tindow.hasClass('servicei') || tindow.hasClass('serviceo')) {
 							tname = "value";
 						}
-						if(tlabel == '') {tlabel = tindow.find('.header .handler').text();}//attr('wsdl-label');}
-						if(plabel == '') {plabel = pindow.find('.header .handler').text();}//attr('wsdl-label');}
+						tlabel = tindow.find('.header .handler').text();
+						plabel = pindow.find('.header .handler').text();
 						result.wires[result.wires.length] = {
 							src: {
-								moduleid:	xmlStrip(plabel),
-								terminal:	xmlStrip(pname),
+								moduleid:	(plabel).replace(/\ /g,"_").replace(/\//g,"_").replace(/\-/g,"_"),
+								terminal:	(pname).replace(/\ /g,"_").replace(/\//g,"_").replace(/\-/g,"_"),
 								xtype:		'WireIt.TavernaContainer'
 							},
 							tgt: {
-								moduleid:	xmlStrip(tlabel),
-								terminal:	xmlStrip(tname),
+								moduleid:	(tlabel).replace(/\ /g,"_").replace(/\//g,"_").replace(/\-/g,"_"),
+								terminal:	(tname).replace(/\ /g,"_").replace(/\//g,"_").replace(/\-/g,"_"),
 								xtype:		'WireIt.TavernaContainer'
 							}
 						};
@@ -20925,43 +22456,23 @@ var InitPlugins = setInterval(function() {if($) {
 						var plabel	= '';
 						var tname	= value.name;
 						var pname	= value.partner;
-						if(terviceio) {
-							tlabel = tindow.find('.header .handler');
-							if(tlabel.length > 0) {
-								if(tlabel.parent().hasClass('right')) {
-									//tname = 'Input value';
-								} else {
-									//tname = 'Output value';
-								}
-								tlabel = tlabel.text();
-							} else {
-								tlabel = '';
-							}
+						if(pindow.hasClass('servicei') || pindow.hasClass('serviceo')) {
+							pname = "value";
 						}
-						if(perviceio) {
-							plabel = pindow.find('.header .handler');
-							if(plabel.length > 0) {
-								if(plabel.parent().hasClass('right')) {
-									//pname = 'Input value';
-								} else {
-									//pname = 'Output value';
-								}
-								plabel = plabel.text();
-							} else {
-								plabel = '';
-							}
+						if(tindow.hasClass('servicei') || tindow.hasClass('serviceo')) {
+							tname = "value";
 						}
-						if(tlabel == '') {tlabel = tindow.attr('wsdl-label');}
-						if(plabel == '') {plabel = pindow.attr('wsdl-label');}
+						tlabel = tindow.find('.header .handler').text();
+						plabel = pindow.find('.header .handler').text();
 						result.wires[result.wires.length] = {
 							src: {
-								moduleid:	xmlStrip(tlabel),
-								terminal:	xmlStrip(tname),
+								moduleid:	(tlabel).replace(/\ /g,"_").replace(/\//g,"_").replace(/\-/g,"_"),
+								terminal:	(tname).replace(/\ /g,"_").replace(/\//g,"_").replace(/\-/g,"_"),
 								xtype:		'WireIt.TavernaContainer'
 							},
 							tgt: {
-								moduleid:	xmlStrip(plabel),
-								terminal:	xmlStrip(pname),
+								moduleid:	(plabel).replace(/\ /g,"_").replace(/\//g,"_").replace(/\-/g,"_"),
+								terminal:	(pname).replace(/\ /g,"_").replace(/\//g,"_").replace(/\-/g,"_"),
 								xtype:		'WireIt.TavernaContainer'
 							}
 						};
@@ -20978,7 +22489,109 @@ var InitPlugins = setInterval(function() {if($) {
 
 				result.uuid = UUID.generate();
 				result.date = dateTaverna;
+				result.revision = revision;
 				return result;
+			},
+			parseImportData: function(data) {
+				//console.log("Blarg back up stuff");
+				//console.log(data);
+				window.blarg = data;
+				var res = $('<res>' + data + '</res>');
+				var obj = {};
+				obj.positions = [];
+				obj.wsdlURL = [];
+				obj.wires = [];
+				obj.uuid = '';
+				obj.revision = '0';
+				obj.date = '';
+				if(res.find('wsdlurl').length > 0) {
+					res = res.find('root');
+					$.each(res.find('wsdlurl'), function(index, value) {obj.wsdlURL[obj.wsdlURL.length] = $(value).text();});
+					$.each(res.find('revision'), function(index, value) {obj.revision = $(value).text();});
+					$.each(res.find('uuid'), function(index, value) {obj.uuid = $(value).text();});
+					$.each(res.find('date'), function(index, value) {obj.date = $(value).text();});
+					$.each(res.find('positions'), function(index, value) {
+						var d					= obj.positions.length;
+						value					= $(value);
+						obj.positions[d]		= {};
+						obj.positions[d].label	= value.find('label').text();
+						obj.positions[d].name	= value.find('name').text();
+						//console.log(value);
+						if(value.find('containertype').length > 0) {
+							obj.positions[d].containertype	= value.find('containertype').text();
+						}
+						if(value.find('xtype').length > 0) {
+							obj.positions[d].xtype			= value.find('xtype').text();
+						}
+						if(value.find('inputURL').length > 0) {
+							obj.positions[d].inputURL		= value.find('inputurl').text();
+						}
+						if(value.find('literalData').length > 0) {
+							obj.positions[d].literalData	= value.find('literaldata').text();
+						}
+						obj.positions[d].position = [value.find('position').first().text(), value.find('position').last().text()];
+					});
+					$.each(res.find('wires'), function(index, value) {
+						var d = obj.wires.length;
+						value = $(value);
+						obj.wires[d]				= {};
+						obj.wires[d].src			= {
+							moduleid:	value.find('src moduleid').text(),
+							terminal:	value.find('src terminal').text(),
+							xtype:  	value.find('src xtype').text()
+						};
+						obj.wires[d].terminal 		= value.find('terminal').text();
+						obj.wires[d].tgt			= {
+							moduleid:	value.find('tgt moduleid').text(),
+							terminal:	value.find('tgt terminal').text(),
+							xtype:  	value.find('tgt xtype').text()
+						};
+					});
+				} else {
+					//Try and open T2FLOW
+					//alert('t2');
+					res = res.find('dataflow');
+					$.each(res.find('processor activities configBean wsdl'), function(index, value) {obj.wsdlURL[obj.wsdlURL.length] = $(value).text();});
+					$.each(res.find('annotations annotationBean identification'), function(index, value) {obj.uuid = $(value).text();});
+					$.each(res.find('annotations date'), function(index, value) {obj.date = $(value).text();});
+					$.each(res.find('processors processor'), function(index, value) {
+						var d = obj.positions.length;
+						value = $(value);
+						//if(value.find('wsdl').length > 0) {
+							obj.positions[d] = {};
+							obj.positions[d].label = value.find('name').first().text();
+							obj.positions[d].name = obj.positions[d].label;
+							if(value.find('wsdl').length > 0) {
+								obj.positions[d].containertype = 'WireIt.TavernaContainer';
+								$.each(res.find('processors processor'), function(i, v) {
+									var vx = $(vx).find('name').first().text();
+									if(vx == obj.positions[d].name + '_DataInputs' || vx == obj.positions[d].name + '_ProcessOutputs') {
+
+
+									}
+									if(v.text() == obj.positions[d].name + '_DataInputs' || v.text() == obj.positions[d].name + '_ProcessOutputs') {
+										v.parents('processor').remove();
+									}
+								});
+							} else {
+								if(!window.cake){window.cake = [];}
+								window.cake[window.cake.length] = value;
+								if(value.find('inputPorts port').length == 1 && value.find('outputPorts port').length == 1 && value.find('inputPorts port').html() == value.find('outputPorts port').html() && value.find('activities configBean value').length > 0) {
+									obj.positions[d].containertype = 'input';
+									if(value.find('activities configBean value').text().indexOf('://') > -1) {
+										obj.positions[d].inputURL = value.find('activities configBean value').text();
+										obj.positions[d].literalData = '';
+									} else {
+										obj.positions[d].inputURL = '';
+										obj.positions[d].literalData = value.find('activities configBean value').text();
+									}
+								}
+							}
+						//}
+					});
+					cl(obj);
+				}
+				return obj;
 			},
 			import: function() {
 				$.dialogBox($.data(document, 'template-importdialog'), 'none', {'Upload': 1, 'Cancel': 0}, function(index) {
@@ -20988,139 +22601,224 @@ var InitPlugins = setInterval(function() {if($) {
 						if($.hasFileReader) {
 							index = document.getElementById('workflowupload');
 							if(index.files.length > 0) {
-								//console.log(index.files);
 								if(index.files[0]) {
 									var f = index.files[0];
-									if(f.type == 'text/xml' && f.size > 0 && $((f.name).split('.')).last()[0] == 'xml') {
+									//console.log(f);
+									if((f.type == 'text/xml' && f.size > 0 && $((f.name).split('.')).last()[0] == 'xml') || (f.type == '' && f.size > 0 && $((f.name).split('.')).last()[0] == 't2flow')) {
+										previousSave_prompt = f.name.substring(0, f.name.length - 4);
 										var r = new FileReader();
-										//console.log('it passed');
 										r.onload = (function(t) {
-											var res = $('<res>' + t.target.result + '</res>').find('root');
-											var obj = {};
-											obj.positions = [];
-											obj.wsdlURL = [];
-											obj.wires = [];
-											obj.uuid = '';
-											obj.date = '';
-											$.each(res.find('wsdlurl'), function(index, value) {obj.wsdlURL[obj.wsdlURL.length] = $(value).text();});
-											$.each(res.find('uuid'), function(index, value) {obj.uuid = $(value).text();});
-											$.each(res.find('date'), function(index, value) {obj.date = $(value).text();});
-											$.each(res.find('positions'), function(index, value) {
-												var d					= obj.positions.length;
-												value					= $(value);
-												obj.positions[d]		= {};
-												obj.positions[d].label	= value.find('label').text();
-												obj.positions[d].name	= value.find('name').text();
-												console.log(value);
-												if(value.find('containertype').length > 0) {
-													obj.positions[d].containertype	= value.find('containertype').text();
-												}
-												if(value.find('xtype').length > 0) {
-													obj.positions[d].xtype			= value.find('xtype').text();
-												}
-												if(value.find('inputURL').length > 0) {
-													obj.positions[d].inputURL		= value.find('inputurl').text();
-												}
-												if(value.find('literalData').length > 0) {
-													obj.positions[d].literalData	= value.find('literaldata').text();
-												}
-												obj.positions[d].position = [value.find('position').first().text(), value.find('position').last().text()];
-											});
-											$.each(res.find('wires'), function(index, value) {
-												var d = obj.wires.length;
-												value = $(value);
-												obj.wires[d]				= {};
-												obj.wires[d].src			= {
-													moduleid:	value.find('src moduleid').text(),
-													terminal:	value.find('src terminal').text(),
-													xtype:  	value.find('src xtype').text()
-												};
-												obj.wires[d].terminal 		= value.find('terminal').text();
-												obj.wires[d].tgt			= {
-													moduleid:	value.find('tgt moduleid').text(),
-													terminal:	value.find('tgt terminal').text(),
-													xtype:  	value.find('tgt xtype').text()
-												};
-											});
-											//console.log(obj);
-											//console.log(res.html());
-											console.log(obj);
-											workspacePlugin.save(obj);
+											workspacePlugin.save(workspacePlugin.parseImportData(t.target.result));
 										});
 										r.readAsText(f);
 									}
 								}
-								/*getAsText(index.files[0]);
-								importDataListener = setInterval(function() {
-									if(importData !== null) {
-										console.log(importData);
-										importData = $('<div>' + importData + '</div>').find('root');
-										if(importData.length == 1) {
-											if(
-												importData.find('wsdlurl').length > 0 &&
-												importData.find('date').length > 0 &&
-												importData.find('uuid').length > 0
-											) {
-												var store = {}
-												store.date = importData.find('date').text();
-												store.uuid = importData.find('uuid').text();
-												store.wsdlURL = [];
-												$.each(importData.find('wsdlurl'), function(index, value) {
-													store.wsdlURL[store.wsdlURL.length] = $(value).text();
-												});
-												store.positions = [];
-												$.each(importData.find('positions'), function(index, value) {
-													index = store.positions.length;
-													store.positions[index] = {};
-													store.positions[index].label = $(value).find('label').text();
-													store.positions[index].position = [];
-													$.each($(value).find('position'), function(sindex, svalue) {
-														store.positions[index].position[store.positions[index].position.length] = $(svalue).text();
-													});
-													store.positions[index].inputTerminals = [];
-													$.each($(value).find('inputterminals'), function(sindex, svalue) {
-														svalue = $(svalue);
-														store.positions[index].inputTerminals[store.positions[index].inputTerminals.length] = {
-															text: svalue.text(),
-															isConnected: svalue.attr('isconnected')
-														};
-													});
-													store.positions[index].outputTerminals = [];
-													$.each($(value).find('outputterminals'), function(sindex, svalue) {
-														svalue = $(svalue);
-														store.positions[index].outputTerminals[store.positions[index].outputTerminals.length] = {
-															text: svalue.text(),
-															isConnected: svalue.attr('isconnected')
-														};
-													});
-												});
-												store.wires = [];
-												$.each(importData.find('wires'), function(index, value) {
-													index = store.wires.length;
-													value = $(value);
-													store.wires[index] = {
-														src: {
-															moduleid: value.find('src moduleid').text(),
-															terminal: value.find('src terminal').text()
-														},
-														tgt: {
-															moduleid: value.find('tgt moduleid').text(),
-															terminal: value.find('tgt terminal').text()
-														}
-													};
-												});
-												workspacePlugin.save(store);
-											}
-										}
-										clearInterval(importDataListener);
-									}
-								}, 100);*/
 							}
 						}
 					}
 				});
 			},
-			load: function() {
+			loadFlowData: function(workspaceData) {
+				var newTitle = window.new_title;
+				var oLabel = '';
+				console.log("loadFlowDataBe", workspaceData);
+				//alert('test');
+				if(!workspaceData.flow || !workspaceData.flow.positions) {return;}
+				if(!workspaceData.flow.revision || parseInt("1" + workspaceData.flow.revision.split('-')[0].replace(/\./g, '')) < parseInt("1" + revision.split('-')[0].replace(/\./g, ''))) {
+					$.dialogBox('The workflow you are trying to load is of an older revision of the Service Chain Editor.<br />There may be problems when loading this flow.');
+				}
+				$.each(workspaceData.flow.positions, function(index, value) {
+					//console.log("Work flow data test", value);
+					$service = null;
+					if(value.label !== '') {
+						oLabel = value.label;
+						value.label = newTitleInteger(value.label);
+						if(value.xtype) {
+							switch(value.xtype) {
+								case 'localService.Encode':
+									$service = {
+										containerInputs:	['bytes'],
+										containerOutputs:	['base64'],
+										label:				value.label,
+										wsdl:				'',
+										serviceio:			true,
+										serviceio_content:	$($.data(document, 'serviceList-LI-Services')).find('encode64').html(),
+										service_type:		'encode64',
+										position:			[value.position[0], value.position[1]]
+									};
+								break;
+								case 'localService.Decode':
+									$service = {
+										containerInputs:	['base64'],
+										containerOutputs:	['bytes'],
+										label:				value.label,
+										wsdl:				'',
+										serviceio:			true,
+										serviceio_content:	$($.data(document, 'serviceList-LI-Services')).find('decode64').html(),
+										service_type:		'decode64',
+										position:			[value.position[0], value.position[1]]
+									};
+								break;
+								case 'WireIt.TavernaContainer':
+									$.each(workspaceData.flow.wsdlURL, function(index, val1) {
+										var found = false;
+										var wsdls = workspacePlugin.loadedWSDLs();
+										$.each(wsdls, function(ind2, val2) {
+											if(val1 == val2) {
+												found = true;
+											}
+										});
+										if(workspacePlugin.loadedWSDLsLength() > 0 && val1 !== undefined && val1 !== null && (found || $.inArray(val1, wsdls))) {
+											var wsdl_url_stripped = val1.replace(/\./g, '').replace(/\//g, '').replace(/\\/g, '');
+											$.each(loadedWSDLs[wsdl_url_stripped], function(ind, val2) {
+												if(val2.wsdl == val1 && val2.label == value.label) {
+													$service = val2;
+													$service.label = value.label;
+													$service.position = [value.position[0], value.position[1]];
+												}
+											});
+										}
+									});
+								break;
+								default:
+									$service = null;
+									service_mouseDown = false;
+								break;
+							}
+							service_currentWindow = $service;
+							service_mouseDown = true;
+							$('.layer').trigger('mouseup', true);
+							newTitle = window.new_title;
+							workspaceData.flow.positions[index].name = newTitle;
+							service_mouseDown = false;
+						}
+						if(value.containerType) {value.containertype = value.containerType;}
+						if(value.containertype) {
+							switch(value.containertype) {
+								case 'input':
+									$service = {
+										containerInputs:	[''],
+										containerOutputs:	['input'],
+										label:				value.label,
+										wsdl:				'',
+										serviceio:			true,
+										serviceio_content:	$($.data(document, 'serviceWindow-Link')).html('<div style="width:216px;margin-left:-103px;">' + $($.data(document, 'serviceWindow-IO-Input')).html() + '</div>').css({height:'auto'}).addClass('right').addClass('content').addClass('serviceLink')[0].outerHTML,
+										service_type:		'input',
+										position:			[value.position[0], value.position[1]],
+										url:				(value.inputURL ? value.inputURL : ''),
+										data:				(value.literalData ? value.literalData : '')
+									};
+								break;
+								case 'output':
+									$service = {
+										containerInputs: ['output'],
+										containerOutputs: [''],
+										label: value.label,
+										wsdl: '',
+										serviceio: true,
+										serviceio_content: $($.data(document, 'serviceWindow-Link')).html('<div style="width:216px;margin-left:0px;">' + $($.data(document, 'serviceWindow-IO-Output')).html() + '</div>').css({height:'auto'}).addClass('left').addClass('content').addClass('serviceLink')[0].outerHTML,
+										service_type: 'output',
+										position:			[value.position[0], value.position[1]]
+									};
+								break;
+								default:
+									$service = null;
+									service_mouseDown = false;
+								break;
+							}
+							service_currentWindow = $service;
+							service_mouseDown = true;
+							$('.layer').trigger('mouseup', true);
+							newTitle = window.new_title;
+							workspaceData.flow.positions[index].name = newTitle;
+							service_mouseDown = false;
+						} else {}
+						//window.tempModuleID = newTitle;
+						$.each(workspaceData.flow.wires, function(tdex, tlue) {
+							/*if(window.tempModuleID && $service) {
+								if(newTitle == null || newTitle == undefined) {
+									if(tlue.tgt.moduleid == $service.label || tlue.tgt.moduleid == servicePlugin.title($service.label)) {
+										workspaceData.flow.wires[tdex].tgt.moduleid = window.tempModuleID;
+									}
+									if(tlue.src.moduleid == $service.label || tlue.src.moduleid == servicePlugin.title($service.label)) {
+										workspaceData.flow.wires[tdex].src.moduleid = window.tempModuleID;
+									}
+								} else {
+									if(tlue.tgt.moduleid == newTitle || tlue.tgt.moduleid == servicePlugin.title(newTitle)) {
+										workspaceData.flow.wires[tdex].tgt.moduleid = window.tempModuleID;
+									}
+									if(tlue.src.moduleid == newTitle || tlue.src.moduleid == servicePlugin.title(newTitle)) {
+										workspaceData.flow.wires[tdex].src.moduleid = window.tempModuleID;
+									}
+								}
+							}*/
+							console.log(xmlStrip(tlue.src.moduleid), xmlStrip(oLabel), xmlStrip(tlue.tgt.moduleid))
+							if(xmlStrip(tlue.src.moduleid) == xmlStrip(oLabel)) {
+								workspaceData.flow.wires[tdex].src.moduleid = value.label;
+							}
+							if(xmlStrip(tlue.tgt.moduleid) == xmlStrip(oLabel)) {
+								workspaceData.flow.wires[tdex].tgt.moduleid = value.label;
+							}
+						});
+					}
+				});
+				console.log("loadFlowDataAf", workspaceData);
+				var destData = $.data(document,'wiresDest') || [];
+				var srcData = $.data(document,'wiresSrc') || [];
+				var $windows = $('.nmWindow.new');
+				$.each(workspaceData.flow.wires, function(index, value) {
+					var pid = '';
+					var tid = '';
+					var name = '';
+					var partner = '';
+					$.each($windows, function(vndex, walue) {
+						walue = $(walue);
+						if((walue.find('.header .handler').text()) == value.tgt.moduleid) {
+							tid = walue.attr('id');
+						}
+						if((walue.find('.header .handler').text()) == value.src.moduleid) {
+							pid = walue.attr('id');
+						}
+					});
+					var d = destData.length;
+					destData[d] = {}
+					destData[d].type = 'input';
+					destData[d].pid = pid;
+					destData[d].tid = tid;
+					if($('#' + pid).hasClass('servicei')) {
+						destData[d].partner = $('#' + pid + ' .body').text();
+					} else {
+						destData[d].partner = value.src.terminal;
+					}
+					if($('#' + tid).hasClass('serviceo')) {
+						destData[d].name = $('#' + tid + ' .body').text();
+					} else {
+						destData[d].name = value.tgt.terminal;
+					}
+					var s = srcData.length;
+					srcData[s] = {}
+					srcData[s].type = 'output';
+					srcData[s].pid = pid;
+					srcData[s].tid = tid;
+					if($('#' + pid).hasClass('serviceo')) {
+						srcData[s].name = $('#' + pid + ' .body').text();
+					} else {
+						srcData[s].name = value.tgt.terminal;
+					}
+					if($('#' + tid).hasClass('servicei')) {
+						srcData[s].partner = $('#' + tid + ' .body').text();
+					} else {
+						srcData[s].partner = value.src.terminal;
+					}
+				});
+				$windows.addClass('nmWindow_multiselect').removeClass('new');
+				$.data(document,'wiresDest', destData);
+				$.data(document,'wiresSrc', srcData);
+				$(window).trigger('resize');
+				layerWindowToFront($('.nmWelcome'));
+			},
+			load: function(diaIndex) {
+				if(diaIndex == undefined && $('.nmWindow').not('.nmWelcome').length == 0) {workspacePlugin.load(3);/*Replace*/ return false;}
 				var dataItem = $('.workspaceDataTable .highlighted td:first').text();
 				var workspaceData = null;
 				var $service = null;
@@ -21133,192 +22831,91 @@ var InitPlugins = setInterval(function() {if($) {
 						}
 					});
 				}
-				//console.log(workspaceData);
-				//console.log(workspaceData);
 				if(workspaceData !== null) {
 					if(workspaceData.flow) {
-						$('.nmWindow').not('.nmWelcome').remove();
+						cl(workspaceData.flow);
+						if(diaIndex == undefined) {
+							$.dialogBox('Loading workspace flow:<br /><br />Would you like to replace your current flow, losing any unsaved data? Or merge your flows?', 'none', {'Cancel': 1, 'Merge': 2, 'Replace': 3}, function(index) {
+								workspacePlugin.load(index);
+							});
+							return false;
+						}
+						if(diaIndex == 1) {return false;}
+						if(diaIndex == 3) {clearAll();}
 						checkRedundantWires();
-						$.each(workspaceData.flow.positions, function(index, value) {
-							$service = null;
-							if(value.label !== '') {
-								if(value.xtype) {
-									switch(value.xtype) {
-										case 'localService.Encode':
-											$service = {
-												containerInputs:	['bytes'],
-												containerOutputs:	['base64'],
-												label:				value.label,
-												wsdl:				'',
-												serviceio:			true,
-												serviceio_content:	$($.data(document, 'serviceList-LI-Services')).find('encode64').html(),//'<div style="width:216px;margin-left:0px;">' + $($.data(document, 'serviceWindow-IO-Output')).html() + '</div>').css({height:'auto'}).addClass('left').addClass('content').addClass('serviceLink')[0].outerHTML,
-												service_type:		'encode64',
-												position:			[value.position[0], value.position[1]]
-											};
-										break;
-										case 'localService.Decode':
-											$service = {
-												containerInputs:	['base64'],
-												containerOutputs:	['bytes'],
-												label:				value.label,
-												wsdl:				'',
-												serviceio:			true,
-												serviceio_content:	$($.data(document, 'serviceList-LI-Services')).find('decode64').html(),
-												service_type:		'decode64',
-												position:			[value.position[0], value.position[1]]
-											};
-										break;
-										case 'WireIt.TavernaContainer':
-											//console.log("SERVICE TEST1", $service, value);
-											$.each(workspaceData.flow.wsdlURL, function(index, val1) {
-												var found = false;
-												var wsdls = workspacePlugin.loadedWSDLs();
-												$.each(wsdls, function(ind2, val2) {
-													if(val1 == val2) {
-														found = true;
-													}
-												});
-												if(workspacePlugin.loadedWSDLsLength() > 0 && val1 !== undefined && val1 !== null && (found || $.inArray(val1, wsdls))) {
-													//console.log2(val1);
-													var wsdl_url_stripped = val1.replace(/\./g, '').replace(/\//g, '').replace(/\\/g, '');
-													//console.log('SERVICE STRIPPED WSDL', wsdl_url_stripped);
-													$.each(loadedWSDLs[wsdl_url_stripped], function(ind, val2) {
-														//console.log('SERVICE WSDL STRIPPED', val2);
-														//console.log(val1, val2);
-														if(val2.wsdl == val1 && val2.label == value.label) {
-															$service = val2;
-															$service.label = value.label;
-															$service.position = [value.position[0], value.position[1]];
-														}
-													});
-												}
-											});
-											//console.log("SERVICE TEST2", $service, value);
-										break;
-										default:
-											$service = null;
-											service_mouseDown = false;
-										break;
-									}
-									service_currentWindow = $service;
-									service_mouseDown = true;
-									$('.layer').trigger('mouseup');
-									service_mouseDown = false;
-								}
-								if(value.containerType) {value.containertype = value.containerType;}
-								if(value.containertype) {
-									switch(value.containertype) {
-										case 'input':
-											$service = {
-												containerInputs:	[''],
-												containerOutputs:	['input'],
-												label:				value.label,
-												wsdl:				'',
-												serviceio:			true,
-												serviceio_content:	$($.data(document, 'serviceWindow-Link')).html('<div style="width:216px;margin-left:-103px;">' + $($.data(document, 'serviceWindow-IO-Input')).html() + '</div>').css({height:'auto'}).addClass('right').addClass('content').addClass('serviceLink')[0].outerHTML,
-												service_type:		'input',
-												position:			[value.position[0], value.position[1]],
-												url:				(value.inputURL ? value.inputURL : ''),
-												data:				(value.literalData ? value.literalData : '')
-											};
-											console.log("VALUE", $service);
-										break;
-										case 'output':
-											$service = {
-												containerInputs: ['output'],
-												containerOutputs: [''],
-												label: value.label,
-												wsdl: '',
-												serviceio: true,
-												//serviceio_content: $($.data(document, 'serviceWindow-Link')).html('<div style="width:226px;">bob</div>').css({height:'auto'}).addClass('left').addClass('content').addClass('serviceLink')[0].outerHTML,
-												serviceio_content: $($.data(document, 'serviceWindow-Link')).html('<div style="width:216px;margin-left:0px;">' + $($.data(document, 'serviceWindow-IO-Output')).html() + '</div>').css({height:'auto'}).addClass('left').addClass('content').addClass('serviceLink')[0].outerHTML,
-												service_type: 'output',
-												position:			[value.position[0], value.position[1]]
-											};
-										break;
-										default:
-											$service = null;
-											service_mouseDown = false;
-										break;
-									}
-									service_currentWindow = $service;
-									service_mouseDown = true;
-									$('.layer').trigger('mouseup');
-									service_mouseDown = false;
-								} else {
-									/*var found = false;
-									console.warn('test');
-									$.each(workspaceData.flow.wsdlURL, function(index, val1) {
-										if(workspacePlugin.loadedWSDLsLength() > 0 && val1 !== undefined && val1 !== null && $.inArray(val1, workspacePlugin.loadedWSDLs())) {
-											//console.log(val1);
-											var wsdl_url_stripped = val1.replace(/\./g, '').replace(/\//g, '').replace(/\\/g, '');
-											$.each(loadedWSDLs[wsdl_url_stripped], function(ind, val2) {
-												//console.log(val1, val2);
-												if(val2.wsdl == val1 && val2.label == value.label) {
-													generateLayerWindow(val2, parseInt(value.position[0]), parseInt(value.position[1]));
-												}
-											});
-										}
-									});*/
+						var found = false;
+						$.each(workspaceData.flow.wsdlURL, function(index, value) {
+							found = false;
+							for(i in loadedWSDLs) {
+								if(value.replace(/\./g, '').replace(/\//g, '').replace(/\\/g, '') == i) {
+									found = true;
 								}
 							}
+							if(!found) {
+								$('.eumis_loading_screen').css({opacity: 1, display: 'block'});
+								parseWSDL(value, function(arrayContainers) {
+									$(window).resize();
+									servicePlugin.list(arrayContainers);
+								}, function(val, max) {
+									if(val == -1) {
+										$('.emuis_loading_progressbar').progressbar({value: 100});
+										$('.hex-container').addClass('hex-container-zoomed');
+										setTimeout(function($this, diaIndex) {
+											$('.eumis_loading_screen').animate({'opacity': 0}, 750, function() {
+												if(!$this) {$this = $(this);}
+												$this.hide();
+											});
+										}, 2500, (typeof($this) == 'undefined') ? false : $this, diaIndex);
+										workspacePlugin.load(diaIndex);
+									} else {
+										$('.emuis_loading_progressbar').progressbar({value: (val / max) * 100});
+									}
+								});
+								return;
+							}
 						});
-						var destData = [];
-						var srcData = [];
-						$.each(workspaceData.flow.wires, function(index, value) {
-
-							/*destData[destData.length] = {name: (($(this).parents('.nmWindow').hasClass('serviceio') && $(this).parents('.nmWindow').find('.labelinput').length) ? $(this).parents('.nmWindow').find('.labelinput').val() : $(this).text()), partner: drawingWireIO[1], tid: $(this).parents('.nmWindow').attr('id'), pid: drawingWireWindow, type: (drawingWireIO[0] == 'input' ? 'output' : 'input')};
-							srcData[srcData.length] = {name: drawingWireIO[1], partner: (($(this).parents('.nmWindow').hasClass('serviceio') && $(this).parents('.nmWindow').find('.labelinput').length) ? $(this).parents('.nmWindow').find('.labelinput').val() : $(this).text()), tid: drawingWireWindow, pid: $(this).parents('.nmWindow').attr('id'), type: (drawingWireIO[0] == 'input' ? 'input' : 'output')};
-							
-
-							destData[destData.length] = {name: value.tgt.terminal, }*/
-
-							console.log('ws');
-							console.log(value);
-							console.log('we');
-						});
+						if(found == true) {
+							//alert('test2');
+							workspacePlugin.loadFlowData(workspaceData);
+						}
 					}
-					//console.log(workspaceData);
 				}
-				//$.dialogBox($.data(document, 'template-importdialog'), 'none', {'Ok': 1}, function(index) {});
 			},
 			save: function(object) {
 				$.dialogBox($.data(document, 'template-savedialog'), 'none', {'Save':1, 'Cancel': 0}, function(index) {
-					if($('.nmWindow').not('.nmWelcome').length < 1) {
-						$.dialogBox("Your flow does not have any services added to it.", 'none', {'Replace': 1, 'Back': 0});
-					} else {
+					var name = $('.dialogBoxWindow .saveName').val();
+					if(index == 1 && previousSave_prompt !== '' && previousSave_prompt !== null) {
+						$('.dialogBoxWindow .saveName').val(previousSave_prompt);
+						var sceWorkspace = $.jStorage.get('sceWorkspace');
+						var found = null;
 						var name = $('.dialogBoxWindow .saveName').val();
-						if(index == 1 && previousSave_prompt !== '' && previousSave_prompt !== null) {
-							$('.dialogBoxWindow .saveName').val(previousSave_prompt);
-							var sceWorkspace = $.jStorage.get('sceWorkspace');
-							var found = null;
-							var name = $('.dialogBoxWindow .saveName').val();
-							$.each(sceWorkspace, function(index, value) {
-								if(value.name == previousSave_prompt) {
-									found = index;
-								}
-							});
-							if(found == null) {
-								sceWorkspace[sceWorkspace.length] = {name: previousSave_prompt, date: (new Date().format('dS of M, Y ~ H:i:s')), flow: object ? object : workspacePlugin.flowJSON()};
-								$.jStorage.set('sceWorkspace', sceWorkspace);
-								workspacePlugin.redraw();
-							} else {
-								$.dialogBox($.data(document, 'template-saveoverdialog'), 'none', {'Replace': 1, 'Back': 0}, function(index) {
-									if(index == 1) {
-										sceWorkspace[found] = {name: sceWorkspace[found].name, date: (new Date().format('dS of M, Y ~ H:i:s')), flow: object ? object : workspacePlugin.flowJSON()};
-										$.jStorage.set('sceWorkspace', sceWorkspace);
-										workspacePlugin.redraw();
-									} else {
-										workspacePlugin.save();
-									}
-								}, function() {
-									$('.dialogBoxWindow .saveover span').text(previousSave_prompt);
-								});
+						$.each(sceWorkspace, function(index, value) {
+							if(value.name == previousSave_prompt) {
+								found = index;
 							}
+						});
+						if(found == null) {
+							sceWorkspace[sceWorkspace.length] = {name: previousSave_prompt, date: (new Date().format('dS of M, Y ~ H:i:s')), flow: object ? object : workspacePlugin.flowJSON()};
+							$.jStorage.set('sceWorkspace', sceWorkspace);
+							cl("CheckingWorkflow");
+							cl(sceWorkspace);
+							workspacePlugin.redraw();
 						} else {
-							if(index == 1) {
-								workspacePlugin.save();
-							}
+							$.dialogBox($.data(document, 'template-saveoverdialog'), 'none', {'Replace': 1, 'Back': 0}, function(index) {
+								if(index == 1) {
+									sceWorkspace[found] = {name: sceWorkspace[found].name, date: (new Date().format('dS of M, Y ~ H:i:s')), flow: object ? object : workspacePlugin.flowJSON()};
+									$.jStorage.set('sceWorkspace', sceWorkspace);
+									workspacePlugin.redraw();
+								} else {
+									workspacePlugin.save();
+								}
+							}, function() {
+								$('.dialogBoxWindow .saveover span').text(previousSave_prompt);
+							});
+						}
+					} else {
+						if(index == 1) {
+							workspacePlugin.save();
 						}
 					}
 				}, function() {
@@ -21380,13 +22977,12 @@ var InitPlugins = setInterval(function() {if($) {
 				}
 			},
 			loadedWSDLs: function() {
-				var windows = $('.nmWindow');
+				var windows = $('.nmWindow').not('.nmWelcome');
 				var wsdls = [];
 				for(val in loadedWSDLs) {
 					if(val !== undefined && val !== '') {
-						val = loadedWSDLs[val].shift();
 						if(val.wsdl) {
-							wsdls[wsdls.length] = val.wsdl;
+							wsdls[wsdls.length] = loadedWSDLs[val].wsdl;
 						}
 					}
 				}
@@ -21457,6 +23053,18 @@ var InitPlugins = setInterval(function() {if($) {
 							}
 						});
 					});
+					var jRememberedWSDLs = $.jStorage.get('jRememberedWSDLs');
+					if(jRememberedWSDLs == undefined) {
+						jRememberedWSDLs = [];
+					}
+					var xml = '<option value="" selected>Load WSDL file</option>';
+					$.each(jRememberedWSDLs, function(index, value) {
+						cl(value.name);
+						if(value.url && value.name) {
+							xml = xml + '<option value="' + value.url + '">' + value.name + '</option>';
+						}
+					});
+					$('#wsdlLoadDropdown').html(xml);
 					$(window).trigger('resize');
 				});
 				$('.serviceListLoadWSDL .button').bind('click', function() {
@@ -21484,6 +23092,112 @@ var InitPlugins = setInterval(function() {if($) {
 						}
 					});
 				});
+				$('#wsdlLoadDropdown').bind('change', function() {
+					var val = $(this).val();
+					if(val !== '') {
+						$.dialogBox("What action would you like to preform with <span class=\"canSelect\">\"" + $('#wsdlLoadDropdown option[value="' + val + '"]').text() + "\" (" + val + ")</span>?", 'none', {Cancel: 1, Load: 2, Rename: 3, Delete: 4}, function(value) {
+							switch(parseInt(value)) {
+								case 2:
+									parseWSDL(val, function(arrayContainers) {
+										$(window).resize();
+										servicePlugin.list(arrayContainers);
+									}, function(val, max) {
+										if(val == -1) {
+											$('.emuis_loading_progressbar').progressbar({value: 100});
+											$('.hex-container').addClass('hex-container-zoomed');
+											setTimeout(function($this) {
+												$('.eumis_loading_screen').animate({'opacity': 0}, 750, function() {
+													if(!$this) {$this = $(this);}
+													$this.hide();
+												});
+											}, 2500, (typeof($this) == 'undefined') ? false : $this);
+										} else {
+											$('.emuis_loading_progressbar').progressbar({value: (val / max) * 100});
+										}
+									});
+								break;
+								case 3:
+								window.jRememberWSDLURL = val;
+									$.dialogBox("What would you like to rename <span class=\"canSelect\">\"" + $('#wsdlLoadDropdown option[value="' + val + '"]').text()  + "\" (" + val + ")</span> to?<br /><input class=\"jRememberRename\" type=\"text\" value=\"" + $('#wsdlLoadDropdown option[value="' + val + '"]').text() + "\" />", 'none', {Cancel:0, Rename:1}, function(value) {
+										if(value == 1) {
+											var jRememberedWSDLs = $.jStorage.get('jRememberedWSDLs');
+											if(jRememberedWSDLs == undefined) {jRememberedWSDLs = [];}
+											$.each(jRememberedWSDLs, function(index, value) {
+												if(value.url && value.name) {
+													if(value.url == jRememberWSDLURL) {
+														jRememberWSDLIndex = index;
+													}
+												}
+											});
+											/*$.each(jRememberedWSDLs, function(index, value) {
+												if(value.url && value.name && jRememberWSDLNewName && jRememberWSDLURL) {
+													if(value.url == jRememberWSDLURL && jRememberWSDLNewName !== '') {
+														value.name = jRememberWSDLNewName
+														jRememberedWSDLs[jRememberWSDLIndex] = value;
+													}
+												}
+											});*/
+											if(jRememberWSDLNewName && jRememberWSDLNewName !== '') {
+												jRememberedWSDLs[jRememberWSDLIndex] = {url:jRememberedWSDLs[jRememberWSDLIndex].url,name:jRememberWSDLNewName};
+												$.each($('#serviceAccordion .title-wsdl'), function(index, value) {
+													value = $(value);
+													if(value.attr('title') == jRememberedWSDLs[jRememberWSDLIndex].url) {
+														value.text(jRememberedWSDLs[jRememberWSDLIndex].name);
+													}
+												});
+											}
+											$.jStorage.set('jRememberedWSDLs', jRememberedWSDLs);
+											var xml = '<option value="" selected>Load WSDL file</option>';
+											$.each(jRememberedWSDLs, function(index, value) {
+												if(value.url && value.name) {
+													xml = xml + '<option value="' + value.url + '">' + value.name + '</option>';
+												}
+											});
+											$('#wsdlLoadDropdown').html(xml);
+										}
+									});
+									$('.jRememberRename').bind('change', function() {
+										window.jRememberWSDLNewName = $(this).val();
+									}).bind('keypress', function() {$(this).trigger('change');});
+								break;
+								case 4:
+									var jRememberedWSDLs_temp = [];
+									var jRememberedWSDLs = $.jStorage.get('jRememberedWSDLs');
+									if(jRememberedWSDLs == undefined) {jRememberedWSDLs = [];}
+									$.each(jRememberedWSDLs, function(index, value) {
+										if(value.url && value.name) {
+											if(value.url !== val) {
+												jRememberedWSDLs_temp[jRememberedWSDLs_temp.length] = value;
+											}
+										}
+									});
+									$.jStorage.set('jRememberedWSDLs', jRememberedWSDLs_temp);
+									var xml = '<option value="" selected>Load WSDL file</option>';
+									$.each(jRememberedWSDLs_temp, function(index, value) {
+										if(value.url && value.name) {
+											xml = xml + '<option value="' + value.url + '">' + value.name + '</option>';
+										}
+									});
+									$('#wsdlLoadDropdown').html(xml);
+								break;
+							}
+
+						});
+					}
+					$(this).find('option').removeAttr('selected').first().attr('selected', true);
+				});
+
+				var jRememberedWSDLs = $.jStorage.get('jRememberedWSDLs');
+				if(jRememberedWSDLs == undefined) {
+					jRememberedWSDLs = [];
+				}
+				var xml = '<option value="" selected>Load WSDL file</option>';
+				$.each(jRememberedWSDLs, function(index, value) {
+					if(value.url && value.name) {
+						xml = xml + '<option value="' + value.url + '">' + value.name + '</option>';
+					}
+				});
+				$('#wsdlLoadDropdown').html(xml);
 				$(window).trigger('resize');
 			},
 			open: function() {
@@ -21526,8 +23240,12 @@ var InitPlugins = setInterval(function() {if($) {
 					}
 				}
 			},
-			title: function(title) {
+			title: function(title, show) {
+				//console.log(title);
 				title = title.split('ExecuteProcess_');
+				if(show) {
+					return title[1] ? title[1] : title[0];
+				}
 				return title[1];
 			},
 			list: function(arrayContainers) {
@@ -21535,36 +23253,34 @@ var InitPlugins = setInterval(function() {if($) {
 				//	setTimeout(function(arrayContainers) {servicePlugin.list(arrayContainers, false);}, 200, arrayContainers);
 				//	return false;
 				//}
+				//console.log("SL-List", arrayContainers);
 				arrayContainers = loadedWSDLs[arrayContainers];
-				var wsdl = arrayContainers.splice(0, 1)[0];
+				if(arrayContainers && count(arrayContainers) > 0) {} else {return;}
+				var wsdl = arrayContainers[0];
 				wsdl = wsdl.wsdl;
 				var $service = '';
 				var $wsdl = $('<div>' + $.data(document, 'serviceLi-WSDL') + '<div class="accordionList"></div></div>');
-				//console.log($wsdl.find('.title-wsdl')[0]);
-				$($wsdl.find('.title-wsdl')[0]).text($(wsdl.split('/')).last()[0]).attr('title', wsdl);/*.bind('click', function() {
-					$.each($(this).parent().find('.serviceLi'), function(index, value) {
-						if($(value).attr('rel') !== 'undefined') {
-							//$(value).toggle();
+				var wsdl_main_title = $(wsdl.split('/')).last()[0];
+				var jRememberedWSDLs = $.jStorage.get('jRememberedWSDLs');
+				if(jRememberedWSDLs == undefined) {
+					jRememberedWSDLs = [];
+				}
+				$.each(jRememberedWSDLs, function(index, value) {
+					if(value !== undefined) {
+						if(value.name && value.url) {
+							if(value.url == wsdl) {
+								wsdl_main_title = value.name
+							}
 						}
-					});
-					$('.serviceLi .serviceLi').show();
-					var $this = $(this).parent();
-					$this.toggleClass('collapsed');
-					if($this.hasClass('collapsed')) {
-						$this.css({'padding-bottom':'0px'});
-					} else {
-						$this.css({'padding-bottom':'20px'});
 					}
-				});*/
+				});
+				$($wsdl.find('.title-wsdl')[0]).text(wsdl_main_title).attr('title', wsdl);
 				$.each(arrayContainers, function(index, value) {
 					if(typeof(value) == 'object') {
 						$service = $($.data(document, 'serviceList-syncItem'));
 						$service.attr('rel', value.label);
 						$service.attr('wsdl', wsdl);
 						$($service[0]).find('span').text(servicePlugin.title(value.label))
-						/*$service.text(servicePlugin.title(value.label)).bind('click', function() {
-							//$(this).parent().find('ul').toggle();
-						});*/
 						var inputs = false;
 						var outputs = false;
 						if(servicePlugin.title(value.label) !== undefined) {
@@ -21584,6 +23300,56 @@ var InitPlugins = setInterval(function() {if($) {
 							}
 							$service.find('ul').css('display', 'none');
 							$wsdl.find('.accordionList').append($service);
+							if(!window.intialLoadedWorkspaceItem) {
+								window.intialLoadedWorkspaceItem = true;
+								//alert('test3');
+								if(loadLastSaved) {
+									var tempTime = 0;
+									var item = null;
+									if($('.workspaceDataTable tr').length > 1) {
+									$('.workspaceDataTable .highlighted').removeClass('highlighted');
+										$.each($('.workspaceDataTable tr'), function(index, value) {
+											var entry = $(value);
+											value = entry.find('td');
+											if(value.length > 0) {
+												entry = value.parent();
+												value = value.last().text().split(' ');
+												value = new Date(value[2].replace(/\,/g, '') + ' ' + parseInt(value[0]) + ', ' + value[3] + ' ' + value[5]).getTime();
+											} else {
+												value = 0;
+											}
+											if(tempTime < value) {
+												item = entry;
+												tempTime = value;
+											}
+										});
+									}
+									$(item).addClass('highlighted');
+									clearAll();
+									workspacePlugin.load(3);
+									if($('body').attr('retro') !== undefined) {}
+									$('input').bind('click', function() {$(this).focus()});
+									$('input').live('click', function() {$(this).focus()});
+									var jRememberedWSDLs = $.jStorage.get('jRememberedWSDLs');
+									if(jRememberedWSDLs == undefined) {
+										jRememberedWSDLs = [];
+									}
+									var xml = '<option value="" selected disabled>Select WSDL from below</option>';
+									$.each(jRememberedWSDLs, function(index, value) {
+										xml = xml + '<option value="' + value.url + '">' + value.name + '</option>';
+									});
+									$('#wsdlLoadDropdown').html(xml);
+								} else {
+									if(loadLastBackup) {
+										if(window.sceBackedUp && window.sceBackedUp !== null) {
+											console.log('Backedup Data');
+											console.log(workspacePlugin.parseImportData(window.sceBackedUp));
+											workspacePlugin.loadFlowData({date:"NOW()",name:"sceBackup",flow:workspacePlugin.parseImportData(window.sceBackedUp)});
+										}
+									}
+								}
+								//workspacePlugin.load(3);
+							}
 						}
 					}
 				});
@@ -21595,12 +23361,14 @@ var InitPlugins = setInterval(function() {if($) {
 				wsdlList += $wsdl.html();
 				$('#serviceAccordion').accordion('destroy').html(wsdlList).accordion({header:'.serviceLi-WSDL'});
 				$('.serviceListAccordionHeader span').bind('click', function() {$(this).parent().next().find('ul').toggle();$('#serviceScrollArea').tinyscrollbar_update('relative');});
-				$('.serviceListAccordionHeader .help').bind('click', function() {alert('help window');});
+				$('.serviceListAccordionHeader .help').bind('click', function() {
+					var service = $(this).parent();
+					obtainDescribeProcessData(service.attr('wsdl'), service.attr('rel'), true, true);
+				});
 				$('#serviceScrollArea').tinyscrollbar_update('relative');
 				$(document).trigger('resize');
 			}
 		};
-
 		$('.serviceio_puts div').live('mousedown', function(mouse) {
 			var $this = $(this);
 			var $service = null;
@@ -21624,7 +23392,6 @@ var InitPlugins = setInterval(function() {if($) {
 						label: 'Service I/O - Output',
 						wsdl: '',
 						serviceio: true,
-						//serviceio_content: $($.data(document, 'serviceWindow-Link')).html('<div style="width:226px;">bob</div>').css({height:'auto'}).addClass('left').addClass('content').addClass('serviceLink')[0].outerHTML,
 						serviceio_content: $($.data(document, 'serviceWindow-Link')).html('<div style="width:216px;margin-left:0px;">' + $($.data(document, 'serviceWindow-IO-Output')).html() + '</div>').css({height:'auto'}).addClass('left').addClass('content').addClass('serviceLink')[0].outerHTML,
 						service_type: 'output'
 					};
@@ -21636,7 +23403,7 @@ var InitPlugins = setInterval(function() {if($) {
 						label:				'Encode Base64 Arr',
 						wsdl:				'',
 						serviceio:			true,
-						serviceio_content:	$($.data(document, 'serviceList-LI-Services')).find('encode64').html(),//'<div style="width:216px;margin-left:0px;">' + $($.data(document, 'serviceWindow-IO-Output')).html() + '</div>').css({height:'auto'}).addClass('left').addClass('content').addClass('serviceLink')[0].outerHTML,
+						serviceio_content:	$($.data(document, 'serviceList-LI-Services')).find('encode64').html(),
 						service_type:		'encode64'
 					};
 				break;
@@ -21666,53 +23433,16 @@ var InitPlugins = setInterval(function() {if($) {
 				if(value.wsdl == $this.attr('wsdl') && value.label == $this.attr('rel')) {
 					$service = value;
 				}
-				/*$.each(value, function(index, value2) {
-					if(value2.wsdl == $this.attr('wsdl') && value2.label == $this.attr('rel')) {
-						$service = value2;
-					}
-				});*/
 			});
 			service_currentWindow = $service;
 			if(mouse.which == 1) {
 				var potentials = [];
-				var x = mouse.pageX - 190;
-				var y = mouse.pageY - 50;
+				var x = mouse.pageX - 0;
+				var y = mouse.pageY - 0;
 				var left = 0;
 				var top = 0;
-				/*if(potentials.length > 0) {
-					var topmost = -1;
-					layer_currentWindow = potentials[0];
-					$.each(potentials, function(index, value) {
-						if(parseInt($(value).css('z-index')) > topmost) {
-							layer_currentWindow = value;
-							left = parseInt($(value).css('left'));
-							top = parseInt($(value).css('top'));
-							layer_currentWindowOffset = [(x - left), (y - top)];
-						}
-					});
-					layer_mouseDown = true;
-				} else {
-					layer_currentWindow = null;
-				}*/
 			}
-		}).live('mousemove', function(mouse) {
-			/*if(layer_mouseDown && layer_currentWindow !== null) {
-				var x = mouse.pageX - 190;
-				var y = mouse.pageY - 50;
-				x = (x * ((current_scale == 1) ? 1 : ((current_scale == 0.75) ? 1.333 : ((current_scale == 0.5) ? 2 : ((current_scale == 0.25) ? 4 : 1))))) - layer_currentWindowOffset[0];
-				y = (y * ((current_scale == 1) ? 1 : ((current_scale == 0.75) ? 1.333 : ((current_scale == 0.5) ? 2 : ((current_scale == 0.25) ? 4 : 1))))) - layer_currentWindowOffset[1];
-				if(x < 0) {x = 0;}
-				if(y < 0) {y = 0;}
-				if(snapToGrid) {
-					x = parseInt(x / snapToSize) * snapToSize;
-					y = parseInt(y / snapToSize) * snapToSize;
-				}
-				$(layer_currentWindow).css({
-					'left':x + 'px',
-					'top':y + 'px'
-				});
-			}*/
-		});		
+		}).live('mousemove', function(mouse) {});		
 	/*Settings*/
 		window.redrawGrid = function() {
 			var canvas = document.getElementById('snapToGridCanvas');
@@ -21724,8 +23454,8 @@ var InitPlugins = setInterval(function() {if($) {
 			canvas.height = $(document).height();
 			canvas.width = $(document).width();
 			var canvasData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-			for (var x = 0; x < canvasData.width; x++) {
-				for (var y = 0; y < canvasData.height; y++) {
+			for(var x = 0; x < canvasData.width; x++) {
+				for(var y = 0; y < canvasData.height; y++) {
 					if(!(x % parseInt(snapToSize * current_scale)) || !(y % parseInt(snapToSize * current_scale)) && x !==0&& y !== 0) {
 						var idx = ((x) + y * canvas.width) * 4;
 						var r = 255;
@@ -21740,20 +23470,25 @@ var InitPlugins = setInterval(function() {if($) {
 				}
 			}
 			ctx.putImageData(canvasData, 0, 0);
-		}
+		};
 
 		window.snapWindowsToGrid = function() {
+			$('.layer .viewport').css({
+				'margin-left':	(Math.round($('.layer .viewport').css('margin-left') / snapToSize) * snapToSize) + 'px',
+				'margin-top':	(Math.round($('.layer .viewport').css('margin-top') / snapToSize) * snapToSize) + 'px'
+			});
 			$.each($('.layer .layerCanvas .nmWindow'), function(index, value) {
-				var x = $(value).offset().left - 190;
-				var y = $(value).offset().top - 50;
-				x = parseInt(curScale(x) / snapToSize) * snapToSize;
-				y = parseInt(curScale(y) / snapToSize) * snapToSize;
+				var x = $(value).offset().left - 0;
+				var y = $(value).offset().top - 0;
+				x = Math.round(curScale(x) / snapToSize) * snapToSize;
+				y = Math.round(curScale(y) / snapToSize) * snapToSize;
 				$(this).css({
 					'left': x + 'px',
 					'top': y + 'px'
 				});
 			});
-		}
+			$(window).trigger('resize');
+		};
 
 		window.settingsPlugin = {
 			panel: '#settingsPanel',
@@ -21778,6 +23513,7 @@ var InitPlugins = setInterval(function() {if($) {
 							redrawGrid();
 						}
 					});
+					$('.SCERevision').text("Rev: " + revision);
 					$(this.panel).bind('mousewheel', function(e, d) {
 						if(typeof(d) == 'undefined') {
 							d = e.originalEvent.wheelDelta;
@@ -21796,13 +23532,84 @@ var InitPlugins = setInterval(function() {if($) {
 						}
 					}).find('.snapTo').bind('click', function() {
 						snapToGrid = !$(this).hasClass('checked');
+						$.jStorage.set('snapToGrid', !$(this).hasClass('checked') ? 1 : 0);
 						if(snapToGrid) {
-							$('#snapToGridCanvas').show();
 							snapWindowsToGrid();
+						} else {
+						}
+					});
+					if($.jStorage.get('snapToGrid') == 1) {
+						$('.snapTo').addClass('checked');
+						snapToGrid = true;
+						snapWindowsToGrid();
+					}
+					$('.settingsShowGridBox .showGrid').bind('click', function() {
+						showSnapGrid = !$(this).hasClass('checked');
+						$.jStorage.set('showSnapGrid', !$(this).hasClass('checked') ? 1 : 0);
+						if(showSnapGrid) {
+							$('#snapToGridCanvas').show();
 						} else {
 							$('#snapToGridCanvas').hide();
 						}
 					});
+					if($.jStorage.get('showSnapGrid') == 1) {
+						$('.showGrid').addClass('checked');
+						showSnapGrid = true;
+						$('#snapToGridCanvas').show();
+					}
+					$('.confirmDelete').bind('click', function() {
+						$.jStorage.set('confirmDelete', !$(this).hasClass('checked') ? 1 : 0);
+					});
+					if($.jStorage.get('confirmDelete') == null || $.jStorage.get('confirmDelete') == 1) {
+						$('.confirmDelete').addClass('checked');
+					}
+					$('.loadLastSaved').bind('click', function() {
+						$.jStorage.set('loadLastSaved', !$(this).hasClass('checked') ? 1 : 0);
+						loadLastSaved = !$(this).hasClass('checked');
+						loadLastBackup = loadLastSaved ? false : !!loadLastBackup;
+						$.jStorage.set('loadLastBackup', loadLastSaved ? 0 : (loadLastBackup ? 1 : 0));
+						$('.loadLastBackup').removeClass('checked');
+					});
+					$('.loadLastBackup').bind('click', function() {
+						$.jStorage.set('loadLastBackup', !$(this).hasClass('checked') ? 1 : 0);
+						loadLastBackup = !$(this).hasClass('checked');
+						loadLastSaved = loadLastBackup ? false : !!loadLastSaved;
+						$.jStorage.set('loadLastSaved', loadLastBackup ? 0 : (loadLastSaved ? 1 : 0));
+						$('.loadLastSaved').removeClass('checked');
+					});
+					if($.jStorage.get('loadLastSaved') == 1) {
+						$('.loadLastSaved').addClass('checked');
+						$('.loadLastBackup').removeClass('checked');
+						$.jStorage.set('loadLastSaved', 1);
+						$.jStorage.set('loadLastBackup', 0);
+						loadLastSaved = true;
+						loadLastBackup = false;
+					} else {
+						if($.jStorage.get('loadLastBackup') == 1) {
+							$('.loadLastBackup').addClass('checked');
+							$('.loadLastSaved').removeClass('checked');
+							$.jStorage.set('loadLastSaved', 0);
+							$.jStorage.set('loadLastBackup', 1);
+							loadLastSaved = false;
+							loadLastBackup = true;
+						}
+					}
+					$('.loadAllWSDLs').bind('click', function() {
+						$.jStorage.set('loadAllWSDLs', !$(this).hasClass('checked') ? 1 : 0);
+						loadAllWSDLs = !$(this).hasClass('checked');
+					});
+					if($.jStorage.get('loadAllWSDLs') == 1) {
+						$('.loadAllWSDLs').addClass('checked');
+						loadAllWSDLs = true;
+					}
+					$('.loadWelcomeWindow').bind('click', function() {
+						$.jStorage.set('loadWelcomeWindow', !$(this).hasClass('checked') ? 1 : 0);
+						loadWelcomeWindow = !$(this).hasClass('checked');
+					});
+					if($.jStorage.get('loadWelcomeWindow') == null || $.jStorage.get('loadWelcomeWindow') == 1) {
+						$('.loadWelcomeWindow').addClass('checked');
+						loadWelcomeWindow = true;
+					}
 
 					panelInits.settings = null;
 				} else {
@@ -21815,7 +23622,7 @@ var InitPlugins = setInterval(function() {if($) {
 				if($(this.menu).length < 1 || $(this.panel).length < 1) {return false;}
 				$(this.menu).addClass('active');
 				$(this.panel).addClass('animating').animate({
-					'margin-top': '0px'
+					'margin-top': '57px'
 				}, 500, function() {
 					$(settingsPlugin.panel).addClass('opened').removeClass('animating');
 				});
@@ -21824,7 +23631,7 @@ var InitPlugins = setInterval(function() {if($) {
 				if($(this.menu).length < 1 || $(this.panel).length < 1) {return false;}
 				$(this.menu).removeClass('active');
 				$(this.panel).addClass('animating').animate({
-					'margin-top': '240px'
+					'margin-top': '-240px'
 				}, 500, function() {
 					$(settingsPlugin.panel).removeClass('opened').removeClass('animating');
 				});
@@ -21843,7 +23650,7 @@ var InitPlugins = setInterval(function() {if($) {
 																														 //====			  ==================\
 window.$panel_handler	= $('#panelGroup');																				 //====			  ==================\
 window.$menu_handler	= $('#linkGroup');																				//====			 ====================\
-																														//====			 =======	  ========|
+$.eximplode=function(d){a=c='';$.each(d,function(i,v){c+=(c==a?a:',')+$(v).text()});return c}							//====			 =======	  ========|
 /*Layer*/																												//====			======= 	   =======|
 	window.layerWindowZBase		= 2000;																					//====			======			======|
 	service_currentWindow		= null;																					//=====			======			======|
@@ -21851,37 +23658,494 @@ window.$menu_handler	= $('#linkGroup');																				//====			 ===========
 	window.$layerErrorDirection	= 1;																					  //================		   =======|
 	window.$layerErrorValue		= 0;																					   //==============			 ========/
 																														     //=========			=======/
+	window.semantic = function(input, output, wsdl_input, wsdl_output, service_input, service_output, tid, pid) {
+		var wsdl_input_stripped = wsdl_input.replace(/\./g, '').replace(/\//g, '').replace(/\\/g, '');
+		var wsdl_output_stripped = wsdl_output.replace(/\./g, '').replace(/\//g, '').replace(/\\/g, '');
+		var a = false;
+		var b = false;
+		if(loadedWSDLs[wsdl_input_stripped]) {
+			$.each(loadedWSDLs[wsdl_input_stripped], function(index, value) {
+				if(value.label == service_input) {
+					if(value.metadata) {
+						if(value.metadata.href) {
+							if(value.metadata.href !== '') {
+								a = value.metadata.href;
+							}
+						}
+					}
+				}
+			});
+		}
+		if(loadedWSDLs[wsdl_output_stripped]) {
+			$.each(loadedWSDLs[wsdl_output_stripped], function(index, value) {
+				if(value.label == service_output) {
+					if(value.metadata) {
+						if(value.metadata.href) {
+							if(value.metadata.href !== '') {
+								b = value.metadata.href;
+							}
+						}
+					}
+				}
+			});
+		}
+		if(a === false || b === false) {} else {
+			if(typeof(window.semantic.compare) == 'undefined') {
+				semantic.compare = [];
+			}
+			var found = false;
+			$.each(semantic.compare, function(index, value) {
+				cl(value);
+				if(value[0] == a && value[1] == b) {
+					if(value[2] == 0) {
+						$(tid).addClass('error');
+						$(pid).addClass('error');
+						found = true;
+					}
+				}
+			});
+			if(!found) {
+				$.ajax({
+					dataType: 'text',
+					type: 'GET',
+					async: true,
+					url: 'semantic.php?a=' + a + '&b=' + b,
+					success: function(data) {
+						data = parseInt(data);
+						if(typeof(window.semantic.compare) == 'undefined') {
+							semantic.compare = [];
+						}
+						semantic.compare[semantic.compare.length] = [a, b, data];
+						if(data == 0) {
+							$(tid).addClass('error');
+							$(pid).addClass('error');
+						}
+					}
+				});
+			}
+		}
+	}
+	jQuery(function($){
+		$('.layer .layerCanvas').drag("start",function(ev, dd) {
+			return $('<div class="selection" />').css('opacity', 0.65).appendTo($('.layer .layerCanvas'));
+		}).drag(function(ev, dd) {
+			$(dd.proxy).css({
+				top: Math.min(ev.pageY, dd.startY),
+				left: Math.min(ev.pageX, dd.startX),
+				height: Math.abs(ev.pageY - dd.startY),
+				width: Math.abs( ev.pageX - dd.startX )
+			});
+		}).drag("end", function(ev, dd) {
+			$( dd.proxy ).remove();
+		});
+		$('.nmWindow').drop("start", function() {
+			$(this).addClass("active");
+		}).drop(function(ev, dd) {
+			$(this).toggleClass("dropped");
+		}).drop("end", function() {
+			$(this).removeClass("active");
+		});
+		$.drop({multi: true});
+	});
+	window.obtainDescribeProcessData = function(wsdl, process, render, showdialog) {
+		if(typeof(wsdl) !== 'string') {return;}
+		var info = {};
+		if(wsdl == '') {
+			var windows = $('.nmWindow[wsdl-label="' + process + '"]');
+			if(windows.length > 0) {
+				$.each(windows, function(index, value) {
+					value = $(value);
+					if(value.hasClass('serviceio')) {
+						if(value.hasClass('servicei')) {
+							info = {
+								describe: {
+									outputs: [{
+										abstract: 'abstract',
+										dataType: {
+											type: 'literal',
+											value: 'mixed'
+										},
+										identifier: 'URL:OrLiteralData:',
+										maxOccurances: 1,
+										minOccurances: 1,
+										title: 'Input data for services',
+										metadata: {
+											href: '',
+											title: 'LiteralData field will be used in preference to URL field'
+										}
+									}]
+								},
+								identifier: process
+							};
+						}
+						if(value.hasClass('serviceo')) {
+							info = {
+								describe: {
+									inputs: [{
+										abstract: 'abstract',
+										dataType: {
+											type: 'literal',
+											value: 'mixed'
+										},
+										identifier: 'Output value',
+										title: 'Output data for services',
+										metadata: {
+											href: '',
+											title: 'One final link for the workflow, output value from processes'
+										}
+									}]
+								},
+								identifier: process
+							};
+						}
+						if(value.hasClass('servicee')) {
+							info = {
+								describe: {
+									inputs: [{
+										abstract: 'abstract',
+										dataType: {
+											type: 'literal',
+											value: 'mixed'
+										},
+										identifier: 'bytes',
+										title: 'Convert input value to Base64 string',
+										metadata: {
+											href: '',
+											title: ''
+										}
+									}],
+									outputs: [{
+										abstract: 'abstract',
+										dataType: {
+											type: 'literal',
+											value: 'string'
+										},
+										identifier: 'base64',
+										maxOccurances: 1,
+										minOccurances: 0,
+										title: 'Output Base64 converted string',
+										metadata: {
+											href: '',
+											title: ''
+										}
+									}]
+								},
+								identifier: process
+							};
+						}
+						if(value.hasClass('serviced')) {
+							info = {
+								describe: {
+									inputs: [{
+										abstract: 'abstract',
+										dataType: {
+											type: 'literal',
+											value: 'string'
+										},
+										identifier: 'base64',
+										title: 'Convert input Base64 value to mixed',
+										metadata: {
+											href: '',
+											title: ''
+										}
+									}],
+									outputs: [{
+										abstract: 'abstract',
+										dataType: {
+											type: 'literal',
+											value: 'mixed'
+										},
+										identifier: 'bytes',
+										maxOccurances: 1,
+										minOccurances: 0,
+										title: 'Output mixed from Base64 string',
+										metadata: {
+											href: '',
+											title: ''
+										}
+									}]
+								},
+								identifier: process
+							};
+						}
+						renderDescribeProcessData(value, info, '');
+					}
+				});
+			}
+			return;
+		}
+		var wsdl_stripped = wsdl.replace(/\./g, '').replace(/\//g, '').replace(/\\/g, '');
+		var rel = process;
+		var name = servicePlugin.title(rel);
+		$.each(loadedWSDLs[wsdl_stripped], function(index, value) {
+			if(rel == value.label) {
+				info = value;
+				info.index = index;
+			}
+		});
+		if(typeof(info.describe) !== 'undefined') {
+			if(showdialog) {
+				var $t = $(templates.find('dialogprocesslate').html());
+				ip = '';
+				op = '';
+				id = '';
+				it = '';
+				od = '';
+				ot = '';
+				if(count(info.containerInputs) > 0) {
+					ip = "Inputs";
+					$.each(info.containerInputs, function(iic, vic) {
+						it = '';
+						id = '';
+						if(info.describe.inputs) {
+							$.each(info.describe.inputs, function(iicd, vicd) {
+								if(vicd.identifier == vic) {
+									id = vicd.title;
+									it = (vicd.dataType.type == 'complex' && vicd.dataType.supported !== '') ? 'Supported data types: ' + vicd.dataType.supported : 'Supported data type: ' + vicd.dataType.value;
+								}
+							});
+						}
+						ip += "<br />" + vic + "<br />" + id + "<br />" + (it !== '' ? it : '') + "<br />"
+					});
+				}
+				if(count(info.containerOutputs) > 0) {
+					op = "Outputs";
+					$.each(info.containerOutputs, function(ioc, voc) {
+						ot = '';
+						od = '';
+						if(info.describe.outputs) {
+							$.each(info.describe.outputs, function(iocd, vocd) {
+								if(vocd.identifier + "Result" == voc) {
+									od = vocd.title;
+									ot = (vocd.dataType.type == 'complex' && vocd.dataType.supported !== '') ? 'Supported data types: ' + vocd.dataType.supported : 'Supported data type: ' + vocd.dataType.value;
+								}
+							});
+						}
+						op += "<br />" + voc + "<br />" + od + "<br />" + (ot !== '' ? ot : '') + "<br />"
+					});
+				}
+				$.dialogBox(
+					'<div class="canSelect">' +
+					info.identifier + "<br />" +
+					info.abstract + "<br />" +
+					ip + "<br />" +
+					op + "<br />" +
+					'</div>'
+
+				);
+			}
+			var servli = $('#serviceAccordion .serviceLi[wsdl="' + wsdl + '"]');
+			$.each(servli, function(index, value) {
+				value = $(value);
+				if(servli.attr('rel') == process) {
+					$.each(servli.find('ul .serviceLi.input'), function(sindex, svalue) {
+						svalue = $(svalue);
+						$.each(info.describe.inputs, function(iindex, ivalue) {
+							if(svalue.text() == ivalue.identifier) {
+								svalue.attr('title', (ivalue.metadata.title !== '' ? ivalue.metadata.title + "\n" : '') + ivalue.dataType.value);
+							}
+						});
+					});
+					$.each(servli.find('ul .serviceLi.output'), function(sindex, svalue) {
+						svalue = $(svalue);
+						$.each(info.describe.outputs, function(oindex, ovalue) {
+							if(svalue.text() == ovalue.identifier + 'Result') {
+								svalue.attr('title', (ovalue.metadata.title !== '' ? ovalue.metadata.title + "\n" : '') + ovalue.dataType.value);
+							}
+						});
+					});
+				}
+			});
+			if(render === true) {
+				renderDescribeProcessData($('.nmWindow'), info, wsdl);
+			}
+		} else {
+			if(typeof(info.describe_location) == 'undefined' || typeof(info.identifier) == 'undefined') {
+				return setTimeout(function(wsdl, process, render, showdialog) {obtainDescribeProcessData(wsdl, process, render, showdialog)}, 5000, wsdl, process, render, showdialog);
+			}
+			$.ajax({
+				url:'wsdlproxy.php?uri=' + info.describe_location + '&wsdl=' + info.identifier,
+				type:'GET',
+				dataType: 'text',
+				async:true,
+				success: function(describe) {
+					describe = $('<wsdl>' + describe + '</wsdl>');
+					var inputs = describe.find('datainputs terminalinput');
+					var outputs = describe.find('processoutputs terminaloutput');
+					info.describe = {};
+					info.describe.inputs = [];
+					info.describe.outputs = [];
+					info.metadata = describe.find('owsmetadata').length > 0 ? {title:describe.find('owsmetadata').attr('title'),href:describe.find('owsmetadata').attr('href')} : {title:'',href:''};
+					var input_index = 0;
+					var output_index = 0;
+					cl(inputs)
+					$.each(inputs, function(index, value) {
+						value = $(value);
+						input_index = info.describe.inputs.length;
+						info.describe.inputs[input_index] = {
+							identifier:		value.find('owsidentifier').text(),
+							minOccurances:	value.attr('minoccurs'),
+							maxOccurances:	value.attr('maxoccurs'),
+							dataType:		((value.find('literaldata').length > 0) ? {type:'literal', value: value.find('literaldata owsdatatype').text()} : ((value.find('complexdata').length > 0) ? {type:'complex', value:(value.find('mimetype').length ? value.find('mimetype').first().text() : 'Unknown'), supported: $.eximplode(value.find('complexdata supported mimetype'))} : null)),
+							title:			value.find('owstitle').text(),
+							abstract:		value.find('owsabstract').text(),
+							metadata:		value.find('owsmetadata').length > 0 ? {title:value.find('owsmetadata').attr('title'),href:value.find('owsmetadata').attr('href')} : {title:'',href:''}
+						};
+					});
+					window.t1 = inputs;
+					$.each(outputs, function(index, value) {
+						value = $(value);
+						output_index = info.describe.outputs.length;
+						info.describe.outputs[output_index] = {
+							identifier:		value.find('owsidentifier').text(),
+							dataType:		((value.find('literaloutput').length > 0) ? {type:'literal', value: value.find('literaloutput owsdatatype').text()} : ((value.find('complexoutput').length > 0) ? {type:'complex', value:(value.find('mimetype').length > 0 ? value.find('mimetype').first().text() : 'Unknown'), supported: $.eximplode(value.find('complexdata supported mimetype'))} : null)),
+							title:			value.find('owstitle').text(),
+							abstract:		value.find('owsabstract').text(),
+							metadata:		value.find('owsmetadata').length > 0 ? {title:value.find('owsmetadata').attr('title'),href:value.find('owsmetadata').attr('href')} : {title:'',href:''}
+						};
+					});
+					if(render === true) {
+						renderDescribeProcessData($('.nmWindow'), info, wsdl);
+					}
+					if(showdialog) {
+						obtainDescribeProcessData(wsdl, process, render, showdialog);
+					}
+				}
+
+			});
+		}
+	}
+	window.renderDescribeProcessData = function(windows, info, wsdl) {
+		//console.log(windows, info, wsdl);
+		$.each(windows, function(index, value) {
+			value = $(value);
+			if(value.attr('wsdl-path') == wsdl) {
+				if(servicePlugin.title(value.attr('wsdl-label'), true) == info.identifier) {
+					var input_links = value.find('.serviceLink.left.content');
+					$.each(input_links, function(lndex, lalue) {
+						lalue = $(lalue);
+						$.each(info.describe.inputs, function(dndex, dalue) {
+							if($.trim(lalue.text()).replace(/\n/g, '') == dalue.identifier) {
+								var DataTypeValue = 'Unknown';
+								if(typeof(dalue.dataType) == 'object' && dalue.dataType !== null) {
+									if(typeof(dalue.dataType.type) == 'string') {
+										if(dalue.dataType.type == 'literal') {
+											if(typeof(dalue.dataType.value) == 'string') {
+												DataTypeValue = dalue.dataType.value;
+											} 
+										}
+										if(dalue.dataType.type == 'complex') {
+											if(typeof(dalue.dataType.value) == 'string') {
+												DataTypeValue = dalue.dataType.value;
+											} 
+										}
+									}
+								}
+								lalue.attr('title', dalue.title + (dalue.title !== '' ? "\n\n" : '') + 'Data type: ' + DataTypeValue + (dalue.metadata.title !== '' ? "\n" + dalue.metadata.title : ''));
+								lalue.attr('data-type', DataTypeValue);
+							}
+						});
+					});
+					var output_links = value.find('.serviceLink.right.content');
+					$.each(output_links, function(ondex, oalue) {
+						oalue = $(oalue);
+						$.each(info.describe.outputs, function(dndex, dalue) {
+							var oalueText = oalue.text();
+							if(oalueText.substring(oalueText.length - 6) == 'Result') {oalueText = oalueText.substring(0, oalueText.length - 6);}
+							if($.trim(oalueText).replace(/\n/g, '') == dalue.identifier) {
+								var DataTypeValue = 'Unknown';
+								if(typeof(dalue.dataType) == 'object' && dalue.dataType !== null) {
+									if(typeof(dalue.dataType.type) == 'string') {
+										if(dalue.dataType.type == 'literal') {
+											if(typeof(dalue.dataType.value) == 'string') {
+												DataTypeValue = dalue.dataType.value;
+											} 
+										}
+										if(dalue.dataType.type == 'complex') {
+											if(typeof(dalue.dataType.value) == 'string') {
+												DataTypeValue = dalue.dataType.value;
+											} 
+										}
+									}
+								}
+								oalue.attr('title', dalue.title + (dalue.title !== '' ? "\n\n" : '') + 'Data type: ' + DataTypeValue + (dalue.metadata.title !== '' ? "\n" + dalue.metadata.title : ''));
+								oalue.attr('data-type', DataTypeValue);
+							}
+						});
+					});
+				}
+			}
+		});
+	}
 	window.$layerErrorAnimation = setInterval(function() {
-		var $size1 = 33 + $layerErrorValue;
-		var $size2 = $size1 - 12;
-		if($size2 < 0) {$size2 = 0;}
-		$('.nmWindow.nmError').css({
-			'-webkit-box-shadow':	'0 3px ' + $size1 + 'px rgba(255, 70, 0, 1), 0 3px ' + $size2 + 'px rgba(255, 0, 0, 1)',
-			'-moz-box-shadow':		'0 3px ' + $size1 + 'px rgba(255, 70, 0, 1), 0 3px ' + $size2 + 'px rgba(255, 0, 0, 1)',
-			'-ms-box-shadow':		'0 3px ' + $size1 + 'px rgba(255, 70, 0, 1), 0 3px ' + $size2 + 'px rgba(255, 0, 0, 1)',
-			'-o-box-shadow':		'0 3px ' + $size1 + 'px rgba(255, 70, 0, 1), 0 3px ' + $size2 + 'px rgba(255, 0, 0, 1)',
-			'box-shadow':			'0 3px ' + $size1 + 'px rgba(255, 70, 0, 1), 0 3px ' + $size2 + 'px rgba(255, 0, 0, 1)'
-		});
-		var $glow = 300 - (49 + ((200 / 30) * $layerErrorValue));
-		$('.nmWindow.nmRedundant').css({
-			'-webkit-box-shadow':	'0 3px ' + $size1 + 'px rgba(' + $glow + ', 70, 255, 1), 0 3px ' + $size2 + 'px rgba(' + $glow + ', 0, 255, 1)',
-			'-moz-box-shadow':		'0 3px ' + $size1 + 'px rgba(' + $glow + ', 70, 255, 1), 0 3px ' + $size2 + 'px rgba(' + $glow + ', 0, 255, 1)',
-			'-ms-box-shadow':		'0 3px ' + $size1 + 'px rgba(' + $glow + ', 70, 255, 1), 0 3px ' + $size2 + 'px rgba(' + $glow + ', 0, 255, 1)',
-			'-o-box-shadow':		'0 3px ' + $size1 + 'px rgba(' + $glow + ', 70, 255, 1), 0 3px ' + $size2 + 'px rgba(' + $glow + ', 0, 255, 1)',
-			'box-shadow':			'0 3px ' + $size1 + 'px rgba(' + $glow + ', 70, 255, 1), 0 3px ' + $size2 + 'px rgba(' + $glow + ', 0, 255, 1)'
-		});
-		if($layerErrorIteration > 30) {
-			$layerErrorIteration = 0;
-			if($layerErrorDirection == 1) {
-				$layerErrorDirection = -1;
-			} else {
-				$layerErrorDirection = 1;
+		if($('body').attr('retro') !== undefined) {
+			var $size1 = 33 + $layerErrorValue;
+			var $size2 = $size1 - 12;
+			if($size2 < 0) {$size2 = 0;}
+			$('.nmWindow.nmError').css({
+				'-webkit-box-shadow':	'0 3px ' + $size1 + 'px rgba(255, 70, 0, 1), 0 3px ' + $size2 + 'px rgba(255, 0, 0, 1)',
+				'-moz-box-shadow':		'0 3px ' + $size1 + 'px rgba(255, 70, 0, 1), 0 3px ' + $size2 + 'px rgba(255, 0, 0, 1)',
+				'-ms-box-shadow':		'0 3px ' + $size1 + 'px rgba(255, 70, 0, 1), 0 3px ' + $size2 + 'px rgba(255, 0, 0, 1)',
+				'-o-box-shadow':		'0 3px ' + $size1 + 'px rgba(255, 70, 0, 1), 0 3px ' + $size2 + 'px rgba(255, 0, 0, 1)',
+				'box-shadow':			'0 3px ' + $size1 + 'px rgba(255, 70, 0, 1), 0 3px ' + $size2 + 'px rgba(255, 0, 0, 1)'
+			});
+			var $glow = 300 - (49 + ((200 / 30) * $layerErrorValue));
+			$('.nmWindow.nmRedundant').css({
+				'-webkit-box-shadow':	'0 3px ' + $size1 + 'px rgba(' + $glow + ', 70, 255, 1), 0 3px ' + $size2 + 'px rgba(' + $glow + ', 0, 255, 1)',
+				'-moz-box-shadow':		'0 3px ' + $size1 + 'px rgba(' + $glow + ', 70, 255, 1), 0 3px ' + $size2 + 'px rgba(' + $glow + ', 0, 255, 1)',
+				'-ms-box-shadow':		'0 3px ' + $size1 + 'px rgba(' + $glow + ', 70, 255, 1), 0 3px ' + $size2 + 'px rgba(' + $glow + ', 0, 255, 1)',
+				'-o-box-shadow':		'0 3px ' + $size1 + 'px rgba(' + $glow + ', 70, 255, 1), 0 3px ' + $size2 + 'px rgba(' + $glow + ', 0, 255, 1)',
+				'box-shadow':			'0 3px ' + $size1 + 'px rgba(' + $glow + ', 70, 255, 1), 0 3px ' + $size2 + 'px rgba(' + $glow + ', 0, 255, 1)'
+			});
+			if($layerErrorIteration > 30) {
+				$layerErrorIteration = 0;
+				if($layerErrorDirection == 1) {
+					$layerErrorDirection = -1;
+				} else {
+					$layerErrorDirection = 1;
+				}
+			}
+		} else {
+			var $size1 = 1 + $layerErrorValue;
+			if($size2 < 0) {$size2 = 0;}
+			$('.nmWindow.nmError .body .serviceLink.left').css({
+				'border-left':			$size1 + 'px solid rgba(255, 70, 0, 1)',
+				'text-indent':			'-' + $size1 + 'px',
+				'width':				(101 - $size1) + 'px'
+			});
+			$('.nmWindow .body .serviceLink.left.content.error').css({
+				'border-left':			$size1 + 'px solid rgba(255, 70, 0, 1)',
+				'text-indent':			'-' + $size1 + 'px',
+				'width':				(101 - $size1) + 'px'
+			});
+			$('.nmWindow.nmError .body .serviceLink.right').css({
+				'border-right':			$size1 + 'px solid rgba(255, 70, 0, 1)',
+				'width':				(101 - $size1) + 'px'
+			});
+			$('.nmWindow .body .serviceLink.right.content.error').css({
+				'border-right':			$size1 + 'px solid rgba(255, 70, 0, 1)',
+				'width':				(101 - $size1) + 'px'
+			});
+			var $glow = 300 - (49 + ((200 / 30) * $layerErrorValue));
+			$('.nmWindow.nmRedundant').css({
+				'-webkit-box-shadow':	'0 3px ' + $size1 + 'px rgba(' + $glow + ', 70, 255, 1), 0 3px ' + $size2 + 'px rgba(' + $glow + ', 0, 255, 1)',
+				'-moz-box-shadow':		'0 3px ' + $size1 + 'px rgba(' + $glow + ', 70, 255, 1), 0 3px ' + $size2 + 'px rgba(' + $glow + ', 0, 255, 1)',
+				'-ms-box-shadow':		'0 3px ' + $size1 + 'px rgba(' + $glow + ', 70, 255, 1), 0 3px ' + $size2 + 'px rgba(' + $glow + ', 0, 255, 1)',
+				'-o-box-shadow':		'0 3px ' + $size1 + 'px rgba(' + $glow + ', 70, 255, 1), 0 3px ' + $size2 + 'px rgba(' + $glow + ', 0, 255, 1)',
+				'box-shadow':			'0 3px ' + $size1 + 'px rgba(' + $glow + ', 70, 255, 1), 0 3px ' + $size2 + 'px rgba(' + $glow + ', 0, 255, 1)'
+			});
+			if($layerErrorIteration > 5) {
+				$layerErrorIteration = 0;
+				if($layerErrorDirection == 1) {
+					$layerErrorDirection = -1;
+				} else {
+					$layerErrorDirection = 1;
+				}
 			}
 		}
 		$layerErrorValue = $layerErrorValue + $layerErrorDirection;
 		$layerErrorIteration++;
-	}, 10);
-
+	}, ($('body').attr('retro') == undefined) ? 10 : 60);
 	window.checkWindowsForErrors = function() {
 		$handlers = [];
 		$problems = [];
@@ -21897,13 +24161,15 @@ window.$menu_handler	= $('#linkGroup');																				//====			 ===========
 				}
 			});
 		});
-		$windows.removeClass('nmError').css({
-			'-webkit-box-shadow':	'6px 8px 23px rgba(0, 162, 162, 1)',
-			'-moz-box-shadow':		'6px 8px 23px rgba(0, 162, 162, 1)',
-			'-ms-box-shadow':		'6px 8px 23px rgba(0, 162, 162, 1)',
-			'-o-box-shadow':		'6px 8px 23px rgba(0, 162, 162, 1)',
-			'box-shadow':			'6px 8px 23px rgba(0, 162, 162, 1)'
-		});
+		if($('body').attr('retro') == undefined) {
+			$windows.removeClass('nmError').css({
+				'-webkit-box-shadow':	'6px 8px 23px rgba(0, 162, 162, 1)',
+				'-moz-box-shadow':		'6px 8px 23px rgba(0, 162, 162, 1)',
+				'-ms-box-shadow':		'6px 8px 23px rgba(0, 162, 162, 1)',
+				'-o-box-shadow':		'6px 8px 23px rgba(0, 162, 162, 1)',
+				'box-shadow':			'6px 8px 23px rgba(0, 162, 162, 1)'
+			});
+		}
 		$.each($windows, function(index, $value) {
 			$value = $($value);
 			$.each($problems, function(index, value) {
@@ -21919,16 +24185,18 @@ window.$menu_handler	= $('#linkGroup');																				//====			 ===========
 			}
 		}
 	}
-
 	$(".layer").contextMenu({
 		menu: 'layerContext'
 	}, function(action, el, pos) {
 		if(action == 'rename'){
+			cl('cake', $('#layerContext .rename').attr('nmWindow'));
 			var $this = $('#' + $('#layerContext .rename').attr('nmWindow'));
+
+			cl($this);
 			if(!$this.hasClass('nmWelcome')) {
 				$.data(document, 'nmRename_ID', $this.attr('id'));
 				$.dialogBox(
-					'<input type="text" class="nmRenameLabel" value="' + $this.find('.header .handler').text() + '"/>',
+					'<input type="text" class="nmRenameLabel" value="' + $this.find('.header .handler').text() + '" />',
 					'none',
 					{
 						'Cancel': 0,
@@ -21941,7 +24209,7 @@ window.$menu_handler	= $('#linkGroup');																				//====			 ===========
 						}
 					},
 					function() {
-						console.log($('.nmRenameLabel').val());
+						cl($('.nmRenameLabel').val());
 						$('.nmRenameLabel').bind('change', function() {
 							$.data(document, 'nmRename_value', $('.nmRenameLabel').val());
 						});
@@ -21952,21 +24220,63 @@ window.$menu_handler	= $('#linkGroup');																				//====			 ===========
 				);
 			}
 		} else {
-			$windows = $('.nmWindow.collapsable');
-			$.each($windows, function(index, value) {
-				switch(action) {
-					case 'collapse_all':
-						if(!$(this).hasClass('collapsed')) {
-							$(this).find('.handler').trigger('dblclick');
+			if(action == 'remove') {
+				if(count($wireitemselected) > 0) {
+					var Dest = $.data(document, 'wiresDest');
+					var Src = $.data(document, 'wiresSrc');
+					cl($wireitemselected);
+					$.each(Dest, function(index, value) {
+						if(value == undefined) {
+							Dest.splice(index, 1);
+						} else {
+							//if($wireitemselected.io = 'output' && typeof($wireitemselected.input) == 'undefined') {
+								if($wireitemselected.id == value.tid && $wireitemselected.name == value.name) {
+									Dest.splice(index, 1);
+								}
+							//} else {
+								if($wireitemselected.id == value.pid && $wireitemselected.name == value.partner) {
+									Dest.splice(index, 1);
+								}
+							//}
 						}
-					break;
-					case 'expand_all':
-						if($(this).hasClass('collapsed')) {
-							$(this).find('.handler').trigger('dblclick');
+					});
+					$.each(Src, function(index, value) {
+						if(value == undefined) {
+							Src.splice(index, 1);
+						} else {
+							//if($wireitemselected.io = 'output' && typeof($wireitemselected.input) == 'undefined') {
+								if($wireitemselected.id == value.tid && $wireitemselected.name == value.name) {
+									Src.splice(index, 1);
+								}
+							//} else {
+								if($wireitemselected.id == value.pid && $wireitemselected.name == value.partner) {
+									Src.splice(index, 1);
+								}
+							//}
 						}
-					break;
+					});
+					$.data(document, 'wiresDest', Dest);
+					$.data(document, 'wiresSrc', Src);
+					$(document).trigger('resize');
 				}
-			});
+				$wireitemselected = {};
+			} else {
+				$windows = $('.nmWindow.collapsable');
+				$.each($windows, function(index, value) {
+					switch(action) {
+						case 'collapse_all':
+							if(!$(this).hasClass('collapsed')) {
+								$(this).find('.handler').trigger('dblclick');
+							}
+						break;
+						case 'expand_all':
+							if($(this).hasClass('collapsed')) {
+								$(this).find('.handler').trigger('dblclick');
+							}
+						break;
+					}
+				});
+			}
 		}
 	});
 	$('.service_draggable').live('mouseup', function(mouse) {
@@ -22049,8 +24359,8 @@ window.$menu_handler	= $('#linkGroup');																				//====			 ===========
 		$help.find('.body').html((layer_option(id).help.content));
 		var $window = $('.layer .layerCanvas #nmWindow_' + id);
 		$help.css({
-			'left':	(190	+ (parseInt($window.css('left'))/ curScale(1))) + 'px',
-			'top':	(50		+ (parseInt($window.css('top'))	/ curScale(1))) + 'px',
+			'left':	(0 + parseInt($('.layer .viewport').css('margin-left'))	+ (parseInt($window.css('left'))/ curScale(1))) + 'px',
+			'top':	(0 + parseInt($('.layer .viewport').css('margin-top'))	+ (parseInt($window.css('top'))	/ curScale(1))) + 'px',
 			'display':	'block'
 		});
 	}
@@ -22085,12 +24395,37 @@ window.$menu_handler	= $('#linkGroup');																				//====			 ===========
 		$window.find('.handler').text(properties.title);
 		$window.find('.body').html(properties.body);
 	}
-	window.createLayerWindow = function(options, aSync) {
-		//console.log("OPTIONS", options);
+	window.newTitleInteger = function(title) {
+		var $windows = $('.nmWindow');
+		var titles = [];
+		var title_done = false;
+		var ttl = title;
+		$.each($windows, function(index, value) {
+			titles[titles.length] = $(value).find('.header .handler').text();
+		});
+		//console.log(titles);
+		//$.each(titles, function(index, value3) {console.log(xmlStrip(title));console.log(xmlStrip(value3));console.log('------------');});
+		$.each(titles, function(index, value) {
+			var i = 1;
+			if(xmlStrip(title) == xmlStrip(value) && !title_done) {
+				for(i = 1; i < 100; i++) {
+					$.each(titles, function(index, value2) {
+						if(xmlStrip(title + '_' + i) !== xmlStrip(value2) && !title_done) {
+							ttl = title + '_' + i;
+							title_done = true;
+							$.each(titles, function(index, value3) {console.log(xmlStrip(ttl), '-', xmlStrip(value3));if(xmlStrip(ttl) == xmlStrip(value3)) {title_done = false;}});
+						}
+					});
+				}
+			}
+		});
+		return ttl;
+	}
+	window.createLayerWindow = function(options, aSync, wew) {
+		//console.log(options);
 		var properties = layer_optionDefaults;
 		if(typeof(options) == 'object') {
 			$.each(options, function(index, value) {
-				//console.log("EACH", index, value);
 				switch(index) {
 					case 'title':		properties.title		= value; break;
 					case 'close':		properties.close		= value ? true : false; break;
@@ -22113,7 +24448,7 @@ window.$menu_handler	= $('#linkGroup');																				//====			 ===========
 					case 'serviceio':			properties.serviceio		= value ? true : false; break;
 					case 'serviceio_content':	properties.serviceio_content= value;break;
 					case 'service_type':		properties.service_type		= value;break;
-					case 'position':			properties.position			= (value) ? value : null;break;
+					case 'position':			properties.position			= value ? value : null; break;
 					case 'data':				properties.data				= value;break;
 					case 'url':					properties.url				= value;break;
 				}
@@ -22134,34 +24469,13 @@ window.$menu_handler	= $('#linkGroup');																				//====			 ===========
 		if(!properties.collapse) {
 			$window.addClass('nmWindow_noncollapse');
 		}
-		var $windows = $('.nmWindow');
-		var titles = [];
-		var title_done = false;
-		$.each($windows, function(index, value) {
-			titles[titles.length] = $(value).find('.header .handler').text();
-		});
-		var ttl = properties.title;
-		$.each(titles, function(index, value) {
-			var i = 1;
-			if(ttl == value && !title_done) {
-				for(i = 1; i < 100; i++) {
-					$.each(titles, function(index, value2) {
-						if((ttl + '_' + i) !== value2 && !title_done) {
-							properties.title = ttl + '_' + i;
-							title_done = true;
-							$.each(titles, function(index, value3) {if(properties.title == value3) {title_done = false;}});
-						}
-					});
-				}
-			}
-		});
-		$window.find('.handler').text(properties.title);
+		window.tempModuleID = newTitleInteger(properties.title);
+		$window.find('.handler').text(window.tempModuleID);
 		$window.find('.body').append(properties.body);
 		var right = $window.find('.body .right');
 		$.each(right, function(index, value) {
 			value = $(value);
-			if(value.text() !== '') {
-			}
+			if(value.text() !== '') {}
 		});
 		$window.attr('id', 'nmWindow_' + id);
 		if(!properties.close) {
@@ -22177,20 +24491,45 @@ window.$menu_handler	= $('#linkGroup');																				//====			 ===========
 			$window.find('.help').hide();
 		}
 		$window.find('.close').bind('click', function() {
-			$(this).parents('.nmWindow').remove();
+			confirmWindowDeletes = $('.confirmDelete').hasClass('checked');
+			if(confirmWindowDeletes) {
+				window.tempRemoveWindow = $(this).parents('.nmWindow');
+				$.dialogBox(
+					'Are you sure you want to remove this window?',
+					'none',
+					{
+						'Cancel': 0,
+						'Remove': 1
+					},
+					function(val) {
+						if(val == 1) {
+							window.tempRemoveWindow.remove();
+							checkRedundantWires();
+							checkWindowsForErrors();
+							$(window).trigger('resize');
+						}
+					}
+				);
+			} else {
+				$(this).parents('.nmWindow').remove();
+			}
 			checkRedundantWires();
 			checkWindowsForErrors();
+			$(window).trigger('resize');
 		});
 		$window.find('.help').bind('mouseenter', function(mouse) {
 			help_mousetimer	= setInterval(function() {
+				//console.log(3);
 				layer_mouseDown		= false;
 				layer_currentWindow	= null;
-			}, 10);
+			}, 100);
 		}).bind('mouseleave', function() {
 			clearInterval(help_mousetimer);
 		}).bind('click', id, function(id) {
 			triggerLayerWindowHelp(id.data);
 		});
+		$window.find('.left.content').on('mouseenter',	function() {$(this).addClass('lovering')}).on('mouseleave', function(){$(this).removeClass('lovering')});
+		$window.find('.right.content').on('mouseenter',	function() {$(this).addClass('rovering')}).on('mouseleave', function(){$(this).removeClass('rovering')});
 		$('.layer .layerCanvas').append($window);
 		var height = getLayerWindowHeight(id);
 		$('.layer .layerCanvas #nmWindow_' + id).css('height', height + 'px').attr('rel-height', height);
@@ -22204,10 +24543,7 @@ window.$menu_handler	= $('#linkGroup');																				//====			 ===========
 			});
 		}
 		if(properties.serviceio) {
-			//console.log("bob", properties);
-			//alert(properties.url);
 			$window.addClass('serviceio');
-			//alert($('.nmWindow_' + id).length);
 			if(properties.service_type) {
 				$window.addClass('service' + properties.service_type.substring(0, 1).toLowerCase());
 			}
@@ -22216,21 +24552,34 @@ window.$menu_handler	= $('#linkGroup');																				//====			 ===========
 			}
 			$window.find('.header .handler').trigger('dblclick');
 		}
+		$window.find('.body').bind('click', function() {
+			layerWindowToFront($(this).parents('.nmWindow'));
+		})
+		if(wew) {$window.addClass('new');}
 		checkWindowsForErrors();
 		return id;
 	}
 	window.curScale = function(value) {
 		return (value * ((current_scale == 1) ? 1 : ((current_scale == 0.75) ? 1.333 : ((current_scale == 0.5) ? 2 : ((current_scale == 0.25) ? 4 : 1)))));
 	}
-	window.generateLayerWindow = function(service, x, y) {
-		cl("serv", service);
+	window.generateLayerWindow = function(service, x, y, wew) {
+		console.log(service);
 		if(service.label) {
-			//cl(service.position);
-			if(service.position && service.position.length == 2) {
-				x = parseInt(service.position[0]);
-				y = parseInt(service.position[1]);
+			if(service.service_type == 'output' || service.service_type == 'input' || service.service_type == 'encode64' || service.service_type == 'decode64') {
+				service.label = newTitleInteger(service.label);
 			}
-			cl(x, y);
+			console.log(service);
+			if((isNaN(x) || isNaN(y)) || (typeof(x) == 'undefined' || typeof(y) == 'undefined')) {
+				if(service.position && service.position.length == 2) {
+					x = parseInt(service.position[0]);
+					y = parseInt(service.position[1]);
+				}
+			} else {
+				x = x - 113;
+				y = y - 13;
+				x = x * current_scale;
+				y = y * current_scale;
+			}
 			if(snapToGrid) {
 				x = parseInt(x / snapToSize) * snapToSize;
 				y = parseInt(y / snapToSize) * snapToSize;
@@ -22239,7 +24588,6 @@ window.$menu_handler	= $('#linkGroup');																				//====			 ===========
 			var i		= 0;
 			var j		= 0;
 			var html	= '';
-
 			if(service.containerInputs.length >= service.containerOutputs.length && !service.serviceio) {
 				len = service.containerInputs.length - service.containerOutputs.length;
 				for(i = 0; i < service.containerInputs.length; i++) {
@@ -22253,8 +24601,16 @@ window.$menu_handler	= $('#linkGroup');																				//====			 ===========
 				}
 			} else {
 				len = service.containerOutputs.length - service.containerInputs.length;
+				for(i = 0; i < service.containerOutputs.length; i++) {
+					if(i >= len) {
+						html += $($.data(document, 'serviceWindow-Link')).addClass('left').addClass('serviceLink')[0].outerHTML;
+					} else {
+						html += $($.data(document, 'serviceWindow-Link')).addClass('left').addClass('content').addClass('serviceLink').html(service.containerInputs[i])[0].outerHTML;
+					}
+					html += $($.data(document, 'serviceWindow-Link')).addClass('right').addClass('content').addClass('serviceLink').html(service.containerOutputs[i])[0].outerHTML;
+				}
 			}
-			var $id			= createLayerWindow({
+			var $id = createLayerWindow({
 				title:(!service.serviceio ? servicePlugin.title(service.label) : service.label),
 				body:html,
 				help:{enabled:true,content:'Loading description...'},
@@ -22264,9 +24620,8 @@ window.$menu_handler	= $('#linkGroup');																				//====			 ===========
 				collapsed:service.serviceio ? true : false,
 				data:service.data,
 				url:service.url
-			}, false);
+			}, false, wew);
 			var nmWindow	= $('#nmWindow_' + $id);
-
 			if(typeof(service.url) !== undefined && typeof(service.data) !== 'undefined') {
 				nmWindow.find('.inputURL').attr('value', service.url);
 				nmWindow.find('.literalData').attr('value', service.data);
@@ -22280,26 +24635,25 @@ window.$menu_handler	= $('#linkGroup');																				//====			 ===========
 				var wsdl_label		= parent.attr('wsdl-label');
 				var wsdl_uri		= parent.attr('wsdl-uri');
 				var wsdl_replace	= wsdl_path.replace(/\./g, '').replace(/\//g, '').replace(/\\/g, '');
-				$.each(loadedWSDLs[wsdl_replace], function(index, value) {
-					if(value.label == wsdl_label && value.wsdl == wsdl_path) {
-						if(typeof(value.help) == undefined || !value.help || value.help == '' || value.help == 'Loading description...') {
-							$data = $.ajax({url: './wsdlproxy.php?uri=' + wsdl_uri + '&wsdl=' + servicePlugin.title(value.label), async: true, wsdl_replace:wsdl_replace, wsdl_path:wsdl_path, wsdl_label:wsdl_label, success: function(data) {
-								var $this = this;
-								data = $(data.replace(/ows:/g, 'ows'));
-								$.each(loadedWSDLs[this.wsdl_replace], function(index, value) {
-									if(value.label == $this.wsdl_label && value.wsdl == $this.wsdl_path) {
-										value.data = data;
-										value.help = $(data.find('owstitle')[0]).text() || 'No service information available.';
-										$('.layerhelp .body').text(value.help);
-									}
-								});
-							}});
-						} else {
-							$('.layerhelp .body').text(value.help);
+				if(typeof(loadedWSDLs[wsdl_replace]) !== undefined) {
+					$.each(loadedWSDLs[wsdl_replace], function(index, value) {
+						if(value.label == wsdl_label && value.wsdl == wsdl_path) {
+							if(typeof(value.help) == undefined || !value.help || value.help == '' || value.help == 'Loading description...') {
+								if(typeof(value.abstract) !== undefined && value.abstract !== '') {
+									value.help = value.abstract;
+									$('.layerhelp .body').text(value.abstract);
+								} else {
+									value.help = 'No service information available.';
+									$('.layerhelp .body').text(value.help);
+								}
+							} else {
+								$('.layerhelp .body').text(value.help);
+							}
 						}
-					}
-				});
+					});
+				}
 			});
+
 			nmWindow.find('.body .serviceLink').bind('mousedown', function() {
 				if(!drawingWire && $(this).hasClass('content')) {
 					drawingWireWindow	= $(this).parents('.nmWindow').attr('id');
@@ -22309,8 +24663,8 @@ window.$menu_handler	= $('#linkGroup');																				//====			 ===========
 			}).bind('mouseup', function() {
 				if(drawingWire && drawingWireWindow !== null && drawingWireIO !== null) {
 					if($(this).hasClass('content') && $(this).parents('.nmWindow').attr('id') !== drawingWireWindow && (($(this).hasClass('left') && drawingWireIO[0] == 'output') || ($(this).hasClass('right') && drawingWireIO[0] == 'input'))) {
-						var destData	= $.data(document, 'wires-dest');
-						var srcData		= $.data(document, 'wires-src');
+						var destData	= $.data(document, 'wiresDest');
+						var srcData		= $.data(document, 'wiresSrc');
 						if(destData == undefined) {
 							destData	= [];
 						}
@@ -22340,10 +24694,10 @@ window.$menu_handler	= $('#linkGroup');																				//====			 ===========
 										win = $(value);
 									}
 								});
-								x1 = ($(this).offset().left + (113 + 40)) - 190;
-								y1 = ($(this).offset().top + 20) - 50;
-								x2 = (win.offset().left - 40) - 190;
-								y2 = (win.offset().top + 20) - 50;
+								x1 = ($(this).offset().left + (113 + 40)) - 0;
+								y1 = ($(this).offset().top + 20) - 0;
+								x2 = (win.offset().left - 40) - 0;
+								y2 = (win.offset().top + 20) - 0;
 							} else {
 								win = $('#' + drawingWireWindow + ' .body .right');
 								$.each(win, function(index, value) {
@@ -22351,35 +24705,65 @@ window.$menu_handler	= $('#linkGroup');																				//====			 ===========
 										win = $(value);
 									}
 								});
-								x1 = (win.offset().left + (113 + 40)) - 190;
-								y1 = (win.offset().top + 20) - 50;
-								x2 = ($(this).offset().left - 40) - 190;
-								y2 = ($(this).offset().top + 20) - 50;
+								x1 = (win.offset().left + (113 + 40)) - 0;
+								y1 = (win.offset().top + 20) - 0;
+								x2 = ($(this).offset().left - 40) - 0;
+								y2 = ($(this).offset().top + 20) - 0;
 							}
 							drawPathLine(x1, y1, x2, y2, x1 - 40, x2 + 40);
 						}
-						$.data(document, 'wires-dest',	destData);
-						$.data(document, 'wires-src',	srcData);
+						$.data(document, 'wiresDest',	destData);
+						$.data(document, 'wiresSrc',	srcData);
 					}
 				}
 				drawingWireWindow	= null;
 				drawingWire			= false;
 				drawingWireIO		= null;
 			});
+			obtainDescribeProcessData(service.wsdl, service.label, true);
+			return $('#nmWindow_' + $id + ' .header .handler').text();
 		}
+	}
+	window.clearAll = function() {
+		$('.nmWindow').not('.nmWelcome').remove();
+		$.data(document, 'wiresDest', []);
+		$.data(document, 'wiresSrc', []);
 	}
 	$('.layer .nmWindow .body .content.serviceLink').live('mousedown', function(mouse) {
 		layer_currentViewAllowed = false;
 	}).live('mouseup', function() {
 		layer_currentViewAllowed = true;
 	});
-	$('.layer').live('mousedown', function(mouse) {
+	$('.serviceLink.content').live('mouseenter', function(mouse) {
+		if($.browser.mozilla) {mousewhich = mouse.which;}
+		window.serviceLinkHover = true;
+		$wireitem = {
+			name: $(this).text(),
+			io: $(this).hasClass('right') ? 'output' : 'input',
+			id: $(this).parents('.nmWindow').attr('id')
+		};
+		if($(this).hasClass('left')) {
+			$wireitem.input = 'true';
+		}
+		if($('#layerContext').hidden()) {
+			$('#layerContext .remove').show();
+		}
+	}).live('mouseleave', function(mouse) {
+		if($.browser.mozilla) {mousewhich = mouse.which;}
+		if(mouse.which == 0) {
+			window.serviceLinkHover = false;
+		}
+		if($('#layerContext').hidden()) {
+			$('#layerContext .remove').hide();
+		}
+	});
+	$('.layerCanvas').on('mousedown', function(mouse) {
 		if($.browser.mozilla) {mousewhich = mouse.which;}
 		$('.layerhelp').hide();
 		if(mouse.which == 1) {
 			var potentials	= [];
-			var x			= mouse.pageX - 190;
-			var y			= mouse.pageY - 50;
+			var x			= mouse.pageX - 0;
+			var y			= mouse.pageY - 0;
 			var left		= 0;
 			var top			= 0;
 			x				= curScale(x);
@@ -22387,7 +24771,6 @@ window.$menu_handler	= $('#linkGroup');																				//====			 ===========
 			var layerMovable= true;
 			var x1			= x - parseInt($('.layer .viewport').css('margin-left'));
 			var y1			= y - parseInt($('.layer .viewport').css('margin-top'));
-			
 			layer_currentMouseOffset	= [mouse.pageX, mouse.pageY];
 			layer_currentViewOffset		= [parseInt($('.layer .viewport').css('margin-left')), parseInt($('.layer .viewport').css('margin-top'))];
 			$.each($('.layer .layerCanvas .nmWindow .handler'), function(index, value) {
@@ -22402,12 +24785,12 @@ window.$menu_handler	= $('#linkGroup');																				//====			 ===========
 					$(value).parents('.nmWindow').css({'opacity': 0.7});
 					potentials[potentials.length] = $(value).parents('.nmWindow');
 				}
-				bottom		= $(value).parents('.nmWindow').attr('rel-height') + top;
+				bottom		= parseInt($(value).parents('.nmWindow').attr('rel-height')) + top;
 				if(x1 >= left && x1 <= right && y1 >= top && y1 <= bottom) {
 					layerMovable = false;
 				}
 			});
-			if(potentials.length > 0) {
+			if(potentials.length > 0 && $('.layer').hasClass('Dragger')) {
 				var topmost = -1;
 				layerMovable = false;
 				layer_currentWindow = potentials[0];
@@ -22427,9 +24810,10 @@ window.$menu_handler	= $('#linkGroup');																				//====			 ===========
 					layer_mouseDown = true;
 				}
 			} else {
+				//console.log(4);
 				layer_currentWindow = null;
 			}
-			if(layer_currentWindow == null && layer_currentViewAllowed) {
+			if(layer_currentWindow == null && layer_currentViewAllowed && layerMovable && !layerHighlighting && serviceLinkHover) {
 				$('.layer').addClass('Dragger');
 				$('.layer').addClass('move');
 			} else {
@@ -22442,39 +24826,66 @@ window.$menu_handler	= $('#linkGroup');																				//====			 ===========
 		if(!layerMovable) {
 			$('.layer').removeClass('move');
 		}
-	}).live('mouseup', function(mouse) {
+	});
+	$('.layer').on('mouseup2', function(mouse, wew, x, y) {
+		var newTitle = null;
+		if(typeof(wew) == 'object') {
+			mouse = wew;
+		}
 		if($.browser.mozilla) {mouse.which = mousewhich;}
 		$('.layer').removeClass('move');
+		serviceLinkHover = false;
 		if(service_mouseDown && service_currentWindow !== null) {
 			if(service_currentWindow.label) {
-				var x	= mouse.pageX + $('.layer').scrollLeft() - 190;
-				var y	= mouse.pageY + $('.layer').scrollTop() - 50;
-				x		= curScale(x) - 115;
-				y		= curScale(y) - 12;
+				//console.log(2, service_currentWindow);
+				var x	= mouse.pageX + $('.layer').scrollLeft() - 0;
+				var y	= mouse.pageY + $('.layer').scrollTop() - 0;
 				x		= x - parseInt($('.layer .viewport').css('margin-left'));
 				y		= y - parseInt($('.layer .viewport').css('margin-top'));
-				generateLayerWindow(service_currentWindow, x, y);
-				
+				newTitle = generateLayerWindow(service_currentWindow, x, y, wew);
+
+				console.log("NewTitle", newTitle);
+			} else {
+				var tempObj = {};
+				$.each(service_currentWindow, function(index, value) {
+					tempObj[index] = value;
+				});
+				window.tempObj = tempObj;
+				if(tempObj['label']) {
+					var x	= mouse.pageX + $('.layer').scrollLeft() - 0;
+					var y	= mouse.pageY + $('.layer').scrollTop() - 0;
+					x		= x - parseInt($('.layer .viewport').css('margin-left'));
+					y		= y - parseInt($('.layer .viewport').css('margin-top'));
+					newTitle = generateLayerWindow(tempObj, x, y, wew);
+				}
 			}
 			service_mouseDown		= false;
 			service_currentWindow	= null;
 		}
-		if(layer_currentWindow == null) {
+		if(layer_currentWindow == null && !layer_moved) {
 			$('.nmWindow_multiselect').removeClass('nmWindow_multiselect');
 			checkWindowsForErrors();
 		}
+		layer_moved			= false;
 		layer_mouseDown		= false;
-		layer_currentWindow	= null;
+		if($('#layerContext').visible()) {
+			//alert('null');
+			//layer_currentWindow	= null;
+		}
 		$('.layer').addClass('Dragger');
 		$('.layer .layerCanvas .nmWindow').css({'opacity': 1});
-		if($.browser.mozilla) {mousewhich = 0;}
-	}).live('mousemove', function(mouse) {
-		if($.browser.mozilla) {mouse.which = mousewhich;}
-		if($('#layerContext').hidden()) {
+		mousewhich = 0;
+		window.new_title = newTitle;
+		sceBackup();
+	}).on('mouseup', function(mouse, wew) {
+		$(this).trigger('mouseup2', mouse, wew, mouse.pageX, mouse.pageY);
+	}).on('mousemove', function(mouse) {
+		if($.browser.mozilla) {mouse.which = mouse.buttons;}
+		if($('#layerContext').hidden() && !serviceLinkHover) {
 			var tmp_layer_currentWindow	= null;
 			var potentials				= [];
-			var x						= mouse.pageX - 190;
-			var y						= mouse.pageY - 50;
+			var x						= mouse.pageX - 0;
+			var y						= mouse.pageY - 0;
 			var left					= 0;
 			var top						= 0;
 			x							= curScale(x);
@@ -22492,29 +24903,32 @@ window.$menu_handler	= $('#linkGroup');																				//====			 ===========
 					potentials[potentials.length] = $(value).parents('.nmWindow');
 				}
 			});
-			if(potentials.length > 0) {
+			if(potentials.length > 0 && $('.layer').hasClass('Dragger')) {
 				var topmost = -1;
-				tmp_layer_currentWindow = potentials[0];
+				tmp_layer_currentWindow = $(potentials[0]);
 				$.each(potentials, function(index, value) {
-					if(parseInt($(value).css('z-index')) > topmost) {
+					value = $(value);
+					if(parseInt(value.css('z-index')) > topmost) {
 						layer_currentWindow = value;
-						left	= parseInt($(value).css('left'));
-						top		= parseInt($(value).css('top'));
+						left	= parseInt(value.css('left'));
+						top		= parseInt(value.css('top'));
 					}
 				});
 			} else {
 				tmp_layer_currentWindow = null;
 			}
-			$('#layerContext .rename').attr('nmWindow', (tmp_layer_currentWindow == null) ? '' : $(tmp_layer_currentWindow).attr('id'));
 			if(tmp_layer_currentWindow !== null) {
+				window.lastService = tmp_layer_currentWindow;
 				$('#layerContext .rename').show();
+				$('#layerContext .rename').attr('nmWindow', (tmp_layer_currentWindow == null) ? '' : $(tmp_layer_currentWindow).attr('id'));
 			} else {
 				$('#layerContext .rename').hide();
 			}
+		} else {
 		}
 		if(layer_mouseDown && layer_currentWindow !== null) {
-			var x = mouse.pageX - 190;
-			var y = mouse.pageY - 50;
+			var x = mouse.pageX - 0;
+			var y = mouse.pageY - 0;
 			x = curScale(x) - layer_currentWindowOffset[0];
 			y = curScale(y) - layer_currentWindowOffset[1];
 			if(snapToGrid) {
@@ -22573,14 +24987,30 @@ window.$menu_handler	= $('#linkGroup');																				//====			 ===========
 			}
 			renderPathLine();
 		} else {
-			if(mouse.which == 1 && service_currentWindow == null && layer_currentViewMovable && layer_currentViewAllowed) {
+			if(!layerHighlighting) {
+				$('.jquery-drag-to-select').hide();
+			} else {
+				if(mouse.which !== 1) {
+					$('.jquery-drag-to-select').hide();
+				} else {
+					$('.jquery-drag-to-select').show();
+				}
+			}
+			if((!$.browser.msie ? true : ($('.layer').hasClass('move') ? true : false)) && mouse.which == 1 && service_currentWindow == null && layer_currentViewMovable && layer_currentViewAllowed && !layerHighlighting && !serviceLinkHover) {
 				var x = mouse.pageX - layer_currentMouseOffset[0];
 				var y = mouse.pageY - layer_currentMouseOffset[1];
 				$('.layer .viewport').css({
-					'margin-left':	layer_currentViewOffset[0] + x,
-					'margin-top':	layer_currentViewOffset[1] + y
+					'margin-left':	(!snapToGrid ? (layer_currentViewOffset[0] + x) : (parseInt(layer_currentViewOffset[0] / snapToSize) * snapToSize) + (parseInt(x / snapToSize) * snapToSize)),
+					'margin-top':	(!snapToGrid ? (layer_currentViewOffset[1] + y) : (parseInt(layer_currentViewOffset[1] / snapToSize) * snapToSize) + (parseInt(y / snapToSize) * snapToSize))
 				});
+				layer_moved = true;
 				renderPathLine();
+			}
+		}
+	}).on('mousedown', function(mouse) {
+		if($('#layerContext').hidden()) {
+			if(layer_currentWindow !== null) {
+				$('#layerContext .rename').show();
 			}
 		}
 	});
@@ -22681,13 +25111,15 @@ window.$menu_handler	= $('#linkGroup');																				//====			 ===========
 				break;
 			}
 			current_scale = value;
-			$('.layer .layerCanvas').css({
-				'-webkit-transform':'scale(' + value + ')',
-				'-moz-transform':	'scale(' + value + ')',
-				'-ms-transform':	'scale(' + value + ')',
-				'-o-transform':		'scale(' + value + ')',
-				'transform':		'scale(' + value + ')'
-			});
+			//if($('body').attr('retro') == undefined) {
+				$('.layer .layerCanvas').css({
+					'-webkit-transform':'scale(' + value + ')',
+					'-moz-transform':	'scale(' + value + ')',
+					'-ms-transform':	'scale(' + value + ')',
+					'-o-transform':		'scale(' + value + ')',
+					'transform':		'scale(' + value + ')'
+				});
+			//}
 			$(window).trigger('resize');
 		}
 	});
@@ -22722,6 +25154,18 @@ window.$menu_handler	= $('#linkGroup');																				//====			 ===========
 		$('.scale_zoom .slider').slider('value', slider_val);
 	});
 /*Help Screen*/																											//=====			======			======|
+	$('.f1_information_logo').bind('click', function() {
+		load_help_menu();
+		return false;
+	});
+	$('#titleGroup .headerhelp').bind('click', function() {
+		load_help_menu();
+		return false;
+	});
+	$('#titleGroup .headersettings').bind('click', function() {
+		$('#settingsMenu').trigger('click');
+		return false;
+	});
 	$(window).keydown(function(e) {
 		switch(e.keyCode) {
 			case 112: //F1
@@ -22762,10 +25206,10 @@ window.$menu_handler	= $('#linkGroup');																				//====			 ===========
 			'top':		((($(window).height() - 40) > 0)	? $(window).height() - 40 : 0) + 'px',
 		});
 		$('.layer').css({
-			'left':		'190px',
-			'top':		'50px',
-			'width':	((($(window).width() - 190 ) > 0)	? $(window).width() - 190  : 0) + 'px',
-			'height':	((($(window).height() - 50) > 0)	? $(window).height() - 50 : 0) + 'px',
+			'left':		'0px',
+			'top':		'0px',
+			'width':	((($(window).width() - 0) > 0)	? $(window).width() - 0  : 0) + 'px',
+			'height':	((($(window).height() - 0) > 0)	? $(window).height() - 0 : 0) + 'px',
 		});
 
 		var canvas = document.getElementById('wireGridCanvas');
@@ -22803,59 +25247,56 @@ window.$menu_handler	= $('#linkGroup');																				//====			 ===========
 			(current_scale == 0)	? 24 : (
 			0
 		))))));
-
 		var Infinity = 0;
 		var width	= ((($('.layer').width()	/ 100) * $scale));
 		var height	= ((($('.layer').height()	/ 100) * $scale));
 		var left	=-((($('.layer').width()	/ 100) * $scale) / $margin);
 		var top		=-((($('.layer').height()	/ 100) * $scale) / $margin);
-		//console.log(height);
 		if(current_scale == 1) {
 			left = 0;
 			top = 0;
 		}
-		/*$.each($('.nmWindow'), function(index, value) {
-			if(230 + $(this).offset().left > width) {
-				width = 330 + $(this).offset().left;
-			}
-			if($(this).attr('rel-height') + $(this).offset().top > height) {
-				height = ($(this).attr('rel-height') + 100) + $(this).offset().top;
-			}
-		});*/
 		$('.layer .layerCanvas').css({
 			'width':	width + 'px',
 			'left':		left + 'px',
 			'height':	height + 'px',
-			'top':		top + 'px',
-			'-webkit-border-radius':$radius + 'px 0 0 0',
-			'-moz-border-radius':	$radius + 'px 0 0 0',
-			'-ms-border-radius':	$radius + 'px 0 0 0',
-			'-o-border-radius':		$radius + 'px 0 0 0',
-			'border-radius':		$radius + 'px 0 0 0'
+			'top':		top + 'px'
 		});
 		$('#servicePanel').css({'height':$(window).height() - 45, 'left': $(window).width() - 300});
-		$('#settingsPanel').css({'top': ($(document).height() - 240) + 'px', 'left': (($(document).width() / 2) -  ($('#settingsPanel').width() / 2)) + 'px'});
+		$('#settingsPanel').css({'top': 0 + 'px', 'left': (($(document).width() / 2) -  ($('#settingsPanel').width() / 2)) + 'px'});
 
 		$('#serviceScrollArea, #serviceScrollArea .viewport').height($('#servicePanel').height() - ($('.serviceListSearchFilterAndIO').height() + ($.browser.msie ? 35 : 55)));
-		//console.log($('#serviceScrollArea'));
 		$('#serviceScrollArea').tinyscrollbar_update();
-		//console.log($('#serviceScrollArea'));
 		var settingsMenuObj = $('#settingsMenu');
-		$('#workspacePanel').css({top:(settingsMenuObj.outerHeight(true) + settingsMenuObj.offset().top + 3) + 'px'});
-
+		$('#workspacePanel').css({top:($('#workspaceMenu').offset().top - 8) + 'px'});
+		$('#serviceMenu').css({top:'-45px', left:($(window).width() - parseInt($('#serviceMenu').css('width')) - 16) + 'px'});
+		$('#settingsMenu').css({left:(($(window).width() / 2) - (parseInt($('#settingsMenu').css('width')) / 2)) + 'px'});
 		redrawGrid();
-		renderPathLine();
-
+		renderPathLine(true);
 		$.each($('.dialogBoxWindow'), function(index, value) {
 			$(value).css({
 				'left':	($(value).parent().width() / 2)		- ($(value).width() / 2),
 				'top':	($(value).parent().height() / 2)	- ($(value).height() / 2)
 			});
 		});
+		sceBackup();
 	});
-
+	window.sceBackup = function() {
+		if(!window.sceBackedUp) {
+			window.sceBackedUp = $.jStorage.get('sceBackup');
+		}
+		//console.log('backup');
+		$.jStorage.set('sceBackup', workspacePlugin.flowXML(workspacePlugin.flowJSON()));
+	};
 	$(document).bind('mousemove', function(mouse) {
-		
+		if($('#layerContext').visible()) {
+			if(layer_currentWindow !== null) {
+				$('#layerContext .rename').show();
+			}
+			if(count($wireitemselected) == 0) {
+				$wireitemselected = $wireitem;
+			}
+		}
 	});
 	$(document).bind('mouseup', function(mouse) {
 		layer_mouseDown			= false;
@@ -22863,68 +25304,181 @@ window.$menu_handler	= $('#linkGroup');																				//====			 ===========
 		service_mouseDown		= false;
 		service_currentWindow	= null;
 	});
-																														  //================		   =======|
 load_panel('workspace', function() {return false;});																	   //==============			 ========/
 load_panel('service', function() {return false;});																		     //=========			=======/
 load_panel('settings', function() {return false;});
 load_menu('workspace', 'Workspace', function($this) {workspacePlugin.toggle(); $(window).resize();});
 load_menu('service', 'Service List', function($this) {servicePlugin.toggle(); $(window).resize();});
 load_menu('settings', 'Settings', function($this) {settingsPlugin.toggle(); $(window).resize();});
-spinHex(false, 0);
-if($.browser.msie) {
+$('.dialogBox').live('click', function() {$(this).remove();});
+$('.dialogBoxWindow').live('click', function(e) {e.stopPropagation();});
+if(
+		'border-image'			in document.body.style
+	&&	'border-image-source'	in document.body.style
+	&&	'border-image-slice'	in document.body.style
+	&&	'border-image-repeat'	in document.body.style
+) {
+	$('body').append('<canvas id="tempshadow"></canvas>');
+	var canvas = document.getElementById('tempshadow');
+	$(canvas).css({
+		'height':	39 + 'px',
+		'width':	39 + 'px'
+	});
+	var ctx	= null;
+	if(canvas !== null) {
+		ctx				= canvas.getContext('2d');
+		canvas.height	= 39;
+		canvas.width	= 39;
+		var img = ctx.createImageData(39, 39);
+		ctx.putImageData(img, 0, 0);
+		ctx.beginPath();
+		ctx.translate(0.5, 0.5);
+		ctx.moveTo(0, 0);
+		ctx.lineTo(0, 26);
+		ctx.lineTo(26, 26);
+		ctx.lineTo(26, 0);
+		ctx.closePath();
+		ctx.fillStyle = "rgba(0, 162, 162, 1)";
+		ctx.shadowOffsetX = 3;
+		ctx.shadowOffsetY = 3;
+		ctx.shadowBlur = 10;
+		ctx.shadowColor = "rgba(0, 162, 162, 1)";
+		ctx.fill();
+		var nmWindowDataURL = canvas.toDataURL();
+		var img = ctx.createImageData(39, 39);
+		ctx.putImageData(img, 0, 0);
+		ctx.beginPath();
+		ctx.translate(0.5, 0.5);
+		ctx.moveTo(10, 10);
+		ctx.lineTo(10, 39);
+		ctx.lineTo(39, 39);
+		ctx.lineTo(39, 10);
+		ctx.closePath();
+		ctx.fillStyle = "rgba(0, 144, 255, 1)";
+		ctx.shadowOffsetX = -3;
+		ctx.shadowOffsetY = -3;
+		ctx.shadowBlur = 10;
+		ctx.shadowColor = "rgba(0, 144, 255, 1)";
+		ctx.fill();
+		var nmMultiDataURL = canvas.toDataURL();
+		$('body').after(
+			'<style type="text/css">' + "\n" +
+				'#tempshadow {' + "\n" +
+					'width: 39px;' + "\n" +
+					'height: 39px;' + "\n" +
+					'background: rgba(0, 255, 0, 0.2);' + "\n" +
+					'z-index: -1;' + "\n" +
+					'position: absolute;' + "\n" +
+					'left: -100px;' + "\n" +
+					'top: -100px;' + "\n" +
+				'}' + "\n" +
+				'.nmWindow {' + "\n" +
+					'-webkit-box-shadow:'	+ '0 0 0 transparent !important;' + "\n" +
+					'-moz-box-shadow:'		+ '0 0 0 transparent !important;' + "\n" +
+					'-ms-box-shadow:'		+ '0 0 0 transparent !important;' + "\n" +
+					'-o-box-shadow:'		+ '0 0 0 transparent !important;' + "\n" +
+					'box-shadow:'			+ '0 0 0 transparent !important;' + "\n" +
+
+					'border:'				+ '0px solid transparent;' + "\n" +
+					'border-image-source:'	+ 'url(' + nmWindowDataURL + ');' + "\n" +
+					'border-image-slice:'	+ '34%;' +
+					'border-image-repeat:'	+ 'repeat;' + "\n" + "\n" +
+					'border-bottom:'		+ '12px solid transparent;' + "\n" +
+					'border-right:'			+ '12px solid transparent;' + "\n" +
+					'border-radius:'+'0 13px 0 13px; !important;' + "\n" +
+				'}' + "\n" +
+				'.nmWindow.nmWindow_multiselect {' + "\n" +
+					'border:0px solid transparent !important' + "\n" +
+
+				'}' + "\n" +
+				'.nmWindow.nmWindow_multiselect:before {' + "\n" +
+					'content:""; display:block;' + "\n" +
+					'position:absolute;' + "\n" +
+					'height:100%;' + "\n" +
+					'width:100%;' + "\n" +
+					'left:-12px;top:-12px;'+ "\n" +
+					'border:'				+ '0px solid transparent; !important;' + "\n" +
+					'border-image-source:'	+ 'url(' + nmMultiDataURL + ');' + "\n" +
+					'border-image-slice:'	+ '33%;' + "\n" +
+					'border-image-repeat:'	+ 'repeat;' + "\n" +
+					'border-top:'			+ '12px solid transparent;' + "\n" +
+					'border-left:'			+ '12px solid transparent;' + "\n" +
+					'border-radius:'+'13px 0 0 13px; !important;' + "\n" +
+					'padding-bottom:2px;' + "\n" +
+				'}' + "\n" +
+			'</style>'
+		);
+	}
 }
+spinHex(false, 0);
+if($.browser.msie) {}
 servicePlugin.bind();
 settingsPlugin.bind();
 workspacePlugin.bind();
-																											
+$('#layerContext .remove').hide();
 /*Load INIT WSDL*/
 	initialLoaded = true;
 	$('.emuis_loading_progressbar').progressbar({value: 0});
-	parseWSDL(wsdlURL, function(arrayContainers) {
-		$(window).resize();
-		console.log(arrayContainers);
-		servicePlugin.list(arrayContainers);
-		$(document).resize();
-	}, function(val, max) {
-		if(val == -1) {
-			$('.emuis_loading_progressbar').progressbar({value: 100});
-			$('.hex-container').addClass('hex-container-zoomed');
-			setTimeout(function($this) {
-				$('.eumis_loading_screen').animate({'opacity': 0}, 750, function() {
-					if(!$this) {$this = $(this);}
-					$this.hide();
-				});
-			}, 2500, (typeof($this) == 'undefined') ? false : $this);
-		} else {
-			$('.emuis_loading_progressbar').progressbar({value: (val / max) * 100});
-		}
-	});
+	$('.emuis_loading_progressbar').progressbar({value: 100});
+	$('.hex-container').addClass('hex-container-zoomed');
+	setTimeout(function($this) {
+		$('.eumis_loading_screen').animate({'opacity': 0}, 750, function() {
+			if(!$this) {$this = $(this);}
+			$this.hide();
+		});
+	}, 2500, (typeof($this) == 'undefined') ? false : $this);
 /*After INIT WSDL*/
-	$('#nmWindow_' + createLayerWindow({
-		title: 'SCE: Welcome!',
-		close: true,
-		collapse: true,
-		collapsed: false,
-		tooltip: 'Welcome!',
-		body: '<div style="position:absolute;border-left:4px solid #000000;border-top:4px solid #000000;height:10px;width:10px;display:block;left:3px;top:3px;-webkit-transform:rotate(45deg);-moz-transform:rotate(45deg);-ms-transform:rotate(45deg);-o-transform:rotate(45deg);transform:rotate(45deg);border-radius:0px 8px 0px 8px;"><div style="position:relative;height:4px;width:130px;-webkit-transform:rotate(45deg);-moz-transform:rotate(45deg);-ms-transform:rotate(45deg);-o-transform:rotate(45deg);transform:rotate(45deg);background: #000000;left:-20px;top:43px;border-radius:0px 130px 0px 0px;"></div></div><p style="width:196px;margin-left:27px;">Welcome to the EUMIS SCE (Service Chain Editor).</p><p style="width:196px;margin-left:27px;">Please select the help icon, in the top left of this window, for assistance using this service tool.</p>',
-		help: {
-			enabled: true,
-			content: '<!-- More details! -->Please press your F1 key to get to the Help Screen<br /><br />Using your mouse, you can left-click, hold and drag window around the screen<br /><br />With multiple windows on the screen at one time, you can hold the left Control (Ctrl) key on your keyboard, and then with your mouse, left click on the titles of windows to "Multi-select" them, so you can drag multiple windows together - simply click on a white space or de-select windows by holding Ctrl again and clicking already selected windows<br /><br />You can bring windows which are behind other windows to the foreground by "clicking through windows", left clicking where the window\'s title is behind the other windows<br /><br />The Help Icon in the top left of windows will try and bring you the most relavent information about the selected window\'s service abilities<br /><br />Clicking on the (X) in the top right of windows, will remove that window from the Service Chain Editor (SCE)<br /><br />You can also right-click anywhere on the window canvas area, to view the context menu, with which, you can select to collapse, or expand all windows in the area in one easy click<br /><br /><br /><br /><br />Thank you for using the EUMIS Service Chain Editor!'
-		}
-	})).addClass('nmWelcome').css({
-		left:	$('.layer').scrollLeft() + (($('.layer').width() / 2) - ($('.nmWelcome').width() / 2)),
-		top:	$('.layer').scrollTop() + (($('.layer').height() / 2) - ($('.nmWelcome').height() / 2))
-	});
+	if(loadWelcomeWindow) {
+		$('#nmWindow_' + createLayerWindow({
+			title: 'SCE: Welcome!',
+			close: true,
+			collapse: true,
+			collapsed: false,
+			tooltip: 'Welcome!',
+			body: '<div style="position:absolute;border-left:4px solid #000000;border-top:4px solid #000000;height:10px;width:10px;display:block;left:3px;top:3px;' + (($('body').attr('retro') == undefined) ? '-webkit-transform:rotate(45deg);-moz-transform:rotate(45deg);-ms-transform:rotate(45deg);-o-transform:rotate(45deg);transform:rotate(45deg);border-radius:0px 8px 0px 8px !important;' : '') + '"><div style="position:relative;height:4px;width:130px;' + (($('body').attr('retro') == undefined) ? '-webkit-transform:rotate(45deg);-moz-transform:rotate(45deg);-ms-transform:rotate(45deg);-o-transform:rotate(45deg);transform:rotate(45deg);border-radius:0px 130px 0px 0px;' : '') + 'background: #000000;left:-20px;top:43px;"></div></div><p style="width:196px;margin-left:27px;">Welcome to the EUMIS SCE (Service Chain Editor).</p><p style="width:196px;margin-left:27px;">Please select the help icon, in the top left of this window, for assistance using this service tool.</p>',
+			help: {
+				enabled: true,
+				content: '<!-- More details! -->Please press your F1 key to get to the Help Screen<br /><br />Using your mouse, you can left-click, hold and drag window around the screen<br /><br />With multiple windows on the screen at one time, you can hold the left Control (Ctrl) key on your keyboard, and then with your mouse, left click on the titles of windows to "Multi-select" them, so you can drag multiple windows together - simply click on a white space or de-select windows by holding Ctrl again and clicking already selected windows<br /><br />You can bring windows which are behind other windows to the foreground by "clicking through windows", left clicking where the window\'s title is behind the other windows<br /><br />The Help Icon in the top left of windows will try and bring you the most relavent information about the selected window\'s service abilities<br /><br />Clicking on the (X) in the top right of windows, will remove that window from the Service Chain Editor (SCE)<br /><br />You can also right-click anywhere on the window canvas area, to view the context menu, with which, you can select to collapse, or expand all windows in the area in one easy click<br /><br /><br /><br />Thank you for using the EUMIS Service Chain Editor!'
+			}
+		})).addClass('nmWelcome').css({
+			left:	$('.layer').scrollLeft() + (($('.layer').width() / 2) - ($('.nmWelcome').width() / 2)),
+			top:	$('.layer').scrollTop() + (($('.layer').height() / 2) - ($('.nmWelcome').height() / 2))
+		});
+	}
 	$('.checkbox-ui').bind('click', function() {$(this).toggleClass('checked');});
-
 $('.serviceio_title .title').trigger('click');
+if(loadAllWSDLs) {
+	$.each($.jStorage.get('jRememberedWSDLs') || [], function(index, value) {
+		parseWSDL(value.url, function(arrayContainers) {
+			$(window).resize();
+			servicePlugin.list(arrayContainers);
+		}, function(val, max) {
+			if(val == -1) {
+				$('.emuis_loading_progressbar').progressbar({value: 100});
+				$('.hex-container').addClass('hex-container-zoomed');
+				setTimeout(function($this) {
+					$('.eumis_loading_screen').animate({'opacity': 0}, 750, function() {
+						if(!$this) {$this = $(this);}
+						$this.hide();
+					});
+				}, 2500, (typeof($this) == 'undefined') ? false : $this);
+			} else {
+				$('.emuis_loading_progressbar').progressbar({value: (val / max) * 100});
+			}
+		});
+	});
+}
+
+
 clearInterval(InitPlugins);}}, 100);
 
 /*Controller*/
 	devel?0:console={log:function(){}};
 	jQuery.fn.outerHTML=function(s){return s?this.before(s).remove():jQuery("<div>").append(this.eq(0).clone()).html();};
 	window.templates = $(ajax('templates.php', true));
-	$.hasFileReader = (typeof(File) == 'function' && typeof(FileReader) == 'function' && typeof(FileList) == 'function' && typeof(Blob) == 'function') ? true : false;
+	try {
+		$.hasFileReader = (File !== undefined && FileReader !== undefined && FileList !== undefined && Blob !== undefined && typeFuncObj(File) && typeFuncObj(FileReader) && typeFuncObj(FileList) && typeFuncObj(Blob)) ? true : false;
+	} catch(e){$.hasFileReader = false;}
 	$.data(document, 'template-importdialog',		templates.find('importdialog' + ($.hasFileReader ? '_async' : '') + 'late').html());
 	$.data(document, 'template-layerwindow_sync',	templates.find('layerwindow_synclate').html());
 	$.data(document, 'template-layerwindow_async',	templates.find('layerwindow_asynclate').html());
@@ -22946,27 +25500,35 @@ clearInterval(InitPlugins);}}, 100);
 	$.data(document, 'settingsPanel',				templates.find('settingsPanellate').html());
 	$.data(document, 'servicePanel',				templates.find('servicePanellate').html());
 	window.dialogBoxTemplate = 						$(templates.find('dialogBoxlate').html());
-
 function checkRedundantWires() {
 	var src		= $.data(document, 'wiresSrc');
 	var dest	= $.data(document, 'wiresDest');
 	if(src	== undefined) {src	= []};
 	if(dest	== undefined) {dest	= []};
 	$.each(src, function(index, value) {
-		console.log(value);
-		if($('#' + value.pid).length < 1) {
+		if(!value) {
 			src.splice(index, 1);
 		}
-		if($('#' + value.tid).length < 1) {
-			src.splice(index, 1);
+		if(value !== undefined) {
+			if($('#' + value.pid).length < 1) {
+				src.splice(index, 1);
+			}
+			if($('#' + value.tid).length < 1) {
+				src.splice(index, 1);
+			}
 		}
 	});
 	$.each(dest, function(index, value) {
-		if($('#' + value.pid).length < 1) {
+		if(!value) {
 			dest.splice(index, 1);
 		}
-		if($('#' + value.tid).length < 1) {
-			dest.splice(index, 1);
+		if(value !== undefined) {
+			if($('#' + value.pid).length < 1) {
+				dest.splice(index, 1);
+			}
+			if($('#' + value.tid).length < 1) {
+				dest.splice(index, 1);
+			}
 		}
 	});
 	$.data(document, 'wiresSrc', src);
@@ -22977,6 +25539,7 @@ function renderPathLine(x1, y1, x2, y2) {
 	clearPathLine();
 	drawPathLine(x1, y1, x2, y2);
 }
+
 function clearPathLine() {
 	var c		= document.getElementById('wireGridCanvas');
 	var v		= $('#wireGridCanvas');
@@ -22986,6 +25549,7 @@ function clearPathLine() {
 	x.clearRect(0, 0, v.width(), v.height());
 	x.stroke();
 }
+
 function drawPathLine() {
 	var update	= false;
 	var x1		= arguments[0] ? arguments[0] : 0;
@@ -22994,7 +25558,9 @@ function drawPathLine() {
 	var y2		= arguments[3] ? arguments[3] : 0;
 	var x3		= arguments[4] ? arguments[4] : 0;
 	var x4		= arguments[5] ? arguments[5] : 0;
-	if(x1 + y1 + x2 + y2 == 0) {
+	var backup	= false;
+	if(x1 === true) {backup = true; x1 = 0;}
+	if((x1 + y1 + x2 + y2) == 0) {
 		update = true;
 	}
 	var c		= document.getElementById('wireGridCanvas');
@@ -23003,7 +25569,7 @@ function drawPathLine() {
 	var grid	= [];
 	var windows	= $('.nmWindow');
 	x.lineWidth	= 5;
-	size = 20 * 1;//current_scale;
+	size = 20 * 1;
 	$.each(windows, function(index, value) {
 		var l = parseInt($(value).css('left'))
 		var t = parseInt($(value).css('top'));
@@ -23039,8 +25605,7 @@ function drawPathLine() {
 	} else {
 	}
 	x.beginPath();
-	$.each(windows, function(index, value) {
-	});
+	$.each(windows, function(index, value) {});
 	if(!update) {
 		x.moveTo(start[0] * size, start[1] * size);
 		if(x3 == 0 || x4 == 0) {
@@ -23061,29 +25626,44 @@ function drawPathLine() {
 		} else {
 			x.lineTo(x4, y2);
 		}
+		drawPathLine();
 	} else {
-		var wires = $.data(document, 'wires-dest') || [];
+		checkRedundantWires();
+		var wires = $.data(document, 'wiresDest') || [];
+		$('.nmWindow .serviceLink.error').removeClass('error').css({'text-indent':'0px','border':'0px solid transparent','width':'101px'});
 		$.each(wires, function(index, value) {
-			var tid = $('#' + value.tid + ' .body .' + ((value.type == 'input') ? 'left' : 'right'));
-			var pid = $('#' + value.pid + ' .body .' + ((value.type == 'input') ? 'right' : 'left'));
-			$.each(tid, function(index, value2) {
-				if($(value2).text() == value.name) {
-					tid = value2;
+			if(value) {
+				if(value.tid && value.pid) {
+					var tid = $('#' + value.tid + ' .body .' + ((value.type == 'input') ? 'left' : 'right'));
+					var pid = $('#' + value.pid + ' .body .' + ((value.type == 'input') ? 'right' : 'left'));
+					$.each(tid, function(index, value2) {
+						if($(value2).text() == value.name) {
+							tid = value2;
+						}
+					});
+					$.each(pid, function(index, value2) {
+						if($(value2).text() == value.partner) {
+							pid = value2;
+						}
+					});
+					if($(tid).length > 0 && $(pid).length > 0) {
+						var to = $(tid).offset();
+						var po = $(pid).offset();
+						if($(tid).attr('data-type') !== $(pid).attr('data-type') && $(tid).attr('data-type') !== undefined && $(pid).attr('data-type') !== undefined) {
+							if(!$(tid).parents('.nmWindow').hasClass('serviceio') && !$(pid).parents('.nmWindow').hasClass('serviceio')) {
+								$(tid).addClass('error');
+								$(pid).addClass('error');
+							}
+						}
+						semantic($(tid).text(), $(pid).text(), $(pid).parents('.nmWindow').attr('wsdl-path'), $(pid).parents('.nmWindow').attr('wsdl-path'), $(tid).parents('.nmWindow').attr('wsdl-label'), $(pid).parents('.nmWindow').attr('wsdl-label'), tid, pid);
+						var topdiff = (current_scale == 1) ? 15 : ((current_scale == 0.75) ? 11 : ((current_scale == 0.5) ? 8 : (current_scale == 0.25) ? 4 : 15));
+						var rightdiff = (current_scale == 1) ? 139 : ((current_scale == 0.75) ? 104 : ((current_scale == 0.5) ? 69 : (current_scale == 0.25) ? 30 : 139));
+						var leftdiff = (current_scale == 1) ? -13 : ((current_scale == 0.75) ? -10 : ((current_scale == 0.5) ? -8 : (current_scale == 0.25) ? -5 : -13));
+						x.moveTo((to.left) + ((value.type == 'input') ? leftdiff : rightdiff), to.top + topdiff);
+						x.lineTo((po.left) + ((value.type == 'input') ? rightdiff : leftdiff), po.top + topdiff);
+					}
 				}
-			});
-			$.each(pid, function(index, value2) {
-				if($(value2).text() == value.partner) {
-					pid = value2;
-				}
-			});
-			var to = $(tid).offset();
-			var po = $(pid).offset();
-			/*to.left = to.left * current_scale;
-			to.top = to.top * current_scale;
-			po.left = po.left * current_scale;
-			po.top = po.top * current_scale;*/
-			x.moveTo((to.left - 190) + ((value.type == 'input') ? -16 : 140), to.top - 35);
-			x.lineTo((po.left - 190) + ((value.type == 'input') ? 140 : -16), po.top - 35);
+			}
 		});
 	}
 	x.stroke();

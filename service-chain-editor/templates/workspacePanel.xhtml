@@ -1,28 +1,42 @@
 <div id="workspacePanel" class="panel">
 	<div>
-		<span class="title" style="	text-align: center;	display: block;	height: 29px;	line-height: 29px;	text-shadow: 2px 2px 2px black;color:white;font-size:28px;height:40px;">Workspace</span>
+		<span class="title" style="	text-align: center;	display: block;	height: 29px;	line-height: 29px;	text-shadow: 2px 2px 2px black;color:white;font-size:28px;height:40px;"></span>
 		<div style="width:400px; background:rgba(30, 175, 175, 0.75);border-radius:15px 15px 15px 15px; border: 1px solid rgba(0, 135, 135, 0.9);">
 			<div style="width:400px;border-bottom: 2px solid rgba(0, 135, 135, 0.9);height:206px;" class="workspaceDataContainer">
 			</div>
 			<div class="workspaceButtons">
-				<div class="workspaceSave">
-					Save
-				</div>
-				<div class="workspaceLoad">
-					Load
-				</div>
-				<div class="workspaceImport">
-					Import
-				</div>
-				<div class="workspaceDelete">
-					Delete
-				</div>
+				<div class="workspaceSave">Save</div>
+				<div class="workspaceLoad">Load</div>
+				<div class="workspaceDelete">Delete</div>
+				<div class="workspaceClear">Clear</div>
 			</div>
-			<span class="export" style="text-shadow: 2px 2px 2px black;color:white;font-size: 19px;text-align: center;width: 400px;display: block;">Export</span>
 			<div style="width:400px; height:120px;border-top: 2px solid rgba(0, 135, 135, 0.9);overflow:hidden;cursor:pointer;">
-				<div style="float:left;width:132px;height:136px;border-right: 1px solid rgba(0, 135, 135, 0.9); background:url(images/taverna.png) scroll no-repeat center center transparent;text-align:center;line-height:44px;">Run</div>
-				<div style="float:left;width:133px;height:136px;border-right: 1px solid rgba(0, 135, 135, 0.9); background:url(images/taverna.png) scroll no-repeat center center transparent;text-align:center;line-height:44px;">Taverna 2.3</div>
-				<div style="float:left;width:132px;height:122px;border-left: 1px solid rgba(0, 135, 135, 0.9); background:url(images/netmar.png) scroll no-repeat center bottom transparent;text-align:center;line-height:44px;">Netmar XML</div>
+				<div class="workspaceTabs">
+					<div class="workspaceTabExport active">Export</div>
+					<div class="workspaceTabImport">Import</div>
+					<div class="workspaceTabRun">Run</div>
+				</div>
+				<div class="workspaceTabbeds">
+					<div class="export active">
+						<div rel='taverna' style="float:left;width:93px;height:136px;border-right: 1px solid rgba(0, 135, 135, 0.9); background:url(images/taverna.png) scroll no-repeat center center transparent;text-align:center;line-height:44px;text-shadow:0 0 5px white;">Taverna 2.3</div>
+						<div rel='netmar' style="float:left;width:112px;height:122px;border-left: 1px solid rgba(0, 135, 135, 0.9); background:url(images/netmar.png) scroll no-repeat center bottom transparent;text-align:center;line-height:44px;text-shadow:0 0 5px white;">Netmar XML</div>
+						<div rel='email' style="float:left;width:72px;height:136px;border-left: 1px solid rgba(0, 135, 135, 0.9); background:none scroll no-repeat center center transparent;text-align:center;line-height:44px;text-shadow:0 0 5px white;"><div class="emailicon"></div>Email</div>
+					</div>
+					<div class="import">
+						<div rel='import' style="float:left;width:280px;height:122px;background:url(images/netmar.png) scroll no-repeat center bottom transparent;text-align:center;line-height:44px;text-shadow:0 0 5px white;">Import Netmar XML</div>
+					</div>
+					<div class="run">
+						<div rel='run' style="float:left;width:280px;height:122px;background:url(images/taverna.png) scroll no-repeat center center transparent;text-align:center;line-height:44px;text-shadow:0 0 5px white;">Run</div>
+						<!--<div rel='run' style="float:left;width:132px;height:136px;border-right: 1px solid rgba(0, 135, 135, 0.9); background:url(images/taverna.png) scroll no-repeat center center transparent;text-align:center;line-height:44px;">Run</div>-->
+						<div class="workspaceRunData canSelect" style="display:none;">
+							<div class="processStateBox">
+								<span>Your flow is currently:</span>
+								<div class="state"><span>Loading...</span></div>
+								<span></span>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

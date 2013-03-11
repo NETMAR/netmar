@@ -1,7 +1,7 @@
 <?php
 
-/* DEBUG
- */
+/* DEBUG */
+set_time_limit(5);
 error_reporting(E_ALL);
 ini_set('display_errors', 'On');
 function authurl($url = '', $user = 'taverna', $pass = 'taverna') {

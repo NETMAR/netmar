@@ -94,6 +94,138 @@
 	border-bottom:			2px	 solid rgba(0, 135, 135, 0.9);
 }
 
+
+
+
+
+
+.settingsShowGridBox {
+	height:			0px;
+	width:			417px;
+	padding:		15px;
+	float: left;
+	top: 25px;
+	left: 330px;
+	clear:			both;
+	background:		rgba(30, 175, 175, 0.75);
+	border-radius:	24px 24px 0 0;
+	border:			1px solid rgba(0, 135, 135, 0.9);
+	border-bottom:	0 solid transparent;
+	position:absolute;
+	background:none;
+	border-radius:0px;
+	border:0px solid transparent;
+}
+
+
+
+.settingsConfirmDeleteBox {
+	height: 0px;
+	width: 290px;
+	padding: 15px;
+	float: right;
+	clear: both;
+	background: rgba(30, 175, 175, 0.75);
+	border-radius: 24px 24px 0 0;
+	border: 1px solid rgba(0, 135, 135, 0.9);
+	border-bottom: 0 solid transparent;
+	position: absolute;
+	left: -10px;
+	top: 79px;
+	background: none;
+	border-radius: 0px;
+	border: 0px solid transparent;
+}
+
+
+.settingsLoadLastSavedBox {
+	height: 0px;
+	width: 290px;
+	padding: 15px;
+	float: right;
+	clear: both;
+	background: rgba(30, 175, 175, 0.75);
+	border-radius: 24px 24px 0 0;
+	border: 1px solid rgba(0, 135, 135, 0.9);
+	border-bottom: 0 solid transparent;
+	position: absolute;
+	left: -10px;
+	top: 109px;
+	background: none;
+	border-radius: 0px;
+	border-bottom: 0px solid transparent;
+	border: 0px solid transparent;
+}
+.settingsLoadLastBackupBox {
+	height: 0px;
+	width: 290px;
+	padding: 15px;
+	float: right;
+	clear: both;
+	background: rgba(30, 175, 175, 0.75);
+	border-radius: 24px 24px 0 0;
+	border: 1px solid rgba(0, 135, 135, 0.9);
+	border-bottom: 0 solid transparent;
+	position: absolute;
+	left: 280px;
+	top: 109px;
+	background: none;
+	border-radius: 0px;
+	border-bottom: 0px solid transparent;
+	border: 0px solid transparent;
+}
+.settingsLoadAllWSDLs {
+	height:			0px;
+	width:			417px;
+	padding:		15px;
+	float:			right;
+	clear:			both;
+	background:		rgba(30, 175, 175, 0.75);
+	border-radius:	24px 24px 0 0;
+	border:			1px solid rgba(0, 135, 135, 0.9);
+	border-bottom:	0 solid transparent;
+	position:absolute;
+	left:-10px;
+	top:158px;
+	background:none;
+	border-radius:0px;
+	border-bottom:0px solid transparent;
+	border:0px solid transparent;
+}
+
+.settingsLoadWelcomeWindowBox {
+	height:			0px;
+	width:			417px;
+	padding:		15px;
+	float:			right;
+	clear:			both;
+	background:		rgba(30, 175, 175, 0.75);
+	border-radius:	24px 24px 0 0;
+	border:			1px solid rgba(0, 135, 135, 0.9);
+	border-bottom:	0 solid transparent;
+	position:absolute;
+	left:-10px;
+	top:188px;
+	background:none;
+	border-radius:0px;
+	border-bottom:0px solid transparent;
+	border:0px solid transparent;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .serviceLink.left.content:before {
 	display:				block;
 	height:					0px;
@@ -112,15 +244,16 @@
 	border-bottom:			12px solid green;
 	border-left:			14px solid transparent;
 }
-.serviceLink.left.content:hover:before {
+.serviceLink.left.content:hover:before,
+.serviceLink.left.content.lovering:before {
 	background:	rgba(0, 162, 162, 0.3);
 	box-shadow:	0 0 40px rgba(0, 162, 162, 1);
 }
 
 .snapToSize {
-	left:	268px;
-	top:	62px;
-	width:	270px;
+	left: 126px;
+	top: 50px;
+	width: 414px;
 }
 
 .serviceLink.right.content:before {
@@ -141,7 +274,8 @@
 }
 
 
-.serviceLink.right.content:hover:after {
+.serviceLink.right.content:hover:after,
+.serviceLink.right.content.rovering:after {
 	background:	rgba(162, 40, 0, 0.24);
 	box-shadow:	0 0 40px rgba(162, 40, 0, 1);
 }
@@ -164,14 +298,14 @@
 	border-top:		12px solid rgba(145, 145, 255, 1);
 	border-bottom:	12px solid rgba(145, 145, 255, 1);
 }
-.serviceio .serviceLink.left.content:hover:before {
+.serviceio .serviceLink.left.content:hover:before, .serviceio .serviceLink.left.content.lovering:before {
 	background:	rgba(145, 145, 255, 0.29);
 	box-shadow:	0 0 40px rgba(145, 145, 255, 1)
 }
 .serviceio .serviceLink.right.content:before {
 	background:	rgba(255, 168, 248, 1);
 }
-.serviceio .serviceLink.right.content:hover:after {
+.serviceio .serviceLink.right.content:hover:after, .serviceio .serviceLink.right.content.rovering:after {
 	box-shadow:0 0 40px rgba(255, 188, 145, 1);
 	background:	rgba(255, 188, 145, 0.25);
 }
@@ -190,7 +324,7 @@
 
 #settingsPanel {
 	width:560px;
-	height:240px;
+	height:200px; /*240px;*/
 	display:block;
 	margin-top:240px;
 	position:absolute;
@@ -327,6 +461,8 @@
 	-ms-box-shadow:			6px 8px 23px rgba(255, 228, 20,1);
 	-o-box-shadow:			6px 8px 23px rgba(255, 228, 20,1);
 	box-shadow:				6px 8px 23px rgba(255, 228, 20,1);
+	max-width: 380px;
+	overflow:hidden;
 }
 
 .layerhelp .close {
@@ -781,6 +917,18 @@ html, body {
 	padding:				0;
 	margin:					0;
 	border:					0;
+	-webkit-border-radius: 24px 0 0 0;
+	-moz-border-radius: 24px 0 0 0;
+	-ms-border-radius: 24px 0 0 0;
+	-o-border-radius: 24px 0 0 0;
+	border-radius: 24px 0 0 0;
+
+	background:#EEF0F0;
+	-webkit-box-shadow:-8px -8px 0 #004444, inset 0px 0px 4px #066, inset 0px 0px 23px #066;
+	-moz-box-shadow:-8px -8px 0 #004444, inset 0px 0px 4px #066, inset 0px 0px 23px #066;
+	-ms-box-shadow:-8px -8px 0 #004444, inset 0px 0px 4px #066, inset 0px 0px 23px #066;
+	-o-box-shadow:-8px -8px 0 #004444, inset 0px 0px 4px #066, inset 0px 0px 23px #066;
+	box-shadow:-8px -8px 0 #004444, inset 0px 0px 4px #066, inset 0px 0px 23px #066;
 	-webkit-touch-callout:	none;
 	-webkit-user-select:	none;
 	-khtml-user-select:		none;
@@ -788,6 +936,15 @@ html, body {
 	-ms-user-select:		none;
 	user-select:			none;
 	overflow:				hidden;
+}
+
+input {
+	-webkit-touch-callout:	text !important;
+	-webkit-user-select:	text !important;
+	-khtml-user-select:		text !important;
+	-moz-user-select:		text !important;
+	-ms-user-select:		text !important;
+	user-select:			text !important;
 }
 
 #titleGroup .serviceEditor {
@@ -800,7 +957,10 @@ html, body {
 	display:				block;
 	font-size:				31px;
 	line-height:			49px;
-	text-align:				center;
+	text-align: left;
+	padding-left: 16px;
+	clear: none;
+	float: left;
 }
 
 * {
@@ -808,7 +968,7 @@ html, body {
 }
 
 .layer {
-	-webkit-border-radius:	24px 0 0 0;
+	/*-webkit-border-radius:	24px 0 0 0;
 	-moz-border-radius:		24px 0 0 0;
 	-ms-border-radius:		24px 0 0 0;
 	-o-border-radius:		24px 0 0 0;
@@ -817,7 +977,7 @@ html, body {
 	-moz-box-shadow:		0px 0px 23px #FFFFFF;
 	-ms-box-shadow:			0px 0px 23px #FFFFFF;
 	-o-box-shadow:			0px 0px 23px #FFFFFF;
-	box-shadow:				0px 0px 23px #FFFFFF;
+	box-shadow:				0px 0px 23px #FFFFFF;*/
 }
 
 #servicePanel {
@@ -833,7 +993,7 @@ html, body {
 }
 
 #linkGroup {
-	z-index:	170;
+	z-index:	20020;
 	position:	absolute;
 }
 #panelGroup {
@@ -1097,14 +1257,14 @@ padding-left:	10px;
 .accordionList .serviceLi ul {
 	padding:	0;
 	margin:		0;
-	width:		200px !important;
+	width:		219px !important;
 	position:	relative;
 }
 .accordionList .serviceLi li {
 	padding:		0;
 	margin:			0;
 	padding-left:	10px;
-	width:			200px !important;
+	width:			209px !important;
 	position:		relative;
 }
 
@@ -1134,7 +1294,7 @@ padding-left:	10px;
 	border:			1px solid #111111;
 	/*background:	#EDEDED;*/
 	background:		white;
-	width:			200px;
+	width:			219px;
 	height:			auto;
 	/*padding-top:	1px;
 	padding-right:	1px;
@@ -1346,7 +1506,7 @@ div.dummyIOContainer div.WireIt-Terminal-Output-Taverna-GIS {
 	display:				block;
 }
 
-.serviceEditor a.trigger:hover{
+.serviceEditor a.trigger:hover {
 	text-decoration:		none;
 	/*top:					90px; left: 0;*/
 	font-size:				16px;
@@ -1365,18 +1525,25 @@ div.dummyIOContainer div.WireIt-Terminal-Output-Taverna-GIS {
 	display: block;
 }
 
-.serviceEditor a.trigger, .serviceEditor a.trigger:hover{
+.serviceEditor a.trigger:hover {
+	background:		#FFFFFF;
+	color:			black;
+	padding-left:15px;/*url(../images/plus.png) 85% 48% no-repeat;*/
+	/*color:		#20B2AA;*/
+}
+
+.serviceEditor a.trigger {
 	background:		#EDEDED; /*url(../images/plus.png) 85% 48% no-repeat;*/
 	padding-top:	10px;
 	padding-right:	40px;
 	padding-bottom:	10px;
 	color:			black;
-	/*color:		#20B2AA;*/}
+	/*color:		#20B2AA;*/
+}
 
 .serviceEditor a.active.trigger {
 	background:	#FF8C00;/* url(../images/minus.png) 85% 48% no-repeat;*/
 }
-
 
 /* MENU POSITIONS */
 .serviceEditor a.trigger#wsdlMenu {
@@ -1398,7 +1565,7 @@ div.dummyIOContainer div.WireIt-Terminal-Output-Taverna-GIS {
 
 .serviceLi .title {
 	height:			19px;
-	width:			209px;
+	width:			228px;
 	display:		block;
 	overflow:		hidden;
 	border:			0 solid transparent;
@@ -1431,7 +1598,7 @@ canvas.WireIt-Wire:after {
 }
 
 .panel li.input, .panel li.output {
-	width:					150px !important;
+	width:					183px !important;
 	position:				relative;
 	left:					20px;
 	list-style-position:	inside;

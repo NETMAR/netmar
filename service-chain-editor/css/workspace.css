@@ -1,3 +1,21 @@
+.width180 {
+	width: 180px !important;
+}
+.width80 {
+	width: 84px !important;
+}
+.workspaceDataTable th {
+	height: 22px !important;
+}
+.workspaceDataTable tr, .workspaceDataTable td {
+	min-height: 30px !important;
+}
+.workspaceDataContainer {
+	height:206px !important;
+	/*overflow-y: auto;
+	overflow-x: hidden;*/
+}
+
 .workspaceButtons {
 	height:			24px;
 	width:			400px;
@@ -28,7 +46,7 @@
 	box-shadow:		inset 0 0 16px #1EAFAF, 0px 0px 8px #FFFFFF;
 }
 
-.workspaceImport {
+.workspaceClear {
 	height:			24px;
 	width:			99px;
 	position:		relative;
@@ -40,6 +58,64 @@
 	border-right:	1px solid rgba(0, 135, 135, 0.9);
 	box-shadow:		inset 0 0 16px #1EAFAF, 0px 0px 8px #FFFFFF;
 }
+
+.workspaceTabs {
+	width:	118px;
+	height:	120px;
+	float:left;
+	position:relative;
+	border-right:		2px solid rgba(0, 135, 135, 0.9);
+}
+.workspaceTabs div {
+	height:			38px;
+	width:			118px;
+	position:		relative;
+	float:			left;
+	line-height:	38px;
+	text-align:		center;
+	background:		none scroll no-repeat left top #FFFFFF;
+	border-top:		1px solid rgba(0, 135, 135, 0.9);
+	border-bottom:	1px solid rgba(0, 135, 135, 0.9);
+	box-shadow:		inset 0 0 16px #1EAFAF, 0px 0px 8px #FFFFFF;
+}
+
+.workspaceTabs .active {
+	background:darkOrange;
+	text-shadow:0 0 5px white;
+}
+
+.workspaceTabbeds {
+	width:280px;
+	height:120px;
+	position:relative;
+	float:right;
+}
+
+.workspaceTabbeds div div {
+	display:block;
+}
+
+.workspaceTabbeds div {
+	display:none;
+}
+
+.workspaceTabbeds .active {
+	display:block;
+}
+
+.dialogBoxWorkFlowRun .button {
+	background: darkOrange;
+	width: 70px;
+	text-align: center;
+	line-height: 30px;
+	height: 30px;
+	box-shadow: 0px 0px 5px black,inset 0 0 1px black;
+	margin-left: 30px;
+	margin-top: 16px;
+	margin-bottom: 16px;
+	text-shadow:0 0 5px white;
+}
+
 
 /*.workspaceTabs {
 

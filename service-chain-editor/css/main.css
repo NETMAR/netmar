@@ -1,5 +1,198 @@
+.SCERevision {
+	position: absolute;
+	left: 473px;
+	top: 183px;
+	border: 2px solid black;
+	-webkit-border-radius: 13px !important;
+	-moz-border-radius: 13px !important;
+	-ms-border-radius: 13px !important;
+	-o-border-radius: 13px !important;
+	border-radius: 13px !important;
+	height: 30px;
+	width: 94px;
+	text-align: center;
+	line-height: 30px;
+	background: rgba(255, 191, 236, 0.7);
+	font-size:9px;
+}
+.loadWSDLDialogInput {
+	width:780px;
+	font-size: 13px !important;
+	line-height:26px;
+	height:26px;
+}
+
+.selection {
+	position: absolute;
+	border: 1px solid #89B;
+	background: #BCE;
+	background-color: #BEC;
+	border-color: #8B9;
+	display:none;
+}
+
+.size2 {
+	height: 118px;
+	line-height: 118px;
+}
+
+.size3 {
+	height: 178px;
+	line-height: 178px;
+}
+
+/*.nmWindow {
+	float: left;
+	border: 1px dashed #888;
+	background: #EEE;
+	text-align: center;
+	padding: 20px;
+	margin: 0 10px 10px 0;
+}*/
+
+.dropped {
+	background-color: #EBC;
+	border-color: #B89;
+}	
+
+.active {  
+	background-color: #CEB;
+	border-color: #9B8;
+}
+
+#wsdlLoadDropdown {
+	position: relative;
+	float: left;
+	clear: none;
+	width: 211px;
+	border: 0px;
+	height: 22px;
+	background: #CCEEEE;
+	color: black;
+}
+
+.serviceListLoadWSDL:before {
+	display: block;
+	content: "Load new WSDL File";
+	height: 22px;
+	width: 194px;
+	position: absolute;
+	background: #088;
+	z-index: 1;
+	line-height: 22px;
+	font-size: 14px;
+	font-weight: bold;
+	text-shadow: 1px 1px 2px black;
+	color: white;
+}
+
+.dialogBoxWorkFlowRun {
+	overflow:visible;
+}
+
+.f1_information_logo {
+	cursor:pointer;
+	position: relative;
+	z-index: 1;
+}
+
+#linkGroup #workspaceMenu.active:after {
+	position:absolute;
+	float:right;
+	content:"+";
+	background:red;
+	display:block !important;
+	width:20px;
+	height:20px;
+	left: 411px;
+	top: 10px;
+	border-radius: 20px !important;
+	line-height:17px;
+}
+
+#linkGroup #serviceMenu.active:after {
+	position:absolute;
+	float:right;
+	content:"+";
+	background:red;
+	display:block !important;
+	width:20px;
+	height:20px;
+	left: 262px;
+	top: 10px;
+	border-radius: 20px !important;
+	line-height:17px;
+}
+
+#titleGroup .headerhelp {
+	float: left;
+	clear: none;
+	display: block;
+	background: transparent;
+	height: 40px;
+	width: 40px;
+	text-align: center;
+	line-height: 40px;
+	font-size: 27px;
+	font-weight: bold;
+	text-shadow: 2px 2px 10px white;
+	border-radius: 20px 20px 20px 20px !important;
+	margin-left: 4px;
+	margin-top: 3px;
+	border: 1px solid white;
+	box-shadow: inset 0 0 24px white;
+	cursor:pointer;
+}
+
 * {
 	font-family:	Helvetica, sans-serif;
+}
+
+body.dialog .header .handler, body.dialog #linkGroup .trigger.active, body.dialog .serviceio_title .title, body.dialog .serviceLi-WSDL .title-wsdl, body.dialog .serviceio_puts div{
+	/*text-shadow:0 0 5px #FFFFFF !important;*/
+}
+
+body.dialog .layer *, body.dialog #panelGroup *, body.dialog #linkGroup * {
+	/*color:transparent !important;
+	text-shadow:0 0 5px #000000 !important;*/
+}
+
+.nmWelcome .body div {
+	-webkit-transform:rotate(45deg);
+	-moz-transform:rotate(45deg);
+	-ms-transform:rotate(45deg);
+	-o-transform:rotate(45deg);
+	transform:rotate(45deg);
+}
+
+.workspaceRunData {
+	display:none;
+	width:280px;
+	height:120px;
+	cursor:default;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+.workspaceRunData span {
+	clear: both;
+	display: block;
+}
+
+div.jquery-drag-to-select {
+	background: #def;
+
+	display: none;
+
+	opacity: .3;
+	filter: alpha(opacity=30);
+	z-index: 10;
+
+	border: 1px solid #369;
+}
+
+div.jquery-drag-to-select.active {
+	display: block;
 }
 
 /*.title-wsdl:after {
@@ -8,6 +201,179 @@
 		content: attr(data-content);
 }*/
 
+#workspaceMenu, #serviceMenu, #settingsMenu {
+	position:absolute;
+}
+
+#workspaceMenu:before, #workspaceMenu:after, #serviceMenu:before, #serviceMenu:after, #settingsMenu:before, #settingsMenu:after {display:none;}
+
+#serviceMenu {
+	width: 140px;
+	top: 0px;
+	border-radius: 20px 0 0 20px;
+}
+
+#settingsMenu {
+	width: 140px;
+	top: 0px;
+	height:31px;
+	padding:0;
+	border-radius: 20px 20px 20px 20px;
+	line-height:31px;
+	text-align:center;
+	display:none;
+}
+
+#settingsMenu.active {
+	line-height: 23px;
+	font-weight: normal;
+	font-size: 25px;
+	text-shadow: 1px 1px 0 black;
+	color: white;
+	box-shadow: 0 0 6px white;
+	border: 1px solid rgba(255, 145, 0, 0.8);
+	background: rgba(255, 145, 0, 0.8);
+	border-radius: 20px 20px 20px 20px;
+	margin-left: -218px;
+	margin-top: -178px;
+	padding-left: 0px;
+	padding: 0px;
+	text-align: left;
+	padding-left: 9px;
+	height: 33px;
+	padding-top: 2px;
+	width: 111px;
+	top: 202px;
+	display:block;
+}
+
+#serviceMenu.active {
+	padding-left: 74px;
+	top: -45px;
+	background: rgba(255, 145, 0, 0.8);
+	height: 21px;
+	line-height: 22px;
+	font-weight: normal;
+	font-size: 25px;
+	text-shadow: 1px 1px 0 black;
+	color: white;
+	box-shadow: 0 0 6px white;
+	border: 1px solid rgba(255, 145, 0, 0.8);
+	width: 178px;
+	margin-left: -99px;
+	margin-top: -1px;
+	border-radius: 20px 0 0 20px;
+}
+
+#workspaceMenu.active {
+	background: rgba(255, 145, 0, 0.8);
+	box-shadow: 0 0 6px white;
+	border: 1px solid rgba(255, 145, 0, 0.8);
+	width: 272px;
+	text-align: right;
+	color: white;
+	text-shadow: 1px 1px 0px black;
+	font-size: 25px;
+	font-weight: normal;
+	line-height: 22px;
+	height: 21px;
+	padding-left: 27px;
+	padding-right:142px;
+}
+
+#workspaceMenu {
+	top:-45px !important;
+}
+
+#titleGroup {
+	width: 517px;
+	margin-left:auto;
+	margin-right:auto;
+	display:block;
+	height:49px;
+	-webkit-border-radius:0 0 20px 20px;
+	-moz-border-radius:0 0 20px 20px;
+	-ms-border-radius:0 0 20px 20px;
+	-o-border-radius:0 0 20px 20px;
+	border-radius:0 0 20px 20px;
+	border:1px solid rgba(0, 136, 136, 0.9);
+	background:rgba(0, 136, 136, 0.75);
+	-webkit-box-shadow:0px 0px 23px #066, 0px 0px 4px #066;
+	-moz-box-shadow:0px 0px 23px #066, 0px 0px 4px #066;
+	-ms-box-shadow:0px 0px 23px #066, 0px 0px 4px #066;
+	-o-box-shadow:0px 0px 23px #066, 0px 0px 4px #066;
+	box-shadow:0px 0px 23px #066, 0px 0px 4px #066;
+	position:relative;
+	z-index:6000;
+}
+
+#titleGroup .headersettings {
+	cursor:pointer;
+	display: block;
+	float: right;
+	height: 40px;
+	width: 40px;
+	background: transparent;
+	clear: none;
+	margin-top: 3px;
+	margin-right: 4px;
+	border: 1px solid white;
+	border-radius: 20px 20px 20px 20px !important;
+	box-shadow: inset 0 0 24px white;
+	overflow:hidden;
+}
+
+#titleGroup .headersettings:after {
+	left: 23px;
+	width: 5px;
+	height: 10px;
+	margin-top: -50px;
+	background: rgba(0, 136, 136, 0.9);
+	-webkit-transform: rotate(45deg);
+	-moz-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	-o-transform: rotate(45deg);
+	transform: rotate(45deg);
+	display: block;
+	content: "";
+	position: relative;
+	box-shadow: inset 0px 0px 6px rgba(255, 255, 255, 0.5);
+	border-radius: 0 0 5px 5px !important;
+}
+
+#titleGroup .headersettings div:before {
+	display: block;
+	content: "";
+	left: 11px;
+	width: 7px;
+	margin-top: 23px;
+	background: black;
+	-webkit-transform: rotate(45deg);
+	-moz-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	-o-transform: rotate(45deg);
+	transform: rotate(45deg);
+	height: 21px;
+	position: relative;
+	top: -8px;
+	border-radius: 0 0 4px 4px !important;
+}
+
+#titleGroup .headersettings div:after {
+	display: block;
+	width: 15px;
+	height: 15px;
+	left: 15px;
+	background: black;
+	-webkit-border-radius: 8px !important;
+	-moz-border-radius: 8px !important;
+	-ms-border-radius: 8px !important;
+	-o-border-radius: 8px !important;
+	border-radius: 8px !important;
+	top: -35px;
+	content: "";
+	position: relative;
+}
 
 .workspaceButtons,
 .workspaceDataTable .odd,
@@ -18,11 +384,12 @@
 #serviceAccordion .title-wsdl,
 .serviceListSearchFilterAndIO .button,
 .settingsSnapGridBox .snapTo,
-.dialogBoxWindow .button {
+.dialogBoxWindow .button,
+.settingsInnerBlock .checkbox-ui {
 	cursor:pointer;
-
 }
 
+.canSelect { user-select: text; -o-user-select: text; -moz-user-select: text; -khtml-user-select: text; -webkit-user-select: text; }
 
 #serviceScrollArea { width: 520px; clear: both; margin: 8px 0 0 14px; }
 #serviceScrollArea .viewport { width: 500px; height: 200px; overflow: hidden; position: relative; }
@@ -35,7 +402,7 @@
 #serviceScrollArea .thumb .end { overflow: hidden; height: 5px; width: 13px; }
 #serviceScrollArea .disable{ display: none; }
 .noSelect { user-select: none; -o-user-select: none; -moz-user-select: none; -khtml-user-select: none; -webkit-user-select: none; }
-
+.dialogBox input { user-select: auto; -o-user-select: auto; -moz-user-select: auto; -khtml-user-select: auto; -webkit-user-select: auto; }
 
 .serviceio_container {
 	width:238px;
@@ -358,6 +725,11 @@ li, ul {
 	display:	none;
 }
 
+.serviceListAccordionHeader span {
+	display:block;
+	padding-left:10px;
+}
+
 .serviceListAccordionHeader {
 	margin:			0;
 	padding:		0;
@@ -368,13 +740,13 @@ li, ul {
 	margin-left:	27px;
 	margin-bottom:	-24px;
 	position:		relative;
-	width:			183px;
+	width:			202px;
 	line-height:	23px;
 	border-radius:	9px 9px 9px 9px;
 }
 .serviceListAccordionHeader .help {
-	height: 16px;
-	width: 16px;
+	height: 17px;
+	width: 17px;
 	position: absolute;
 	display: block;
 	left: 1px;
@@ -384,6 +756,9 @@ li, ul {
 	font-size: 15px;
 	text-align: center;
 	top:2px;
+	border:1px solid black;
+	border-radius:20px;
+	background:white;
 }
 
 #serviceAccordion {
@@ -420,7 +795,7 @@ li, ul {
 	float:			left;
 	padding-left:	12px;
 	width:			101px;
-	overflow:		visible;
+	overflow:		hidden;
 }
 
 .serviceLink.right {
@@ -543,4 +918,35 @@ li, ul {
 	border-left:	26px solid transparent;
 	border-right:	26px solid transparent;
 	border-top:		15px solid #006666;
+}
+
+.emailicon {
+	margin-top: 49px;
+	margin-left: 9px;
+	height: 37px;
+	width: 54px;
+	position: absolute;
+	background: orange;
+}
+
+.emailicon:before {
+	content: "";
+	position: absolute;
+	left: 0px;
+	width: 6px;
+	border-width: 19px 24px;
+	border-style: solid;
+	border-color: transparent #454 #574;
+	background: transparent
+}
+.emailicon:after {
+	content: "";
+	position: absolute;
+	margin: -8px 0 0;
+	left: 0px;
+	border-width: 20px 27px 0px;
+	border-style: solid;
+	border-color: #BDA transparent;
+	margin-top: 0px;
+	background: transparent;
 }

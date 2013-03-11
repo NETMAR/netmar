@@ -6,52 +6,38 @@
 		<link rel="stylesheet" href="css/main.css" type="text/css" media="screen" />
 		<link rel="stylesheet" href="css/colours.css" type="text/css" media="screen" />
 		<link rel="stylesheet" href="css/index.php" type="text/css" media="screen" />
-		<!--<script type="text/javascript" src="javascript/jquery/jquery.js"></script>-->
-		<!--<script type="text/javascript" src="javascript/javascript.js"></script>-->
+		<style type="text/css">#linkGroup, #linkGroup * {} *:not(.close):not(.help):not(.nmWelcome) {border-radius: 0 0 0 0 !important;} *:before, *:after {border-radius: 0 0 0 0 !important;}
+		</style>
 		<script type="text/javascript" src="javascript.js"></script>
-		<!--<script type="text/javascript" src="javascript/functions.js"></script>
-		<script type="text/javascript" src="javascript/jquery/jquery.ui.js"></script>
-		<script type="text/javascript" src="javascript/jquery/jquery.transform-css.js"></script>
-		<script type="text/javascript" src="javascript/jquery/jquery.3dtransform-css.js"></script>
-		<script type="text/javascript" src="javascript/jquery/jquery.slider.js"></script>
-		<script type="text/javascript" src="javascript/jquery/jquery.data-tables.js"></script>
-		<script type="text/javascript" src="javascript/jquery/jquery.fileinput.js"></script>
-		<script type="text/javascript" src="javascript/jquery/jquery.context-menu.js"></script>
-		<script type="text/javascript" src="javascript/jquery/jquery.mousewheel.js"></script>
-		<script type="text/javascript" src="javascript/jquery/jstorage.js"></script>
-		<script type="text/javascript" src="javascript/loading-screen.js"></script>-->
 	</head>
 	<body>
 		<div class="downloadframes" style="display:none;"><iframe src="" id="t2flowdownload"></iframe><iframe src="" id="netmardownload"></iframe></div>
 		<div class="serviceEditor serviceEditorMain"> 
-			<div id="titleGroup">
-				<span class="serviceEditor">EUMIS - Service chain editor</span>
-			</div>
+			<div id="titleGroup"><div class="headerhelp">?</div><span class="serviceEditor">EUMIS - Service chain editor</span><div class="headersettings"><div></div></div></div>
 			<div id="linkGroup"></div>
 			<div id="panelGroup"></div>
 			<div class="layer Dragger">
 				<div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
-				<div class="viewport">
-					<canvas id="snapToGridCanvas"></canvas>
-					<canvas id="wireGridCanvas"></canvas>
-					<div class="layerCanvas"></div>
-				</div>
+				<canvas id="snapToGridCanvas"></canvas>
+				<div class="viewport"><canvas id="wireGridCanvas"></canvas><div class="layerCanvas"></div></div>
 			</div>
+
 			<ul id="layerContext" class="contextMenu">
 				<li class="rename"><a href="#rename">Rename Window</a></li>
+				<li class="remove"><a href="#remove">Remove Wire</a></li>
 				<li class="collapse"><a href="#collapse_all">Collapse All</a></li>
 				<li class="expand"><a href="#expand_all">Expand All</a></li>
 			</ul>
+
 			<div class="trash"></div>
 			<div class="tooltip">
 				<div class="normal_information"></div>
 				<div class="backshadow"></div>
 				<div class="more_information"></div>
 			</div>
-			<div class="scale_zoom">
-				<div class="background"></div>
-				<div class="slider"></div>
+			<div class="scale_zoom"><div class="background"></div><div class="slider"></div>
 			</div>
+			
 			<div class="f1_help_screen">
 				<div class="f1_information_background"></div>
 				<div class="f1_information_block">
@@ -61,13 +47,8 @@
 					</div>
 					<div class="f1_information_text">
 						<span>Quick help notes</span>
-						<p>
-							<b>EUMIS Service Chain Editor</b> is currently undergoing user-interface changes.
-						</p>
-						<p>
-							You may notice several "glitches" with the main area, especially while zoomed out.<br />
-							Please ignore these issues for now, as they <i>are</i> being worked on.
-						</p>
+						<p><b>EUMIS Service Chain Editor</b> is currently undergoing user-interface changes.</p>
+						<p>You may notice several "glitches" with the main area, especially while zoomed out.<br />Please ignore these issues for now, as they <i>are</i> being worked on.</p>
 						<p>
 							If your browser freezes for extended periods of time without any noticable action of content being worked out<br />
 							(For example, when loading a new WSDL file, there is a progress bar, while may lag - but doesn't cause things to <u>freeze</u>)<br />
@@ -90,12 +71,8 @@
 					<div class="eumis_loading_text">
 						<span>EUMIS - Service chain editor</span>
 						<span><b>Currently loading resources...</b></span>
-						<div class="testing" style="position:relative;margin-top:-26px;">
-							<div class="hex hex-white"></div><div class="emuis_loading_progressbar" style="float:right;position:relative;left:0;top:0;margin-top:-30px;height:26px;width:511px;padding-right:2px;"></div>
-						</div>
-						<div class="f1_instructions">
-							Please press <b>F1</b> for quick help notes
-						</div>
+						<div class="testing" style="position:relative;margin-top:-26px;"><div class="hex hex-white"></div><div class="emuis_loading_progressbar" style="float:right;position:relative;left:0;top:0;margin-top:-30px;height:26px;width:511px;padding-right:2px;"></div></div>
+						<div class="f1_instructions">Please press <b>F1</b> for quick help notes</div>
 					</div>
 				</div>
 			</div>

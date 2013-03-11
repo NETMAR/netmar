@@ -59,8 +59,8 @@ $parser=xml_parser_create();
 $q = filter_var($_GET['url'],FILTER_SANITIZE_STRING,FILTER_SANITIZE_URL); // or $REQUEST would suffice?
 
 /* IF no url variable means the user doesnt know how to use it*/
-if(empty($q)) 
-{		echo ($_GET['head']=='true') ? '404' : "It is necessary to set url variable to a valid url eg: http://foo/proxy.php?url=http://potato.xml";
+if(empty($q)) {
+		echo ($_GET['head']=='true') ? '404' : "It is necessary to set url variable to a valid url eg: http://foo/proxy.php?url=http://potato.xml";
 		exit(0);
 };
 if(file_exists('./cache/wsdls/' . md5($q))) {
@@ -70,19 +70,21 @@ echo ($_GET['head']=='true') ? '200' : file_get_contents('./cache/wsdls/' . md5(
 } else {
 
 $fp=fopen($q,"r");
-if (!($fp)){
+if(!($fp)) {
 	header("HTTP/1.0 404 Not Found");
 	echo ($_GET['head']=='true') ? '404' : '';
 	exit(0);
 }
 /* really checks that we have an XML content !!! Otherwise crash everything */
-while ($data=fread($fp,4096))
-  {
-  xml_parse($parser,$data,feof($fp)) or
-  die (sprintf("XML Error: %s at line %d",
-  xml_error_string(xml_get_error_code($parser)),
-  xml_get_current_line_number($parser)));
-  }
+while($data=fread($fp,4096)) {
+  	xml_parse($parser,$data,feof($fp))
+  or
+	die(
+		sprintf("XML Error: %s at line %d",
+		xml_error_string(xml_get_error_code($parser)),
+		xml_get_current_line_number($parser))
+	);
+}
 
 xml_parser_free($parser);
 // Set your return content type

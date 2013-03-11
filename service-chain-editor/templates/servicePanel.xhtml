@@ -1,12 +1,17 @@
 <div id="servicePanel" class="panel">
-	<span class="serviceEditor">Service List</span>
+	<span class="serviceEditor" style="height:56px; width:100px;display:block;"></span>
 	<div class="serviceListSearchFilterAndIO">
+	
+		
+		
 		<div class="serviceListSearchFilter serviceListLoadWSDL">
-			<span>Load new WSDL file</span>
+			<select id="wsdlLoadDropdown">
+				<option value="" selected>Load new WSDL file</option>
+			</select>
 			<div class="button"></div>
 		</div>
 		<div class="serviceListSearchFilter">
-			<span>Filter WSDL Services</span>
+			<span style="text-shadow:0 0 5px white;">Filter WSDL Services</span>
 			<input type="text" value="" />
 		</div>
 		<div class="serviceio_container">
@@ -26,8 +31,6 @@
 		<div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
 		<div class="viewport">
 			<div id="serviceAccordion" class="overview">
-				
-				
 				
 			</div>
 		</div>
